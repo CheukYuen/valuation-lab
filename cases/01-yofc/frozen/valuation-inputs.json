@@ -1,0 +1,157 @@
+{
+  "run": {
+    "run_id": "yofc_valuation_20260815",
+    "valuation_date": "2026-08-14",
+    "compiled_at": "2026-08-15T15:30:00+08:00",
+    "currency": "CNY",
+    "status": "PROVISIONAL",
+    "status_reason": "Market prices and FX are as of 2026-08-14, while the latest complete capital-structure snapshot is 2026-03-31. Operating scenarios still depend on one broker model and internal estimates."
+  },
+  "market": {
+    "a_share": {
+      "security": "601869.SH",
+      "close": 355.18,
+      "currency": "CNY",
+      "price_date": "2026-08-14",
+      "source_ref": "research/company/yofc/20260814/raw/datahub-tencent_quote.json"
+    },
+    "h_share": {
+      "security": "06869.HK",
+      "close": 132.2,
+      "currency": "HKD",
+      "price_date": "2026-08-14",
+      "source_ref": "research/company/yofc/20260814/raw/datahub-hk_quote_profile.json"
+    },
+    "hkd_cny": {
+      "rate": 0.865,
+      "direction": "CNY per HKD",
+      "date": "2026-08-14",
+      "basis": "CFETS/PBOC central parity, not an intraday executable FX quote",
+      "source_url": "https://www.chinamoney.com.cn/r/cms/www/chinamoney/data/fx/ccpr.json"
+    }
+  },
+  "shares": {
+    "as_of": "2026-07-31",
+    "a_issued": 406338314,
+    "a_treasury": 6000000,
+    "a_outstanding_ex_treasury": 400338314,
+    "h_issued_and_outstanding": 421566794,
+    "total_issued": 827905108,
+    "total_outstanding_ex_treasury": 821905108,
+    "source_url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0805/2026080500442.pdf",
+    "treatment": "Treasury shares are excluded from market equity and the per-share denominator."
+  },
+  "capital_structure": {
+    "period": "2026-03-31",
+    "unit": "CNY bn",
+    "cash_and_cash_equivalents_proxy": 5.524839979,
+    "cash_flow_statement_ending_cash_equivalents": 5.409075017,
+    "interest_bearing_debt_including_lease_liabilities": 8.927399644,
+    "minority_interest": 4.05869912,
+    "trading_financial_assets_excluded_from_base_bridge": 1.909338669,
+    "long_term_equity_investments_excluded_from_base_bridge": 2.174389159,
+    "other_equity_investments_excluded_from_base_bridge": 0.503254083,
+    "bridge_policy": "Base EV bridge adds interest-bearing debt and minority interest, then subtracts monetary funds. Financial and equity investments are not deducted until operating versus non-operating treatment is proven; lease liabilities are already included in interest-bearing debt.",
+    "source_ref": "filings/longfei/1225258441.pdf"
+  },
+  "wacc": {
+    "risk_free_rate": 0.016964,
+    "risk_free_source": "China 10-year government-bond yield on 2026-08-14",
+    "risk_free_source_url": "https://www.chinamoney.com.cn/chinese/bkcurvclosedyhis/",
+    "equity_risk_premium": 0.0514,
+    "equity_risk_premium_source": "Damodaran China total equity risk premium, accessed 2026-08-15",
+    "beta": 0.9894,
+    "beta_status": "PROVISIONAL",
+    "beta_method": "5-year weekly adjusted-price beta: 601869.SS versus CSI 300; low correlation makes this a sensitivity input rather than a settled issuer beta",
+    "pre_tax_cost_of_debt": 0.02814,
+    "pre_tax_cost_of_debt_method": "2026Q1 interest expense annualized divided by approximate average interest-bearing debt",
+    "normalized_tax_rate": 0.2,
+    "base_wacc": 0.066,
+    "sensitivity": [0.06, 0.066, 0.07, 0.08, 0.09, 0.1]
+  },
+  "timing": {
+    "year_end_convention": true,
+    "remaining_2026_days": 139,
+    "days_in_year": 365,
+    "treatment": "Only the estimated remaining share of 2026 FCFF is included; 2027-2032 are full years. This is an approximation because no 2026H1 actual cash-flow statement was available at the run cutoff."
+  },
+  "scenarios": {
+    "bear": {
+      "label": "Supply expands quickly",
+      "provenance": "Jefferies 2026-07-22 forecast for revenue, EBIT, D&A, capex and working-capital cash effect; terminal FCFF is normalized internally instead of using the report's 2032 working-capital release.",
+      "years": [2026, 2027, 2028, 2029, 2030, 2031, 2032],
+      "revenue_bn": [27.944, 29.353, 26.283, 22.904, 20.429, 19.78, 19.248],
+      "ebit_margin": [0.3821, 0.3952, 0.34, 0.2666, 0.1886, 0.1457, 0.1008],
+      "da_bn": [1.445, 1.455, 1.451, 1.649, 1.787, 1.774, 1.747],
+      "capex_bn": [1.83, 1.83, 1.716, 1.601, 1.373, 1.03, 1.03],
+      "working_capital_cash_effect_bn": [-5.434, 0.422, 2.004, 1.484, 1.223, 0.117, 5.303],
+      "terminal_growth": 0.015,
+      "terminal_roic": 0.1
+    },
+    "base": {
+      "label": "Intermediate normalization",
+      "provenance": "Internal research estimate dated 2026-08-15. It retains the broker's 2026 starting point, assumes a slower price/margin fade, and does not claim direct company guidance.",
+      "years": [2026, 2027, 2028, 2029, 2030, 2031, 2032],
+      "revenue_bn": [27.944, 30.0, 29.0, 27.0, 25.0, 24.0, 24.0],
+      "ebit_margin": [0.3821, 0.4, 0.37, 0.32, 0.27, 0.23, 0.2],
+      "da_bn": [1.445, 1.5, 1.55, 1.6, 1.55, 1.5, 1.45],
+      "capex_bn": [1.83, 1.9, 1.8, 1.6, 1.4, 1.2, 1.2],
+      "working_capital_cash_effect_bn": [-5.434, -0.3, 0.5, 0.7, 0.5, 0.1, 0.0],
+      "terminal_growth": 0.02,
+      "terminal_roic": 0.1
+    },
+    "bull": {
+      "label": "Effective supply remains constrained",
+      "provenance": "Internal research estimate dated 2026-08-15. It assumes stronger specialty-fiber and optical-interconnect contribution and a longer high-margin period; these operating drivers are not yet directly evidenced.",
+      "years": [2026, 2027, 2028, 2029, 2030, 2031, 2032],
+      "revenue_bn": [27.944, 32.0, 35.0, 36.0, 36.0, 35.0, 34.0],
+      "ebit_margin": [0.3821, 0.42, 0.43, 0.4, 0.36, 0.32, 0.28],
+      "da_bn": [1.445, 1.55, 1.7, 1.8, 1.9, 1.9, 1.85],
+      "capex_bn": [1.83, 2.2, 2.5, 2.5, 2.2, 1.8, 1.6],
+      "working_capital_cash_effect_bn": [-5.434, -0.7, -0.7, -0.2, 0.0, 0.3, 0.3],
+      "terminal_growth": 0.025,
+      "terminal_roic": 0.125
+    }
+  },
+  "reverse_dcf": {
+    "steady_revenue_bn": 29.353,
+    "steady_years": [2028, 2029, 2030, 2031, 2032],
+    "normalized_tax_rate": 0.2,
+    "fcff_to_nopat_ratio": 0.8,
+    "terminal_growth": 0.02,
+    "fixed_margin_for_revenue_solve": 0.3,
+    "interpretation": "Mechanical diagnostic: 2026-2027 FCFF is fixed to the bear case, then 2028-2032 revenue is held flat and a steady EBIT margin is solved. It is not a forecast or target price."
+  },
+  "sources": [
+    {
+      "name": "YOFC 2026Q1 report",
+      "ref": "filings/longfei/1225258441.pdf",
+      "use": "cash, debt components, minority interest, Q1 tax and interest expense"
+    },
+    {
+      "name": "YOFC 2025 annual report",
+      "ref": "filings/longfei/1225048080.pdf",
+      "use": "debt rate ranges and 2025 reference data"
+    },
+    {
+      "name": "Jefferies YOFC report dated 2026-07-22",
+      "ref": "eval/company/yofc_data_probe_20260814/jefferies-260722/tables.json",
+      "use": "bear-case operating forecast and 2026 starting point"
+    },
+    {
+      "name": "HKEX July 2026 monthly return",
+      "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0805/2026080500442.pdf",
+      "use": "A/H issued shares and A-share treasury shares"
+    },
+    {
+      "name": "CFETS central parity",
+      "url": "https://www.chinamoney.com.cn/r/cms/www/chinamoney/data/fx/ccpr.json",
+      "use": "2026-08-14 HKD/CNY"
+    },
+    {
+      "name": "Damodaran country risk premium table",
+      "url": "https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/ctryprem.html?force_isolation=true",
+      "use": "China total equity risk premium"
+    }
+  ]
+}

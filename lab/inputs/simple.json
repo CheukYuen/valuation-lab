@@ -1,0 +1,10 @@
+{
+  "_说明": "一家假想公司。改这里的数，重跑 lab/mini_dcf.py，观察弹性排序怎么变。",
+  "unit": "亿元",
+  "base_fcf": 10.0,
+  "growth": 0.08,
+  "years": 7,
+  "terminal_growth": 0.02,
+  "discount_rate": 0.09,
+  "net_debt": 20.0
+}

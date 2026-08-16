@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.DS_Store
+
+# frozen/calculate.py 被直接运行时会写出的结果文件，不属于冻结材料
+cases/01-yofc/frozen/valuation-results.json
