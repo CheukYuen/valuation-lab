@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>白话术语表 · 估值判断力实验室</title>
+  <meta name="description" content="15个估值术语的白话解释，收入到每股价值一条主线。">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script defer src="assets/glossary.js"></script>
+  <script defer src="assets/app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html">valuation-lab · 互动版</a>
+    <nav class="topnav" aria-label="主导航"><a href="index.html">课程</a><a href="study-methods.html">科学学习法</a><a aria-current="page" href="glossary.html">术语表</a><a href="../README.md">文字版</a></nav>
+    <div class="progress-wrap" aria-label="课程进度"><div class="progress-label"><span>学习进度</span><strong data-progress-text>0/7</strong></div><div class="progress-track"><div class="progress-bar" data-progress-bar></div></div></div>
+  </header>
+  <main class="page">
+    <section class="hero">
+      <p class="eyebrow">GLOSSARY · 白话术语表</p>
+      <h1>只记一条主线</h1>
+      <p>收入 → EBIT → NOPAT → FCFF → EV → 股权价值 → 每股价值。不认识的词就在这里查，不需要额外看书。这页和 <a href="../docs/GLOSSARY.md" style="color:#d7e3dc">docs/GLOSSARY.md</a> 保持一致。</p>
+    </section>
+    <section class="section">
+      <p class="eyebrow">SEARCH</p><h2>15 个术语</h2>
+      <input class="term-search" type="search" placeholder="搜索术语，例如 FCFF、终值、PE…" data-term-search aria-label="搜索术语">
+      <div class="term-grid" data-term-grid></div>
+    </section>
+  </main>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const grid = document.querySelector("[data-term-grid]");
+      const search = document.querySelector("[data-term-search]");
+      const entries = Object.values(globalThis.ValuationLabGlossary || {});
+      grid.innerHTML = entries.map(entry => `
+        <article class="term-card" data-term-card data-term-name="${entry.term.toLowerCase()}">
+          <h3>${entry.term}</h3>
+          <p>${entry.short}</p>
+          ${entry.formula ? `<code>${entry.formula}</code>` : ""}
+          ${entry.caution ? `<p class="caution">${entry.caution}</p>` : ""}
+        </article>
+      `).join("");
+      search.addEventListener("input", () => {
+        const query = search.value.trim().toLowerCase();
+        document.querySelectorAll("[data-term-card]").forEach(card => {
+          const haystack = card.textContent.toLowerCase();
+          card.classList.toggle("search-hidden", Boolean(query) && !haystack.includes(query));
+        });
+      });
+    });
+  </script>
+</body>
+</html>

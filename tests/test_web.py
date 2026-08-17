@@ -1,4 +1,5 @@
 import json
+import re
 import shutil
 import subprocess
 import unittest
@@ -8,6 +9,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 WEB = ROOT / "web"
+DOCS = ROOT / "docs"
 
 
 class PageParser(HTMLParser):
@@ -80,6 +82,26 @@ class WebCourseTests(unittest.TestCase):
         for name, expected in expected_ids.items():
             actual = set(parse(WEB / name).ids)
             self.assertTrue(expected.issubset(actual), f"{name}: {expected - actual}")
+
+    def test_data_term_references_resolve_in_glossary(self):
+        glossary_keys = set(re.findall(r'"([^"]+)":\s*\{', (WEB / "assets/glossary.js").read_text()))
+        self.assertTrue(glossary_keys, "no term keys parsed from glossary.js")
+        failures = []
+        for page in WEB.glob("*.html"):
+            used = set(re.findall(r'data-term="([^"]+)"', page.read_text()))
+            missing = used - glossary_keys
+            if missing:
+                failures.append(f"{page.name}: {missing}")
+        self.assertEqual(failures, [], "\n".join(failures))
+
+    def test_glossary_entries_have_a_source_heading(self):
+        # Guards the one drift direction that matters when web content leads docs:
+        # every term the web defines must still be traceable to docs/GLOSSARY.md.
+        glossary_keys = set(re.findall(r'"([^"]+)":\s*\{', (WEB / "assets/glossary.js").read_text()))
+        headings = re.findall(r"^## (.+)$", (DOCS / "GLOSSARY.md").read_text(), re.MULTILINE)
+        combined = "\n".join(h.replace(" ", "") for h in headings)
+        missing = [key for key in glossary_keys if key.replace(" ", "") not in combined]
+        self.assertEqual(missing, [], f"glossary.js keys with no docs/GLOSSARY.md heading: {missing}")
 
     @unittest.skipUnless(shutil.which("node"), "Node.js not installed; browser JavaScript remains runtime-only")
     def test_javascript_syntax(self):
