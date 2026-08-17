@@ -44,6 +44,22 @@ class ContentTests(unittest.TestCase):
         for number in range(1, 7):
             self.assertIn(f"## 案例{number}", text)
 
+    def test_day_one_covers_agent_acceptance_contract(self):
+        text = (ROOT / "course" / "DAY-1.md").read_text()
+        required_concepts = [
+            "第一层：人能读懂六类信息",
+            "第二层：Agent 能记录关键数字身份证",
+            "原始披露 → 提取值 → 口径调整 → 模型输入 → 计算结果 → 报告表述",
+            "source_published_at <= adopted_at <= research_as_of",
+            "开发者层：验收一段投研 Agent 输出",
+            "投研 Agent 开发的最低能力",
+        ]
+        for concept in required_concepts:
+            self.assertIn(concept, text, f"DAY-1 missing {concept}")
+
+        for information_type in ["已发生事实", "公司指引", "外部预测", "内部假设", "派生计算", "分析判断"]:
+            self.assertIn(information_type, text, f"DAY-1 missing information type {information_type}")
+
 
 if __name__ == "__main__":
     unittest.main()

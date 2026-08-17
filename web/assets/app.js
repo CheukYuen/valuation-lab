@@ -342,7 +342,7 @@
             item.classList.add(ok ? "correct" : "incorrect");
             button.classList.add("chosen");
             const feedback = item.querySelector(".sorter-feedback");
-            if (feedback) feedback.textContent = ok ? "✓ 判断正确。" : `再想一步——${item.dataset.hint || "对照上面的四种性质。"}`;
+            if (feedback) feedback.textContent = ok ? "✓ 判断正确。" : `再想一步——${item.dataset.hint || "对照上面的信息性质。"}`;
             updateScore();
           });
         });
@@ -374,6 +374,60 @@
           `;
         });
       });
+    });
+  }
+
+  function setupAgentAudit() {
+    document.querySelectorAll("[data-agent-audit]").forEach(audit => {
+      const issues = Array.from(audit.querySelectorAll("[data-agent-issue]"));
+      const grades = Array.from(audit.querySelectorAll("[data-agent-grade]"));
+      const explanation = audit.querySelector("[data-agent-explanation]");
+      const summary = audit.querySelector("[data-agent-summary]");
+      let selectedGrade = "";
+
+      const renderSummary = () => {
+        if (!summary) return;
+        const checked = issues.filter(issue => issue.classList.contains("active")).length;
+        if (checked < issues.length) {
+          summary.className = "agent-audit-summary";
+          summary.innerHTML = `<strong>继续检查</strong><p>已检查 ${checked} / ${issues.length} 个问题；${selectedGrade ? "已选择使用等级，但仍要完成全部问题检查。" : "尚未选择使用等级。"}</p>`;
+          return;
+        }
+        if (!selectedGrade) {
+          summary.className = "agent-audit-summary ready";
+          summary.innerHTML = `<strong>五个问题已识别</strong><p>现在选择这段输出的使用等级。</p>`;
+          return;
+        }
+        if (selectedGrade !== "unknown") {
+          summary.className = "agent-audit-summary incorrect";
+          summary.innerHTML = `<strong>还不能放行</strong><p>五类关键问题都没有关闭，现有输出不能标为可使用或部分可用；最准确的状态是“无法确认”。</p>`;
+          return;
+        }
+        summary.className = "agent-audit-summary complete";
+        summary.innerHTML = `<strong>验收完成：无法确认</strong><p>先移除未来信息，补齐预测来源和内部调整桥，再保存模型输入、公式与独立重算结果。完成前不能声称“已经验证”。</p>`;
+      };
+
+      issues.forEach(issue => {
+        issue.addEventListener("click", () => {
+          issue.classList.add("active");
+          const state = issue.querySelector("em");
+          if (state) state.textContent = "已识别";
+          if (explanation) {
+            explanation.innerHTML = `<strong>${issue.dataset.title || "问题说明"}</strong><p>${issue.dataset.explanation || ""}</p>`;
+          }
+          renderSummary();
+        });
+      });
+
+      grades.forEach(button => {
+        button.addEventListener("click", () => {
+          selectedGrade = button.dataset.agentGrade || "";
+          grades.forEach(grade => grade.classList.toggle("chosen", grade === button));
+          renderSummary();
+        });
+      });
+
+      renderSummary();
     });
   }
 
@@ -451,6 +505,7 @@
     setupReaderNavigation();
     setupSorter();
     setupAnnotate();
+    setupAgentAudit();
     setupGlossary();
     renderProgress();
   });

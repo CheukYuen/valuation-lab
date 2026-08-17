@@ -19,6 +19,9 @@ class PageParser(HTMLParser):
         self.ids = []
         self.quiz_cards = 0
         self.complete_buttons = 0
+        self.sorter_items = 0
+        self.agent_audits = 0
+        self.agent_issues = 0
         self.lesson = None
 
     def handle_starttag(self, tag, attrs):
@@ -32,6 +35,12 @@ class PageParser(HTMLParser):
             self.quiz_cards += 1
         if "data-complete-lesson" in values:
             self.complete_buttons += 1
+        if "data-sorter-item" in values:
+            self.sorter_items += 1
+        if "data-agent-audit" in values:
+            self.agent_audits += 1
+        if "data-agent-issue" in values:
+            self.agent_issues += 1
         for attribute in ("href", "src"):
             if attribute in values:
                 self.links.append(values[attribute])
@@ -82,6 +91,19 @@ class WebCourseTests(unittest.TestCase):
         for name, expected in expected_ids.items():
             actual = set(parse(WEB / name).ids)
             self.assertTrue(expected.issubset(actual), f"{name}: {expected - actual}")
+
+    def test_day_one_dual_track_interaction_contract(self):
+        parser = parse(WEB / "day-1.html")
+        self.assertEqual(parser.sorter_items, 10)
+        self.assertEqual(parser.agent_audits, 1)
+        self.assertEqual(parser.agent_issues, 5)
+        self.assertIn("agent-audit-summary", parser.ids)
+
+        text = (WEB / "day-1.html").read_text()
+        for value in ["fact", "guidance", "forecast", "assumption", "derived", "judgment"]:
+            self.assertIn(f'data-sorter-choice="{value}"', text)
+        for grade in ["usable", "partial", "unknown"]:
+            self.assertIn(f'data-agent-grade="{grade}"', text)
 
     def test_data_term_references_resolve_in_glossary(self):
         glossary_keys = set(re.findall(r'"([^"]+)":\s*\{', (WEB / "assets/glossary.js").read_text()))

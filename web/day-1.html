@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>第1课：模型到底在说什么</title>
+  <meta name="description" content="从识别六类信息，到记录关键数字证据链，再到验收投研 Agent 输出。">
   <link rel="stylesheet" href="assets/styles.css">
   <script defer src="assets/glossary.js"></script>
   <script defer src="assets/app.js"></script>
@@ -15,7 +16,7 @@
       <span><strong>估值实验室</strong><small>看懂估值，不迷信数字</small></span>
     </a>
     <div class="reader-heading">
-      <div class="reader-breadcrumb"><span>7天估值判断课</span><b>/</b><strong>模型到底在说什么</strong><em>概念</em></div>
+      <div class="reader-breadcrumb"><span>7天估值判断课</span><b>/</b><strong>模型到底在说什么</strong><em>双层课</em></div>
       <div class="reader-course-progress" aria-label="课程位置：第1课，共7课"><div class="day-dots" data-day-dots></div><small>1 / 7</small></div>
     </div>
     <nav class="reader-actions" aria-label="辅助导航"><a href="index.html">课程首页</a><a href="glossary.html">术语表</a><a href="study-methods.html">学习方法</a></nav>
@@ -31,283 +32,215 @@
       <div class="toc-heading"><small>本课目录</small><strong>模型到底在说什么</strong></div>
       <nav class="lesson-toc" data-lesson-toc>
         <a class="active" href="day-1.html#opening" data-toc-link><span></span>先记住这一句话</a>
-        <a href="day-1.html#background" data-toc-link><span></span>估值方法从哪来</a>
-        <a href="day-1.html#landscape" data-toc-link><span></span>现在谁在用</a>
-        <a href="day-1.html#four-types" data-toc-link><span></span>四种数字，四种读法</a>
-        <a href="day-1.html#checkpoint-1" data-toc-link><span></span>判断：它是哪种数字？</a>
-        <a href="day-1.html#sorter" data-toc-link><span></span>动手分类：8条句子</a>
-        <a href="day-1.html#output-boundary" data-toc-link><span></span>输出不等于未来事实</a>
-        <a href="day-1.html#checkpoint-2" data-toc-link><span></span>判断：模型能证明未来吗？</a>
-        <a href="day-1.html#source-grades" data-toc-link><span></span>同样是预测，来源等级不同</a>
+        <a href="day-1.html#context" data-toc-link><span></span>为什么现在更需要判断</a>
+        <a href="day-1.html#information-types" data-toc-link><span></span>人能读懂：六类信息</a>
+        <a href="day-1.html#checkpoint-1" data-toc-link><span></span>判断：单家预测是什么</a>
+        <a href="day-1.html#sorter" data-toc-link><span></span>动手分类：10条句子</a>
+        <a href="day-1.html#dimensions" data-toc-link><span></span>三个维度不能混</a>
+        <a href="day-1.html#passport" data-toc-link><span></span>Agent能记录：数字身份证</a>
+        <a href="day-1.html#lineage" data-toc-link><span></span>证据怎样走到结论</a>
+        <a href="day-1.html#checkpoint-2" data-toc-link><span></span>判断：时点穿越</a>
+        <a href="day-1.html#pit" data-toc-link><span></span>PIT：当时知道什么</a>
         <a href="day-1.html#comparison" data-toc-link><span></span>好坏材料差在哪里</a>
-        <a href="day-1.html#checkpoint-3" data-toc-link><span></span>判断：无来源就失败吗？</a>
-        <a href="day-1.html#annotate" data-toc-link><span></span>动手质证：材料B</a>
-        <a href="day-1.html#misreads" data-toc-link><span></span>常见误读自查</a>
+        <a href="day-1.html#agent-lab" data-toc-link><span></span>开发者验收实验</a>
+        <a href="day-1.html#checkpoint-3" data-toc-link><span></span>判断：引用等于验证吗</a>
+        <a href="day-1.html#minimum" data-toc-link><span></span>Agent开发最低能力</a>
         <a href="day-1.html#recall" data-toc-link><span></span>主动回忆</a>
         <a href="day-1.html#boundary" data-toc-link><span></span>学完后能做什么</a>
       </nav>
       <div class="sidebar-footnote">
         <strong>本课目标</strong>
-        <p>把材料中的事实、预测、假设和输出分开。</p>
-        <span>预计 40 分钟</span>
-        <div class="sidebar-stats">
-          <span data-read-count>0 / 15 小节已读</span>
-          <span data-quiz-score>3 题未开始</span>
-        </div>
+        <p>把信息读对、记录对，并判断 Agent 输出能否验收。</p>
+        <span>基础层 35 分钟 · 开发者层 25 分钟</span>
+        <div class="sidebar-stats"><span data-read-count>0 / 16 小节已读</span><span data-quiz-score>3 题未开始</span></div>
       </div>
     </aside>
 
     <main class="reader-content">
       <article class="lesson-article">
         <header class="lesson-intro" id="opening" data-reader-section>
-          <p class="reader-eyebrow">零基础入门 · 第 1 课</p>
+          <div class="track-row" aria-label="课程层级"><span class="track-pill foundation">基础层 · 35分钟</span><span class="track-pill builder">开发者层 · 25分钟</span></div>
+          <p class="reader-eyebrow">从识别信息到验收投研 Agent · 第 1 课</p>
           <h1>模型到底在说什么</h1>
-          <p class="lesson-deck">估值模型不是价格测量仪。它更像一台"假设翻译器"：把未来收入、利润、现金和风险的假设，翻译成今天的价值。</p>
-          <div class="takeaway"><span>一句话速览</span><p>先问每个数字"是什么"，再问模型"怎么算"。模型输出只在输入和公式成立时成立，不能反过来证明未来。</p></div>
+          <p class="lesson-deck">估值模型不是价格测量仪。它更像一台“假设翻译器”：把未来收入、利润、现金和风险的假设，翻译成今天的价值。</p>
+          <div class="takeaway"><span>一句话速览</span><p>先问每个数字是什么，再问它从哪里来、怎样进入计算。Agent 写得像研究，不等于真的完成了研究。</p></div>
         </header>
 
-        <section class="reader-section" id="background" data-reader-section>
-          <p class="section-kicker">01 · 为什么会有这门课</p><h2>估值模型的技术发展史</h2>
-          <p class="section-lead">在学"怎么判断"之前，先知道这套方法是怎么来的——这决定了你拿到一份材料时，应该带着什么样的怀疑。</p>
-          <div class="timeline">
-            <div class="timeline-item"><span>1930s</span><p>费雪（Irving Fisher）在《利息理论》中系统化"资产价值等于未来收益的现值"这一原则，为现代估值奠定理论基础。</p></div>
-            <div class="timeline-item"><span>1938</span><p>威廉姆斯（John Burr Williams）在《投资价值理论》中首次把这一原则写成可操作公式，提出用未来股息折现衡量股票价值——这是<button class="term" data-term="DCF">DCF</button>模型的直接源头。</p></div>
-            <div class="timeline-item"><span>1958</span><p>莫迪利安尼与米勒提出资本结构无关论：企业价值主要由它产生现金流的能力决定，不是由融资方式决定，为"用经营现金流估值"提供了理论支撑。</p></div>
-            <div class="timeline-item"><span>1980s–90s</span><p>个人电脑和电子表格普及，DCF从学术工具变成分析师的日常工具，复杂的多情景模型第一次能被快速搭建和迭代。</p></div>
-            <div class="timeline-item"><span>2000s至今</span><p>估值方法教材化、标准化，进入CFA等职业资格考试的核心科目；模板、开源代码和AI工具又把建模门槛降到几乎为零。</p></div>
+        <section class="reader-section" id="context" data-reader-section>
+          <p class="section-kicker">01 · 先看问题发生在哪里</p><h2>生成数字很容易，保住语义很难</h2>
+          <p class="section-lead">估值从“未来现金值得多少”发展成今天的电子表格、代码和 AI 工作流，建模门槛不断下降。真正稀缺的能力变成了：读者能否知道每个数字的性质，系统能否保存它的来路，开发者能否证明输出可以复核。</p>
+          <div class="layer-map">
+            <div><span>01</span><strong>人能读懂</strong><p>事实、指引、预测、假设、计算和判断不互相冒充。</p></div>
+            <div><span>02</span><strong>Agent 能记录</strong><p>对象、时点、单位、来源、变换和验证状态完整。</p></div>
+            <div><span>03</span><strong>开发者能验收</strong><p>证据链断裂、时间穿越和无法复算都会触发失败状态。</p></div>
           </div>
-          <p class="plain-note"><strong>结果：</strong>建一个"看起来专业"的模型从未这么容易，但"看起来专业"和"经得起质证"之间的距离，也从未这么大。这正是这门课要训练的能力。</p>
+          <p class="plain-note"><strong>课程定位：</strong>先训练估值系统开发者 / 验收者，而不是要求你在第一天独立预测多年财务或给股票定目标价。</p>
         </section>
 
-        <section class="reader-section" id="landscape" data-reader-section>
-          <p class="section-kicker">02 · 现在谁在用</p><h2>行业现状：不同机构用它做什么</h2>
-          <p class="section-lead">同样是"一个模型"，不同机构建它的目的完全不同——这直接决定了你拿到这份输出时，该用什么态度去读。</p>
-          <div class="table-scroll">
-            <table>
-              <thead><tr><th>机构类型</th><th>用模型做什么</th><th>你该怎么读它的输出</th></tr></thead>
-              <tbody>
-                <tr><td>卖方研究（券商）</td><td>给出目标价、维持研究覆盖，模型服务于研究报告</td><td>是单家机构的观点；不同分析师覆盖同一公司，给出的数字常常差异很大</td></tr>
-                <tr><td>买方机构（公募/对冲基金）</td><td>内部核查、构建自己的情景，通常不对外公开</td><td>你很少能看到原始模型，只能接触到结论摘要，需要格外谨慎</td></tr>
-                <tr><td>私募/并购顾问</td><td>尽职调查阶段搭建模型，服务于交易定价和撮合</td><td>精细度通常很高，但目的是促成交易，不等同于二级市场投资判断</td></tr>
-                <tr><td>企业财务部门</td><td>资本预算、并购整合评估、内部战略决策</td><td>面向内部决策，很少对外披露完整假设</td></tr>
-                <tr><td>个人学习者</td><td>大多数时候是在读别人建好的模型，很少从零搭建</td><td>这正是本课程训练的方向：先学会审计别人的输出，而不是急着自己出结论</td></tr>
-              </tbody>
-            </table>
+        <section class="reader-section" id="information-types" data-reader-section>
+          <p class="section-kicker">02 · 第一层：人能读懂</p><h2>六类信息，六种读法</h2>
+          <p class="section-lead">最常见的错误不是“用了预测”，而是信息性质消失：尚未发生的数字被写成事实，内部选择被写成共识，计算结果又被写成现实证明。</p>
+          <div class="type-list six-types">
+            <div class="type-row"><span class="type-number">01</span><div><h3>已发生事实</h3><p>“2025年审计收入100亿元。”已经发生，仍要核对对象、期间、单位和会计口径。</p></div><strong class="type-tag fact">核对口径</strong></div>
+            <div class="type-row"><span class="type-number">02</span><div><h3>公司指引</h3><p>“管理层预计2026年收入约120亿元。”是特定日期作出的前瞻表述，不是已实现事实。</p></div><strong class="type-tag guidance">保留原话</strong></div>
+            <div class="type-row"><span class="type-number">03</span><div><h3>外部预测</h3><p>“某券商预计2027年收入150亿元。”是外部观点；单家预测不能冒充市场共识。</p></div><strong class="type-tag forecast">识别样本</strong></div>
+            <div class="type-row"><span class="type-number">04</span><div><h3>内部假设</h3><p>“Base情景采用2026年收入125亿元。”是作者选择，必须说明依据、采用日和敏感性。</p></div><strong class="type-tag assumption">追问依据</strong></div>
+            <div class="type-row"><span class="type-number">05</span><div><h3>派生计算</h3><p>“在该组输入下<button class="term" data-term="股权价值">股权价值</button>为200亿元。”是公式输出，必须保存输入并复算。</p></div><strong class="type-tag output">独立复算</strong></div>
+            <div class="type-row"><span class="type-number">06</span><div><h3>分析判断</h3><p>“当前输出只能带条件使用。”是基于证据形成的意见，必须写明理由、边界和重开条件。</p></div><strong class="type-tag judgment">说明边界</strong></div>
           </div>
-          <p class="plain-note"><strong>连回四种数字：</strong>卖方目标价通常就是"单家券商预测"，买方内部模型你几乎接触不到——不同机构的输出，可验证性天差地别。这也是为什么"来源等级"（后面会讲）比数字本身更重要。</p>
-        </section>
-
-        <section class="reader-section" id="four-types" data-reader-section>
-          <p class="section-kicker">03 · 先给数字贴对标签</p><h2>四种数字，四种读法</h2>
-          <p class="section-lead">材料里的数字至少有四种性质。最常见的错误不是"用了预测"，而是把预测和假设写得像已经发生的事实。</p>
-          <div class="type-list">
-            <div class="type-row"><span class="type-number">01</span><div><h3>已发生事实</h3><p>"2025年审计收入100亿元。"截至披露时点已经发生，但仍要核对时期、单位和会计口径。</p></div><strong class="type-tag fact">先核口径</strong></div>
-            <div class="type-row"><span class="type-number">02</span><div><h3>外部预测</h3><p>"某券商预计2027年<button class="term" data-term="收入">收入</button>150亿元。"这是该机构的观点，不是公司事实，也未必是市场共识。</p></div><strong class="type-tag forecast">看清来源</strong></div>
-            <div class="type-row"><span class="type-number">03</span><div><h3>内部假设</h3><p>"Base情景假设长期利润率20%。"这是模型作者的选择，必须说明经济依据，并展示敏感性。</p></div><strong class="type-tag assumption">追问依据</strong></div>
-            <div class="type-row"><span class="type-number">04</span><div><h3>模型输出</h3><p>"<button class="term" data-term="股权价值">股权价值</button>200亿元。"它只在前述输入和公式下成立，不是脱离条件依然正确的事实。</p></div><strong class="type-tag output">检查条件</strong></div>
-          </div>
+          <p class="plain-note"><strong>市场共识仍是外部预测：</strong>它必须有明确样本、统计方法和截点。一个模型或两个模型给出同样答案，也不会自动产生新的事实。</p>
         </section>
 
         <section class="reader-section checkpoint" id="checkpoint-1" data-reader-section>
-          <div class="checkpoint-heading"><span>互动 1 / 3</span><div><p>先选，再看解释</p><h2>它是哪种数字？</h2></div></div>
+          <div class="checkpoint-heading"><span>互动 1 / 3</span><div><p>先选，再看解释</p><h2>一家机构的预测是什么？</h2></div></div>
           <div class="quiz-card inline-quiz" data-quiz-id="q1" data-answer="B" data-explanation="来源于一家机构，只能标成单家券商预测；不等于公司指引或市场共识。">
-            <p class="question">"2027年利润30亿元，来源：某券商报告。"应标为什么？</p>
+            <p class="question">“2027年利润30亿元，来源：某券商报告。”应标为什么？</p>
             <div class="choices horizontal-choices"><button class="choice" data-choice="A">A. 已发生事实</button><button class="choice" data-choice="B">B. 单家券商预测</button><button class="choice" data-choice="C">C. 公司指引</button></div>
             <p class="feedback" aria-live="polite">选择一个答案，马上看到理由。</p>
           </div>
         </section>
 
         <section class="reader-section" id="sorter" data-reader-section>
-          <p class="section-kicker">04 · 练一遍，别只读一遍</p><h2>动手分类：8条句子</h2>
-          <p class="section-lead">下面是从虚构研报里摘出的8句话。逐条判断它属于哪一类，答错也没关系——先按自己的第一反应选，再看提示。可以点"重新开始"再练一遍。</p>
-          <div class="sorter" data-sorter>
-            <div class="sorter-item" data-sorter-item data-correct="fact" data-hint="这是已经披露的审计数字，不是预测。">
-              <p>"2025年审计报告显示，公司全年收入104.3亿元。"</p>
-              <div class="sorter-choices">
-                <button data-sorter-choice="fact">已发生事实</button>
-                <button data-sorter-choice="forecast">外部预测</button>
-                <button data-sorter-choice="assumption">内部假设</button>
-                <button data-sorter-choice="output">模型输出</button>
-              </div>
-              <p class="sorter-feedback" aria-live="polite"></p>
-            </div>
-            <div class="sorter-item" data-sorter-item data-correct="forecast" data-hint="来自一家分析师机构，是外部观点，不是公司事实。">
-              <p>"某分析师报告预测，公司2028年净利润将达到45亿元。"</p>
-              <div class="sorter-choices">
-                <button data-sorter-choice="fact">已发生事实</button>
-                <button data-sorter-choice="forecast">外部预测</button>
-                <button data-sorter-choice="assumption">内部假设</button>
-                <button data-sorter-choice="output">模型输出</button>
-              </div>
-              <p class="sorter-feedback" aria-live="polite"></p>
-            </div>
-            <div class="sorter-item" data-sorter-item data-correct="assumption" data-hint="这是模型作者自己设定的情景条件，不是已发生的事，也不是外部观点。">
-              <p>"Bull情景假设长期毛利率提升至35%，比当前高8个百分点。"</p>
-              <div class="sorter-choices">
-                <button data-sorter-choice="fact">已发生事实</button>
-                <button data-sorter-choice="forecast">外部预测</button>
-                <button data-sorter-choice="assumption">内部假设</button>
-                <button data-sorter-choice="output">模型输出</button>
-              </div>
-              <p class="sorter-feedback" aria-live="polite"></p>
-            </div>
-            <div class="sorter-item" data-sorter-item data-correct="output" data-hint="它是把前面的假设代入公式算出来的结果，只在这组条件下成立。">
-              <p>"在这组假设下，模型给出<button class="term" data-term="EV">企业价值</button>320亿元。"</p>
-              <div class="sorter-choices">
-                <button data-sorter-choice="fact">已发生事实</button>
-                <button data-sorter-choice="forecast">外部预测</button>
-                <button data-sorter-choice="assumption">内部假设</button>
-                <button data-sorter-choice="output">模型输出</button>
-              </div>
-              <p class="sorter-feedback" aria-live="polite"></p>
-            </div>
-            <div class="sorter-item" data-sorter-item data-correct="fact" data-hint="半年报是已披露的财务结果。">
-              <p>"公司2025年半年报显示，上半年收入52亿元。"</p>
-              <div class="sorter-choices">
-                <button data-sorter-choice="fact">已发生事实</button>
-                <button data-sorter-choice="forecast">外部预测</button>
-                <button data-sorter-choice="assumption">内部假设</button>
-                <button data-sorter-choice="output">模型输出</button>
-              </div>
-              <p class="sorter-feedback" aria-live="polite"></p>
-            </div>
-            <div class="sorter-item" data-sorter-item data-correct="forecast" data-hint="它是多家机构的外部观点汇总，仍然是尚未发生的预测，只是来源比单家更广。">
-              <p>"多方调研显示，市场普遍预期公司2026年收入增速为12%。"</p>
-              <div class="sorter-choices">
-                <button data-sorter-choice="fact">已发生事实</button>
-                <button data-sorter-choice="forecast">外部预测</button>
-                <button data-sorter-choice="assumption">内部假设</button>
-                <button data-sorter-choice="output">模型输出</button>
-              </div>
-              <p class="sorter-feedback" aria-live="polite"></p>
-            </div>
-            <div class="sorter-item" data-sorter-item data-correct="assumption" data-hint="这是模型对未来资本开支比例的设定，属于内部选择。">
-              <p>"模型假设资本开支占收入比例长期维持在6%。"</p>
-              <div class="sorter-choices">
-                <button data-sorter-choice="fact">已发生事实</button>
-                <button data-sorter-choice="forecast">外部预测</button>
-                <button data-sorter-choice="assumption">内部假设</button>
-                <button data-sorter-choice="output">模型输出</button>
-              </div>
-              <p class="sorter-feedback" aria-live="polite"></p>
-            </div>
-            <div class="sorter-item" data-sorter-item data-correct="output" data-hint="小数点后的精度不代表更可信，它仍然只是计算结果。">
-              <p>"按上述条件计算，<button class="term" data-term="每股价值">每股价值</button>对应人民币38.5元。"</p>
-              <div class="sorter-choices">
-                <button data-sorter-choice="fact">已发生事实</button>
-                <button data-sorter-choice="forecast">外部预测</button>
-                <button data-sorter-choice="assumption">内部假设</button>
-                <button data-sorter-choice="output">模型输出</button>
-              </div>
-              <p class="sorter-feedback" aria-live="polite"></p>
-            </div>
-            <div class="sorter-footer">
-              <span class="sorter-score" data-sorter-score>已判断 0 / 8</span>
-              <button class="sorter-retry" data-sorter-retry type="button">重新开始</button>
-            </div>
+          <p class="section-kicker">03 · 练一遍，别只读一遍</p><h2>动手分类：10条句子</h2>
+          <p class="section-lead">逐条判断它的主要信息性质。分类不是给整句话永久贴标签，而是确保其中每个关键主张都能进入正确的记录和验证流程。</p>
+          <div class="sorter sorter-six" data-sorter>
+            <div class="sorter-item" data-sorter-item data-correct="fact" data-hint="审计报告披露的是已经发生的结果。"><p>“2025年审计报告显示，公司全年收入104.3亿元。”</p><div class="sorter-choices"><button data-sorter-choice="fact">已发生事实</button><button data-sorter-choice="guidance">公司指引</button><button data-sorter-choice="forecast">外部预测</button><button data-sorter-choice="assumption">内部假设</button><button data-sorter-choice="derived">派生计算</button><button data-sorter-choice="judgment">分析判断</button></div><p class="sorter-feedback" aria-live="polite"></p></div>
+            <div class="sorter-item" data-sorter-item data-correct="guidance" data-hint="管理层对未来给出的区间是公司指引，不是已实现事实。"><p>“管理层预计2026年收入在118亿至122亿元之间。”</p><div class="sorter-choices"><button data-sorter-choice="fact">已发生事实</button><button data-sorter-choice="guidance">公司指引</button><button data-sorter-choice="forecast">外部预测</button><button data-sorter-choice="assumption">内部假设</button><button data-sorter-choice="derived">派生计算</button><button data-sorter-choice="judgment">分析判断</button></div><p class="sorter-feedback" aria-live="polite"></p></div>
+            <div class="sorter-item" data-sorter-item data-correct="forecast" data-hint="一家券商对未来的看法属于外部预测。"><p>“华东证券预测公司2027年净利润为30亿元。”</p><div class="sorter-choices"><button data-sorter-choice="fact">已发生事实</button><button data-sorter-choice="guidance">公司指引</button><button data-sorter-choice="forecast">外部预测</button><button data-sorter-choice="assumption">内部假设</button><button data-sorter-choice="derived">派生计算</button><button data-sorter-choice="judgment">分析判断</button></div><p class="sorter-feedback" aria-live="polite"></p></div>
+            <div class="sorter-item" data-sorter-item data-correct="assumption" data-hint="Base情景中的选择由模型作者提出，属于内部假设。"><p>“Base情景采用2026年收入125亿元。”</p><div class="sorter-choices"><button data-sorter-choice="fact">已发生事实</button><button data-sorter-choice="guidance">公司指引</button><button data-sorter-choice="forecast">外部预测</button><button data-sorter-choice="assumption">内部假设</button><button data-sorter-choice="derived">派生计算</button><button data-sorter-choice="judgment">分析判断</button></div><p class="sorter-feedback" aria-live="polite"></p></div>
+            <div class="sorter-item" data-sorter-item data-correct="derived" data-hint="把输入代入公式得到的价值属于派生计算。"><p>“在上述假设下，模型计算<button class="term" data-term="EV">企业价值</button>为320亿元。”</p><div class="sorter-choices"><button data-sorter-choice="fact">已发生事实</button><button data-sorter-choice="guidance">公司指引</button><button data-sorter-choice="forecast">外部预测</button><button data-sorter-choice="assumption">内部假设</button><button data-sorter-choice="derived">派生计算</button><button data-sorter-choice="judgment">分析判断</button></div><p class="sorter-feedback" aria-live="polite"></p></div>
+            <div class="sorter-item" data-sorter-item data-correct="judgment" data-hint="这是分析者根据缺口给出的使用意见。"><p>“因资本结构时点未对齐，当前输出只能部分使用。”</p><div class="sorter-choices"><button data-sorter-choice="fact">已发生事实</button><button data-sorter-choice="guidance">公司指引</button><button data-sorter-choice="forecast">外部预测</button><button data-sorter-choice="assumption">内部假设</button><button data-sorter-choice="derived">派生计算</button><button data-sorter-choice="judgment">分析判断</button></div><p class="sorter-feedback" aria-live="polite"></p></div>
+            <div class="sorter-item" data-sorter-item data-correct="fact" data-hint="已经支付的资本开支是历史事实，仍需核对口径。"><p>“2025年现金流量表披露购建固定资产支付18亿元。”</p><div class="sorter-choices"><button data-sorter-choice="fact">已发生事实</button><button data-sorter-choice="guidance">公司指引</button><button data-sorter-choice="forecast">外部预测</button><button data-sorter-choice="assumption">内部假设</button><button data-sorter-choice="derived">派生计算</button><button data-sorter-choice="judgment">分析判断</button></div><p class="sorter-feedback" aria-live="polite"></p></div>
+            <div class="sorter-item" data-sorter-item data-correct="forecast" data-hint="多家机构的汇总仍是外部预测，需要样本、方法和截点。"><p>“截至3月31日，8家机构预测的2026年收入中位数为121亿元。”</p><div class="sorter-choices"><button data-sorter-choice="fact">已发生事实</button><button data-sorter-choice="guidance">公司指引</button><button data-sorter-choice="forecast">外部预测</button><button data-sorter-choice="assumption">内部假设</button><button data-sorter-choice="derived">派生计算</button><button data-sorter-choice="judgment">分析判断</button></div><p class="sorter-feedback" aria-live="polite"></p></div>
+            <div class="sorter-item" data-sorter-item data-correct="derived" data-hint="比率由两个输入计算得到，仍要保存公式和输入版本。"><p>“按期末净债务20亿元和企业价值320亿元计算，股权价值为300亿元。”</p><div class="sorter-choices"><button data-sorter-choice="fact">已发生事实</button><button data-sorter-choice="guidance">公司指引</button><button data-sorter-choice="forecast">外部预测</button><button data-sorter-choice="assumption">内部假设</button><button data-sorter-choice="derived">派生计算</button><button data-sorter-choice="judgment">分析判断</button></div><p class="sorter-feedback" aria-live="polite"></p></div>
+            <div class="sorter-item" data-sorter-item data-correct="judgment" data-hint="这是对证据充分程度的判断，不是新的公司事实。"><p>“产能爬坡证据尚未闭合，不能把Bull情景写成最可能结果。”</p><div class="sorter-choices"><button data-sorter-choice="fact">已发生事实</button><button data-sorter-choice="guidance">公司指引</button><button data-sorter-choice="forecast">外部预测</button><button data-sorter-choice="assumption">内部假设</button><button data-sorter-choice="derived">派生计算</button><button data-sorter-choice="judgment">分析判断</button></div><p class="sorter-feedback" aria-live="polite"></p></div>
+            <div class="sorter-footer"><span class="sorter-score" data-sorter-score>已判断 0 / 10</span><button class="sorter-retry" data-sorter-retry type="button">重新开始</button></div>
           </div>
         </section>
 
-        <section class="reader-section" id="output-boundary" data-reader-section>
-          <p class="section-kicker">05 · 别把计算结果当预言</p><h2>输出不等于未来事实</h2>
-          <p class="section-lead">模型只是把一组条件翻译成结果。它能告诉你"如果这些假设成立，会得到什么"，却不能证明这些假设一定实现。</p>
-          <div class="value-flow" aria-label="模型从材料到输出的关系">
-            <div><small>材料层</small><strong>事实与外部预测</strong></div><b>→</b><div><small>判断层</small><strong>模型内部假设</strong></div><b>→</b><div><small>计算层</small><strong>价值输出</strong></div><b class="not-equal">≠</b><div class="future"><small>现实世界</small><strong>未来一定发生</strong></div>
+        <section class="reader-section developer-section" id="dimensions" data-reader-section>
+          <div class="developer-heading"><span>开发者层</span><p>从“看懂一句话”进入“设计系统记录”</p></div>
+          <p class="section-kicker">04 · 三个维度不能混</p><h2>来源可靠，不等于它是事实</h2>
+          <p class="section-lead">Agent 最容易把信息性质、来源身份和验证状态压成一个“可信度”。这会让系统无法解释：一份可靠的公司公告为什么仍可能只是前瞻指引，一条有引用的计算为什么仍未复核。</p>
+          <div class="dimension-grid">
+            <div><span>信息性质</span><strong>它是什么</strong><p>事实、指引、预测、假设、计算或判断。</p></div>
+            <div><span>来源身份</span><strong>谁提供它</strong><p>公司、交易所、券商、数据库、研究者或 Agent。</p></div>
+            <div><span>验证状态</span><strong>我们做到哪一步</strong><p>已复核、部分可用、无法确认，或发现明确错误。</p></div>
           </div>
-          <p class="plain-note"><strong>正确读法：</strong>"在当前收入、利润率、现金流和风险假设下，模型得到<button class="term" data-term="股权价值">股权价值</button>200亿元。"成立条件应该和输出一起出现。</p>
+          <p class="plain-note"><strong>AI 不是信息性质：</strong>AI 是提取、变换或表达信息的处理者。另一个模型重复同一句话，不会把“无法确认”升级成“已验证”。</p>
+        </section>
+
+        <section class="reader-section developer-section" id="passport" data-reader-section>
+          <div class="developer-heading"><span>开发者层</span><p>Agent 能记录</p></div>
+          <p class="section-kicker">05 · 关键数字身份证</p><h2>不要只保存“2026E收入 = 125亿”</h2>
+          <p class="section-lead">专业系统至少要让人回答：这是谁的数字、属于哪个对象和时点、经过什么变换、能否回到原始证据，以及是否已经独立复核。</p>
+          <div class="passport-card">
+            <div class="passport-head"><div><small>示例记录 · 非生产Schema</small><strong>长河科技｜2026财年合并收入</strong></div><span>部分可用</span></div>
+            <dl class="passport-fields">
+              <div><dt>数值 / 单位</dt><dd>125亿元人民币</dd></div><div><dt>信息性质</dt><dd>内部 Base 假设</dd></div>
+              <div><dt>来源 / 发布日</dt><dd>公司指引｜2026-03-28</dd></div><div><dt>采用日</dt><dd>2026-03-31</dd></div>
+              <div><dt>变换过程</dt><dd>指引120亿 + 5亿产能爬坡调整</dd></div><div><dt>证据指针</dt><dd>年报第42页；调整桥尚缺</dd></div>
+            </dl>
+          </div>
+          <div class="table-scroll passport-table"><table><thead><tr><th>最小字段</th><th>它防止什么错误</th></tr></thead><tbody>
+            <tr><td>对象 / 证券、指标、数值、单位与币种</td><td>发行人与证券混用，万元/亿元或人民币/港币错位</td></tr>
+            <tr><td>期间 / 估值日、信息性质</td><td>历史事实、未来预测和不同日期的资本结构混在一起</td></tr>
+            <tr><td>来源、发布日期、采用日</td><td>未来信息污染和动态网页无法复取</td></tr>
+            <tr><td>变换过程、证据指针、验证状态</td><td>调整后指标无桥、派生值无法复算、引用冒充验证</td></tr>
+          </tbody></table></div>
+        </section>
+
+        <section class="reader-section developer-section" id="lineage" data-reader-section>
+          <div class="developer-heading"><span>开发者层</span><p>证据链</p></div>
+          <p class="section-kicker">06 · 从披露走到报告表述</p><h2>每个箭头都要能解释</h2>
+          <div class="lineage-flow" aria-label="证据从原始披露走到报告表述">
+            <div><small>01</small><strong>原始披露</strong><p>文件、页码、表格</p></div><b>→</b><div><small>02</small><strong>提取值</strong><p>原文与数值</p></div><b>→</b><div><small>03</small><strong>口径调整</strong><p>换汇、年化、剔除</p></div><b>→</b><div><small>04</small><strong>模型输入</strong><p>版本与采用日</p></div><b>→</b><div><small>05</small><strong>计算结果</strong><p>公式与重算</p></div><b>→</b><div><small>06</small><strong>报告表述</strong><p>判断与边界</p></div>
+          </div>
+          <p class="plain-note"><strong>验收原则：</strong>网址能打开不等于数值可追溯；报告有引用不等于公式已复算；文字很专业也不等于结论有证据。链路断开时，要记录断点、影响和关闭条件。</p>
         </section>
 
         <section class="reader-section checkpoint" id="checkpoint-2" data-reader-section>
-          <div class="checkpoint-heading"><span>互动 2 / 3</span><div><p>检验边界意识</p><h2>模型能证明未来吗？</h2></div></div>
-          <div class="quiz-card inline-quiz" data-quiz-id="q2" data-answer="B" data-explanation="输出只是条件计算，不能反向证明公司会实现模型里的增长。">
-            <p class="question">模型输出300亿元，是否能证明公司未来会实现模型里的增长？</p>
-            <div class="choices horizontal-choices two-choices"><button class="choice" data-choice="A">A. 能</button><button class="choice" data-choice="B">B. 不能</button></div>
+          <div class="checkpoint-heading"><span>互动 2 / 3</span><div><p>检验时点意识</p><h2>可靠来源可以穿越时间吗？</h2></div></div>
+          <div class="quiz-card inline-quiz" data-quiz-id="q2" data-answer="B" data-explanation="原始来源再可靠，也不能穿越研究时点；后来信息只能用于复盘。">
+            <p class="question">研究时点为2026年3月31日，Agent引用4月20日发布的一季报支持当时收入假设。最准确的问题是：</p>
+            <div class="choices horizontal-choices"><button class="choice" data-choice="A">A. 公司公告，可以使用</button><button class="choice" data-choice="B">B. 未来信息污染，必须移除</button><button class="choice" data-choice="C">C. 两个模型同意即可使用</button></div>
             <p class="feedback" aria-live="polite">选择一个答案，马上看到理由。</p>
           </div>
         </section>
 
-        <section class="reader-section" id="source-grades" data-reader-section>
-          <p class="section-kicker">06 · 外部预测/内部假设的子层</p><h2>同样是预测，来源等级不同</h2>
-          <p class="section-lead">这不是给四类数字新增第五类——"外部预测"和"内部假设"内部还能再细分来源等级。等级不代表更准，代表"如果它错了，可验证性有多强"。</p>
-          <div class="table-scroll">
-            <table>
-              <thead><tr><th>来源等级</th><th>是什么</th><th>使用提醒</th></tr></thead>
-              <tbody>
-                <tr><td>公司指引</td><td>公司管理层自己给出的前瞻区间</td><td>仍是"预计"，不是已实现结果；可对比历史指引达成率</td></tr>
-                <tr><td>市场共识</td><td>多家机构预测的平均或中位数</td><td>代表多数观点，不代表正确；共识本身也可能集体错判</td></tr>
-                <tr><td>单家券商预测</td><td>一家机构的独立观点</td><td>只代表这一家的模型和假设，离散度可能很大</td></tr>
-                <tr><td>内部假设</td><td>模型作者自己设定，通常无外部来源</td><td>必须说明经济依据和敏感性；不能只因为"没来源"就自动失败</td></tr>
-              </tbody>
-            </table>
-          </div>
-          <p class="plain-note"><strong>记住：</strong>事实、公司指引、市场共识、券商预测和内部估计不得互相冒充——判断的重点是材料有没有说清楚每个数字属于哪一档。</p>
+        <section class="reader-section developer-section" id="pit" data-reader-section>
+          <div class="developer-heading"><span>开发者层</span><p>Point-in-time</p></div>
+          <p class="section-kicker">07 · 当时知道什么</p><h2>后来正确，不代表当时可用</h2>
+          <p class="section-lead">PIT（时点一致性）要求研究只使用截至当时已经公开、已经采用的信息。4月发布的一季报可以评价3月判断，但不能回填进3月模型，让历史判断显得更聪明。</p>
+          <div class="pit-rule"><code>source_published_at ≤ adopted_at ≤ research_as_of</code><p>任一时间关系不成立，Agent 应返回“无法确认”或明确标记未来信息污染，不能静默使用。</p></div>
         </section>
 
         <section class="reader-section" id="comparison" data-reader-section>
-          <p class="section-kicker">07 · 同一组数字，两种写法</p><h2>好坏材料差在哪里</h2>
-          <p class="section-lead">好材料不一定预测得更准，但它让你知道每个数字从哪里来、是什么性质，以及结论依赖什么。</p>
+          <p class="section-kicker">08 · 同一组数字，两种写法</p><h2>好材料不保证预测正确，但允许你质证</h2>
           <div class="comparison-grid">
-            <div class="comparison-card good-copy"><span>材料 A · 可质证</span><blockquote>"公司2025年收入100亿元。公司指引2026年约120亿元。Base情景采用125亿元，是2026-08-17提出的内部假设。"</blockquote><p>事实、公司指引和内部假设没有混在一起，所以每一步都可以追问。</p></div>
-            <div class="comparison-card bad-copy"><span>材料 B · 条件消失</span><blockquote>"公司2026年收入125亿元，预计价值240亿元。"</blockquote><p>尚未发生的数字被写成公司事实，240亿元也没有暴露成立条件。</p></div>
+            <div class="comparison-card good-copy"><span>材料 A · 可追溯</span><blockquote>“2025年审计收入100亿元。3月28日公司指引2026年约120亿元。3月31日Base采用125亿元，其中5亿元为内部调整，量价桥尚未闭合。模型输出股权价值240亿元，尚未独立复核，因此当前部分可用。”</blockquote><p>信息性质、时间、变换、验证状态和使用意见没有混在一起。</p></div>
+            <div class="comparison-card bad-copy"><span>材料 B · 条件消失</span><blockquote>“公司2026年收入125亿元，市场一致认为价值240亿元，模型已经验证增长能够实现。”</blockquote><p>预测冒充事实，计算冒充现实证明，读者也无法定位或复算。</p></div>
+          </div>
+        </section>
+
+        <section class="reader-section developer-section" id="agent-lab" data-reader-section>
+          <div class="developer-heading"><span>开发者层</span><p>本地验收实验</p></div>
+          <p class="section-kicker">09 · 给 Agent 输出做验收</p><h2>找出五个必须关闭的问题</h2>
+          <p class="section-lead">研究时点固定为 <strong>2026年3月31日</strong>。先读完整输出，再逐项点击你确认存在的问题。所有操作只发生在当前页面。</p>
+          <blockquote class="agent-output">“长河科技2025年收入100亿元。市场共识预计2026年收入125亿元；该数字来自华东证券一份报告。公司随后公布的2026年一季报证明需求强劲，因此我们把Base收入上调到130亿元。根据模型，公司股权价值为240亿元，结论已经验证，可以继续使用。”</blockquote>
+          <div class="agent-audit" data-agent-audit>
+            <div class="agent-issue-list">
+              <button type="button" data-agent-issue data-title="单家预测冒充共识" data-explanation="只有一家券商报告，没有共识的样本、统计方法和截点。应改标为单家外部预测。"><span>01</span><strong>125亿元的“市场共识”是否成立？</strong><em>点击检查</em></button>
+              <button type="button" data-agent-issue data-title="未来信息污染" data-explanation="研究时点是3月31日，随后发布的一季报不能进入当时输入，只能用于事后复盘。"><span>02</span><strong>一季报能否证明3月31日的判断？</strong><em>点击检查</em></button>
+              <button type="button" data-agent-issue data-title="内部调整无桥接" data-explanation="125亿元上调至130亿元，却没有量、价、产能或口径桥。130亿元只能先标为未闭合的内部假设。"><span>03</span><strong>125亿怎样变成130亿？</strong><em>点击检查</em></button>
+              <button type="button" data-agent-issue data-title="来源无法定位" data-explanation="只写机构名称，没有报告标题、发布日期、页码或证据记录，无法回到原始依据。"><span>04</span><strong>“华东证券一份报告”够不够？</strong><em>点击检查</em></button>
+              <button type="button" data-agent-issue data-title="派生价值无法复算" data-explanation="240亿元缺输入、公式、模型版本和独立重算结果。“已经验证”超出了现有证据。"><span>05</span><strong>240亿元是否真的“已经验证”？</strong><em>点击检查</em></button>
+            </div>
+            <div class="agent-issue-explanation" data-agent-explanation aria-live="polite"><strong>尚未检查</strong><p>点击任一问题，查看为什么它会阻止验收。</p></div>
+            <fieldset class="agent-grade"><legend>五项检查后，这段输出应是什么状态？</legend><div><button type="button" data-agent-grade="usable">可使用</button><button type="button" data-agent-grade="partial">部分可用</button><button type="button" data-agent-grade="unknown">无法确认</button></div></fieldset>
+            <div class="agent-audit-summary" id="agent-audit-summary" data-agent-summary aria-live="polite"><strong>待完成</strong><p>已检查 0 / 5 个问题；尚未选择使用等级。</p></div>
           </div>
         </section>
 
         <section class="reader-section checkpoint" id="checkpoint-3" data-reader-section>
-          <div class="checkpoint-heading"><span>互动 3 / 3</span><div><p>避免机械打勾</p><h2>无外部来源就失败吗？</h2></div></div>
-          <div class="quiz-card inline-quiz" data-quiz-id="q3" data-answer="B" data-explanation="内部假设可以用于情景；证据弱、影响大时，应降级结论并继续检查敏感性和经济依据。">
-            <p class="question">某假设没有外部来源，但作者明确标为内部情景并展示区间。最合适的状态是：</p>
-            <div class="choices horizontal-choices"><button class="choice" data-choice="A">A. 自动失败</button><button class="choice" data-choice="B">B. 警告，继续质证</button><button class="choice" data-choice="C">C. 自动通过</button></div>
+          <div class="checkpoint-heading"><span>互动 3 / 3</span><div><p>区分引用与复核</p><h2>有引用就等于已验证吗？</h2></div></div>
+          <div class="quiz-card inline-quiz" data-quiz-id="q3" data-answer="B" data-explanation="引用只能帮助定位来源，不能证明派生计算正确；必须保存输入、公式和独立重算结果。">
+            <p class="question">Agent给出240亿元股权价值，有引用但没有输入、公式和重算结果。最合适的状态是：</p>
+            <div class="choices horizontal-choices"><button class="choice" data-choice="A">A. 已验证</button><button class="choice" data-choice="B">B. 无法确认，补齐计算链</button><button class="choice" data-choice="C">C. 引用存在即可使用</button></div>
             <p class="feedback" aria-live="polite">选择一个答案，马上看到理由。</p>
           </div>
         </section>
 
-        <section class="reader-section" id="annotate" data-reader-section>
-          <p class="section-kicker">08 · 把判断落到具体措辞上</p><h2>动手质证：材料B</h2>
-          <p class="section-lead">点开看每处该怎么质证——这两处标记不是"全部问题"的穷举，而是示范怎样把可疑之处说清楚：为什么可疑、影响是什么、还不能断言什么。</p>
-          <div class="annotate" data-annotate>
-            <p class="annotate-text">"公司2026年<button class="annotate-flag" data-annotate-flag
-              data-why="2026年尚未结束，这是一个预测或假设，却被写成了确定的公司数字，也没有注明来源——是公司指引、市场共识，还是模型作者自己的内部假设？"
-              data-impact="读者容易把它当作已披露事实直接使用，在没有意识到不确定性的情况下拿它做后续计算或比较。"
-              data-limit="还不能断言这个数字是编造的——它可能确有出处，只是材料没写清楚。下一步是去问作者这个数字的来源和性质。">收入125亿元</button>，预计<button class="annotate-flag" data-annotate-flag
-              data-why="价值输出直接给出结论，没有说明是在什么折现率、增长率和终值假设下算出来的。"
-              data-impact="没有成立条件，你无法判断这个结果对假设有多敏感，也没有办法重新验证或复算它。"
-              data-limit="还不能断言240亿元算错了——目前能断言的只是材料没有提供足够信息去复核它。">价值240亿元</button>。"
-            </p>
-            <div class="annotate-panel" data-annotate-panel hidden></div>
-          </div>
-        </section>
-
-        <section class="reader-section" id="misreads" data-reader-section>
-          <p class="section-kicker">09 · 自查</p><h2>常见误读，自己先想一遍</h2>
-          <p class="section-lead">合上前面的内容，先自己回答，再展开看解释。</p>
-          <div class="misreads">
-            <details><summary>用了预测＝不可信吗？</summary><p>不是。预测本身没有问题，问题是把预测写得像已经发生的事实，或者不说明它的来源和性质。</p></details>
-            <details><summary>没写来源的假设＝一定失败吗？</summary><p>不是。内部假设可以没有外部来源，只要标明是内部情景、说明经济依据并展示区间；如果连这些都没有，应该标记为警告，而不是直接判定失败或直接放行。</p></details>
-            <details><summary>输出精确到小数点＝更可信吗？</summary><p>不是。精确的小数位只反映计算精度，不反映输入假设本身是否可靠。</p></details>
-            <details><summary>危险信号越多，模型一定越差吗？</summary><p>不一定。危险信号是需要重点质证的线索，不能直接累加成"模型错误"的结论；同一个信号在不同商业模式下的影响也可能不同。</p></details>
-          </div>
+        <section class="reader-section developer-section" id="minimum" data-reader-section>
+          <div class="developer-heading"><span>开发者层</span><p>最低完成标准</p></div>
+          <p class="section-kicker">10 · 从会读到会验收</p><h2>投研 Agent 开发至少要做到什么</h2>
+          <ul class="minimum-list">
+            <li><span>01</span><div><strong>定义记录契约</strong><p>关键数字的对象、时点、单位、来源、变换和状态完整。</p></div></li>
+            <li><span>02</span><div><strong>追溯证据链</strong><p>能从最终表述反查原始证据和每一步处理。</p></div></li>
+            <li><span>03</span><div><strong>阻止时间穿越</strong><p>研究时点之后的信息只能用于复盘。</p></div></li>
+            <li><span>04</span><div><strong>区分证据与推断</strong><p>来源可靠、信息性质和验证状态分别记录。</p></div></li>
+            <li><span>05</span><div><strong>要求独立计算</strong><p>派生值由公式和工具复算，而不是由另一个模型复述。</p></div></li>
+            <li><span>06</span><div><strong>设计失败状态</strong><p>来源缺失、口径不明、时点穿越和无法复算都有明确测试。</p></div></li>
+          </ul>
         </section>
 
         <section class="reader-section recall-section" id="recall" data-reader-section>
-          <p class="section-kicker">10 · 主动回忆</p><h2>合上材料，你还能说清楚吗？</h2>
-          <p class="section-lead">不用照抄定义。用自己的话解释：为什么模型输出不是事实？你的笔记只保存在这台设备上。</p>
-          <textarea class="note-area reader-note" data-note="day-1" placeholder="我的一句话解释……"></textarea>
+          <p class="section-kicker">11 · 主动回忆</p><h2>写一条真正可执行的验收意见</h2>
+          <p class="section-lead">不用复述定义。写清楚：你发现了什么、影响哪一步、补什么证据或计算才能重新开放使用。笔记只保存在这台设备上。</p>
+          <textarea class="note-area reader-note" data-note="day-1" placeholder="当前状态：____&#10;证据链断在：____&#10;影响：____&#10;关闭条件：____&#10;仍不能断言：____"></textarea>
         </section>
 
         <section class="reader-section boundary-section" id="boundary" data-reader-section>
-          <p class="section-kicker">11 · 本课边界</p><h2>现在能判断什么，还不能判断什么</h2>
+          <p class="section-kicker">12 · 本课边界</p><h2>现在能验收什么，还不能决定什么</h2>
           <div class="boundary-grid">
-            <div><span aria-hidden="true">✓</span><div><strong>现在可以</strong><p>判断一个数字是事实、外部预测、内部假设，还是模型输出，也能说出预测的来源等级。</p></div></div>
-            <div><span aria-hidden="true">—</span><div><strong>还不可以</strong><p>仅凭这一课判断预测是否合理，也不能由模型价值推出股票是否值得买。</p></div></div>
+            <div><span aria-hidden="true">✓</span><div><strong>现在可以</strong><p>判断信息性质，设计关键数字记录，并识别 Agent 输出中的来源、时点、桥接和复算缺口。</p></div></div>
+            <div><span aria-hidden="true">—</span><div><strong>还不可以</strong><p>仅凭这一课判断预测是否合理、独立完成正式估值，或由模型价值推出股票是否值得买。</p></div></div>
           </div>
-          <p class="next-preview"><span>下一课</span><strong>看懂最小价值桥</strong>——从经营利润一路走到股权价值，找出最容易被忽略的分母。</p>
+          <p class="next-preview"><span>下一课</span><strong>看懂最小价值桥</strong>——从经营利润一路走到股权价值，找出最容易被忽略的现金流和分母。</p>
         </section>
 
         <nav class="lesson-end-actions" aria-label="完成课程并继续">
-          <a href="index.html">← 课程首页</a>
-          <a href="../course/DAY-1.md">文字版</a>
-          <button class="reader-complete" data-complete-lesson>标记本课完成</button>
-          <a class="continue" href="day-2.html">进入下一课 <span>→</span></a>
+          <a href="index.html">← 课程首页</a><a href="../course/DAY-1.md">文字版</a><button class="reader-complete" data-complete-lesson>标记本课完成</button><a class="continue" href="day-2.html">进入下一课 <span>→</span></a>
         </nav>
       </article>
     </main>
