@@ -1,3 +1,4 @@
+import hashlib
 import json
 import re
 import shutil
@@ -22,6 +23,9 @@ class PageParser(HTMLParser):
         self.sorter_items = 0
         self.agent_audits = 0
         self.agent_issues = 0
+        self.markdown_openers = 0
+        self.markdown_dialogs = 0
+        self.markdown_frames = 0
         self.lesson = None
 
     def handle_starttag(self, tag, attrs):
@@ -41,6 +45,12 @@ class PageParser(HTMLParser):
             self.agent_audits += 1
         if "data-agent-issue" in values:
             self.agent_issues += 1
+        if "data-markdown-reference-open" in values:
+            self.markdown_openers += 1
+        if "data-markdown-reference-dialog" in values:
+            self.markdown_dialogs += 1
+        if "data-markdown-reference-frame" in values:
+            self.markdown_frames += 1
         for attribute in ("href", "src"):
             if attribute in values:
                 self.links.append(values[attribute])
@@ -68,7 +78,7 @@ class WebCourseTests(unittest.TestCase):
 
     def test_all_local_html_links_and_assets_resolve(self):
         failures = []
-        for page in WEB.glob("*.html"):
+        for page in WEB.rglob("*.html"):
             parser = parse(page)
             for target in parser.links:
                 if target.startswith(("http://", "https://", "mailto:", "#")):
@@ -104,6 +114,34 @@ class WebCourseTests(unittest.TestCase):
             self.assertIn(f'data-sorter-choice="{value}"', text)
         for grade in ["usable", "partial", "unknown"]:
             self.assertIn(f'data-agent-grade="{grade}"', text)
+
+    def test_day_one_markdown_reference_contract(self):
+        parser = parse(WEB / "day-1.html")
+        self.assertEqual(parser.markdown_openers, 1)
+        self.assertEqual(parser.markdown_dialogs, 1)
+        self.assertEqual(parser.markdown_frames, 1)
+        self.assertIn("day-1-markdown-reference", parser.ids)
+
+        generated = WEB / "generated" / "day-1-reference.html"
+        self.assertTrue(generated.is_file())
+        generated_text = generated.read_text()
+        self.assertNotIn("\x00", generated_text)
+        source_hash = hashlib.sha256((ROOT / "course" / "DAY-1.md").read_bytes()).hexdigest()
+        self.assertIn(f'<meta name="source-sha256" content="{source_hash}">', generated_text)
+        for heading in ["专业标注不是一个", "记录验证状态与材料使用等级", "失败状态矩阵", "一页验收清单"]:
+            self.assertIn(heading, generated_text)
+
+        result = subprocess.run(
+            ["python3", str(ROOT / "scripts" / "render_course_markdown.py"), "--check"],
+            capture_output=True,
+            text=True,
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+
+        page_text = (WEB / "day-1.html").read_text()
+        self.assertIn('aria-controls="day-1-markdown-reference"', page_text)
+        self.assertIn('aria-expanded="false"', page_text)
+        self.assertIn('src="generated/day-1-reference.html"', page_text)
 
     def test_data_term_references_resolve_in_glossary(self):
         glossary_keys = set(re.findall(r'"([^"]+)":\s*\{', (WEB / "assets/glossary.js").read_text()))

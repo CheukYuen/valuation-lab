@@ -270,6 +270,9 @@ summary { cursor: pointer; color: var(--green); font-weight: 700; }
 .reader-breadcrumb b { color: #a8afab; font-weight: 500; }
 .reader-breadcrumb strong { color: var(--reader-ink); }
 .reader-breadcrumb em { padding: 3px 9px; color: var(--reader-green); background: var(--reader-green-soft); border-radius: 999px; font-size: .72rem; font-style: normal; font-weight: 750; }
+.markdown-reference-trigger { display: grid; place-items: center; width: 32px; height: 32px; padding: 0; color: var(--reader-green); background: #fff; border: 1px solid #c9d8d1; border-radius: 9px; cursor: pointer; transition: color .16s ease, background .16s ease, border-color .16s ease; }
+.markdown-reference-trigger:hover, .markdown-reference-trigger:focus-visible, .markdown-reference-trigger[aria-expanded="true"] { color: #fff; background: var(--reader-green); border-color: var(--reader-green); outline: none; }
+.markdown-reference-trigger svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 .reader-course-progress { display: flex; align-items: center; gap: 12px; margin-top: 12px; }
 .day-dots { display: flex; gap: 6px; }
 .day-dot { width: 9px; height: 9px; background: #e2e5e2; border-radius: 50%; transition: background .16s ease, transform .16s ease; }
@@ -583,6 +586,48 @@ summary { cursor: pointer; color: var(--green); font-weight: 700; }
 
 .sorter-six .sorter-choices { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
+/* Generated Markdown reference drawer */
+html.markdown-reference-open { overflow: hidden; }
+.markdown-reference-dialog { position: fixed; inset: 0 0 0 auto; width: min(760px, calc(100vw - 48px)); max-width: none; height: 100dvh; max-height: none; margin: 0; padding: 0; overflow: hidden; color: var(--reader-ink); background: #fff; border: 0; border-radius: 0; box-shadow: -24px 0 70px rgba(14, 29, 22, .2); }
+.markdown-reference-dialog::backdrop { background: rgba(15, 26, 21, .42); backdrop-filter: blur(2px); }
+.markdown-reference-panel { display: grid; grid-template-rows: auto minmax(0, 1fr) auto; height: 100%; }
+.markdown-reference-header { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 78px; padding: 16px 22px; background: #fff; border-bottom: 1px solid var(--reader-line); }
+.markdown-reference-header small, .markdown-reference-header strong { display: block; }
+.markdown-reference-header small { margin-bottom: 3px; color: var(--reader-green); font-size: .68rem; font-weight: 800; letter-spacing: .1em; }
+.markdown-reference-header strong { font-size: 1rem; }
+.markdown-reference-header button { display: grid; place-items: center; flex: 0 0 auto; width: 34px; height: 34px; padding: 0; color: #68726d; background: #f1f3f2; border: 0; border-radius: 50%; font-size: 1.35rem; line-height: 1; cursor: pointer; }
+.markdown-reference-header button:hover, .markdown-reference-header button:focus-visible { color: #fff; background: var(--reader-green); outline: none; }
+.markdown-reference-frame { width: 100%; height: 100%; background: #faf9f6; border: 0; }
+.markdown-reference-footer { display: flex; align-items: center; justify-content: space-between; gap: 18px; min-height: 52px; padding: 10px 22px; color: #7d8782; background: #fff; border-top: 1px solid var(--reader-line); font-size: .72rem; }
+.markdown-reference-footer a { color: var(--reader-green); font-weight: 750; }
+
+/* Standalone generated Markdown document (loaded inside the drawer iframe) */
+.markdown-reference-page { margin: 0; color: #202925; background: #faf9f6; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", sans-serif; line-height: 1.78; }
+.markdown-reference-document { width: min(100% - 52px, 820px); margin: 0 auto; padding: 34px 0 72px; }
+.markdown-reference-source { margin: 0 0 34px; padding: 10px 13px; color: #718079; background: #eef3f0; border-radius: 9px; font-size: .72rem; }
+.markdown-reference-source a { color: var(--reader-green, var(--green)); font-weight: 750; }
+.markdown-reference-document h1 { margin: 0 0 22px; font-size: clamp(2rem, 5vw, 3rem); line-height: 1.16; letter-spacing: -.045em; }
+.markdown-reference-document h2 { margin: 54px 0 20px; padding-top: 18px; border-top: 1px solid #dce2de; font-size: 1.55rem; line-height: 1.35; letter-spacing: -.02em; }
+.markdown-reference-document h3 { margin: 36px 0 15px; color: #174d3b; font-size: 1.16rem; line-height: 1.45; }
+.markdown-reference-document h4 { margin: 26px 0 12px; font-size: 1rem; }
+.markdown-reference-document p { margin: 13px 0; }
+.markdown-reference-document a { color: #17644d; }
+.markdown-reference-document blockquote { margin: 20px 0; padding: 16px 19px; color: #4a5751; background: #eef3f0; border-left: 4px solid #4e8b73; border-radius: 0 10px 10px 0; }
+.markdown-reference-document blockquote p { margin: 0; }
+.markdown-reference-document ul, .markdown-reference-document ol { margin: 14px 0; padding-left: 1.5rem; }
+.markdown-reference-document li { margin: 7px 0; }
+.markdown-reference-document li > ul, .markdown-reference-document li > ol { margin: 6px 0; }
+.markdown-reference-document code { padding: 2px 5px; color: #215641; background: #e7efeb; border-radius: 5px; font-size: .86em; }
+.markdown-reference-document pre { margin: 18px 0; padding: 18px; }
+.markdown-reference-document pre code { padding: 0; color: inherit; background: transparent; }
+.markdown-reference-document .reference-table-scroll { margin: 18px 0 24px; overflow-x: auto; background: #fff; border: 1px solid #dce2de; border-radius: 12px; }
+.markdown-reference-document table { min-width: 620px; background: #fff; }
+.markdown-reference-document th { color: #52615a; background: #f0f4f2; }
+.markdown-reference-document th, .markdown-reference-document td { padding: 11px 12px; }
+.markdown-reference-document details { margin: 20px 0; padding: 14px 17px; background: #fff; border: 1px solid #dce2de; border-radius: 10px; }
+.markdown-reference-document summary { color: #17644d; }
+.markdown-reference-document hr { margin: 34px 0; border: 0; border-top: 1px solid #dce2de; }
+
 @media (max-width: 800px) {
   .sorter-choices { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .layer-map, .dimension-grid { grid-template-columns: 1fr; }
@@ -590,6 +635,7 @@ summary { cursor: pointer; color: var(--green); font-weight: 700; }
   .passport-fields > div { border-right: 0; }
   .passport-fields > div:nth-last-child(2) { border-bottom: 1px solid var(--reader-line); }
   .agent-issue-list button:last-child { grid-column: auto; }
+  .markdown-reference-dialog { width: min(100vw, 760px); }
 }
 @media (max-width: 560px) {
   .sorter-choices { grid-template-columns: 1fr; }

@@ -431,6 +431,57 @@
     });
   }
 
+  function setupMarkdownReference() {
+    const dialog = document.querySelector("[data-markdown-reference-dialog]");
+    const openers = Array.from(document.querySelectorAll("[data-markdown-reference-open]"));
+    if (!dialog || !openers.length) return;
+    const closeButton = dialog.querySelector("[data-markdown-reference-close]");
+    let lastFocused = null;
+
+    const setExpanded = expanded => {
+      openers.forEach(opener => opener.setAttribute("aria-expanded", expanded ? "true" : "false"));
+      document.documentElement.classList.toggle("markdown-reference-open", expanded);
+    };
+
+    const openDialog = opener => {
+      if (dialog.open) return;
+      lastFocused = opener;
+      if (typeof dialog.showModal === "function") dialog.showModal();
+      else dialog.setAttribute("open", "");
+      setExpanded(true);
+      if (closeButton) closeButton.focus();
+    };
+
+    const closeDialog = () => {
+      if (!dialog.open) return;
+      if (typeof dialog.close === "function") dialog.close();
+      else {
+        dialog.removeAttribute("open");
+        setExpanded(false);
+        if (lastFocused) lastFocused.focus();
+      }
+    };
+
+    openers.forEach(opener => opener.addEventListener("click", () => openDialog(opener)));
+    if (closeButton) closeButton.addEventListener("click", closeDialog);
+    dialog.addEventListener("close", () => {
+      setExpanded(false);
+      if (lastFocused) lastFocused.focus();
+    });
+    dialog.addEventListener("click", event => {
+      if (event.target !== dialog) return;
+      const rect = dialog.getBoundingClientRect();
+      const inside = event.clientX >= rect.left && event.clientX <= rect.right
+        && event.clientY >= rect.top && event.clientY <= rect.bottom;
+      if (!inside) closeDialog();
+    });
+    document.addEventListener("keydown", event => {
+      if (event.key !== "Escape" || !dialog.open) return;
+      event.preventDefault();
+      closeDialog();
+    });
+  }
+
   function setupGlossary() {
     const terms = document.querySelectorAll("[data-term]");
     if (!terms.length || !globalThis.ValuationLabGlossary) return;
@@ -506,6 +557,7 @@
     setupSorter();
     setupAnnotate();
     setupAgentAudit();
+    setupMarkdownReference();
     setupGlossary();
     renderProgress();
   });
