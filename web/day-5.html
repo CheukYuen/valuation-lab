@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>第5课：反向DCF</title><link rel="stylesheet" href="assets/styles.css"><script defer src="assets/app.js"></script><script defer src="assets/tools.js"></script></head>
+<body data-lesson="day-5"><header class="topbar"><a class="brand" href="index.html">valuation-lab · 互动版</a><nav class="topnav"><a href="index.html">课程</a><a href="study-methods.html">科学学习法</a><a href="../course/DAY-5.md">文字版</a></nav><div class="progress-wrap"><div class="progress-label"><span>学习进度</span><strong data-progress-text>0/7</strong></div><div class="progress-track"><div class="progress-bar" data-progress-bar></div></div></div></header>
+<main class="page lesson-layout"><aside class="lesson-nav"><strong>七天课程</strong><a href="day-1.html">01 信息性质</a><a href="day-2.html">02 价值桥</a><a href="day-3.html">03 快速门</a><a href="day-4.html">04 敏感性</a><a class="current" href="day-5.html">05 反向DCF</a><a href="day-6.html">06 方法匹配</a><a href="day-7.html">07 长飞审计</a><a class="method-link" href="study-methods.html">科学学习法</a></aside><article class="lesson-main">
+  <section class="hero"><p class="eyebrow">DAY 05 · 45 MIN</p><h1>反向<br>DCF</h1><p>不先问“值多少钱”，而问“在这组条件下，当前价格要求公司做到什么”。结果是一条条件曲线，不是市场唯一观点。</p><div class="hero-meta"><span class="pill">价格→经营要求</span><span class="pill">多组解</span><span class="pill">经济无解区</span></div></section>
+  <section class="section"><h2>正向和反向，只是方向不同</h2><div class="grid-2"><div class="card info"><h3>正向DCF</h3><div class="flow"><span>经营预测</span><b>→</b><span>现金流</span><b>→</b><span>模型价值</span></div></div><div class="card good"><h3>反向DCF</h3><div class="flow"><span>当前价格</span><b>→</b><span>所需现金流</span><b>→</b><span>增长/利润/时间</span></div></div></div><p class="lead">合格表述必须带条件：“在WACC 9%、显性期7年、永续增长2%和当前FCFF定义下……”</p></section>
+  <section class="section"><h2>动手：同一价格，不同WACC</h2><div class="tool"><div class="controls"><div class="control"><label>当前股权市值 <span>亿元</span></label><input id="reverse-target" data-reverse-input type="number" value="300" step="10"></div><div class="control"><label>起点FCFF <span>亿元</span></label><input id="reverse-fcf" data-reverse-input type="number" value="10" step="1"></div></div><div class="table-scroll"><table><thead><tr><th>WACC</th><th>要求的7年增长</th><th>下一步</th></tr></thead><tbody id="reverse-body"></tbody></table></div><p class="tool-note">固定：7年显性期、2%永续增长、20亿元净债务。改变市值，观察何时出现无解。</p></div>
+    <details><summary>二分求解代码</summary><pre><code>while high - low &gt; tolerance:
+    mid = (low + high) / 2
+    if dcf_value(growth=mid) &lt; market_value:
+        low = mid
+    else:
+        high = mid</code></pre><a class="code-link" href="../lab/reverse.py">打开完整Python源码</a></details>
+  </section>
+  <section class="section"><h2>怎样把数字变成研究问题</h2><div class="grid-3"><div class="card"><h3>历史</h3><p>公司过去达到过这个增长或利润率吗？持续了几年？</p></div><div class="card"><h3>同行</h3><p>相似商业模式中谁做到过？靠什么竞争优势？</p></div><div class="card"><h3>经营机制</h3><p>需要怎样的销量、ASP、产能、成本和现金转化？</p></div></div></section>
+  <section class="section"><h2>闯关</h2>
+    <div class="quiz-card" data-answer="B" data-explanation="它是给定模型下的要求，不是调查得到的共识。"><p class="question">1. 反向DCF得到增长20%，能称为市场共识吗？</p><div class="choices"><button class="choice" data-choice="A">A. 能</button><button class="choice" data-choice="B">B. 不能</button></div><p class="feedback"></p></div>
+    <div class="quiz-card" data-answer="B" data-explanation="实际经营没变，变化来自模型折现条件。"><p class="question">2. WACC升高，隐含增长也升高，说明什么？</p><div class="choices"><button class="choice" data-choice="A">A. 公司实际增长改变</button><button class="choice" data-choice="B">B. 隐含要求依赖模型约定</button></div><p class="feedback"></p></div>
+    <div class="quiz-card" data-answer="A" data-explanation="先记录诊断，也要排除对象、单位、EV桥和搜索范围错误。"><p class="question">3. 反解无经济可行解时，正确动作是什么？</p><div class="choices"><button class="choice" data-choice="A">A. 记录无解并检查模型边界</button><button class="choice" data-choice="B">B. 不断放宽直到有数字</button></div><p class="feedback"></p></div>
+  </section>
+  <section class="section"><h2>条件式表达练习</h2><textarea class="note-area" data-note="day-5" placeholder="不要写“市场认为……”。请写：在____假设下，当前价格要求____；下一步要检查____。"></textarea><div class="button-row"><button class="primary" data-complete-lesson>标记本课完成</button><a class="secondary" href="../lab/reverse.py">查看源码</a></div></section>
+  <nav class="footer-nav"><a href="day-4.html">← 第4课</a><a href="day-6.html">第6课：方法匹配 →</a></nav>
+</article></main></body></html>

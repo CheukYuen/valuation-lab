@@ -1,55 +1,63 @@
-# 案例 01 · 长飞光纤 A/H 独立估值
+# 毕业案例：长飞光纤 A/H 独立估值
 
-> **先别看 [`answer-key.md`](answer-key.md)。** 自己审一遍再对答案，否则这个案例就浪费了。
+这是第7课案例。先完成 Level A，再进入 Level B；Level C 和代码实验可选。**写完使用等级之前不要看 [`answer-key.md`](answer-key.md)。**
 
-## 为什么用这个案例
+## 为什么把它放在最后
 
-三个原因：
+长飞同时包含：
 
-1. **是你自己的东西。** 这份运算出自 `investment-research-copilot`，你有全部输入、程序和结果，可以随便拆。
-2. **它做得好。** 资本结构逐元对得上一季报，券商预测逐格转录无误，没有目标价，标了 `PROVISIONAL`。审一份烂材料学不到东西，审一份好材料才能看见错误藏在哪。
-3. **它有已知缺陷，而且缺陷有答案。** 五个会改变数字的问题、五个会改变可回查性的问题，都已经定位并量化。
+- 周期利润与结构成长；
+- A/H两类证券和不同报价；
+- 发行人经营价值与每股证券价格；
+- 正向DCF、反向DCF、终值和现金转化；
+- 完整计算程序与不完整原始存证。
 
-## 材料
+它适合检验综合判断，不适合作为零基础第一课。
 
-| 文件 | 是什么 |
+## 先知道的背景
+
+- 对象：长飞光纤发行人、A股 `601869.SH`、H股 `06869.HK`；
+- 市场估值时点：2026-08-14；资本结构截止：2026-03-31；
+- A股收盘355.18元，H股收盘132.20港元，报告计算A/H溢价约210%；
+- Bear继承一家券商的预测，Base/Bull是内部情景；
+- 模型状态自报 `PROVISIONAL`，不输出目标价或买卖结论。
+
+## 材料顺序
+
+### Level A：10分钟快速门
+
+只读来源仓库的估值报告正文：
+
+`/Users/leon/Stock/investment-research-copilot/eval/company/yofc_valuation_20260815/valuation-report.md`
+
+检查对象、时点、股本、信息性质、敏感性和方法。不要打开JSON或代码。
+
+### Level B：关键假设审计
+
+再读来源方案：
+
+`/Users/leon/Stock/investment-research-copilot/docs/COMPANY-YOFC-VALUATION.md`
+
+回答正反向FCFF是否一致、终值如何正常化、三情景是否来自经营变量、2026基年是否与已知实际数据对质。
+
+### Level C：可选复算与存证
+
+| 文件 | 用途 |
 |---|---|
-| [`frozen/valuation-inputs.json`](frozen/valuation-inputs.json) | 全部输入：市场价格、股本、资本结构、WACC 组件、三情景经营路径 |
-| [`frozen/calculate.py`](frozen/calculate.py) | 计算程序，264 行 |
-| [`frozen/SOURCE.md`](frozen/SOURCE.md) | 来源提交与 SHA-256 |
-| [`knobs.py`](knobs.py) | 旋钮实验，跑完再看答案 |
+| [`frozen/valuation-inputs.json`](frozen/valuation-inputs.json) | 冻结输入 |
+| [`frozen/calculate.py`](frozen/calculate.py) | 冻结计算程序 |
+| [`frozen/SOURCE.md`](frozen/SOURCE.md) | 来源提交与哈希 |
+| [`knobs.py`](knobs.py) | 在内存中做敏感性实验 |
 
-配套的报告正文和方案文档在来源仓库（只读，不要复制回来）：
+`frozen/` 不修改。来源模型后续更新不回写本案例。
 
-- `investment-research-copilot/eval/company/yofc_valuation_20260815/valuation-report.md`
-- `investment-research-copilot/docs/COMPANY-YOFC-VALUATION.md`
+## 交付物
 
-## 背景（读材料前需要知道的）
+复制 [`worksheet.md`](worksheet.md) 为你自己的记录，最终必须分别评价：
 
-- 长飞光纤是同一发行人的两只证券：A 股 `601869.SH`、H 股 `06869.HK`
-- 估值时点 2026-08-14，资本结构截止 2026-03-31
-- A 股收盘 355.18 元，H 股收盘 132.20 港元，**A/H 溢价 210%**
-- 三情景的 Bear 直接继承杰富瑞 2026-07-22 的预测；Base 和 Bull 是内部估计
-- 公司 2025 年营收 142.52 亿、归母 8.14 亿；2026Q1 营收 36.95 亿、归母 4.95 亿；2026H1 业绩预告归母 24–30 亿
+1. 模型工程质量；
+2. 经济假设质量；
+3. 方法适用性；
+4. 当前材料的使用等级。
 
-## 你要回答的七个问题
-
-按 [`../../docs/AUDIT-CHECKLIST.md`](../../docs/AUDIT-CHECKLIST.md) 逐条过，重点回答这七个：
-
-1. **分母。** 这份运算用了几种股本口径？它们分别在什么地方用？有没有混？
-2. **时点。** 价格、汇率、股本、资本结构分别是哪一天？中间空掉的部分去哪了？
-3. **终值。** 三个情景的终值占比分别是多少？终值用的利润率是从哪来的？
-4. **情景。** Bear / Base / Bull 之间改的是经营变量还是报表数字？打开 `frozen/valuation-inputs.json` 直接看 `scenarios` 那一段。
-5. **一致性。** 正向 DCF 和反向 DCF 用的是同一个自由现金流定义吗？把两个公式并排写出来。
-6. **存证。** 输入里的每个数字，哪些能点回一个存下来的文件，哪些只有一个网址？
-7. **基年。** 三个情景共用同一个 2026 年起点。这个起点和上面背景里的 Q1 实际、H1 预告对得上吗？做个除法。
-
-第 5 和第 7 是这个案例的核心。它们不需要估值知识，只需要把两个东西放在一起看。
-
-## 怎么做
-
-1. 复制 [`worksheet.md`](worksheet.md) 为 `worksheet-<日期>.md`，边审边填
-2. 审完再跑 `python3 cases/01-yofc/knobs.py`，看量化结果是否印证你的判断
-3. 最后才打开 [`answer-key.md`](answer-key.md)
-
-对答案时不要只看「我漏了几条」。更重要的是：**你漏掉的那条，是因为不知道该查，还是知道该查但查不动？** 前者补清单，后者补背景。这个区分决定你下一步该学什么。
+不要回答“长飞值多少钱”或“是否值得买”。

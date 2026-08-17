@@ -90,8 +90,8 @@ def main():
             e3 = e2 + NONOP * 10
             print(f"  {name + '@' + format(w, '.3f'):<8}{e0:>10.1f}{e1:>12.1f}{e2:>12.1f}{e3:>12.1f}")
     print()
-    print(f"  最乐观角落（bull@6.0% + 全部反转）仍低于市场 {MARKET_EQUITY_YI:.1f} 亿——结论成立。")
-    print("  但余量只有约 5%，而报告用『6.0% 下 Bull 1619.9 vs 市场 1904.0』呈现的余量是 17.5%。")
+    print(f"  这组已测试的乐观组合（bull@6.0% + 全部反转）仍低于市场 {MARKET_EQUITY_YI:.1f} 亿。")
+    print("  该方向在本实验中未翻转，但余量只有约 5%；这不能覆盖尚未测试或无法确认的假设。")
 
     print()
     print("=" * 74)

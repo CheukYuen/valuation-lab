@@ -17,7 +17,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 DEFAULT_INPUT = ROOT / "inputs" / "simple.json"
 
-# 这五个键就是一个 DCF 的全部。其余都是它们的展开。
+# 这五个键是本教学模型的控制杆；真实 DCF 会把它们拆成更细的经营输入。
 FIVE = ["base_fcf", "growth", "years", "terminal_growth", "discount_rate"]
 
 
@@ -91,7 +91,7 @@ def main():
     print(f"  终值现值            {v['terminal_pv']:>10.2f} {unit}")
     print(f"  企业价值            {v['enterprise_value']:>10.2f} {unit}")
     print(f"  股权价值            {v['equity_value']:>10.2f} {unit}")
-    print(f"  终值占企业价值      {v['terminal_share']:>10.1%}   <- 超过 60% 说明结论主要来自终值三参数")
+    print(f"  终值占企业价值      {v['terminal_share']:>10.1%}   <- 占比较高时重点检查远期假设，不自动等于模型失效")
     print()
     print("弹性排序（输入 +1%，股权价值变动几个 %）")
     for name, e in elasticity(p):
@@ -101,10 +101,10 @@ def main():
     print("  读法一：起点现金流对『企业价值』的弹性恒为 1.00，它是尺子。这里显示 "
           f"{v['enterprise_value'] / v['equity_value']:.2f}，")
     print("          多出来的部分是净债务的杠杆放大——同一个经营变化，落到股权上会被放大。")
-    print("  读法二：任何弹性绝对值明显大于 1 的输入，都比「未来能赚多少钱」更能决定结论，")
-    print("          而它们通常在研报正文里一句不提。")
+    print("  读法二：弹性绝对值越大，说明本案例的股权价值对该输入越敏感；")
+    print("          这是当前输入组合的结果，不能推广成所有公司的固定排序。")
     print()
-    print("折现率绝对敏感性（真实研报通常只给这一张，先学会看它）")
+    print("折现率绝对敏感性（这是关键检查之一，还应检查增长、利润率和终值）")
     for d in [-0.02, -0.01, 0.0, 0.01, 0.02]:
         q = dict(p)
         q["discount_rate"] = p["discount_rate"] + d
