@@ -89,12 +89,46 @@
     });
   }
 
+  function setupReaderNavigation() {
+    const sections = Array.from(document.querySelectorAll("[data-reader-section]"));
+    const links = Array.from(document.querySelectorAll("[data-toc-link]"));
+    if (!sections.length || !links.length) return;
+
+    const linksById = new Map(links.map(link => [new URL(link.href).hash.slice(1), link]));
+    const setActive = id => {
+      const active = linksById.get(id);
+      links.forEach(link => link.classList.toggle("active", link === active));
+      if (active && window.innerWidth <= 800) active.scrollIntoView({ block: "nearest", inline: "center" });
+    };
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(entries => {
+        const visible = entries
+          .filter(entry => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible[0]) setActive(visible[0].target.id);
+      }, { rootMargin: "-18% 0px -62% 0px", threshold: [0, .15, .5] });
+      sections.forEach(section => observer.observe(section));
+    }
+
+    const search = document.querySelector("[data-lesson-search]");
+    if (search) {
+      search.addEventListener("input", () => {
+        const query = search.value.trim().toLowerCase();
+        links.forEach(link => {
+          link.classList.toggle("search-hidden", Boolean(query) && !link.textContent.toLowerCase().includes(query));
+        });
+      });
+    }
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
     setupQuizzes();
     setupNotes();
     setupCompletion();
     setupStudyChecks();
     setupReset();
+    setupReaderNavigation();
     renderProgress();
   });
 })();
