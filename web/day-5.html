@@ -49,6 +49,7 @@
         <a href="day-5.html#quizzes" data-toc-link><span></span>闯关</a>
         <a href="day-5.html#recall" data-toc-link><span></span>主动回忆</a>
         <a href="day-5.html#boundary" data-toc-link><span></span>学完后能做什么</a>
+        <a href="day-5.html#sources" data-toc-link><span></span>资料来源与核查</a>
       </nav>
       <div class="sidebar-footnote">
         <strong>本课目标</strong>
@@ -65,7 +66,7 @@
           <p class="reader-eyebrow">把价格翻译成经营要求 · 第 5 课</p>
           <h1>反向 DCF</h1>
           <p class="lesson-deck">不先问“值多少钱”，而问“在这组条件下，当前价格要求公司做到什么”。结果是一条条件曲线，不是市场唯一观点。</p>
-          <div class="takeaway"><span>一句话速览</span><p>合格表述必须带条件：“在WACC 9%、显性期7年、永续增长2%和当前FCFF定义下……”</p></div>
+          <div class="takeaway"><span>一句话速览</span><p>合格表述必须带条件：“在WACC 9%、显性期7年、永续增长2%和当前FCFF定义下……” <a class="source-citation" href="#D5-S1">〔D5-S1〕</a></p></div>
         </header>
 
         <section class="reader-section" id="direction" data-reader-section>
@@ -212,6 +213,17 @@ def required_years(p, target, max_years=80):
         <nav class="lesson-end-actions" aria-label="完成课程并继续">
           <a href="day-4.html">← 上一课</a><a href="../course/DAY-5.md">文字版</a><button class="reader-complete" data-complete-lesson>标记本课完成</button><a class="continue" href="day-6.html">进入下一课 <span>→</span></a>
         </nav>
+        <section class="reader-section sources-section" id="sources" data-reader-section>
+          <p class="section-kicker">11 · 可核查资料</p><h2>资料来源与核查</h2>
+          <details class="source-details">
+            <summary>展开本课来源、地址与用途</summary>
+            <p class="source-boundary">本课反向 DCF 是固定价格、反解某个 DCF 假设的<strong>课程推导</strong>，不是调查得到的市场共识；金额、增长率和年数均为<strong>教学假设</strong>。</p>
+            <div class="source-list">
+              <article class="source-item" id="D5-S1" data-source-id="D5-S1" data-source-url="../lab/reverse.py"><span>课程规则</span><h3>〔D5-S1〕 本仓库反向 DCF 教学实现</h3><dl><div><dt>发布机构</dt><dd>valuation-lab</dd></div><div><dt>发布 / 版本</dt><dd>当前仓库版本</dd></div><div><dt>访问日期</dt><dd>2026-08-20</dd></div><div><dt>支持内容</dt><dd>固定其余输入后反解增长、起点现金流或持续时间，并返回无解区域。</dd></div></dl><a href="../lab/reverse.py">打开本地地址</a></article>
+              <article class="source-item" id="D5-S2" data-source-id="D5-S2" data-source-url="https://pages.stern.nyu.edu/~adamodar/New_Home_Page/littlebook/intrinsicvsrelative.htm"><span>专业教材</span><h3>〔D5-S2〕 Intrinsic Valuation</h3><dl><div><dt>发布机构</dt><dd>NYU Stern / Aswath Damodaran</dd></div><div><dt>发布 / 版本</dt><dd>配套网页；原页面未标注发布日期</dd></div><div><dt>访问日期</dt><dd>2026-08-20</dd></div><div><dt>支持内容</dt><dd>DCF 是预期现金流按反映风险的折现率折回现值的关系。</dd></div></dl><a href="https://pages.stern.nyu.edu/~adamodar/New_Home_Page/littlebook/intrinsicvsrelative.htm" target="_blank" rel="noopener noreferrer">打开原始地址</a></article>
+            </div>
+          </details>
+        </section>
       </article>
     </main>
   </div>

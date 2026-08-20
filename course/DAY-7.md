@@ -30,7 +30,7 @@
 | 方法适用性 | 正向/反向DCF及其他校验是否适合周期与业务结构？ | 方法选择理由、口径一致、替代组合 |
 | 投资吸引力 | 当前价格是否值得承担风险？ | 还需要组合、催化剂、风险偏好等研究；本课不回答 |
 
-前四项中的前三类检查做得好，也不能自动推出第五项。课程中的长飞数字用于冻结案例教学，不是当前目标价或交易建议。
+前四项中的前三类检查做得好，也不能自动推出第五项。课程中的长飞数字用于冻结案例教学，不是当前目标价或交易建议。[〔D7-S1〕](#D7-S1)
 
 ### 先解释，再检查
 
@@ -342,5 +342,50 @@ Bear / Base / Bull分别代表什么：
 毕业代表你能解释、复算并检查一套简化估值，能够给出有证据的使用等级，并且知道哪些缺口**不该**触发降级。它不代表你已经能独立预测真实公司的全部未来，也不代表你能据此作出交易决策。
 
 六个失败模式到这里全部收口：利润不等于现金与错股本（第2课）、错时点（第3课）、峰值永久化与隐藏终值（第4课）、方法错配（第6课），每一个都有对应的记录验证状态和一条验收测试；第5课交付的条件句表述纪律贯穿其中。
+
+## 资料来源与核查
+
+<details>
+<summary>展开本课来源、地址与用途</summary>
+
+本课使用的是仓库内冻结教学材料，不是实时公司数据。来源提交和 SHA-256 用于证明教学输入与计算程序的版本身份；它们不证明经营假设合理，也不构成当前估值。
+
+### 〔D7-S1〕 长飞案例冻结说明与来源身份
+
+- 类型：本地冻结材料
+- 发布机构：valuation-lab（复制自 investment-research-copilot）
+- 发布 / 版本：来源提交 `b7c2da0c595658eeb6cd166853312a26f0d85638`，2026-08-15
+- 访问日期：2026-08-20
+- 地址：[`cases/01-yofc/frozen/SOURCE.md`](../cases/01-yofc/frozen/SOURCE.md)
+- 支持内容：记录冻结原因、来源仓库、来源提交，以及输入和计算程序的 SHA-256；这是本课案例版本身份的主索引。[〔D7-S1〕](../cases/01-yofc/frozen/SOURCE.md)
+
+### 〔D7-S2〕 长飞案例冻结输入
+
+- 类型：本地冻结材料
+- 发布机构：valuation-lab（复制自 investment-research-copilot）
+- 发布 / 版本：SHA-256 `8589477eb52cdb155162a5130c828c3f8f08187cda461612ccddd3b43f29b257`
+- 访问日期：2026-08-20
+- 地址：[`cases/01-yofc/frozen/valuation-inputs.json`](../cases/01-yofc/frozen/valuation-inputs.json)
+- 支持内容：本课复算使用的输入、情景和假设；这些字段是冻结事实，但字段里的预测仍是原模型假设。[〔D7-S2〕](../cases/01-yofc/frozen/valuation-inputs.json)
+
+### 〔D7-S3〕 长飞案例冻结计算程序
+
+- 类型：本地冻结材料
+- 发布机构：valuation-lab（复制自 investment-research-copilot）
+- 发布 / 版本：SHA-256 `64d0c404924ea58a5955d077ce7d111d24dbed5d762febefabff41206c53e0af`
+- 访问日期：2026-08-20
+- 地址：[`cases/01-yofc/frozen/calculate.py`](../cases/01-yofc/frozen/calculate.py)
+- 支持内容：生成冻结估值输出的计算逻辑；用于复算工程结果，不为上游预测提供经济证据。[〔D7-S3〕](../cases/01-yofc/frozen/calculate.py)
+
+### 〔D7-S4〕 CFA Institute：Free Cash Flow Valuation
+
+- 类型：专业教材
+- 发布机构：CFA Institute
+- 发布 / 版本：2026 Curriculum Refresher Reading
+- 访问日期：2026-08-20
+- 地址：[https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/free-cash-flow-valuation](https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/free-cash-flow-valuation)
+- 支持内容：用于回看 FCFF、企业价值和股权价值的一般关系；案例具体输入仍以上述冻结材料为准。[〔D7-S4〕](https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/free-cash-flow-valuation)
+
+</details>
 
 最后完成 [`毕业测验`](POSTTEST.md)。

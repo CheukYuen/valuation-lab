@@ -49,6 +49,8 @@ NOPAT = EBIT × (1 - 经营税率)
 FCFF = NOPAT + 折旧 - 资本开支 - 营运资金增加
 ```
 
+这个最小桥表达 FCFF 是支付债权人和股东之前、经营资产可提供的现金流；真实分析仍要按报表口径完成调整。[〔D2-S1〕](#D2-S1)
+
 ### 为什么这样加减
 
 | 项目 | 白话解释 | 在最小桥中的方向 | 审计时要问什么 |
@@ -527,5 +529,32 @@ FCFF = 16 + 3 - 12 - (-2) = 9亿元
 你暂时不需要判断每一项预测的精确值，也还不能仅凭一座桥完整就判断估值正确或证券值得买。时点、币种、来源、敏感性和方法是否匹配，将由后面的课程继续检查。
 
 第1课末尾列出的六个失败模式，本课交付了两个：**利润不等于现金**（第一座桥）和**错股本**（分母，含稀释）。两者各自落到失败状态矩阵的一行和练习表的一行，而不是停在“要小心”。剩下四个——错时点、峰值永久化、隐藏终值、方法错配——分别由第3、4、6课交付。第5课不交付新的失败模式，交付的是条件句表述纪律；第7课把六个模式在一份真实材料里一次回收。
+
+## 资料来源与核查
+
+<details>
+<summary>展开本课来源、地址与用途</summary>
+
+本课“20、16、12、200、170、17”等数字均为**教学假设**，用于练习价值桥，不是现实公司的数据或估值结论。
+
+### 〔D2-S1〕 CFA Institute：Free Cash Flow Valuation
+
+- 类型：专业教材
+- 发布机构：CFA Institute
+- 发布 / 版本：2026 Curriculum Refresher Reading
+- 访问日期：2026-08-20
+- 地址：[https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/free-cash-flow-valuation](https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/free-cash-flow-valuation)
+- 支持内容：FCFF/FCFE 的经济含义、从财务信息计算自由现金流，以及用 FCFF 先估企业价值再走向股权价值。[〔D2-S1〕](https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/free-cash-flow-valuation)
+
+### 〔D2-S2〕 Aswath Damodaran：Getting to Equity Value per Share
+
+- 类型：专业教材
+- 发布机构：New York University Stern School of Business
+- 发布 / 版本：The Little Book of Valuation 配套网页；原页面未标注发布日期
+- 访问日期：2026-08-20
+- 地址：[https://pages.stern.nyu.edu/~adamodar/New_Home_Page/littlebook/valuepershare.htm](https://pages.stern.nyu.edu/~adamodar/New_Home_Page/littlebook/valuepershare.htm)
+- 支持内容：从经营资产价值到股权价值和每股价值时，需要处理现金、债务、潜在权利要求和股份口径。[〔D2-S2〕](https://pages.stern.nyu.edu/~adamodar/New_Home_Page/littlebook/valuepershare.htm)
+
+</details>
 
 下一课：[`检查估值输入`](DAY-3.md)。

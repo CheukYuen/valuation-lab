@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="source-sha256" content="4f1a1dabdde98b4976286f6a99facc409f3b27e90b34c0e2c04591bc5cdc7ca3">
+  <meta name="source-sha256" content="08655f77b50dcf1372fbfdaa4e82933326368f7a2fe98c28220bdd523ca5accf">
   <title>第4课专业参考章 · 完成最小 DCF</title>
   <link rel="stylesheet" href="../assets/styles.css">
   <script>
@@ -35,7 +35,7 @@
       <a href="day-6-reference.html">6. 方法适不适合</a>
       <a href="day-7-reference.html">7. 长飞综合练习</a>
     </nav>
-    <p class="markdown-reference-source">由 <a href="../../course/DAY-4.md">course/DAY-4.md</a> 生成 · SHA-256 4f1a1dabdde9 · <a href="../day-4.html">打开本课互动页</a></p>
+    <p class="markdown-reference-source">由 <a href="../../course/DAY-4.md">course/DAY-4.md</a> 生成 · SHA-256 08655f77b50d · <a href="../day-4.html">打开本课互动页</a></p>
 <h1>第4天：完成最小 DCF</h1>
 <p><strong>本课目标</strong>：亲手把未来现金流折成企业价值和股权价值，再通过敏感性、终值占比和正常化判断谁在控制结果。基础计算约40分钟，进阶检查约20分钟。</p>
 <blockquote><p><a href="../day-4.html"><code>打开本课互动HTML</code></a></p></blockquote>
@@ -51,12 +51,12 @@
 → 得到企业价值EV
 → 扣净债务得到普通股股权价值</code></pre>
 <h3>为什么未来现金要折现</h3>
-<p>今天的1亿元可以投资、可以应对风险，也已经在手里；七年后的1亿元需要等待，而且可能无法实现。因此模型用折现率表达资金时间价值和风险要求。</p>
+<p>今天的1亿元可以投资、可以应对风险，也已经在手里；七年后的1亿元需要等待，而且可能无法实现。因此模型用折现率表达资金时间价值和风险要求。<a href="#D4-S1">〔D4-S1〕</a></p>
 <p>第<code>t</code>年现金流的现值为：</p>
 <pre><code class="language-text">第t年FCFF现值 = 第t年FCFF ÷ (1 + WACC)^t</code></pre>
 <p>这里的WACC是教学模型对经营资产整体要求的折现率。你暂时不需要推导它，但必须知道币种、风险和资本结构不同，合理WACC也可能不同。</p>
 <h3>显性期之后怎么办</h3>
-<p>模型不可能逐年预测到无限远，于是把详细预测结束后的现金流压缩成终值。最小永续增长公式是：</p>
+<p>模型不可能逐年预测到无限远，于是把详细预测结束后的现金流压缩成终值。最小永续增长公式是：<a href="#D4-S2">〔D4-S2〕</a></p>
 <pre><code class="language-text">终值 = 第7年FCFF × (1 + 永续增长率) ÷ (WACC - 永续增长率)</code></pre>
 <p>终值站在第7年末，还要再折回今天。公式要求<code>WACC &gt; 永续增长率</code>；若两者相等或增长率更高，分母为零或负数，这套永续公式失去经济意义，不应强行打印结果。</p>
 <h2>完整示例：七年最小 DCF</h2>
@@ -179,6 +179,15 @@ EV = 67.48 + 93.75 = 161.23亿元
 <h2>本课边界</h2>
 <p>你已经亲手完成一套最小DCF，能够解释显性期、终值、EV、股权价值和敏感性，并知道退出倍数与永续增长互为镜像。你还没有证明任何现实公司的增长、WACC或终值假设正确。</p>
 <p>第1课列出的六个失败模式，本课交付了两个：<strong>峰值永久化</strong>（远期状态那一格）和<strong>隐藏终值</strong>（不披露占比、只报倍数不报隐含增长）。两者各自落到失败状态矩阵的一行和练习表的一行，而不是停在“要小心终值”。</p>
+<h2 id="sources">资料来源与核查</h2>
+<details>
+<summary>展开本课来源、地址与用途</summary>
+<p>本课 DCF 数值和收费公路材料均为<strong>教学假设</strong>。来源支持公式和经济含义，不证明本课示例中的 9% WACC、2% 永续增长或任何现实公司的合理取值。</p>
+<h3 id="D4-S1">〔D4-S1〕 Aswath Damodaran：The Intuitive Basis for Present Value</h3>
+<ul><li>类型：专业教材</li><li>发布机构：New York University Stern School of Business</li><li>发布 / 版本：The Little Book of Valuation 配套网页；原页面未标注发布日期</li><li>访问日期：2026-08-20</li><li>地址：<a href="https://pages.stern.nyu.edu/~adamodar/New_Home_Page/littlebook/pvintuition.htm" target="_blank" rel="noopener noreferrer">https://pages.stern.nyu.edu/~adamodar/New_Home_Page/littlebook/pvintuition.htm</a></li><li>支持内容：等待、通胀和未来现金的不确定性使未来现金需要折现，折现率表达这些要求。<a href="https://pages.stern.nyu.edu/~adamodar/New_Home_Page/littlebook/pvintuition.htm" target="_blank" rel="noopener noreferrer">〔D4-S1〕</a></li></ul>
+<h3 id="D4-S2">〔D4-S2〕 Aswath Damodaran：Terminal Value</h3>
+<ul><li>类型：专业教材</li><li>发布机构：New York University Stern School of Business</li><li>发布 / 版本：The Little Book of Valuation 配套网页；原页面未标注发布日期</li><li>访问日期：2026-08-20</li><li>地址：<a href="https://pages.stern.nyu.edu/~adamodar/New_Home_Page/littlebook/terminalvalue.htm" target="_blank" rel="noopener noreferrer">https://pages.stern.nyu.edu/~adamodar/New_Home_Page/littlebook/terminalvalue.htm</a></li><li>支持内容：终值用于表达显性预测期后的现金流；永续增长模型要求现金流、增长率和折现率口径一致，并对输入高度敏感。<a href="https://pages.stern.nyu.edu/~adamodar/New_Home_Page/littlebook/terminalvalue.htm" target="_blank" rel="noopener noreferrer">〔D4-S2〕</a></li></ul>
+</details>
 <p>下一课不再问“按我的假设值多少”，而是用 <a href="../../course/DAY-5.md"><code>反向DCF</code></a> 问“当前价格要求什么”。</p>
   </main>
 </body>

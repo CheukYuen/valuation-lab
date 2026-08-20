@@ -592,6 +592,22 @@ summary { cursor: pointer; color: var(--green); font-weight: 700; }
 .answer-details { margin-top: 18px; padding: 16px 19px; background: #fff; border: 1px solid var(--reader-line); border-radius: 13px; }
 .answer-details summary { color: var(--reader-green-deep); font-weight: 750; font-size: .88rem; }
 .answer-details p { margin: 12px 0 0; color: #58645e; font-size: .86rem; line-height: 1.7; }
+.source-citation { display: inline-block; margin-left: .18em; color: var(--reader-green); font-size: .78em; font-weight: 800; text-decoration: none; white-space: nowrap; }
+.source-citation:hover, .source-citation:focus-visible { text-decoration: underline; outline: none; }
+.sources-section { scroll-margin-top: calc(var(--reader-topbar, 88px) + 22px); }
+.source-details { margin-top: 18px; overflow: hidden; background: #f8faf9; border: 1px solid var(--reader-line); border-radius: 14px; }
+.source-details > summary { padding: 17px 20px; color: var(--reader-green-deep); background: #eef4f1; font-weight: 800; cursor: pointer; }
+.source-details > summary:focus-visible { outline: 3px solid rgba(22, 102, 78, .22); outline-offset: -3px; }
+.source-boundary { margin: 18px 20px 0; padding: 13px 15px; color: #53615a; background: #fff; border-left: 4px solid #8ab8a4; border-radius: 0 9px 9px 0; font-size: .86rem; line-height: 1.7; }
+.source-list { display: grid; gap: 14px; padding: 18px 20px 22px; }
+.source-item { scroll-margin-top: calc(var(--reader-topbar, 88px) + 22px); padding: 17px 18px; background: #fff; border: 1px solid #dde5e1; border-radius: 11px; }
+.source-item > span { display: inline-block; padding: 3px 8px; color: var(--reader-green-deep); background: var(--reader-green-soft); border-radius: 999px; font-size: .66rem; font-weight: 800; letter-spacing: .04em; }
+.source-item h3 { margin: 9px 0 12px; font-size: 1rem; line-height: 1.45; }
+.source-item dl { display: grid; gap: 7px; margin: 0 0 13px; }
+.source-item dl div { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 10px; font-size: .78rem; line-height: 1.6; }
+.source-item dt { color: #78847e; font-weight: 750; }
+.source-item dd { margin: 0; color: #46534d; overflow-wrap: anywhere; }
+.source-item > a { color: var(--reader-green); font-size: .78rem; font-weight: 800; overflow-wrap: anywhere; }
 .agent-issue-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .agent-issue-list button { display: grid; grid-template-columns: 34px minmax(0, 1fr) auto; align-items: center; gap: 10px; min-height: 76px; padding: 14px 16px; color: var(--reader-ink); background: #fff; border: 1px solid var(--reader-line); border-radius: 13px; text-align: left; transition: border-color .16s ease, background .16s ease; }
 .agent-issue-list button:last-child { grid-column: 1 / -1; }
@@ -829,6 +845,11 @@ html.markdown-reference-embedded .markdown-reference-document { padding-top: 34p
 .markdown-reference-document th, .markdown-reference-document td { padding: 11px 12px; }
 .markdown-reference-document details { margin: 20px 0; padding: 14px 17px; background: #fff; border: 1px solid #dce2de; border-radius: 10px; }
 .markdown-reference-document summary { color: #17644d; }
+.markdown-reference-document #sources + details { padding: 0; overflow: hidden; background: #f8faf9; border-radius: 14px; }
+.markdown-reference-document #sources + details > summary { padding: 16px 18px; background: #eef4f1; font-weight: 800; }
+.markdown-reference-document #sources + details > p { margin: 18px 18px 8px; padding: 12px 14px; color: #53615a; background: #fff; border-left: 4px solid #8ab8a4; border-radius: 0 9px 9px 0; font-size: .86rem; }
+.markdown-reference-document #sources + details > h3 { scroll-margin-top: 24px; margin: 20px 18px 10px; padding-top: 18px; border-top: 1px solid #dce2de; }
+.markdown-reference-document #sources + details > ul { margin: 0 18px 22px; padding: 0 0 0 1.25rem; }
 .markdown-reference-document hr { margin: 34px 0; border: 0; border-top: 1px solid #dce2de; }
 
 @media (max-width: 800px) {
@@ -839,6 +860,9 @@ html.markdown-reference-embedded .markdown-reference-document { padding-top: 34p
   .passport-fields > div:nth-last-child(2) { border-bottom: 1px solid var(--reader-line); }
   .agent-issue-list button:last-child { grid-column: auto; }
   .markdown-reference-dialog { width: min(100vw, 760px); }
+  .source-details > summary, .source-list { padding-left: 14px; padding-right: 14px; }
+  .source-boundary { margin-left: 14px; margin-right: 14px; }
+  .source-item dl div { grid-template-columns: 1fr; gap: 1px; }
 }
 @media (max-width: 560px) {
   .sorter-choices { grid-template-columns: 1fr; }

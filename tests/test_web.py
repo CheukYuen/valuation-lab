@@ -113,8 +113,11 @@ class WebCourseTests(unittest.TestCase):
         for page in WEB.rglob("*.html"):
             parser = parse(page)
             for target in parser.links:
-                if target.startswith(("http://", "https://", "mailto:", "#")):
-                    failures.append(f"external or unsupported link: {page.name} -> {target}")
+                if target.startswith(("http://", "https://", "mailto:")):
+                    continue
+                if target.startswith("#"):
+                    if target[1:] not in parser.ids:
+                        failures.append(f"missing anchor: {page.name} -> {target}")
                     continue
                 path_text = target.split("#", 1)[0]
                 if path_text and not (page.parent / path_text).exists():

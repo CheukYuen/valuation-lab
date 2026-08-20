@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="source-sha256" content="c0dd4a5eb30e61ab572d0b1235c9ec457b563a05845b7721dce34f21b252077b">
+  <meta name="source-sha256" content="8c7b07c2352eff6c97168df77d479ba386a43adbce384eb79fc9967a09e39a1e">
   <title>第6课专业参考章 · 方法适不适合</title>
   <link rel="stylesheet" href="../assets/styles.css">
   <script>
@@ -35,7 +35,7 @@
       <a href="day-6-reference.html" class="current" aria-current="page">6. 方法适不适合</a>
       <a href="day-7-reference.html">7. 长飞综合练习</a>
     </nav>
-    <p class="markdown-reference-source">由 <a href="../../course/DAY-6.md">course/DAY-6.md</a> 生成 · SHA-256 c0dd4a5eb30e · <a href="../day-6.html">打开本课互动页</a></p>
+    <p class="markdown-reference-source">由 <a href="../../course/DAY-6.md">course/DAY-6.md</a> 生成 · SHA-256 8c7b07c2352e · <a href="../day-6.html">打开本课互动页</a></p>
 <h1>第6天：方法适不适合</h1>
 <p><strong>本课目标</strong>：根据价值驱动选择主方法和辅助校验，亲手复算四种最小估值，并识别方法错配。基础计算约35分钟，进阶检查约20分钟。</p>
 <blockquote><p><a href="../day-6.html"><code>打开本课互动HTML</code></a></p></blockquote>
@@ -46,7 +46,7 @@
 <p>没有一种方法对所有公司都最好。同一家公司用不同方法得到不同结果，不一定是谁算错了；它可能反映每种方法观察了不同经济变量。</p>
 <div class="reference-table-scroll"><table><thead><tr><th>方法</th><th>核心价值驱动</th><th>常见适用角色</th><th>主要限制</th></tr></thead><tbody><tr><td>DCF</td><td>未来自由现金流</td><td>现金流可建模企业的主方法</td><td>对长期预测、WACC和终值敏感</td></tr><tr><td>PE</td><td>对应普通股的盈利</td><td>盈利稳定公司的量级校验</td><td>周期峰值、亏损和一次性利润会失真</td></tr><tr><td>PB / ROE</td><td>净资产及其回报</td><td>银行、保险等资本约束业务</td><td>资产质量和可持续ROE必须可比</td></tr><tr><td>剩余收益</td><td>超过股东要求回报的盈利</td><td>金融机构或账面资本有意义的业务</td><td>依赖账面权益质量和资本成本</td></tr><tr><td>EV/EBITDA</td><td>经营价值与折旧前利润</td><td>工业企业的辅助可比</td><td>忽略Capex、营运资金和折旧差异</td></tr><tr><td>股息折现</td><td>可持续分配给股东的现金</td><td>稳定分红、资本政策可预测的企业</td><td>分红政策可能不等于真实赚钱能力</td></tr><tr><td>SOTP</td><td>各可独立业务之和</td><td>分部可拆、数据可获得的集团</td><td>总部费用、协同、税务和交叉持股易漏</td></tr><tr><td>单位经济/里程碑</td><td>单客户、单门店或技术节点的经济性</td><td>早期、尚未盈利业务</td><td>远期规模与融资稀释高度不确定</td></tr></tbody></table></div>
 <p>这些是起点，不是行业标签规则。银行也可以做DCF，但现金流和资本约束定义不能照搬制造业FCFF；早期公司也可以做情景DCF，但不能把遥远假设包装成精确锚点。</p>
-<p><strong>注意每一行的第二列落在哪个对象上</strong>：PE、PB、剩余收益和股息折现直接得到<strong>股权价值</strong>；EV/EBITDA 和 DCF 先得到<strong>企业价值</strong>，还要再走一次第2课的资本结构桥。方法错配最常见的第一步，就是把这两列的结果直接放在一起比较。</p>
+<p><strong>注意每一行的第二列落在哪个对象上</strong>：PE、PB、剩余收益和股息折现直接得到<strong>股权价值</strong>；EV/EBITDA 和 DCF 先得到<strong>企业价值</strong>，还要再走一次第2课的资本结构桥。方法错配最常见的第一步，就是把这两列的结果直接放在一起比较。<a href="#D6-S1">〔D6-S1〕</a></p>
 <h2>亲手复算四种方法</h2>
 <p>同一家虚构制造企业有：净利润12亿元、账面权益80亿元、EBITDA 30亿元、净债务30亿元、10亿股。可比倍数假设为PE 15倍、PB 1.8倍、EV/EBITDA 8倍。</p>
 <h3>PE</h3>
@@ -174,6 +174,15 @@ PB：账面权益100 × 0.8倍 = 80亿元</code></pre>
 <h2>本课边界</h2>
 <p>你现在能亲手复算四种最小方法，说明为什么选择主方法、怎样使用辅助校验，并识别方法错配。方法选对仍不代表输入和预测有证据。</p>
 <p>第1课列出的六个失败模式，本课交付了最后一个：<strong>方法错配</strong>。它落到失败状态矩阵前两行——存款当债务扣除，以及EV口径与股权价值口径直接比较——以及练习表的第1、2行。至此六个模式全部有了对应的失败状态和验收测试：错股本与利润不等于现金在第2课，错时点在第3课，峰值永久化与隐藏终值在第4课，方法错配在本课。</p>
+<h2 id="sources">资料来源与核查</h2>
+<details>
+<summary>展开本课来源、地址与用途</summary>
+<p>本课制造企业、银行及倍数全部是<strong>教学假设</strong>。外部来源支持方法定义和适用性判断，不证明示例中的 15 倍 PE、1.8 倍 PB 或 8 倍 EV/EBITDA 是现实市场水平。</p>
+<h3 id="D6-S1">〔D6-S1〕 CFA Institute：Market-Based Valuation, Price and Enterprise Value Multiples</h3>
+<ul><li>类型：专业教材</li><li>发布机构：CFA Institute</li><li>发布 / 版本：2026 Curriculum Refresher Reading</li><li>访问日期：2026-08-20</li><li>地址：<a href="https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/market-based-valuation-price-enterprise-value-multiples" target="_blank" rel="noopener noreferrer">https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/market-based-valuation-price-enterprise-value-multiples</a></li><li>支持内容：价格倍数对应股权层面的每股基本量，企业价值倍数对应全部资本提供者共同拥有的企业基本量。<a href="https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/market-based-valuation-price-enterprise-value-multiples" target="_blank" rel="noopener noreferrer">〔D6-S1〕</a></li></ul>
+<h3 id="D6-S2">〔D6-S2〕 Aswath Damodaran：Valuing Financial Service Firms</h3>
+<ul><li>类型：专业教材</li><li>发布机构：New York University Stern School of Business</li><li>发布 / 版本：研究论文网页版本；原页面未标注本次文件发布日期</li><li>访问日期：2026-08-20</li><li>地址：<a href="https://pages.stern.nyu.edu/~adamodar/pdfiles/papers/finfirm.pdf" target="_blank" rel="noopener noreferrer">https://pages.stern.nyu.edu/~adamodar/pdfiles/papers/finfirm.pdf</a></li><li>支持内容：金融企业的债务和再投资定义不同于工业企业，企业价值与 FCFF 难以稳定估计，通常应优先考虑股权估值框架。<a href="https://pages.stern.nyu.edu/~adamodar/pdfiles/papers/finfirm.pdf" target="_blank" rel="noopener noreferrer">〔D6-S2〕</a></li></ul>
+</details>
 <p>下一课把前六天合在真实复杂材料中：<a href="../../course/DAY-7.md"><code>长飞综合练习</code></a>。</p>
   </main>
 </body>

@@ -29,7 +29,7 @@
 
 这些是起点，不是行业标签规则。银行也可以做DCF，但现金流和资本约束定义不能照搬制造业FCFF；早期公司也可以做情景DCF，但不能把遥远假设包装成精确锚点。
 
-**注意每一行的第二列落在哪个对象上**：PE、PB、剩余收益和股息折现直接得到**股权价值**；EV/EBITDA 和 DCF 先得到**企业价值**，还要再走一次第2课的资本结构桥。方法错配最常见的第一步，就是把这两列的结果直接放在一起比较。
+**注意每一行的第二列落在哪个对象上**：PE、PB、剩余收益和股息折现直接得到**股权价值**；EV/EBITDA 和 DCF 先得到**企业价值**，还要再走一次第2课的资本结构桥。方法错配最常见的第一步，就是把这两列的结果直接放在一起比较。[〔D6-S1〕](#D6-S1)
 
 ## 亲手复算四种方法
 
@@ -362,5 +362,32 @@ python3 lab/methods.py
 你现在能亲手复算四种最小方法，说明为什么选择主方法、怎样使用辅助校验，并识别方法错配。方法选对仍不代表输入和预测有证据。
 
 第1课列出的六个失败模式，本课交付了最后一个：**方法错配**。它落到失败状态矩阵前两行——存款当债务扣除，以及EV口径与股权价值口径直接比较——以及练习表的第1、2行。至此六个模式全部有了对应的失败状态和验收测试：错股本与利润不等于现金在第2课，错时点在第3课，峰值永久化与隐藏终值在第4课，方法错配在本课。
+
+## 资料来源与核查
+
+<details>
+<summary>展开本课来源、地址与用途</summary>
+
+本课制造企业、银行及倍数全部是**教学假设**。外部来源支持方法定义和适用性判断，不证明示例中的 15 倍 PE、1.8 倍 PB 或 8 倍 EV/EBITDA 是现实市场水平。
+
+### 〔D6-S1〕 CFA Institute：Market-Based Valuation, Price and Enterprise Value Multiples
+
+- 类型：专业教材
+- 发布机构：CFA Institute
+- 发布 / 版本：2026 Curriculum Refresher Reading
+- 访问日期：2026-08-20
+- 地址：[https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/market-based-valuation-price-enterprise-value-multiples](https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/market-based-valuation-price-enterprise-value-multiples)
+- 支持内容：价格倍数对应股权层面的每股基本量，企业价值倍数对应全部资本提供者共同拥有的企业基本量。[〔D6-S1〕](https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/market-based-valuation-price-enterprise-value-multiples)
+
+### 〔D6-S2〕 Aswath Damodaran：Valuing Financial Service Firms
+
+- 类型：专业教材
+- 发布机构：New York University Stern School of Business
+- 发布 / 版本：研究论文网页版本；原页面未标注本次文件发布日期
+- 访问日期：2026-08-20
+- 地址：[https://pages.stern.nyu.edu/~adamodar/pdfiles/papers/finfirm.pdf](https://pages.stern.nyu.edu/~adamodar/pdfiles/papers/finfirm.pdf)
+- 支持内容：金融企业的债务和再投资定义不同于工业企业，企业价值与 FCFF 难以稳定估计，通常应优先考虑股权估值框架。[〔D6-S2〕](https://pages.stern.nyu.edu/~adamodar/pdfiles/papers/finfirm.pdf)
+
+</details>
 
 下一课把前六天合在真实复杂材料中：[`长飞综合练习`](DAY-7.md)。

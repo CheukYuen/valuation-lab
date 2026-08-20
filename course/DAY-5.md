@@ -18,7 +18,7 @@
 经营预测 → FCFF → 折现 → EV → 股权价值
 ```
 
-反向DCF把问题倒过来：
+反向DCF把问题倒过来：[〔D5-S1〕](#D5-S1)
 
 ```text
 当前股权价值 → 对应EV → 所需FCFF → 所需增长、利润率或持续时间
@@ -350,5 +350,32 @@ python3 lab/reverse.py 300
 你现在能把价格翻译成一组可质证的经营要求，能同时给出增长、起点和持续时间三条解释路径，并识别多解、口径错位和经济不可行区。反向DCF不证明公司能或不能实现要求，也不直接回答证券是否值得买。
 
 本课不交付新的失败模式——六个模式里的错时点、错股本、利润不等于现金、峰值永久化、隐藏终值和方法错配分别由第2、3、4、6课交付。本课交付的是**条件句表述纪律**：任何反解数字，只要脱离模型条件就不能使用。
+
+## 资料来源与核查
+
+<details>
+<summary>展开本课来源、地址与用途</summary>
+
+“反向 DCF”在本课中是把第4课同一套 DCF 方程固定价格、反解某个假设的**课程推导**。它不是调查得到的市场共识；本课金额、增长率和年数均为**教学假设**。
+
+### 〔D5-S1〕 本仓库反向 DCF 教学实现
+
+- 类型：课程规则
+- 发布机构：valuation-lab
+- 发布 / 版本：当前仓库版本
+- 访问日期：2026-08-20
+- 地址：[`lab/reverse.py`](../lab/reverse.py)
+- 支持内容：固定其余输入后分别反解增长、起点现金流或持续时间，并显式返回无解区域；这是本课数值可复算的直接实现。[〔D5-S1〕](../lab/reverse.py)
+
+### 〔D5-S2〕 Aswath Damodaran：Intrinsic Valuation
+
+- 类型：专业教材
+- 发布机构：New York University Stern School of Business
+- 发布 / 版本：The Little Book of Valuation 配套网页；原页面未标注发布日期
+- 访问日期：2026-08-20
+- 地址：[https://pages.stern.nyu.edu/~adamodar/New_Home_Page/littlebook/intrinsicvsrelative.htm](https://pages.stern.nyu.edu/~adamodar/New_Home_Page/littlebook/intrinsicvsrelative.htm)
+- 支持内容：DCF 把预期现金流按反映风险的折现率折回现值；本课在同一关系上反解价格隐含条件，不把条件解当成事实。[〔D5-S2〕](https://pages.stern.nyu.edu/~adamodar/New_Home_Page/littlebook/intrinsicvsrelative.htm)
+
+</details>
 
 下一课将判断这把尺子是否适合这门生意：[`方法适不适合`](DAY-6.md)。

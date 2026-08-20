@@ -22,6 +22,68 @@ class ContentTests(unittest.TestCase):
             for section in required_sections:
                 self.assertIn(section, text, f"DAY-{day} missing {section}")
 
+    def test_every_lesson_has_traceable_sources_matching_the_interactive_page(self):
+        entry_pattern = re.compile(
+            r"^### 〔(D[1-7]-S\d+)〕.*?(?=^### 〔D[1-7]-S\d+〕|^</details>)",
+            re.MULTILINE | re.DOTALL,
+        )
+        citation_pattern = re.compile(r"\[〔(D[1-7]-S\d+)〕\]\(#(D[1-7]-S\d+)\)")
+        address_pattern = re.compile(r"^- 地址：\[[^]]+\]\(([^)]+)\)", re.MULTILINE)
+        html_source_pattern = re.compile(r'data-source-id="(D[1-7]-S\d+)" data-source-url="([^"]+)"')
+        required_metadata = ["类型：", "发布机构：", "发布 / 版本：", "访问日期：", "地址：", "支持内容："]
+
+        failures = []
+        for day in range(1, 8):
+            markdown_path = ROOT / "course" / f"DAY-{day}.md"
+            page_path = ROOT / "web" / f"day-{day}.html"
+            markdown = markdown_path.read_text()
+            page = page_path.read_text()
+            entries = {match.group(1): match.group(0) for match in entry_pattern.finditer(markdown)}
+            html_sources = dict(html_source_pattern.findall(page))
+
+            if "## 资料来源与核查" not in markdown or "展开本课来源、地址与用途" not in markdown:
+                failures.append(f"DAY-{day}: missing expandable Markdown source section")
+            if '<details class="source-details">' not in page or '<section class="reader-section sources-section" id="sources"' not in page:
+                failures.append(f"day-{day}.html: missing collapsed source section")
+            if len(entries) < 2:
+                failures.append(f"DAY-{day}: expected at least two source entries")
+
+            for source_id, target_id in citation_pattern.findall(markdown):
+                if source_id != target_id or source_id not in entries:
+                    failures.append(f"DAY-{day}: unresolved citation {source_id} -> {target_id}")
+            html_citations = set(re.findall(r'class="source-citation" href="#(D[1-7]-S\d+)"', page))
+            if not html_citations or not html_citations.issubset(html_sources):
+                failures.append(f"day-{day}.html: unresolved inline source citation")
+
+            markdown_sources = {}
+            for source_id, block in entries.items():
+                missing = [label for label in required_metadata if label not in block]
+                if missing:
+                    failures.append(f"{source_id}: missing metadata {missing}")
+                address = address_pattern.search(block)
+                if not address:
+                    failures.append(f"{source_id}: missing address")
+                    continue
+                markdown_sources[source_id] = address.group(1)
+
+            if markdown_sources != html_sources:
+                failures.append(f"DAY-{day}: Markdown/HTML source map differs")
+
+            for source_id, target in markdown_sources.items():
+                if target.startswith("http"):
+                    if not target.startswith("https://"):
+                        failures.append(f"{source_id}: external source is not HTTPS")
+                elif not (markdown_path.parent / target).resolve().exists():
+                    failures.append(f"{source_id}: missing local target {target}")
+                if target.startswith("https://"):
+                    expected = f'href="{target}" target="_blank" rel="noopener noreferrer"'
+                    if expected not in page:
+                        failures.append(f"{source_id}: unsafe or missing external HTML link")
+                elif not (page_path.parent / target).resolve().exists():
+                    failures.append(f"{source_id}: missing interactive local target {target}")
+
+        self.assertEqual(failures, [], "\n".join(failures))
+
     def test_relative_markdown_links_resolve(self):
         failures = []
         for markdown in ROOT.rglob("*.md"):
@@ -264,6 +326,20 @@ class ContentTests(unittest.TestCase):
         spec.loader.exec_module(module)
         with self.assertRaises(module.MarkdownRenderError):
             module.render_markdown("# 合法标题\n\n<section>不支持</section>\n", ROOT / "course" / "sample.md", ROOT / "web" / "generated" / "sample.html")
+
+    def test_markdown_renderer_marks_source_anchors_and_secures_external_links(self):
+        script = ROOT / "scripts" / "render_course_markdown.py"
+        spec = importlib.util.spec_from_file_location("render_course_markdown_sources", script)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        rendered = module.render_markdown(
+            "## 资料来源与核查\n\n### 〔D2-S1〕 示例\n\n[外链](https://example.com/source)\n",
+            ROOT / "course" / "sample.md",
+            ROOT / "web" / "generated" / "sample.html",
+        )
+        self.assertIn('<h2 id="sources">资料来源与核查</h2>', rendered)
+        self.assertIn('<h3 id="D2-S1">〔D2-S1〕 示例</h3>', rendered)
+        self.assertIn('href="https://example.com/source" target="_blank" rel="noopener noreferrer"', rendered)
 
 
 if __name__ == "__main__":

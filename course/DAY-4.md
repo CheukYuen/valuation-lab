@@ -28,7 +28,7 @@ DCF是“现金流折现”：先估未来每年能产生多少自由现金，�
 
 ### 为什么未来现金要折现
 
-今天的1亿元可以投资、可以应对风险，也已经在手里；七年后的1亿元需要等待，而且可能无法实现。因此模型用折现率表达资金时间价值和风险要求。
+今天的1亿元可以投资、可以应对风险，也已经在手里；七年后的1亿元需要等待，而且可能无法实现。因此模型用折现率表达资金时间价值和风险要求。[〔D4-S1〕](#D4-S1)
 
 第`t`年现金流的现值为：
 
@@ -40,7 +40,7 @@ DCF是“现金流折现”：先估未来每年能产生多少自由现金，�
 
 ### 显性期之后怎么办
 
-模型不可能逐年预测到无限远，于是把详细预测结束后的现金流压缩成终值。最小永续增长公式是：
+模型不可能逐年预测到无限远，于是把详细预测结束后的现金流压缩成终值。最小永续增长公式是：[〔D4-S2〕](#D4-S2)
 
 ```text
 终值 = 第7年FCFF × (1 + 永续增长率) ÷ (WACC - 永续增长率)
@@ -388,5 +388,32 @@ python3 lab/mini_dcf.py
 你已经亲手完成一套最小DCF，能够解释显性期、终值、EV、股权价值和敏感性，并知道退出倍数与永续增长互为镜像。你还没有证明任何现实公司的增长、WACC或终值假设正确。
 
 第1课列出的六个失败模式，本课交付了两个：**峰值永久化**（远期状态那一格）和**隐藏终值**（不披露占比、只报倍数不报隐含增长）。两者各自落到失败状态矩阵的一行和练习表的一行，而不是停在“要小心终值”。
+
+## 资料来源与核查
+
+<details>
+<summary>展开本课来源、地址与用途</summary>
+
+本课 DCF 数值和收费公路材料均为**教学假设**。来源支持公式和经济含义，不证明本课示例中的 9% WACC、2% 永续增长或任何现实公司的合理取值。
+
+### 〔D4-S1〕 Aswath Damodaran：The Intuitive Basis for Present Value
+
+- 类型：专业教材
+- 发布机构：New York University Stern School of Business
+- 发布 / 版本：The Little Book of Valuation 配套网页；原页面未标注发布日期
+- 访问日期：2026-08-20
+- 地址：[https://pages.stern.nyu.edu/~adamodar/New_Home_Page/littlebook/pvintuition.htm](https://pages.stern.nyu.edu/~adamodar/New_Home_Page/littlebook/pvintuition.htm)
+- 支持内容：等待、通胀和未来现金的不确定性使未来现金需要折现，折现率表达这些要求。[〔D4-S1〕](https://pages.stern.nyu.edu/~adamodar/New_Home_Page/littlebook/pvintuition.htm)
+
+### 〔D4-S2〕 Aswath Damodaran：Terminal Value
+
+- 类型：专业教材
+- 发布机构：New York University Stern School of Business
+- 发布 / 版本：The Little Book of Valuation 配套网页；原页面未标注发布日期
+- 访问日期：2026-08-20
+- 地址：[https://pages.stern.nyu.edu/~adamodar/New_Home_Page/littlebook/terminalvalue.htm](https://pages.stern.nyu.edu/~adamodar/New_Home_Page/littlebook/terminalvalue.htm)
+- 支持内容：终值用于表达显性预测期后的现金流；永续增长模型要求现金流、增长率和折现率口径一致，并对输入高度敏感。[〔D4-S2〕](https://pages.stern.nyu.edu/~adamodar/New_Home_Page/littlebook/terminalvalue.htm)
+
+</details>
 
 下一课不再问“按我的假设值多少”，而是用 [`反向DCF`](DAY-5.md) 问“当前价格要求什么”。

@@ -542,6 +542,30 @@
     });
   }
 
+  function setupSourceCitations() {
+    const citations = Array.from(document.querySelectorAll('a[href^="#D"]'));
+    if (!citations.length) return;
+
+    const revealSource = sourceId => {
+      if (!/^D[1-7]-S\d+$/.test(sourceId)) return false;
+      const target = document.getElementById(sourceId);
+      if (!target) return false;
+      const details = target.closest("details");
+      if (details) details.open = true;
+      window.requestAnimationFrame(() => target.scrollIntoView({ behavior: "smooth", block: "start" }));
+      return true;
+    };
+
+    citations.forEach(citation => citation.addEventListener("click", event => {
+      const sourceId = citation.getAttribute("href").slice(1);
+      if (!revealSource(sourceId)) return;
+      event.preventDefault();
+      history.pushState(null, "", `#${sourceId}`);
+    }));
+
+    if (location.hash) revealSource(location.hash.slice(1));
+  }
+
   function setupGlossary() {
     const terms = document.querySelectorAll("[data-term]");
     if (!terms.length || !globalThis.ValuationLabGlossary) return;
@@ -618,6 +642,7 @@
     setupAnnotate();
     setupAgentAudit();
     setupMarkdownReference();
+    setupSourceCitations();
     setupGlossary();
     renderProgress();
   });

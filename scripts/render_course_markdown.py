@@ -33,6 +33,7 @@ SOURCE = COURSE / "DAY-1.md"
 OUTPUT = OUTPUT_DIR / "day-1-reference.html"
 
 HEADING = re.compile(r"^(#{1,4})\s+(.+)$")
+SOURCE_ID = re.compile(r"〔(D[1-7]-S\d+)〕")
 LIST_ITEM = re.compile(r"^(\s*)([-*]|\d+\.)\s+(.+)$")
 SUMMARY = re.compile(r"^<summary>(.*?)</summary>$")
 TABLE_SEPARATOR_CELL = re.compile(r"^:?-{3,}:?$")
@@ -75,8 +76,11 @@ def render_inline(text: str, source: Path, output: Path, *, allow_links: bool = 
     if allow_links:
         def link_replacement(match: re.Match[str]) -> str:
             label = render_inline(match.group(1), source, output, allow_links=False)
-            href = html.escape(rewrite_link(match.group(2), source, output), quote=True)
-            return stash(f'<a href="{href}">{label}</a>')
+            raw_href = match.group(2)
+            href = html.escape(rewrite_link(raw_href, source, output), quote=True)
+            parsed = urlsplit(raw_href)
+            external = ' target="_blank" rel="noopener noreferrer"' if parsed.scheme in {"http", "https"} else ""
+            return stash(f'<a href="{href}"{external}>{label}</a>')
 
         protected = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", link_replacement, protected)
 
@@ -182,7 +186,12 @@ def render_markdown(markdown: str, source: Path, output: Path) -> str:
         heading = HEADING.match(stripped)
         if heading:
             level = len(heading.group(1))
-            rendered.append(f"<h{level}>{render_inline(heading.group(2), source, output)}</h{level}>")
+            source_id = SOURCE_ID.search(heading.group(2))
+            if heading.group(2) == "资料来源与核查":
+                anchor = ' id="sources"'
+            else:
+                anchor = f' id="{source_id.group(1)}"' if source_id else ""
+            rendered.append(f"<h{level}{anchor}>{render_inline(heading.group(2), source, output)}</h{level}>")
             index += 1
             continue
 

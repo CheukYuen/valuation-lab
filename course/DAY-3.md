@@ -139,7 +139,7 @@ H股价格 20.00港元/股 × 0.865 = 17.30元人民币/股
 
 ### 来源能打开，不代表历史值能复取
 
-只保存一个“今日汇率”网址，明天打开会得到新数字，不能证明模型昨天使用了什么。关键市场输入至少要有截点、原始记录或冻结文件，以及能定位到具体表格或数据行的证据指针。
+只保存一个“今日汇率”网址，明天打开会得到新数字，不能证明模型昨天使用了什么。关键市场输入至少要有截点、原始记录或冻结文件，以及能定位到具体表格或数据行的证据指针。[〔D3-S2〕](#D3-S2)
 
 同时执行PIT检查：来源发布日期必须不晚于研究时点。后来公布的数据可以用于事后复盘，不能伪装成当时已知输入。
 
@@ -365,5 +365,41 @@ python3 lab/record_contract.py
 输入记录完整不代表预测合理；来源很强也不代表未来一定发生。
 
 第1课列出的六个失败模式，本课交付了**错时点**：它落到失败状态矩阵里“已确认期间发生大额融资或收购仍用旧资本结构”那一行，以及练习表的第1、2行，而不是停在“要注意日期”。
+
+## 资料来源与核查
+
+<details>
+<summary>展开本课来源、地址与用途</summary>
+
+本课公司、资本结构和汇率数字均为**教学假设**。IAS 10 讨论的是财务报告期后事项，本课把“不同日期不能静默混用”进一步转化为估值输入检查规则，二者不是同一套规范。
+
+### 〔D3-S1〕 U.S. SEC：Beginners' Guide to Financial Statements
+
+- 类型：一手原文
+- 发布机构：U.S. Securities and Exchange Commission
+- 发布 / 版本：2014-01-12
+- 访问日期：2026-08-20
+- 地址：[https://www.sec.gov/about/reports-publications/beginners-guide-financial-statements](https://www.sec.gov/about/reports-publications/beginners-guide-financial-statements)
+- 支持内容：资产负债表是报告期末时点快照，利润表和现金流量表覆盖一段期间；本课据此要求先区分时点数与期间数。[〔D3-S1〕](https://www.sec.gov/about/reports-publications/beginners-guide-financial-statements)
+
+### 〔D3-S2〕 IFRS Foundation：IAS 21 The Effects of Changes in Foreign Exchange Rates
+
+- 类型：一手原文
+- 发布机构：IFRS Foundation / IASB
+- 发布 / 版本：现行标准页面；原页面未标注本次页面发布日期
+- 访问日期：2026-08-20
+- 地址：[https://www.ifrs.org/issued-standards/list-of-standards/ias-21-the-effects-of-changes-in-foreign-exchange-rates/](https://www.ifrs.org/issued-standards/list-of-standards/ias-21-the-effects-of-changes-in-foreign-exchange-rates/)
+- 支持内容：功能货币、列报货币及使用何种汇率是不同问题；本课据此强调币种、报价方向和换算日必须同行。[〔D3-S2〕](https://www.ifrs.org/issued-standards/list-of-standards/ias-21-the-effects-of-changes-in-foreign-exchange-rates/)
+
+### 〔D3-S3〕 IFRS Foundation：IAS 10 Events after the Reporting Period
+
+- 类型：一手原文
+- 发布机构：IFRS Foundation / IASB
+- 发布 / 版本：现行标准页面；原页面未标注本次页面发布日期
+- 访问日期：2026-08-20
+- 地址：[https://www.ifrs.org/issued-standards/list-of-standards/ias-10-events-after-the-reporting-period/](https://www.ifrs.org/issued-standards/list-of-standards/ias-10-events-after-the-reporting-period/)
+- 支持内容：区分报告期末条件与报告期后出现的事项，并披露财务报表获准发布的日期；本课借此说明报告日、发布日期和估值日不可混成一个日期。[〔D3-S3〕](https://www.ifrs.org/issued-standards/list-of-standards/ias-10-events-after-the-reporting-period/)
+
+</details>
 
 下一课把已说清的输入放进 [`最小DCF`](DAY-4.md)，亲手完成折现。

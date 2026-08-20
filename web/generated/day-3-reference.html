@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="source-sha256" content="9be04b59dc4331ab93728b13b1bcc178e7e6f649ed991b075ef7eed6e7f78e9a">
+  <meta name="source-sha256" content="a03b70efc0b42318d5029c972f7d75c8153e610b8c970d479c37781fbd374570">
   <title>第3课专业参考章 · 检查估值输入</title>
   <link rel="stylesheet" href="../assets/styles.css">
   <script>
@@ -35,7 +35,7 @@
       <a href="day-6-reference.html">6. 方法适不适合</a>
       <a href="day-7-reference.html">7. 长飞综合练习</a>
     </nav>
-    <p class="markdown-reference-source">由 <a href="../../course/DAY-3.md">course/DAY-3.md</a> 生成 · SHA-256 9be04b59dc43 · <a href="../day-3.html">打开本课互动页</a></p>
+    <p class="markdown-reference-source">由 <a href="../../course/DAY-3.md">course/DAY-3.md</a> 生成 · SHA-256 a03b70efc0b4 · <a href="../day-3.html">打开本课互动页</a></p>
 <h1>第3天：检查估值输入</h1>
 <p><strong>本课目标</strong>：在已经理解价值桥的基础上，检查对象、时点、单位、币种和来源，筛掉会让估值失真的输入。基础检查约35分钟，进阶检查约20分钟。</p>
 <blockquote><p><a href="../day-3.html"><code>打开本课互动HTML</code></a></p></blockquote>
@@ -99,7 +99,7 @@ H股价格 20.00港元/股 × 0.865 = 17.30元人民币/股
 反向核对：17.30 ÷ 0.865 = 20.00港元/股   ← 能还原才算写对</code></pre>
 <p>把乘写成除会得到 <code>20.00 ÷ 0.865 = 23.12元</code>，比正确的17.30元高33.6%。这个幅度足以改变一份材料的全部结论，却不会让任何公式报错。</p>
 <h3>来源能打开，不代表历史值能复取</h3>
-<p>只保存一个“今日汇率”网址，明天打开会得到新数字，不能证明模型昨天使用了什么。关键市场输入至少要有截点、原始记录或冻结文件，以及能定位到具体表格或数据行的证据指针。</p>
+<p>只保存一个“今日汇率”网址，明天打开会得到新数字，不能证明模型昨天使用了什么。关键市场输入至少要有截点、原始记录或冻结文件，以及能定位到具体表格或数据行的证据指针。<a href="#D3-S2">〔D3-S2〕</a></p>
 <p>同时执行PIT检查：来源发布日期必须不晚于研究时点。后来公布的数据可以用于事后复盘，不能伪装成当时已知输入。</p>
 <h2>完整示例：把五个输入对齐</h2>
 <p>研究者要在8月17日计算长河制造的每股价值，拿到以下材料：</p>
@@ -180,6 +180,17 @@ H股价格 20.00港元/股 × 0.865 = 17.30元人民币/股
 <p>你现在能确认送进估值桥的数字是谁、何时有效、用什么单位、来自哪里，能亲手把资本结构从报告日桥接到估值日，并识别哪些缺口会使下游计算失效、哪些不该触发降级。</p>
 <p>输入记录完整不代表预测合理；来源很强也不代表未来一定发生。</p>
 <p>第1课列出的六个失败模式，本课交付了<strong>错时点</strong>：它落到失败状态矩阵里“已确认期间发生大额融资或收购仍用旧资本结构”那一行，以及练习表的第1、2行，而不是停在“要注意日期”。</p>
+<h2 id="sources">资料来源与核查</h2>
+<details>
+<summary>展开本课来源、地址与用途</summary>
+<p>本课公司、资本结构和汇率数字均为<strong>教学假设</strong>。IAS 10 讨论的是财务报告期后事项，本课把“不同日期不能静默混用”进一步转化为估值输入检查规则，二者不是同一套规范。</p>
+<h3 id="D3-S1">〔D3-S1〕 U.S. SEC：Beginners&#x27; Guide to Financial Statements</h3>
+<ul><li>类型：一手原文</li><li>发布机构：U.S. Securities and Exchange Commission</li><li>发布 / 版本：2014-01-12</li><li>访问日期：2026-08-20</li><li>地址：<a href="https://www.sec.gov/about/reports-publications/beginners-guide-financial-statements" target="_blank" rel="noopener noreferrer">https://www.sec.gov/about/reports-publications/beginners-guide-financial-statements</a></li><li>支持内容：资产负债表是报告期末时点快照，利润表和现金流量表覆盖一段期间；本课据此要求先区分时点数与期间数。<a href="https://www.sec.gov/about/reports-publications/beginners-guide-financial-statements" target="_blank" rel="noopener noreferrer">〔D3-S1〕</a></li></ul>
+<h3 id="D3-S2">〔D3-S2〕 IFRS Foundation：IAS 21 The Effects of Changes in Foreign Exchange Rates</h3>
+<ul><li>类型：一手原文</li><li>发布机构：IFRS Foundation / IASB</li><li>发布 / 版本：现行标准页面；原页面未标注本次页面发布日期</li><li>访问日期：2026-08-20</li><li>地址：<a href="https://www.ifrs.org/issued-standards/list-of-standards/ias-21-the-effects-of-changes-in-foreign-exchange-rates/" target="_blank" rel="noopener noreferrer">https://www.ifrs.org/issued-standards/list-of-standards/ias-21-the-effects-of-changes-in-foreign-exchange-rates/</a></li><li>支持内容：功能货币、列报货币及使用何种汇率是不同问题；本课据此强调币种、报价方向和换算日必须同行。<a href="https://www.ifrs.org/issued-standards/list-of-standards/ias-21-the-effects-of-changes-in-foreign-exchange-rates/" target="_blank" rel="noopener noreferrer">〔D3-S2〕</a></li></ul>
+<h3 id="D3-S3">〔D3-S3〕 IFRS Foundation：IAS 10 Events after the Reporting Period</h3>
+<ul><li>类型：一手原文</li><li>发布机构：IFRS Foundation / IASB</li><li>发布 / 版本：现行标准页面；原页面未标注本次页面发布日期</li><li>访问日期：2026-08-20</li><li>地址：<a href="https://www.ifrs.org/issued-standards/list-of-standards/ias-10-events-after-the-reporting-period/" target="_blank" rel="noopener noreferrer">https://www.ifrs.org/issued-standards/list-of-standards/ias-10-events-after-the-reporting-period/</a></li><li>支持内容：区分报告期末条件与报告期后出现的事项，并披露财务报表获准发布的日期；本课借此说明报告日、发布日期和估值日不可混成一个日期。<a href="https://www.ifrs.org/issued-standards/list-of-standards/ias-10-events-after-the-reporting-period/" target="_blank" rel="noopener noreferrer">〔D3-S3〕</a></li></ul>
+</details>
 <p>下一课把已说清的输入放进 <a href="../../course/DAY-4.md"><code>最小DCF</code></a>，亲手完成折现。</p>
   </main>
 </body>

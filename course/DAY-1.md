@@ -128,7 +128,7 @@ AI 生成的摘要也不是第七类信息。AI 是处理者：它可以提取�
 原始披露 → 提取值 → 口径调整 → 模型输入 → 计算结果 → 报告表述
 ```
 
-任一箭头断开，都要记录断在哪里、影响什么、补什么才能关闭。网址能打开不等于数值可追溯；报告有引用不等于公式已复算；文字很专业也不等于结论有证据。
+任一箭头断开，都要记录断在哪里、影响什么、补什么才能关闭。网址能打开不等于数值可追溯；报告有引用不等于公式已复算；文字很专业也不等于结论有证据。[〔D1-S2〕](#D1-S2)
 
 ### PIT：只能使用当时已经知道的信息
 
@@ -398,5 +398,41 @@ python3 lab/record_contract.py
 ## 本课边界
 
 你现在能判断信息是什么、Agent应怎样记录、输出是否达到最低可验收标准，并且知道哪些缺口**不该**触发降级。你还不能仅凭这一课判断预测是否合理、独立完成正式估值，或由模型价值推出股票是否值得买。
+
+## 资料来源与核查
+
+<details>
+<summary>展开本课来源、地址与用途</summary>
+
+本课的“信息性质、处理状态、验证状态、材料使用等级”是课程为了教学和验收设计的分层规则，不是 CFA 或 W3C 的原文分类。示例公司、金额和日期均为**教学假设**。
+
+### 〔D1-S1〕 CFA Institute：Standard V(A) Diligence and Reasonable Basis
+
+- 类型：一手原文
+- 发布机构：CFA Institute
+- 发布 / 版本：2024年4月更新
+- 访问日期：2026-08-20
+- 地址：[https://www.cfainstitute.org/standards/professionals/code-ethics-standards/standards-of-practice-v-a](https://www.cfainstitute.org/standards/professionals/code-ethics-standards/standards-of-practice-v-a)
+- 支持内容：分析所用数据需要核查来源与准确性，投资分析应有合理且充分的研究基础。[〔D1-S1〕](https://www.cfainstitute.org/standards/professionals/code-ethics-standards/standards-of-practice-v-a)
+
+### 〔D1-S2〕 W3C：PROV-O, The PROV Ontology
+
+- 类型：一手原文
+- 发布机构：World Wide Web Consortium（W3C）
+- 发布 / 版本：W3C Recommendation，2013-04-30
+- 访问日期：2026-08-20
+- 地址：[https://www.w3.org/TR/prov-o/](https://www.w3.org/TR/prov-o/)
+- 支持内容：用实体、活动、责任主体及派生关系表达数据来路；本课据此说明为什么应保存“原始披露到报告表述”的处理链。[〔D1-S2〕](https://www.w3.org/TR/prov-o/)
+
+### 〔D1-S3〕 本仓库课程维护约定
+
+- 类型：课程规则
+- 发布机构：valuation-lab
+- 发布 / 版本：当前仓库版本
+- 访问日期：2026-08-20
+- 地址：[`CLAUDE.md`](../CLAUDE.md)
+- 支持内容：事实、指引、外部预测、内部假设、派生计算和分析判断必须分开；计算必须可复算。这是本课程的明确约定，不冒充外部标准。[〔D1-S3〕](../CLAUDE.md)
+
+</details>
 
 下一课：[`亲手打通价值桥`](DAY-2.md)。
