@@ -45,6 +45,7 @@
         <a href="day-2.html#matrix" data-toc-link><span></span>失败状态矩阵</a>
         <a href="day-2.html#write-test" data-toc-link><span></span>练习：写一条验收测试</a>
         <a href="day-2.html#checklist" data-toc-link><span></span>一页验收清单</a>
+        <a href="day-2.html#lab-run" data-toc-link><span></span>运行环节</a>
         <a href="day-2.html#quizzes" data-toc-link><span></span>闯关</a>
         <a href="day-2.html#recall" data-toc-link><span></span>主动回忆</a>
         <a href="day-2.html#boundary" data-toc-link><span></span>学完后能做什么</a>
@@ -53,7 +54,7 @@
         <strong>本课目标</strong>
         <p>亲手从经营利润算到 FCFF、股权价值和每股价值，再检查口径是否匹配。</p>
         <span>基础层 35 分钟 · 开发者层 35 分钟</span>
-        <div class="sidebar-stats"><span data-read-count>0 / 11 小节已读</span><span data-quiz-score>7 题未开始</span></div>
+        <div class="sidebar-stats"><span data-read-count>0 / 12 小节已读</span><span data-quiz-score>7 题未开始</span></div>
       </div>
     </aside>
 
@@ -171,6 +172,37 @@
           </ul>
         </section>
 
+        <section class="reader-section" id="lab-run" data-reader-section>
+          <p class="section-kicker">08 · 运行环节（必做）</p><h2>让判断可以被复算</h2>
+          <p class="section-lead">先把上面实验的答案写在纸上，再点运行。页面调用与 <code>lab/bridge.py</code> 同一套公式；改上方控件后，输出会跟着变。</p>
+          <div class="lab-run" data-lab-run="bridge">
+            <div class="lab-run-command"><span>终端等价</span><code>python3 lab/bridge.py</code></div>
+            <div class="lab-run-core">
+              <header><strong>核心代码</strong><span>lab/bridge.py · fcff / equity / per_share</span></header>
+              <pre><code>def fcff(p):
+    nopat = p["ebit"] * (1 - p["tax_rate"])
+    return {
+        "nopat": nopat,
+        "fcff": nopat + p["depreciation"] - p["capex"] - p["working_capital_increase"],
+        "skipped_reinvestment": p["capex"] + p["working_capital_increase"] - p["depreciation"],
+    }
+
+def equity(p):
+    return {"equity_value": p["ev"] + p["cash"] - p["debt"] - p["lease_liability"]
+            - p["minority_interest"] + p["non_operating_assets"]}
+
+def per_share(p):
+    basic = p["total_shares"] - p["treasury_shares"]
+    return {"per_share_basic": equity(p)["equity_value"] / basic}</code></pre>
+            </div>
+            <div class="lab-run-actions">
+              <button type="button" data-lab-run-button>运行复算</button>
+              <span class="lab-run-hint">先写再跑 · 对 16 / 12 / 4 / 17 四组数字</span>
+            </div>
+            <pre class="lab-run-output" data-lab-run-output aria-live="polite">（尚未运行。写完预测后再点上方按钮。）</pre>
+          </div>
+        </section>
+
         <section class="reader-section checkpoint" id="quizzes" data-reader-section>
           <div class="checkpoint-heading"><span>闯关 7 题</span><div><p>先选，再看解释</p><h2>这两座桥最容易在哪里断？</h2></div></div>
           <div class="quiz-stack">
@@ -185,13 +217,13 @@
         </section>
 
         <section class="reader-section recall-section" id="recall" data-reader-section>
-          <p class="section-kicker">08 · 主动回忆</p><h2>不用公式解释利润为什么不等于现金</h2>
+          <p class="section-kicker">09 · 主动回忆</p><h2>不用公式解释利润为什么不等于现金</h2>
           <p class="section-lead">笔记只保存在这台设备上。</p>
           <textarea class="note-area reader-note" data-note="day-2" placeholder="不用公式解释：为什么20亿元EBIT可能只有12亿元FCFF？"></textarea>
         </section>
 
         <section class="reader-section boundary-section" id="boundary" data-reader-section>
-          <p class="section-kicker">09 · 本课边界</p><h2>现在能解释什么，还不能决定什么</h2>
+          <p class="section-kicker">10 · 本课边界</p><h2>现在能解释什么，还不能决定什么</h2>
           <div class="boundary-grid">
             <div><span aria-hidden="true">✓</span><div><strong>现在可以</strong><p>解释利润怎样变成现金、EV 怎样变成每股价值，并写出包含“必须改变”和“必须不变”的验收测试。</p></div></div>
             <div><span aria-hidden="true">—</span><div><strong>还不可以</strong><p>仅凭这座桥判断预测是否合理，或由每股输出推出股票是否值得买。</p></div></div>

@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="assets/styles.css">
   <script defer src="assets/glossary.js"></script>
   <script defer src="assets/app.js"></script>
+  <script defer src="assets/tools.js"></script>
 </head>
 <body class="reader-page" data-lesson="day-1">
   <header class="reader-topbar">
@@ -51,6 +52,7 @@
         <a href="day-1.html#write-test" data-toc-link><span></span>练习：写一条验收测试</a>
         <a href="day-1.html#checkpoint-3" data-toc-link><span></span>判断：引用等于验证吗</a>
         <a href="day-1.html#minimum" data-toc-link><span></span>Agent开发最低能力</a>
+        <a href="day-1.html#lab-run" data-toc-link><span></span>运行环节</a>
         <a href="day-1.html#recall" data-toc-link><span></span>主动回忆</a>
         <a href="day-1.html#boundary" data-toc-link><span></span>学完后能做什么</a>
       </nav>
@@ -58,7 +60,7 @@
         <strong>本课目标</strong>
         <p>把信息读对、记录对，并判断 Agent 输出能否验收。</p>
         <span>基础层 35 分钟 · 开发者层 40 分钟</span>
-        <div class="sidebar-stats"><span data-read-count>0 / 17 小节已读</span><span data-quiz-score>3 题未开始</span></div>
+        <div class="sidebar-stats"><span data-read-count>0 / 18 小节已读</span><span data-quiz-score>3 题未开始</span></div>
       </div>
     </aside>
 
@@ -317,14 +319,42 @@
           </ul>
         </section>
 
+        <section class="reader-section" id="lab-run" data-reader-section>
+          <p class="section-kicker">12 · 运行环节（必做）</p><h2>让判断可以被复算</h2>
+          <p class="section-lead">先对 <a href="../cases/00-records/README.md">记录契约样本</a> 各写一个状态，再点运行。顺序不能反：先判断，再对答案。</p>
+          <div class="lab-run" data-lab-run="record-contract">
+            <div class="lab-run-command"><span>终端等价</span><code>python3 lab/record_contract.py</code></div>
+            <div class="lab-run-core">
+              <header><strong>核心代码</strong><span>lab/record_contract.py · validate_record / PIT</span></header>
+              <pre><code>DATE_FIELDS = ("source_published_at", "adopted_at", "research_as_of")
+
+def validate_record(record):
+    findings = []
+    # PIT：source_published_at ≤ adopted_at ≤ research_as_of
+    published, adopted, as_of = (record.get(f) for f in DATE_FIELDS)
+    if published and adopted and as_of:
+        if published > as_of:
+            findings.append(Finding("pit", "source_published_at",
+                f"来源发布日 {published} 晚于研究时点 {as_of}"))
+    # 单家预测不能命名为共识；派生值必须可独立复算……
+    return findings</code></pre>
+            </div>
+            <div class="lab-run-actions">
+              <button type="button" data-lab-run-button>运行复算</button>
+              <span class="lab-run-hint">先写再跑 · 第10条是负对照，正确结果是不报警</span>
+            </div>
+            <pre class="lab-run-output" data-lab-run-output aria-live="polite">（尚未运行。写完十条状态后再点上方按钮。）</pre>
+          </div>
+        </section>
+
         <section class="reader-section recall-section" id="recall" data-reader-section>
-          <p class="section-kicker">12 · 主动回忆</p><h2>写一条真正可执行的验收意见</h2>
+          <p class="section-kicker">13 · 主动回忆</p><h2>写一条真正可执行的验收意见</h2>
           <p class="section-lead">不用复述定义。写清楚：你发现了什么、影响哪一步、补什么证据或计算才能重新开放使用。笔记只保存在这台设备上。</p>
           <textarea class="note-area reader-note" data-note="day-1" placeholder="当前状态：____&#10;证据链断在：____&#10;影响：____&#10;关闭条件：____&#10;仍不能断言：____"></textarea>
         </section>
 
         <section class="reader-section boundary-section" id="boundary" data-reader-section>
-          <p class="section-kicker">13 · 本课边界</p><h2>现在能验收什么，还不能决定什么</h2>
+          <p class="section-kicker">14 · 本课边界</p><h2>现在能验收什么，还不能决定什么</h2>
           <div class="boundary-grid">
             <div><span aria-hidden="true">✓</span><div><strong>现在可以</strong><p>判断信息性质，设计关键数字记录，并识别 Agent 输出中的来源、时点、桥接和复算缺口。</p></div></div>
             <div><span aria-hidden="true">—</span><div><strong>还不可以</strong><p>仅凭这一课判断预测是否合理、独立完成正式估值，或由模型价值推出股票是否值得买。</p></div></div>

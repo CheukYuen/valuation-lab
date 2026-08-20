@@ -43,6 +43,7 @@
         <a href="day-7.html#facts" data-toc-link><span></span>先看基准事实</a>
         <a href="day-7.html#wacc" data-toc-link><span></span>旋钮实验一：WACC</a>
         <a href="day-7.html#conversion" data-toc-link><span></span>旋钮实验二：现金口径</a>
+        <a href="day-7.html#lab-run" data-toc-link><span></span>运行环节</a>
         <a href="day-7.html#negative" data-toc-link><span></span>负对照</a>
         <a href="day-7.html#quizzes" data-toc-link><span></span>闯关</a>
         <a href="day-7.html#recall" data-toc-link><span></span>一页毕业结论</a>
@@ -52,7 +53,7 @@
         <strong>本课目标</strong>
         <p>解释、复算并检查一份真实复杂估值材料，同时验收计算与检查两件事。</p>
         <span>综合练习 65 分钟</span>
-        <div class="sidebar-stats"><span data-read-count>0 / 10 小节已读</span><span data-quiz-score>7 题未开始</span></div>
+        <div class="sidebar-stats"><span data-read-count>0 / 11 小节已读</span><span data-quiz-score>7 题未开始</span></div>
       </div>
     </aside>
 
@@ -144,8 +145,30 @@
           </div>
         </section>
 
+        <section class="reader-section" id="lab-run" data-reader-section>
+          <p class="section-kicker">06 · 运行环节（必做）</p><h2>让判断可以被复算</h2>
+          <p class="section-lead">先完成工作表中的初步估值解释、三项风险和使用等级，再点运行。只允许按程序结果修正计算事实、重排风险，或划掉跨口径表述。</p>
+          <div class="lab-run" data-lab-run="knobs">
+            <div class="lab-run-command"><span>终端等价</span><code>python3 cases/01-yofc/knobs.py</code></div>
+            <div class="lab-run-core">
+              <header><strong>核心代码</strong><span>cases/01-yofc/knobs.py · equity_yi</span></header>
+              <pre><code>def equity_yi(scenario, wacc=0.066, tax=0.20):
+    ev = forward_dcf(scenario, tax, wacc, REMAIN)["enterprise_value_bn"]
+    return (ev - BRIDGE) * 10  # 亿元
+
+# 实验1：每次只拧一个旋钮，看 Bull 股权价值怎么变
+# 七年收入整体 +10% ≈ +11%；WACC 6.6%→8.0% ≈ -24%</code></pre>
+            </div>
+            <div class="lab-run-actions">
+              <button type="button" data-lab-run-button>运行旋钮实验</button>
+              <span class="lab-run-hint">程序复算 ≠ 输入依据已复核；不产出目标价</span>
+            </div>
+            <pre class="lab-run-output" data-lab-run-output aria-live="polite">（尚未运行。写完初步结论后再点上方按钮。）</pre>
+          </div>
+        </section>
+
         <section class="reader-section" id="negative" data-reader-section>
-          <p class="section-kicker">06 · 负对照</p><h2>一份复杂材料里合规的那一半</h2>
+          <p class="section-kicker">07 · 负对照</p><h2>一份复杂材料里合规的那一半</h2>
           <p class="section-lead">毕业练习最容易走偏的方向，是把“找到几条问题”当成成绩。下面这些特征出现时，都不该触发降级。</p>
           <div class="table-scroll"><table>
             <thead><tr><th>表面信号</th><th>为什么当前不降级</th></tr></thead>
@@ -173,14 +196,14 @@
         </section>
 
         <section class="reader-section recall-section" id="recall" data-reader-section>
-          <p class="section-kicker">07 · 一页毕业结论</p><h2>先独立写完，再打开答案</h2>
+          <p class="section-kicker">08 · 一页毕业结论</p><h2>先独立写完，再打开答案</h2>
           <p class="section-lead">先讲清估值链条和关键输入，再说明方法适用性、三个风险、未知和使用等级。必须写下“做对了什么”和“不该降级的地方”。</p>
           <textarea class="note-area reader-note" data-note="day-7" placeholder="估值怎样从经营假设走到每股价值：&#10;当前情景与关键输入：&#10;方法是否适合：&#10;做对了什么：&#10;不该降级的地方：&#10;三个最重要风险及严重性：&#10;无法确认：&#10;使用等级与理由："></textarea>
           <p class="plain-note"><a href="../cases/01-yofc/answer-key.md">完成后对答案</a></p>
         </section>
 
         <section class="reader-section boundary-section" id="boundary" data-reader-section>
-          <p class="section-kicker">08 · 本课边界</p><h2>毕业代表能解释、复算并检查，不代表能做交易决策</h2>
+          <p class="section-kicker">09 · 本课边界</p><h2>毕业代表能解释、复算并检查，不代表能做交易决策</h2>
           <div class="boundary-grid">
             <div><span aria-hidden="true">✓</span><div><strong>现在可以</strong><p>给出有证据的使用等级，并且知道哪些缺口不该触发降级。六个失败模式到这里全部收口。</p></div></div>
             <div><span aria-hidden="true">—</span><div><strong>还不可以</strong><p>独立预测真实公司的全部未来，或据此作出交易决策。</p></div></div>

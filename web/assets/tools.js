@@ -1,5 +1,5 @@
 (() => {
-  const byId = id => document.getElementById(id);
+  const byId = id => (typeof document === "undefined" ? null : document.getElementById(id));
   const number = id => Number(byId(id)?.value || 0);
   const pct = value => `${(value * 100).toFixed(1)}%`;
   const yi = value => `${value.toFixed(1)} 亿元`;
@@ -463,7 +463,344 @@
     update();
   }
 
-  globalThis.ValuationLabTools = { dcf, solve, fcffBridge, equityBridge, perShare, bridge, ocfCheck, pitBridge, terminalBridge, requiredYears, multiples, bankDemo };
+  const pct2 = value => `${(value * 100).toFixed(2)}%`;
+  const yi2 = value => `${value.toFixed(2)} 亿元`;
+  const DEFAULT_BRIDGE = {
+    ebit: 20, taxRate: 0.2, depreciation: 3, capex: 5, workingCapitalIncrease: 2, interest: 2,
+    ev: 200, cash: 20, debt: 50, leaseLiability: 0, minorityInterest: 0, nonOperatingAssets: 0,
+    totalShares: 10.5, treasuryShares: 0.5, optionDilution: 0, convertibleShares: 0,
+    convertibleDebt: 0, floatShares: 8,
+    dilutionVariant: { optionDilution: 0.4, convertibleShares: 0.6, convertibleDebt: 10 },
+    period: { bondIssue: 50, acquisitionCash: 30, ocfLow: 0, ocfHigh: 10 }
+  };
+  const DEFAULT_DCF = {
+    baseFcf: 10, growth: 0.08, years: 7, terminalGrowth: 0.02, discountRate: 0.09, netDebt: 20
+  };
+  const DEFAULT_METHODS = {
+    netIncome: 12, bookEquity: 80, ebitda: 30, netDebt: 30,
+    peerPe: 15, peerPb: 1.8, peerEvEbitda: 8,
+    dcf: { ...DEFAULT_DCF, netDebt: 30 },
+    bank: {
+      operatingIncome: 40, deposits: 900, otherDebt: 50, cash: 60,
+      bookEquity: 100, netIncome: 15, peerPe: 6, peerPb: 0.8, peerEvEbitda: 8
+    }
+  };
+
+  // 第1课校验器输出与 python3 lab/record_contract.py 对齐；浏览器离线，因此内置全文。
+  const RECORD_CONTRACT_OUTPUT = `输入：cases/00-records/*.json（与 lab/record_contract.py 相同样本）
+
+01-clean.json · 长河科技｜2026财年合并收入｜内部Base假设（语义完整）
+  语义完整：没有触发任何失败状态。
+  注意：这只说明这条记录说清了自己是什么，不说明数字或经营假设正确。
+
+02-consensus.json · 单家券商预测被命名为市场共识
+  [重大] consensus  labelled_as_consensus  被命名为共识，却没有样本、统计方法和截点
+             → 应返回：单家外部预测；共识无法确认
+
+03-pit.json · 研究时点之后发布的一季报被用于当时输入
+  [致命] pit        source_published_at    来源发布日 2026-04-20 晚于研究时点 2026-03-31
+             → 应返回：未来信息污染
+
+04-bridge.json · 内部调整没有逐项桥
+  [重大] bridge     transform              发生了变换但缺少 ['bridge']；调整后数字没有逐项桥
+             → 应返回：内部假设，部分可用或无法确认
+
+05-evidence.json · 证据指针只到机构名称和网站首页
+  [重大] evidence   evidence_pointer       证据指针 '华东证券官网' 定位不到页码、表格或可复取记录
+             → 应返回：证据指针缺失
+
+06-recompute.json · 派生股权价值缺输入、公式与独立重算
+  [重大] recompute  computation            派生值缺少 ['inputs_version', 'formula', 'recomputed_by']；引用不能代替复算
+             → 应返回：尚未程序复核
+
+07-model-restated.json · 派生值由另一个语言模型复述，冒充独立计算
+  [重大] recompute  computation.recomputed_by 另一个语言模型复述不是独立计算；需要确定性程序或可检查公式
+             → 应返回：尚未程序复核
+
+08-conflict.json · 记录值与原文直接冲突，且没有声明任何变换
+  [致命] conflict   value                  记录值 100.0 与原文 104.3 冲突，且没有声明任何变换
+             → 应返回：明确错误
+
+09-semantics.json · 只保存了一个数字：缺对象、期间、单位、性质与时点
+  [重大] semantics  … 多字段语义不完整，无法确认
+  [重大] evidence   evidence_pointer       缺少证据指针；来源身份不能代替定位信息
+
+10-negative-control.json · 负对照：8家机构汇总预测，样本方法截点齐全——不应降级
+  语义完整：没有触发任何失败状态。
+
+合计 14 条发现，来自 10 条记录。
+发现数量不等于严重性排序；请按对本次结论的影响判断。`;
+
+  const KNOBS_OUTPUT = `实验 0 · 三情景基准（WACC 6.6%，税率 20%）
+  bear  股权     390.5 亿   终值占 EV  37.6%   2032 利润率 10.08%
+  base  股权     707.5 亿   终值占 EV  57.9%   2032 利润率 20.00%
+  bull  股权    1393.7 亿   终值占 EV  69.0%   2032 利润率 28.00%
+  市场   实际分类市场权益    1904.0 亿（2026-08-14 A/H 合计）
+
+实验 1 · Bull 情景旋钮：哪个假设在决定这个数
+  基准                           1393.7 亿
+  WACC 6.6% -> 8.0%            1055.5 亿    -24.3%
+  永续增长 2.5% -> 1.5%            1271.8 亿     -8.7%
+  2032 利润率 28% -> 24%          1243.2 亿    -10.8%
+  整整七年收入全部 +10%                1545.9 亿    +10.9%
+  终值 ROIC 12.5% -> 10%         1327.9 亿     -4.7%
+
+  注意：七年收入整体 +10% 只值约 +11%；折现率动 1.4 个百分点抹掉约 24%。
+  程序复算不等于输入依据已复核；也不产出目标价或买卖建议。`;
+
+  function readBridgeInput() {
+    if (!byId("bridge-ebit")) return { ...DEFAULT_BRIDGE };
+    return {
+      ...DEFAULT_BRIDGE,
+      ebit: number("bridge-ebit"),
+      taxRate: number("bridge-tax") / 100,
+      depreciation: number("bridge-da"),
+      capex: number("bridge-capex"),
+      workingCapitalIncrease: number("bridge-wc"),
+      interest: byId("ocf-interest") ? number("ocf-interest") : DEFAULT_BRIDGE.interest
+    };
+  }
+
+  function readPitInput() {
+    if (!byId("pit-ev")) {
+      return {
+        ev: DEFAULT_BRIDGE.ev,
+        cash: DEFAULT_BRIDGE.cash,
+        debt: DEFAULT_BRIDGE.debt,
+        totalShares: DEFAULT_BRIDGE.totalShares,
+        treasuryShares: DEFAULT_BRIDGE.treasuryShares,
+        period: { ...DEFAULT_BRIDGE.period }
+      };
+    }
+    return {
+      ev: number("pit-ev"),
+      cash: number("pit-cash"),
+      debt: number("pit-debt"),
+      totalShares: number("pit-total-shares"),
+      treasuryShares: number("pit-treasury"),
+      period: {
+        bondIssue: number("pit-bond"),
+        acquisitionCash: number("pit-acquisition"),
+        ocfLow: number("pit-ocf-low"),
+        ocfHigh: number("pit-ocf-high")
+      }
+    };
+  }
+
+  function readDcfInput() {
+    if (!byId("dcf-fcf")) return { ...DEFAULT_DCF };
+    return {
+      baseFcf: number("dcf-fcf"),
+      growth: number("dcf-growth") / 100,
+      years: Math.round(number("dcf-years")),
+      terminalGrowth: number("dcf-terminal") / 100,
+      discountRate: number("dcf-wacc") / 100,
+      netDebt: number("dcf-debt")
+    };
+  }
+
+  function formatBridgeRun() {
+    const p = readBridgeInput();
+    const b = bridge(p);
+    const o = ocfCheck(p);
+    const diluted = bridge({ ...p, ...p.dilutionVariant });
+    const lines = [
+      "输入：lab/inputs/bridge.json（页面控件可覆盖主线现金流）",
+      "",
+      "第一座桥：利润怎样变成现金",
+      `  EBIT                    ${yi2(p.ebit)}`,
+      `  × (1 - 经营税率 ${(p.taxRate * 100).toFixed(0)}%)`,
+      `  = NOPAT                 ${yi2(b.nopat)}`,
+      `  + 折旧                  ${yi2(p.depreciation)}`,
+      `  - 资本开支              ${yi2(p.capex)}`,
+      `  - 营运资金增加          ${yi2(p.workingCapitalIncrease)}`,
+      `  = FCFF                  ${yi2(b.fcff)}`,
+      "",
+      `  把 NOPAT 直接当 FCFF，会漏掉净投入 ${yi2(b.skippedReinvestment)}`,
+      "",
+      "与财报现金流交叉检查",
+      `  净利润                                      ${yi2(o.netIncome)}`,
+      `  经营活动现金流                              ${yi2(o.ocf)}`,
+      `  经营活动现金流 - Capex                      ${yi2(o.ocfMinusCapex)}`,
+      `  本课 FCFF                                   ${yi2(o.fcff)}`,
+      `  差额（= 税后利息 ${o.afterTaxInterest.toFixed(2)}）              ${yi2(o.gap)}`,
+      "",
+      "第二座桥：企业价值怎样走到每股价值",
+      `  EV（输入）                 ${yi2(p.ev)}`,
+      `  = 普通股股权价值           ${yi2(b.equityValue)}`,
+      `  外部普通股每股             ${b.perShareBasic.toFixed(2)} 元`,
+      `  错误：流通股当分母         ${b.perShareFloatWrong.toFixed(2)} 元`,
+      `  错误：EV ÷ 股本           ${b.evPerShare.toFixed(2)} 元`,
+      "",
+      "稀释变体（dilution_variant）",
+      `  ② 加期权稀释              ${diluted.perShareDiluted.toFixed(2)} 元`,
+      `  ③ if-converted            ${diluted.perShareIfConverted.toFixed(2)} 元`,
+      `  ④ 混用②③                  ${diluted.perShareDoubleCounted.toFixed(2)} 元`,
+      "",
+      "边界：脚本复算的是算式，不是事实；不产出目标价或买卖建议。"
+    ];
+    return lines.join("\n");
+  }
+
+  function formatPitRun() {
+    const p = readPitInput();
+    const t = pitBridge(p);
+    return [
+      "输入：lab/inputs/bridge.json · period（资本结构时点桥）",
+      "",
+      `  报告日净债务     ${yi2(t.reportNetDebt)}`,
+      `  + 发债 ${t.bondIssue.toFixed(0)}（净债务不变）`,
+      `  + 现金收购       ${yi2(t.acquisitionCash)}`,
+      `  - 期间经营现金流 ${p.period.ocfLow.toFixed(0)} 至 ${p.period.ocfHigh.toFixed(0)}`,
+      `  = 估值日净债务   ${yi2(t.netDebtLow)} 至 ${yi2(t.netDebtHigh)}`,
+      `  股权价值         ${yi2(t.equityLow)} 至 ${yi2(t.equityHigh)}`,
+      `  每股价值         ${t.perShareLow.toFixed(1)} 至 ${t.perShareHigh.toFixed(1)} 元`,
+      `  若仍用报告日净债务，每股 ${t.stalePerShare.toFixed(2)} 元`,
+      "",
+      "本课必做终端命令仍是 python3 lab/record_contract.py（对 03 / 09 / 10）。",
+      "上表用同一套 bridge.pitBridge()，对应课文「亲手算一遍时点桥」。"
+    ].join("\n");
+  }
+
+  function formatRecordContractRun() {
+    return RECORD_CONTRACT_OUTPUT;
+  }
+
+  function formatDcfRun() {
+    const p = readDcfInput();
+    const r = dcf(p);
+    const multiple = byId("dcf-exit-multiple") ? number("dcf-exit-multiple") : 10;
+    const tb = terminalBridge(p, multiple);
+    return [
+      "输入：lab/inputs/simple.json（页面控件可覆盖）",
+      "",
+      "五个数",
+      `  起点自由现金流      ${yi2(p.baseFcf)}`,
+      `  显性期年增长        ${pct2(p.growth)}`,
+      `  显性期年数          ${p.years} 年`,
+      `  永续增长            ${pct2(p.terminalGrowth)}`,
+      `  折现率              ${pct2(p.discountRate)}`,
+      `  （净债务）          ${yi2(p.netDebt)}`,
+      "",
+      "结果",
+      `  显性期现值          ${yi2(r.explicitPv)}`,
+      `  终值现值            ${yi2(r.terminalPv)}`,
+      `  企业价值            ${yi2(r.ev)}`,
+      `  股权价值            ${yi2(r.equity)}`,
+      `  终值占企业价值      ${pct(r.terminalShare)}`,
+      "",
+      "终值的两种写法必须互查",
+      `  第${p.years}年 FCFF          ${yi2(tb.lastFcf)}`,
+      `  永续增长终值        ${yi2(tb.gordonTerminalValue)}`,
+      `  隐含退出倍数        ${tb.impliedExitMultiple.toFixed(1)} 倍`,
+      `  若改用 ${multiple} 倍退出    股权价值 ${tb.equityValue.toFixed(2)} 亿元   隐含永续增长 ${pct2(tb.impliedTerminalGrowth)}`,
+      "",
+      "边界：输出不是“这家公司值多少”，而是“哪个假设在决定这个数”。"
+    ].join("\n");
+  }
+
+  function formatReverseRun() {
+    const target = byId("reverse-target") ? number("reverse-target") : 300;
+    const baseFcf = byId("reverse-fcf") ? number("reverse-fcf") : 10;
+    const base = { ...DEFAULT_DCF, baseFcf };
+    const model = dcf(base);
+    const lines = [
+      "输入：lab/inputs/simple.json",
+      `模型基准股权价值   ${yi2(model.equity)}`,
+      `当前市场股权价值   ${yi2(target)}`,
+      `差距               ${pct(target / model.equity - 1)}`,
+      "",
+      "① 当前价格要求的显性期年增长（其余输入不变）",
+      "   折现率               要求增长"
+    ];
+    [0.07, 0.08, 0.09, 0.10, 0.11].forEach(rate => {
+      const growth = solve(target, g => dcf({ ...base, growth: g, discountRate: rate }).equity, -0.5, 1.0);
+      const tag = Math.abs(rate - 0.09) < 1e-12 ? "  <- 基准折现率" : "";
+      lines.push(`   ${pct2(rate).padEnd(10)}${growth === null ? "无解".padStart(12) : pct2(growth).padStart(12)}${tag}`);
+    });
+    const years = requiredYears(base, target);
+    lines.push("", "③ 当前价格要求的显性期年数（增长、起点、WACC 和永续增长全部不变）");
+    if (years === null) {
+      lines.push("   无解：即使把显性期拉到 80 年也撑不到这个价格");
+    } else {
+      lines.push(`   需要约 ${years.requiredYears} 年`);
+      if (years.equityBelow !== null) {
+        lines.push(`   ${String(years.yearsBelow).padStart(2)} 年   股权价值 ${years.equityBelow.toFixed(2)} 亿元`);
+      }
+      lines.push(`   ${String(years.requiredYears).padStart(2)} 年   股权价值 ${years.equityAt.toFixed(2)} 亿元`);
+    }
+    lines.push("", "边界：反解结果永远是带条件的曲线，不是买卖建议。");
+    return lines.join("\n");
+  }
+
+  function formatMethodsRun() {
+    const m = multiples(DEFAULT_METHODS);
+    const b = bankDemo(DEFAULT_METHODS);
+    const values = Object.values(m);
+    const high = Math.max(...values);
+    const low = Math.min(...values);
+    return [
+      "输入：lab/inputs/methods.json",
+      "",
+      "同一家工业公司的四个股权价值",
+      `  DCF            ${yi2(m.dcf)}`,
+      `  PE             ${yi2(m.pe)}`,
+      `  PB             ${yi2(m.pb)}`,
+      `  EV/EBITDA      ${yi2(m.evEbitda)}`,
+      "",
+      `  最高 ${high.toFixed(2)} / 最低 ${low.toFixed(2)} = ${(high / low).toFixed(2)} 倍`,
+      "",
+      "方法错配：把银行存款当成普通有息债务",
+      `  EV/EBITDA，存款按债务扣除     ${yi2(b.evEbitdaWithDeposits)}   <- 负值，经济上不成立`,
+      `  EV/EBITDA，存款不按债务扣除   ${yi2(b.evEbitdaWithoutDeposits)}`,
+      `  PE                            ${yi2(b.pe)}`,
+      `  PB                            ${yi2(b.pb)}`,
+      "",
+      "边界：脚本只演示方法差距和错配，不判断哪个倍数合理。"
+    ].join("\n");
+  }
+
+  function formatKnobsRun() {
+    return KNOBS_OUTPUT;
+  }
+
+  const LAB_RUNNERS = {
+    "record-contract": formatRecordContractRun,
+    bridge: formatBridgeRun,
+    pit: formatPitRun,
+    "mini-dcf": formatDcfRun,
+    reverse: formatReverseRun,
+    methods: formatMethodsRun,
+    knobs: formatKnobsRun
+  };
+
+  function setupLabRun() {
+    document.querySelectorAll("[data-lab-run]").forEach(panel => {
+      const kind = panel.dataset.labRun;
+      const button = panel.querySelector("[data-lab-run-button]");
+      const output = panel.querySelector("[data-lab-run-output]");
+      if (!button || !output || !LAB_RUNNERS[kind]) return;
+      output.classList.add("is-empty");
+      button.addEventListener("click", () => {
+        try {
+          output.textContent = LAB_RUNNERS[kind]();
+          output.classList.remove("is-empty");
+          output.classList.add("is-ready");
+          button.setAttribute("aria-pressed", "true");
+          button.textContent = "已运行 · 再跑一次";
+        } catch (error) {
+          output.textContent = `运行失败：${error.message}`;
+          output.classList.remove("is-empty");
+          output.classList.add("is-ready");
+        }
+      });
+    });
+  }
+
+  globalThis.ValuationLabTools = {
+    dcf, solve, fcffBridge, equityBridge, perShare, bridge, ocfCheck, pitBridge,
+    terminalBridge, requiredYears, multiples, bankDemo, LAB_RUNNERS
+  };
 
   if (typeof document !== "undefined") {
     document.addEventListener("DOMContentLoaded", () => {
@@ -476,6 +813,7 @@
       setupMethodMatcher();
       setupMethodNumbers();
       setupYofc();
+      setupLabRun();
     });
   }
 })();

@@ -43,6 +43,7 @@
         <a href="day-3.html#matrix" data-toc-link><span></span>失败状态矩阵</a>
         <a href="day-3.html#write-test" data-toc-link><span></span>练习：写一条验收测试</a>
         <a href="day-3.html#checklist" data-toc-link><span></span>一页验收清单</a>
+        <a href="day-3.html#lab-run" data-toc-link><span></span>运行环节</a>
         <a href="day-3.html#quizzes" data-toc-link><span></span>闯关</a>
         <a href="day-3.html#recall" data-toc-link><span></span>主动回忆</a>
         <a href="day-3.html#boundary" data-toc-link><span></span>学完后能做什么</a>
@@ -51,7 +52,7 @@
         <strong>本课目标</strong>
         <p>核对对象、时点、单位和来源，筛掉会让估值失真的输入。</p>
         <span>基础检查 35 分钟 · 进阶检查 20 分钟</span>
-        <div class="sidebar-stats"><span data-read-count>0 / 9 小节已读</span><span data-quiz-score>7 题未开始</span></div>
+        <div class="sidebar-stats"><span data-read-count>0 / 10 小节已读</span><span data-quiz-score>7 题未开始</span></div>
       </div>
     </aside>
 
@@ -69,6 +70,16 @@
           <p class="section-kicker">01 · 动手计算</p><h2>资本结构时点桥</h2>
           <p class="section-lead">课文输入应得净债务 50—60、每股 14.0—15.0。区间来自期间经营现金流那一格未知，把它写成单点是把未知伪装成精度。</p>
           <div class="tool">
+            <div class="lab-run-core" style="margin-bottom:16px">
+              <header><strong>核心代码</strong><span>lab/bridge.py · pit_bridge</span></header>
+              <pre><code>report_net_debt = debt - cash
+# 发债同时增加债务和现金，净债务不变
+net_debt_high = report_net_debt + acquisition_cash - ocf_low
+net_debt_low  = report_net_debt + acquisition_cash - ocf_high
+equity_low  = ev - net_debt_high
+equity_high = ev - net_debt_low
+per_share = equity / (total_shares - treasury_shares)</code></pre>
+            </div>
             <div class="controls">
               <div class="control"><label>EV <span>亿元</span></label><input id="pit-ev" data-pit-input type="number" value="200" step="1"></div>
               <div class="control"><label>报告日现金 <span>亿元</span></label><input id="pit-cash" data-pit-input type="number" value="20" step="1"></div>
@@ -152,6 +163,34 @@
           </ul>
         </section>
 
+        <section class="reader-section" id="lab-run" data-reader-section>
+          <p class="section-kicker">06 · 运行环节（必做）</p><h2>让判断可以被复算</h2>
+          <p class="section-lead">先对时点桥写好答案，再运行下方复算；契约校验只对 <code>03-pit</code>、<code>09-semantics</code>、<code>10-negative-control</code> 三条。</p>
+          <div class="lab-run" data-lab-run="pit">
+            <div class="lab-run-command"><span>时点桥</span><code>lab/bridge.py · pit_bridge()</code></div>
+            <div class="lab-run-actions">
+              <button type="button" data-lab-run-button>运行时点桥</button>
+              <span class="lab-run-hint">课文答案：净债务 50—60、每股 14.0—15.0</span>
+            </div>
+            <pre class="lab-run-output" data-lab-run-output aria-live="polite">（尚未运行。）</pre>
+          </div>
+          <div class="lab-run" data-lab-run="record-contract" style="margin-top:22px">
+            <div class="lab-run-command"><span>终端等价</span><code>python3 lab/record_contract.py</code></div>
+            <div class="lab-run-core">
+              <header><strong>核心代码</strong><span>lab/record_contract.py · PIT 序关系</span></header>
+              <pre><code># source_published_at ≤ adopted_at ≤ research_as_of
+if published > as_of:
+    return Finding("pit", …)  # 未来信息污染
+# 第10条负对照：labelled_as_consensus 但样本/方法/截点齐全 → 不报警</code></pre>
+            </div>
+            <div class="lab-run-actions">
+              <button type="button" data-lab-run-button>运行契约校验</button>
+              <span class="lab-run-hint">先写三条状态，再对答案</span>
+            </div>
+            <pre class="lab-run-output" data-lab-run-output aria-live="polite">（尚未运行。）</pre>
+          </div>
+        </section>
+
         <section class="reader-section checkpoint" id="quizzes" data-reader-section>
           <div class="checkpoint-heading"><span>闯关 7 题</span><div><p>先选，再看解释</p><h2>对象、时点和单位会在哪里失真？</h2></div></div>
           <div class="quiz-stack">
@@ -166,12 +205,12 @@
         </section>
 
         <section class="reader-section recall-section" id="recall" data-reader-section>
-          <p class="section-kicker">06 · 主动回忆</p><h2>写下你的输入检查记录</h2>
+          <p class="section-kicker">07 · 主动回忆</p><h2>写下你的输入检查记录</h2>
           <textarea class="note-area reader-note" data-note="day-3" placeholder="对象与证券：&#10;估值日与异步数据桥：&#10;最重要的来源缺口：&#10;当前等级与还不能断言："></textarea>
         </section>
 
         <section class="reader-section boundary-section" id="boundary" data-reader-section>
-          <p class="section-kicker">07 · 本课边界</p><h2>输入记录完整，还不等于预测合理</h2>
+          <p class="section-kicker">08 · 本课边界</p><h2>输入记录完整，还不等于预测合理</h2>
           <div class="boundary-grid">
             <div><span aria-hidden="true">✓</span><div><strong>现在可以</strong><p>检查对象、时点、单位和来源，并亲手把资本结构从报告日桥接到估值日。</p></div></div>
             <div><span aria-hidden="true">—</span><div><strong>还不可以</strong><p>仅凭来源很强就断言未来一定发生，或由输入检查推出买卖结论。</p></div></div>

@@ -348,6 +348,28 @@ class WebCourseTests(unittest.TestCase):
             for key, value in expected.items():
                 self.assertAlmostEqual(actual[camel(key)], value, places=10, msg=f"{name}.{key}")
 
+    def test_every_lesson_has_a_lab_run_panel(self):
+        expected = {
+            1: ("record-contract", "运行复算"),
+            2: ("bridge", "运行复算"),
+            3: ("record-contract", "运行契约校验"),
+            4: ("mini-dcf", "运行复算"),
+            5: ("reverse", "运行复算"),
+            6: ("methods", "运行复算"),
+            7: ("knobs", "运行旋钮实验"),
+        }
+        for day, (kind, button) in expected.items():
+            text = (WEB / f"day-{day}.html").read_text()
+            self.assertIn('id="lab-run"', text, f"day-{day}")
+            self.assertIn(f'data-lab-run="{kind}"', text, f"day-{day}")
+            self.assertIn("data-lab-run-button", text, f"day-{day}")
+            self.assertIn("data-lab-run-output", text, f"day-{day}")
+            self.assertIn("lab-run-core", text, f"day-{day}")
+            self.assertIn(button, text, f"day-{day}")
+            self.assertIn("assets/tools.js", text, f"day-{day} must load tools.js")
+        day3 = (WEB / "day-3.html").read_text()
+        self.assertIn('data-lab-run="pit"', day3)
+        self.assertIn("运行时点桥", day3)
     def test_the_shared_engine_is_the_only_place_formulas_live(self):
         # 页面可以读 tools.js 的结果，但不能自己再写一份算式。
         source = (WEB / "assets/tools.js").read_text()
@@ -356,10 +378,21 @@ class WebCourseTests(unittest.TestCase):
         names = {name.strip() for name in exported.group(1).split(",")}
         self.assertTrue(
             {"bridge", "fcffBridge", "ocfCheck", "pitBridge", "terminalBridge",
-             "requiredYears", "multiples", "bankDemo"}.issubset(names),
+             "requiredYears", "multiples", "bankDemo", "LAB_RUNNERS"}.issubset(names),
             names,
         )
 
+    @unittest.skipUnless(shutil.which("node"), "Node.js not installed; browser model parity cannot run")
+    def test_lab_runners_emit_script_style_output(self):
+        bridge_out = run_node("globalThis.ValuationLabTools.LAB_RUNNERS.bridge()")
+        self.assertIn("FCFF", bridge_out)
+        self.assertIn("12.00", bridge_out)
+        dcf_out = run_node('globalThis.ValuationLabTools.LAB_RUNNERS["mini-dcf"]()')
+        self.assertIn("184.09", dcf_out)
+        reverse_out = run_node("globalThis.ValuationLabTools.LAB_RUNNERS.reverse()")
+        self.assertIn("23", reverse_out)
+        methods_out = run_node("globalThis.ValuationLabTools.LAB_RUNNERS.methods()")
+        self.assertIn("1.46", methods_out)
     @unittest.skipUnless(shutil.which("node"), "Node.js not installed; browser JavaScript remains runtime-only")
     def test_javascript_syntax(self):
         for script in (WEB / "assets").glob("*.js"):
