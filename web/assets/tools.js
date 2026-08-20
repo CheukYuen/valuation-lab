@@ -20,6 +20,83 @@
     return { explicitPv, terminalPv, ev, equity: ev - netDebt, terminalShare: terminalPv / ev };
   }
 
+  // 第2课的两座价值桥。公式的唯一来源是 lab/bridge.py，这里逐字段对齐，
+  // 由 tests/test_web.py 的 parity 测试比对；页面不得另写一份算式。
+  const FLOW = ["ebit", "taxRate", "depreciation", "capex", "workingCapitalIncrease"];
+  const STRUCTURE = ["ev", "cash", "debt", "leaseLiability", "minorityInterest", "nonOperatingAssets"];
+  const DENOMINATOR = ["totalShares", "treasuryShares", "optionDilution",
+                       "convertibleShares", "convertibleDebt", "floatShares"];
+
+  function require(input, keys) {
+    // 未知不等于零：缺字段必须报错，不能静默按 0 计算。
+    const missing = keys.filter(k => input[k] === undefined || input[k] === null);
+    if (missing.length) throw new Error(`输入缺少 ${missing.join("、")}；未知不能当作 0`);
+  }
+
+  function fcffBridge(input) {
+    require(input, FLOW);
+    const nopat = input.ebit * (1 - input.taxRate);
+    return {
+      nopat,
+      fcff: nopat + input.depreciation - input.capex - input.workingCapitalIncrease,
+      skippedReinvestment: input.capex + input.workingCapitalIncrease - input.depreciation
+    };
+  }
+
+  function equityBridge(input) {
+    require(input, STRUCTURE);
+    return {
+      equityValue: input.ev + input.cash - input.debt - input.leaseLiability
+        - input.minorityInterest + input.nonOperatingAssets,
+      netDebt: input.debt + input.leaseLiability - input.cash
+    };
+  }
+
+  function perShare(input) {
+    require(input, DENOMINATOR);
+    const value = equityBridge(input).equityValue;
+    const basic = input.totalShares - input.treasuryShares;
+    if (basic <= 0) throw new Error(`扣除库存股后的外部普通股为 ${basic}，分母必须为正`);
+    const diluted = basic + input.optionDilution;
+    const ifConverted = diluted + input.convertibleShares;
+    return {
+      basicShares: basic,
+      dilutedShares: diluted,
+      ifConvertedShares: ifConverted,
+      perShareBasic: value / basic,
+      perShareDiluted: value / diluted,
+      perShareIfConverted: (value + input.convertibleDebt) / ifConverted,
+      perShareDoubleCounted: value / ifConverted,
+      perShareFloatWrong: value / input.floatShares,
+      evPerShare: input.ev / basic
+    };
+  }
+
+  function bridge(input) {
+    return { ...fcffBridge(input), ...equityBridge(input), ...perShare(input) };
+  }
+
+  // 第6课：同一家公司的四种方法。唯一来源是 lab/methods.py。
+  function multiples(input) {
+    return {
+      dcf: dcf(input.dcf).equity,
+      pe: input.netIncome * input.peerPe,
+      pb: input.bookEquity * input.peerPb,
+      evEbitda: input.ebitda * input.peerEvEbitda - input.netDebt
+    };
+  }
+
+  function bankDemo(input) {
+    const b = input.bank;
+    const exDeposits = b.otherDebt - b.cash;
+    return {
+      evEbitdaWithDeposits: b.operatingIncome * b.peerEvEbitda - (b.deposits + exDeposits),
+      evEbitdaWithoutDeposits: b.operatingIncome * b.peerEvEbitda - exDeposits,
+      pe: b.netIncome * b.peerPe,
+      pb: b.bookEquity * b.peerPb
+    };
+  }
+
   function setupCashBridge() {
     if (!byId("bridge-ebit")) return;
     const update = () => {
@@ -28,8 +105,9 @@
       const da = number("bridge-da");
       const capex = number("bridge-capex");
       const wc = number("bridge-wc");
-      const nopat = ebit * (1 - tax);
-      const fcff = nopat + da - capex - wc;
+      const { nopat, fcff } = fcffBridge({
+        ebit, taxRate: tax, depreciation: da, capex, workingCapitalIncrease: wc
+      });
       setText("bridge-nopat", yi(nopat));
       setText("bridge-fcff", yi(fcff));
       setText("bridge-gap", yi(ebit - fcff));
@@ -165,7 +243,7 @@
     update();
   }
 
-  globalThis.ValuationLabTools = { dcf, solve };
+  globalThis.ValuationLabTools = { dcf, solve, fcffBridge, equityBridge, perShare, bridge, multiples, bankDemo };
 
   if (typeof document !== "undefined") {
     document.addEventListener("DOMContentLoaded", () => {

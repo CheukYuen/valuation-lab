@@ -1,0 +1,37 @@
+{
+  "_说明": "第6课：同一家公司用四种方法各估一次，再看方法用错对象时会发生什么。数字全部虚构。",
+  "unit": "亿元",
+
+  "_工业公司": "一家可比口径基本能对齐的制造企业",
+  "net_income": 12.0,
+  "book_equity": 80.0,
+  "ebitda": 30.0,
+  "net_debt": 30.0,
+  "shares": 10.0,
+  "peer_pe": 15.0,
+  "peer_pb": 1.8,
+  "peer_ev_ebitda": 8.0,
+
+  "_DCF输入": "交给 lab/mini_dcf.py 的同一套五个数，避免两处各写一份公式",
+  "dcf": {
+    "base_fcf": 10.0,
+    "growth": 0.08,
+    "years": 7,
+    "terminal_growth": 0.02,
+    "discount_rate": 0.09,
+    "net_debt": 30.0
+  },
+
+  "_银行": "存款是银行的经营投入，不是普通有息债务",
+  "bank": {
+    "operating_income": 40.0,
+    "deposits": 900.0,
+    "other_debt": 50.0,
+    "cash": 60.0,
+    "book_equity": 100.0,
+    "net_income": 15.0,
+    "peer_pe": 6.0,
+    "peer_pb": 0.8,
+    "peer_ev_ebitda": 8.0
+  }
+}

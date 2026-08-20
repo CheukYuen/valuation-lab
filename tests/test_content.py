@@ -123,6 +123,55 @@ class ContentTests(unittest.TestCase):
         self.assertEqual(round(sum(minutes) / 60), int(stated.group(1)),
                          f"day table sums to {sum(minutes)} minutes")
 
+    def test_day_two_teaches_the_denominator_beyond_basic_shares(self):
+        # 分母是第2课的主题之一。只讲总股本/流通股/库存股而不讲潜在稀释，
+        # 会漏掉真实研报里最常见的一类每股错误。
+        text = (ROOT / "course" / "DAY-2.md").read_text()
+        for term in ["潜在稀释股份", "可转债", "if-converted", "优先股", "库存股法"]:
+            self.assertIn(term, text, f"DAY-2 missing {term}")
+
+    def test_day_two_never_gives_a_fixed_direction_for_skipping_the_ev_bridge(self):
+        # 课文里所有例子都是净债务公司；只说"EV÷股本会高估"会训练出错误的单向直觉。
+        text = (ROOT / "course" / "DAY-2.md").read_text()
+        self.assertIn("净现金", text, "DAY-2 must show the net-cash case where the direction flips")
+
+    def test_day_two_failure_matrix_uses_only_day_one_vocabulary(self):
+        # 仓库里有两套词表：记录验证状态（第1课）与清单项状态（AUDIT-CHECKLIST）。
+        # 失败矩阵必须只用前者，否则下游无法渲染一致的状态。
+        text = (ROOT / "course" / "DAY-2.md").read_text()
+        section = text.split("### 失败状态矩阵", 1)[1].split("\n## ", 1)[0]
+        table = [line for line in section.splitlines() if line.startswith("|")]
+        self.assertGreaterEqual(len(table), 8, "failure matrix rows not found")
+        for line in table:
+            for stale in ["警告", "通过"]:
+                self.assertNotIn(stale, line, f"checklist vocabulary leaked into the matrix: {line}")
+
+    def test_day_two_hands_its_beginner_case_and_checklist_to_the_learner(self):
+        # 案例3（利润不等于现金）曾经不被任何一课引用，而它正是第2课的主题。
+        text = (ROOT / "course" / "DAY-2.md").read_text()
+        self.assertIn("cases/00-basics", text)
+        self.assertIn("docs/AUDIT-CHECKLIST.md", text)
+
+    def test_day_two_completes_the_five_step_learning_loop(self):
+        # course/README.md 声明了五步循环，第2课是最接近的一课，缺任何一步都要暴露。
+        text = (ROOT / "course" / "DAY-2.md").read_text()
+        for step in ["先闭卷回忆", "10分钟白话解释", "单变量实验", "一句话输出"]:
+            self.assertIn(step, text, f"DAY-2 missing learning step {step}")
+
+    def test_every_lesson_has_a_mandatory_run_step(self):
+        # CLAUDE.md 的硬边界：每课包含一个必做的运行环节。没有这条测试，
+        # "每课必做"只是一句写在文档里的口号。
+        broken = []
+        for day in range(1, 8):
+            text = (ROOT / "course" / f"DAY-{day}.md").read_text()
+            scripts = re.findall(r"^python3 (\S+\.py)", text, re.MULTILINE)
+            if "运行环节" not in text or not scripts:
+                broken.append(f"DAY-{day}: no run step")
+                continue
+            # 命令里点名的脚本必须真的存在，否则「每课必做」只是文档里的一句话
+            broken += [f"DAY-{day}: missing {s}" for s in scripts if not (ROOT / s).is_file()]
+        self.assertEqual(broken, [], "\n".join(broken))
+
     def test_markdown_renderer_fails_closed_on_unsupported_html(self):
         script = ROOT / "scripts" / "render_course_markdown.py"
         spec = importlib.util.spec_from_file_location("render_course_markdown", script)

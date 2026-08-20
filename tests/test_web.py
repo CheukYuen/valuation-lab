@@ -3,6 +3,7 @@ import json
 import re
 import shutil
 import subprocess
+import sys
 import unittest
 from html.parser import HTMLParser
 from pathlib import Path
@@ -11,6 +12,31 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 WEB = ROOT / "web"
 DOCS = ROOT / "docs"
+
+
+def camel(name):
+    head, *rest = name.split("_")
+    return head + "".join(word[:1].upper() + word[1:] for word in rest)
+
+
+def to_js_input(payload):
+    """把 lab/inputs/*.json 转成 tools.js 用的驼峰输入，跳过 _ 开头的说明字段。"""
+    out = {}
+    for key, value in payload.items():
+        if key.startswith("_") or isinstance(value, str):
+            continue
+        out[camel(key)] = to_js_input(value) if isinstance(value, dict) else value
+    return out
+
+
+def run_node(expression):
+    script = WEB / "assets/tools.js"
+    js = (f"require({json.dumps(str(script))});"
+          f"process.stdout.write(JSON.stringify({expression}));")
+    result = subprocess.run(["node", "-e", js], capture_output=True, text=True)
+    if result.returncode != 0:
+        raise AssertionError(result.stderr)
+    return json.loads(result.stdout)
 
 
 class PageParser(HTMLParser):
@@ -197,6 +223,41 @@ class WebCourseTests(unittest.TestCase):
         combined = "\n".join(h.replace(" ", "") for h in headings)
         missing = [key for key in glossary_keys if key.replace(" ", "") not in combined]
         self.assertEqual(missing, [], f"glossary.js keys with no docs/GLOSSARY.md heading: {missing}")
+
+    @unittest.skipUnless(shutil.which("node"), "Node.js not installed; browser model parity cannot run")
+    def test_browser_bridge_matches_lab_bridge_field_by_field(self):
+        # CLAUDE.md：互动计算必须调用 tools.js 的唯一实现，并与 lab/ 下的 Python 函数一致。
+        # 期望值不硬编码——直接从 lab/bridge.py 取真值，Python 改了公式这里立刻红。
+        sys.path.insert(0, str(ROOT / "lab"))
+        from bridge import bridge  # noqa: PLC0415
+
+        params = json.loads((ROOT / "lab/inputs/bridge.json").read_text())
+        expected = bridge(params)
+        actual = run_node(f"globalThis.ValuationLabTools.bridge({json.dumps(to_js_input(params))})")
+
+        self.assertEqual(sorted(actual), sorted(camel(k) for k in expected))
+        for key, value in expected.items():
+            self.assertAlmostEqual(actual[camel(key)], value, places=10, msg=key)
+
+    @unittest.skipUnless(shutil.which("node"), "Node.js not installed; browser model parity cannot run")
+    def test_browser_methods_match_lab_methods(self):
+        sys.path.insert(0, str(ROOT / "lab"))
+        from methods import bank_demo, multiples  # noqa: PLC0415
+
+        params = json.loads((ROOT / "lab/inputs/methods.json").read_text())
+        js_input = json.dumps(to_js_input(params))
+        for name, expected in (("multiples", multiples(params)), ("bankDemo", bank_demo(params))):
+            actual = run_node(f"globalThis.ValuationLabTools.{name}({js_input})")
+            for key, value in expected.items():
+                self.assertAlmostEqual(actual[camel(key)], value, places=10, msg=f"{name}.{key}")
+
+    def test_the_shared_engine_is_the_only_place_formulas_live(self):
+        # 页面可以读 tools.js 的结果，但不能自己再写一份算式。
+        source = (WEB / "assets/tools.js").read_text()
+        exported = re.search(r"globalThis\.ValuationLabTools = \{([^}]+)\}", source)
+        self.assertIsNotNone(exported, "tools.js no longer exports a tool surface")
+        names = {name.strip() for name in exported.group(1).split(",")}
+        self.assertTrue({"bridge", "fcffBridge", "multiples", "bankDemo"}.issubset(names), names)
 
     @unittest.skipUnless(shutil.which("node"), "Node.js not installed; browser JavaScript remains runtime-only")
     def test_javascript_syntax(self):

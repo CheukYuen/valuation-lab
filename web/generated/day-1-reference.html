@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="source-sha256" content="dd3315ecb3e28d8fac65553d9029830e4a04647d205f52ef65ecdd573d653846">
+  <meta name="source-sha256" content="b6de07c3f90e4c049b8b939c3c1b524f5de9684f45b4419ff4e5f86f627417ed">
   <title>Day 1 专业参考章</title>
   <link rel="stylesheet" href="../assets/styles.css">
 </head>
 <body class="markdown-reference-page">
   <main class="markdown-reference-document">
-    <p class="markdown-reference-source">由 <a href="../../course/DAY-1.md">course/DAY-1.md</a> 生成 · SHA-256 dd3315ecb3e2</p>
+    <p class="markdown-reference-source">由 <a href="../../course/DAY-1.md">course/DAY-1.md</a> 生成 · SHA-256 b6de07c3f90e</p>
 <h1>第1天：模型到底在说什么</h1>
 <p><strong>本课目标</strong>：先把材料里的信息读对，再学会要求投研 Agent 把信息记录对、输出得可验收。基础层约35分钟，开发者层约40分钟。</p>
 <blockquote><p><a href="../day-1.html"><code>打开本课互动HTML</code></a></p></blockquote>
@@ -99,10 +99,10 @@
 <p>完成这一层后，你至少应该能够：</p>
 <ul><li>为关键数字定义可追溯的记录契约；</li><li>从报告表述反查到原始证据和每一步变换；</li><li>阻止研究时点之后的信息污染当时判断；</li><li>区分证据、计算、推断、判断和未知；</li><li>要求派生数字由独立计算复核，而不是由另一个模型复述；</li><li>为来源缺失、口径不明、时间穿越和无法复算设计失败状态与测试。</li><li>为「不该降级」的情况同样设计测试，避免验收器沦为无差别报警器。</li></ul>
 <p>这叫“估值系统开发者 / 验收者”水平。它不要求你已经能覆盖一个行业多年，也不要求你给出目标价、评级或买卖建议。</p>
-<h2>可选实验</h2>
-<p><strong>跳过不影响完成本课。</strong> 前六课不运行代码也能完成；脚本只是让判断可以被复算的工具。</p>
+<h2>运行环节：让判断可以被复算（必做）</h2>
+<p>先对 <a href="../../cases/00-records/README.md"><code>记录契约样本</code></a> 里的十条记录各写一个状态，写完再运行：</p>
 <pre><code class="language-bash">python3 lab/record_contract.py</code></pre>
-<p>它把上面那份记录契约和 PIT 序关系写成了可执行校验，对十条虚构记录逐条给出失败状态。先不看答案自己判，再运行对答案：<a href="../../cases/00-records/README.md"><code>记录契约样本</code></a>。</p>
+<p>它把上面那份记录契约和 PIT 序关系写成了可执行校验，对十条虚构记录逐条给出失败状态。顺序不能反：先判断，再对答案——直接看输出只会让你熟悉答案，不会让你学会判断。</p>
 <p>注意第10条是<strong>负对照</strong>：它被标为共识，看起来正踩陷阱，但样本、方法和截点齐全，正确结果是不报警。</p>
 <p>校验器只判断记录是否说清了自己是什么，不判断数字对不对。</p>
 <h2>交给后面几课</h2>

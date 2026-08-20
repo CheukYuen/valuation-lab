@@ -2,7 +2,7 @@
 
 用 7 天、约 6 小时，学会判断一个估值输出是否值得继续使用。
 
-这里不教你预测七年财务，也不要求你写代码。你要练成的是三种能力：
+这里不教你预测七年财务，也不要求你写代码——但每课都要跑一次现成脚本，用它复算你先写下的判断。你要练成的是三种能力：
 
 1. 发现对象、时点、股本、币种和现金流等明显错误；
 2. 判断估值方法是否适合这门生意；
@@ -20,19 +20,21 @@
 
 ## 从这里开始
 
-在 macOS 双击 [`open-course.command`](open-course.command) 使用互动版；也可直接打开 [`web/index.html`](web/index.html)。纯文字入口是 [`course/README.md`](course/README.md)。前六课不需要编写或运行代码。
+在 macOS 双击 [`open-course.command`](open-course.command) 使用互动版；也可直接打开 [`web/index.html`](web/index.html)。纯文字入口是 [`course/README.md`](course/README.md)。你不需要编写代码，只需要按课程指示运行现成命令。
 
 | 天 | 主题 | 时间 | 过关能力 |
 |---|---|---:|---|
 | 1 | 模型到底在说什么 | 75 分钟 | 区分六类信息；验收一段 Agent 输出，并判断什么**不该**降级 |
-| 2 | 看懂最小价值桥 | 45 分钟 | 从 EBIT 走到股权价值，抓住错误分母 |
+| 2 | 看懂最小价值桥 | 65 分钟 | 从 EBIT 走到股权价值，抓住错误分母与稀释 |
 | 3 | 五分钟初筛 | 35 分钟 | 检查对象、时点、币种、单位和来源 |
 | 4 | 谁在控制结果 | 45 分钟 | 读敏感性、终值和峰值正常化 |
 | 5 | 反向 DCF | 45 分钟 | 把价格翻译成可质证的经营要求 |
 | 6 | 方法适不适合 | 40 分钟 | 判断 DCF、PE、PB、EV/EBITDA、SOTP 的角色 |
 | 7 | 长飞毕业审计 | 60 分钟 | 独立给出使用等级与证据 |
 
-开始前做 [`入门测验`](course/PRETEST.md)。完成第七课后做 [`毕业测验`](course/POSTTEST.md)。毕业标准是至少答对 8/10，并完成一页审计结论。
+每课含一个必做的运行环节（约 5 分钟，已包含在上表时间内）：先写判断，再运行脚本对答案。
+
+开始前做 [`入门测验`](course/PRETEST.md)。完成第七课后做 [`毕业测验`](course/POSTTEST.md)。毕业标准是至少答对 8/10、七个运行环节全部跑过，并完成一页审计结论。
 
 遇到陌生词先查 [`白话术语表`](docs/GLOSSARY.md)。审材料时使用 [`分层审计清单`](docs/AUDIT-CHECKLIST.md)。
 
@@ -48,18 +50,20 @@
 
 这些能力以后可以补。第一阶段只训练“这份输出能不能用”。
 
-## 可选代码实验
+## 每课的运行环节
 
-课程第 4、5、7 天会提供可选实验。跳过代码不影响毕业。
+每课一条命令，用来复算你已经写下的判断——不是替你判断。
 
 ```bash
-python3 lab/record_contract.py
-python3 lab/mini_dcf.py
-python3 lab/reverse.py 300
-python3 cases/01-yofc/knobs.py
+python3 lab/record_contract.py    # 第 1、3 课
+python3 lab/bridge.py             # 第 2 课
+python3 lab/mini_dcf.py           # 第 4 课
+python3 lab/reverse.py 300        # 第 5 课
+python3 lab/methods.py            # 第 6 课
+python3 cases/01-yofc/knobs.py    # 第 7 课
 ```
 
-四个命令都只使用 Python 标准库。它们用于验证方向、敏感性和记录完整性，不产出投资结论。
+全部只使用 Python 标准库，可离线运行。它们验证方向、敏感性和记录完整性，不产出投资结论。互动版页面调用与这些脚本同一套公式，数字必须一致。
 
 维护者运行全部自动检查：
 
@@ -78,7 +82,7 @@ docs/FIVE-NUMBERS.md     DCF 的可选补充阅读
 cases/00-basics/         六个一次只考一个问题的虚构案例
 cases/00-records/        第1课的十条记录契约样本（含负对照）
 cases/01-yofc/           长飞光纤毕业案例
-lab/                     可选的记录契约校验、最小 DCF 与反向 DCF 实验
+lab/                     每课的运行环节：记录契约、价值桥、最小 DCF、反向 DCF、方法对照
 ```
 
 ## 与 investment-research-copilot 的关系
