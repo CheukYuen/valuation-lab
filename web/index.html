@@ -8,13 +8,22 @@
   <link rel="stylesheet" href="assets/styles.css">
   <script defer src="assets/app.js"></script>
 </head>
-<body>
-  <header class="topbar">
-    <a class="brand" href="index.html">valuation-lab · 互动版</a>
-    <nav class="topnav" aria-label="主导航"><a aria-current="page" href="index.html">课程</a><a href="glossary.html">术语表</a><a href="study-methods.html">科学学习法</a><a href="../README.md">文字版</a></nav>
-    <div class="progress-wrap" aria-label="课程进度"><div class="progress-label"><span>学习进度</span><strong data-progress-text>0/7</strong></div><div class="progress-track"><div class="progress-bar" data-progress-bar></div></div></div>
+<body class="reader-page site-page">
+  <header class="reader-topbar">
+    <a class="reader-brand" href="index.html" aria-label="返回课程首页">
+      <span class="reader-brand-mark" aria-hidden="true">V</span>
+      <span><strong>估值实验室</strong><small>看懂估值，不迷信数字</small></span>
+    </a>
+    <div class="reader-heading">
+      <div class="reader-breadcrumb">
+        <span>7天估值判断课</span><b>/</b><strong>课程首页</strong>
+      </div>
+      <div class="reader-course-progress" aria-label="课程位置：共7课"><div class="day-dots" data-day-dots></div><small data-progress-text>0/7</small></div>
+    </div>
+    <nav class="reader-actions" aria-label="辅助导航"><a aria-current="page" href="index.html">课程首页</a><a href="glossary.html">术语表</a><a href="study-methods.html">学习方法</a></nav>
   </header>
-  <main class="dashboard">
+  <div class="reader-shell">
+  <main class="dashboard reader-content">
     <section class="dashboard-hero">
       <div class="hero">
         <p class="eyebrow">7 DAYS · 6 HOURS · ZERO CODE REQUIRED</p>
@@ -132,5 +141,6 @@
       <button class="danger-button" data-reset-progress>清除完成记录</button>
     </section>
   </main>
+  </div>
 </body>
 </html>

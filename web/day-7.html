@@ -4,126 +4,205 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>第7课：长飞综合练习</title>
+  <meta name="description" content="在真实复杂材料中解释估值链条、复算关键结果，再分别评价工程质量、经济假设和方法适用性。">
   <link rel="stylesheet" href="assets/styles.css">
+  <script defer src="assets/glossary.js"></script>
   <script defer src="assets/app.js"></script>
   <script defer src="assets/tools.js"></script>
 </head>
-<body data-lesson="day-7">
-<header class="topbar"><a class="brand" href="index.html">valuation-lab · 互动版</a><nav class="topnav"><a href="index.html">课程</a><a href="study-methods.html">科学学习法</a><a href="../course/DAY-7.md">文字版</a></nav><div class="progress-wrap"><div class="progress-label"><span>学习进度</span><strong data-progress-text>0/7</strong></div><div class="progress-track"><div class="progress-bar" data-progress-bar></div></div></div></header>
-<main class="page lesson-layout"><aside class="lesson-nav"><strong>七天课程</strong><a href="day-1.html">01 信息性质</a><a href="day-2.html">02 价值桥</a><a href="day-3.html">03 检查输入</a><a href="day-4.html">04 最小DCF</a><a href="day-5.html">05 反向DCF</a><a href="day-6.html">06 方法匹配</a><a class="current" href="day-7.html">07 长飞练习</a><a class="method-link" href="study-methods.html">科学学习法</a></aside>
-<article class="lesson-main">
-  <section class="hero"><p class="eyebrow">DAY 07 · 65 MIN · FROZEN CASE</p><h1>长飞<br>综合练习</h1><p>先解释经营假设怎样变成每股价值，再分别评价工程质量、经济假设和方法适用性。毕业同时验收两件事：能否复算简化估值，能否检查这份估值的可靠性。</p><div class="hero-meta"><span class="pill">2026-08-15冻结运行</span><span class="pill">PROVISIONAL</span><span class="pill">A/H双重上市</span></div></section>
-
-  <section class="section"><h2>四种判断不要混</h2>
-    <div class="grid-2">
-      <div class="card"><h3>模型工程质量</h3><p>输入、单位、公式、股本和程序能否复算？</p></div>
-      <div class="card"><h3>经济假设质量</h3><p>收入、利润率、现金转化和持续时间有何依据？</p></div>
-      <div class="card"><h3>方法适用性</h3><p>反向DCF和正常化FCFF是否适合周期与结构转型？</p></div>
-      <div class="card bad"><h3>投资吸引力</h3><p>当前价格是否值得承担风险？本课程不回答。</p></div>
-    </div>
-  </section>
-
-  <section class="section"><h2>六个失败模式的回收表</h2>
-    <p>第四列是今天真正的工作：你不是在找错，而是在设计能把问题暴露出来的变更。第五列同样重要。</p>
-    <div class="table-scroll write-test-table"><table>
-      <thead><tr><th>失败模式</th><th>交付课</th><th>触发的记录验证状态</th><th>在长飞材料里用什么变更测它</th><th>什么必须<strong>不变</strong></th></tr></thead>
-      <tbody>
-        <tr><td>利润不等于现金</td><td>第2课</td><td>明确错误（EBIT或NOPAT直接命名为FCFF）</td><td>把正向FCFF公式中的Capex或营运资金项删掉，看模型是否静默按零处理</td><td>EBIT、税率和折旧记录的验证状态；EV公式结构</td></tr>
-        <tr><td>错股本</td><td>第2课</td><td>明确错误（增发后仍用旧股本）/ 无法确认（有稀释项只报基本股数）</td><td>把报告EPS对应的股本换成当前股本，看每股结论是否重算</td><td>股权价值总额及其上游FCFF、EV桥</td></tr>
-        <tr><td>错时点</td><td>第3课</td><td>明确错误（已知期间大额现金流仍用旧资本结构）</td><td>把资本结构报告日与折现起点之间的现金流补进模型，看EV桥是否响应</td><td>报告日资本结构本身的逐元复核结果</td></tr>
-        <tr><td>峰值永久化</td><td>第4课</td><td>无法确认（终值利润率未讨论供给、价格与竞争）</td><td>把终值利润率改成历史中枢，看情景区间宽度由什么拉开</td><td>显性期逐年现金流及其现值</td></tr>
-        <tr><td>隐藏终值</td><td>第4课</td><td>无法确认（不披露终值占比或只报倍数不报隐含增长）</td><td>删掉终值占EV比重那一行，看结论可质证性是否降级</td><td>全部数值与计算状态——降的是披露，不是算术</td></tr>
-        <tr><td>方法错配</td><td>第6课</td><td>明确错误（对象错位或经济含义失效）</td><td>把EV口径结果与股权价值口径结果直接并列比较</td><td>两个结果各自的计算状态</td></tr>
-      </tbody>
-    </table></div>
-  </section>
-
-  <section class="section"><h2>先看基准事实，不先看答案</h2>
-    <div class="table-scroll"><table>
-      <thead><tr><th>项目</th><th>冻结值</th><th>性质</th></tr></thead>
-      <tbody>
-        <tr><td>市场时点</td><td>2026-08-14收盘</td><td>行情输入</td></tr>
-        <tr><td>资本结构</td><td>2026-03-31</td><td>财报事实，和市场时点异步</td></tr>
-        <tr><td>市场实际分类权益</td><td>1,903.996亿元</td><td>A/H实际类别合计</td></tr>
-        <tr><td>Bear</td><td>券商2026E–2032E路径</td><td>单家预测</td></tr>
-        <tr><td>Base / Bull</td><td>内部情景</td><td>研究假设</td></tr>
-      </tbody>
-    </table></div>
-    <p><a href="../cases/01-yofc/README.md">打开毕业案例说明</a> · <a href="../cases/01-yofc/worksheet.md">打开三层工作表</a></p>
-  </section>
-
-  <section class="section"><h2>旋钮实验一：WACC与三情景</h2>
-    <p>这张工具复现冻结结果表。先预测WACC升高时价值方向，再切换。</p>
-    <div class="tool">
-      <div class="controls"><div class="control"><label for="yofc-wacc">WACC</label>
-        <select id="yofc-wacc">
-          <option value="6.0">6.0%</option>
-          <option value="6.6" selected>6.6%</option>
-          <option value="7.0">7.0%</option>
-          <option value="8.0">8.0%</option>
-          <option value="9.0">9.0%</option>
-          <option value="10.0">10.0%</option>
-        </select>
-      </div></div>
-      <div class="result-grid">
-        <div class="metric"><span>Bear股权</span><strong id="yofc-bear">—</strong></div>
-        <div class="metric"><span>Base股权</span><strong id="yofc-base">—</strong></div>
-        <div class="metric"><span>Bull股权</span><strong id="yofc-bull">—</strong></div>
-        <div class="metric"><span>市场高于Bull</span><strong id="yofc-gap">—</strong></div>
+<body class="reader-page" data-lesson="day-7">
+  <header class="reader-topbar">
+    <a class="reader-brand" href="index.html" aria-label="返回课程首页">
+      <span class="reader-brand-mark" aria-hidden="true">V</span>
+      <span><strong>估值实验室</strong><small>看懂估值，不迷信数字</small></span>
+    </a>
+    <div class="reader-heading">
+      <div class="reader-breadcrumb">
+        <span>7天估值判断课</span><b>/</b><strong>长飞综合练习</strong><em>毕业课</em>
+        <button class="markdown-reference-trigger" type="button" data-markdown-reference-open aria-label="打开 Day 7 专业 Markdown 参考章" aria-controls="day-7-markdown-reference" aria-expanded="false" title="打开专业参考章">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.75 3.75h7.5l3 3v13.5H6.75z"></path><path d="M14.25 3.75v3h3M9 11h6M9 14h6M9 17h4.5"></path></svg>
+        </button>
       </div>
-      <p class="tool-note">这些是冻结模型输出，不是实时估值或目标价。</p>
+      <div class="reader-course-progress" aria-label="课程位置：第7课，共7课"><div class="day-dots" data-day-dots></div><small>7 / 7</small></div>
     </div>
-  </section>
+    <nav class="reader-actions" aria-label="辅助导航"><a href="index.html">课程首页</a><a href="glossary.html">术语表</a><a href="study-methods.html">学习方法</a></nav>
+  </header>
 
-  <section class="section"><h2>旋钮实验二：正反向现金口径</h2>
-    <p>原反向模型把FCFF/NOPAT写死为0.80。拖动现金转化率，看隐含利润率如何变化。</p>
-    <div class="tool">
-      <div class="control"><label>FCFF / NOPAT <span id="yofc-conversion-label">0.80</span></label><input id="yofc-conversion" type="range" min="0.8" max="1.1" value="0.8" step="0.1"></div>
-      <div class="result-grid">
-        <div class="metric"><span>H股价格等价要求</span><strong id="yofc-h-margin">—</strong></div>
-        <div class="metric"><span>实际分类合计要求</span><strong id="yofc-market-margin">—</strong></div>
-        <div class="metric"><span>A股价格等价要求</span><strong id="yofc-a-margin">—</strong></div>
+  <div class="reader-shell">
+    <aside class="reader-sidebar" aria-label="本课目录">
+      <label class="lesson-search"><span aria-hidden="true">⌕</span><span class="visually-hidden">搜索本课知识点</span><input type="search" placeholder="搜索本课知识点…" data-lesson-search></label>
+      <details class="course-switcher">
+        <summary><span aria-hidden="true">◎</span><strong data-course-switcher-current>7天课程 · 第7天</strong><span aria-hidden="true">⌄</span></summary>
+        <nav class="course-switcher-list" data-course-switcher-list aria-label="跳转到其他课"></nav>
+      </details>
+      <div class="toc-heading"><small>本课目录</small><strong>长飞综合练习</strong></div>
+      <nav class="lesson-toc" data-lesson-toc>
+        <a class="active" href="day-7.html#opening" data-toc-link><span></span>先记住这一句话</a>
+        <a href="day-7.html#four-judgements" data-toc-link><span></span>四种判断不要混</a>
+        <a href="day-7.html#failure-modes" data-toc-link><span></span>六个失败模式回收表</a>
+        <a href="day-7.html#facts" data-toc-link><span></span>先看基准事实</a>
+        <a href="day-7.html#wacc" data-toc-link><span></span>旋钮实验一：WACC</a>
+        <a href="day-7.html#conversion" data-toc-link><span></span>旋钮实验二：现金口径</a>
+        <a href="day-7.html#negative" data-toc-link><span></span>负对照</a>
+        <a href="day-7.html#quizzes" data-toc-link><span></span>闯关</a>
+        <a href="day-7.html#recall" data-toc-link><span></span>一页毕业结论</a>
+        <a href="day-7.html#boundary" data-toc-link><span></span>学完后能做什么</a>
+      </nav>
+      <div class="sidebar-footnote">
+        <strong>本课目标</strong>
+        <p>解释、复算并检查一份真实复杂估值材料，同时验收计算与检查两件事。</p>
+        <span>综合练习 65 分钟</span>
+        <div class="sidebar-stats"><span data-read-count>0 / 10 小节已读</span><span data-quiz-score>7 题未开始</span></div>
       </div>
-      <p class="tool-note">重点不是找“正确转化率”，而是发现最可引用结论跨了两套现金流口径。</p>
+    </aside>
+
+    <main class="reader-content">
+      <article class="lesson-article">
+        <header class="lesson-intro" id="opening" data-reader-section>
+          <div class="track-row" aria-label="课程层级"><span class="track-pill foundation">综合练习 · 65分钟</span><span class="track-pill builder">冻结案例 · PROVISIONAL</span></div>
+          <p class="reader-eyebrow">解释、复算、再检查 · 第 7 课</p>
+          <h1>长飞综合练习</h1>
+          <p class="lesson-deck">先解释经营假设怎样变成每股价值，再分别评价工程质量、经济假设和方法适用性。毕业同时验收两件事：能否复算简化估值，能否检查这份估值的可靠性。</p>
+          <div class="takeaway"><span>一句话速览</span><p>这些是冻结模型输出，不是实时估值或目标价。知道何时不该报警，和知道何时必须报警，是同一项能力的两半。</p></div>
+        </header>
+
+        <section class="reader-section" id="four-judgements" data-reader-section>
+          <p class="section-kicker">01 · 四种判断不要混</p><h2>工程、经济、方法和投资是四件事</h2>
+          <div class="dimension-grid">
+            <div><span>工程质量</span><strong>能否复算</strong><p>输入、单位、公式、股本和程序能否复算？</p></div>
+            <div><span>经济假设</span><strong>有何依据</strong><p>收入、利润率、现金转化和持续时间有何依据？</p></div>
+            <div><span>方法适用</span><strong>尺子对不对</strong><p>反向DCF和正常化FCFF是否适合周期与结构转型？</p></div>
+            <div><span>投资吸引力</span><strong>本课程不回答</strong><p>当前价格是否值得承担风险？练习到此为止。</p></div>
+          </div>
+        </section>
+
+        <section class="reader-section" id="failure-modes" data-reader-section>
+          <p class="section-kicker">02 · 回收表</p><h2>六个失败模式，今天用来设计变更</h2>
+          <p class="section-lead">第四列是今天真正的工作：你不是在找错，而是在设计能把问题暴露出来的变更。第五列同样重要。</p>
+          <div class="table-scroll write-test-table"><table>
+            <thead><tr><th>失败模式</th><th>交付课</th><th>触发的记录验证状态</th><th>在长飞材料里用什么变更测它</th><th>什么必须<strong>不变</strong></th></tr></thead>
+            <tbody>
+              <tr><td>利润不等于现金</td><td>第2课</td><td>明确错误（EBIT或NOPAT直接命名为FCFF）</td><td>把正向FCFF公式中的Capex或营运资金项删掉，看模型是否静默按零处理</td><td>EBIT、税率和折旧记录的验证状态；EV公式结构</td></tr>
+              <tr><td>错股本</td><td>第2课</td><td>明确错误（增发后仍用旧股本）/ 无法确认（有稀释项只报基本股数）</td><td>把报告EPS对应的股本换成当前股本，看每股结论是否重算</td><td>股权价值总额及其上游FCFF、EV桥</td></tr>
+              <tr><td>错时点</td><td>第3课</td><td>明确错误（已知期间大额现金流仍用旧资本结构）</td><td>把资本结构报告日与折现起点之间的现金流补进模型，看EV桥是否响应</td><td>报告日资本结构本身的逐元复核结果</td></tr>
+              <tr><td>峰值永久化</td><td>第4课</td><td>无法确认（终值利润率未讨论供给、价格与竞争）</td><td>把终值利润率改成历史中枢，看情景区间宽度由什么拉开</td><td>显性期逐年现金流及其现值</td></tr>
+              <tr><td>隐藏终值</td><td>第4课</td><td>无法确认（不披露终值占比或只报倍数不报隐含增长）</td><td>删掉终值占EV比重那一行，看结论可质证性是否降级</td><td>全部数值与计算状态——降的是披露，不是算术</td></tr>
+              <tr><td>方法错配</td><td>第6课</td><td>明确错误（对象错位或经济含义失效）</td><td>把EV口径结果与股权价值口径结果直接并列比较</td><td>两个结果各自的计算状态</td></tr>
+            </tbody>
+          </table></div>
+        </section>
+
+        <section class="reader-section" id="facts" data-reader-section>
+          <p class="section-kicker">03 · 先看基准事实</p><h2>不先看答案</h2>
+          <div class="table-scroll"><table>
+            <thead><tr><th>项目</th><th>冻结值</th><th>性质</th></tr></thead>
+            <tbody>
+              <tr><td>市场时点</td><td>2026-08-14收盘</td><td>行情输入</td></tr>
+              <tr><td>资本结构</td><td>2026-03-31</td><td>财报事实，和市场时点异步</td></tr>
+              <tr><td>市场实际分类权益</td><td>1,903.996亿元</td><td>A/H实际类别合计</td></tr>
+              <tr><td>Bear</td><td>券商2026E–2032E路径</td><td>单家预测</td></tr>
+              <tr><td>Base / Bull</td><td>内部情景</td><td>研究假设</td></tr>
+            </tbody>
+          </table></div>
+          <p class="plain-note"><a href="../cases/01-yofc/README.md">打开毕业案例说明</a> · <a href="../cases/01-yofc/worksheet.md">打开三层工作表</a></p>
+        </section>
+
+        <section class="reader-section" id="wacc" data-reader-section>
+          <p class="section-kicker">04 · 旋钮实验一</p><h2>WACC 与三情景</h2>
+          <p class="section-lead">这张工具复现冻结结果表。先预测WACC升高时价值方向，再切换。</p>
+          <div class="tool">
+            <div class="controls"><div class="control"><label for="yofc-wacc">WACC</label>
+              <select id="yofc-wacc">
+                <option value="6.0">6.0%</option>
+                <option value="6.6" selected>6.6%</option>
+                <option value="7.0">7.0%</option>
+                <option value="8.0">8.0%</option>
+                <option value="9.0">9.0%</option>
+                <option value="10.0">10.0%</option>
+              </select>
+            </div></div>
+            <div class="result-grid">
+              <div class="metric"><span>Bear股权</span><strong id="yofc-bear">—</strong></div>
+              <div class="metric"><span>Base股权</span><strong id="yofc-base">—</strong></div>
+              <div class="metric"><span>Bull股权</span><strong id="yofc-bull">—</strong></div>
+              <div class="metric"><span>市场高于Bull</span><strong id="yofc-gap">—</strong></div>
+            </div>
+            <p class="tool-note">这些是冻结模型输出，不是实时估值或目标价。</p>
+          </div>
+        </section>
+
+        <section class="reader-section" id="conversion" data-reader-section>
+          <p class="section-kicker">05 · 旋钮实验二</p><h2>正反向现金口径</h2>
+          <p class="section-lead">原反向模型把FCFF/NOPAT写死为0.80。拖动现金转化率，看隐含利润率如何变化。重点不是找“正确转化率”，而是发现最可引用结论跨了两套现金流口径。</p>
+          <div class="tool">
+            <div class="control"><label>FCFF / NOPAT <span id="yofc-conversion-label">0.80</span></label><input id="yofc-conversion" type="range" min="0.8" max="1.1" value="0.8" step="0.1"></div>
+            <div class="result-grid">
+              <div class="metric"><span>H股价格等价要求</span><strong id="yofc-h-margin">—</strong></div>
+              <div class="metric"><span>实际分类合计要求</span><strong id="yofc-market-margin">—</strong></div>
+              <div class="metric"><span>A股价格等价要求</span><strong id="yofc-a-margin">—</strong></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="reader-section" id="negative" data-reader-section>
+          <p class="section-kicker">06 · 负对照</p><h2>一份复杂材料里合规的那一半</h2>
+          <p class="section-lead">毕业练习最容易走偏的方向，是把“找到几条问题”当成成绩。下面这些特征出现时，都不该触发降级。</p>
+          <div class="table-scroll"><table>
+            <thead><tr><th>表面信号</th><th>为什么当前不降级</th></tr></thead>
+            <tbody>
+              <tr><td>同时出现三种市值口径</td><td>三者用途分别写明，库存股已剔除；多口径并存正是双重上市公司的正确做法</td></tr>
+              <tr><td>结论被标为 PROVISIONAL，没有给出目标价</td><td>这是边界披露，不是分析不完整</td></tr>
+              <tr><td>报告拒绝使用外部研报现成的EPS</td><td>因为该EPS对应的股本与当前股本不同——这是第2课分母纪律的正确应用</td></tr>
+              <tr><td>有息债务把租赁负债计入</td><td>经检查没有在经营成本里重复扣除</td></tr>
+              <tr><td>敏感性表显示某乐观组合仍不翻转结论，余量约5%</td><td>量化余量并声明未覆盖未测试因素，是诚实而不是保守</td></tr>
+            </tbody>
+          </table></div>
+        </section>
+
+        <section class="reader-section checkpoint" id="quizzes" data-reader-section>
+          <div class="checkpoint-heading"><span>闯关 7 题</span><div><p>先选，再看解释</p><h2>毕业同时验收计算和检查</h2></div></div>
+          <div class="quiz-stack">
+            <div class="quiz-card inline-quiz" data-quiz-id="q1" data-answer="B" data-explanation="工程正确只证明输入被一致计算，不证明输入有经济依据。"><p class="question">1. 计算程序全部通过测试，是否足以证明经营假设可信？</p><div class="choices horizontal-choices two-choices"><button class="choice" data-choice="A">A. 足够</button><button class="choice" data-choice="B">B. 不足够</button></div><p class="feedback" aria-live="polite">选择一个答案，马上看到理由。</p></div>
+            <div class="quiz-card inline-quiz" data-quiz-id="q2" data-answer="A" data-explanation="方法和经济证据要分别评价。"><p class="question">2. 方法适合但关键销量和ASP无证据，最可能的等级是：</p><div class="choices horizontal-choices two-choices"><button class="choice" data-choice="A">A. 带条件使用</button><button class="choice" data-choice="B">B. 因方法正确而自动通过</button></div><p class="feedback" aria-live="polite">选择一个答案，马上看到理由。</p></div>
+            <div class="quiz-card inline-quiz" data-quiz-id="q3" data-answer="B" data-explanation="对象正确是估值前提，不是投资结论。"><p class="question">3. A/H股本和公式正确，能否仅凭此判断A股值得买？</p><div class="choices horizontal-choices two-choices"><button class="choice" data-choice="A">A. 能</button><button class="choice" data-choice="B">B. 不能</button></div><p class="feedback" aria-live="polite">选择一个答案，马上看到理由。</p></div>
+            <div class="quiz-card inline-quiz" data-quiz-id="q4" data-answer="B" data-explanation="严重性由对结论和用途的影响决定，不由数量决定。"><p class="question">4. 一个重大问题影响报告最可引用结论，五个次要问题只影响展示。严重性排序应怎样？</p><div class="choices horizontal-choices two-choices"><button class="choice" data-choice="A">A. 五个次要问题更重要，因为数量多</button><button class="choice" data-choice="B">B. 重大问题优先，因为影响核心用途</button></div><p class="feedback" aria-live="polite">选择一个答案，马上看到理由。</p></div>
+            <div class="quiz-card inline-quiz" data-quiz-id="q5" data-answer="B" data-explanation="敏感性只能覆盖实际改变过的参数与组合。"><p class="question">5. 旋钮实验中某个乐观组合仍未翻转方向，可以断言所有未知都不会翻转吗？</p><div class="choices horizontal-choices two-choices"><button class="choice" data-choice="A">A. 可以</button><button class="choice" data-choice="B">B. 不可以，只能描述已测试组合</button></div><p class="feedback" aria-live="polite">选择一个答案，马上看到理由。</p></div>
+            <div class="quiz-card inline-quiz" data-quiz-id="q6" data-answer="B" data-explanation="多口径并存且用途分明是正确做法。"><p class="question">6. 材料同时列出H股等价、实际分类和A股等价三种市值，各自用途写明且库存股已剔除。应如何处理？</p><div class="choices horizontal-choices two-choices"><button class="choice" data-choice="A">A. 出现多个市值口径，自动降级</button><button class="choice" data-choice="B">B. 状态不变，不降级；这是双重上市公司的正确做法</button></div><p class="feedback" aria-live="polite">选择一个答案，马上看到理由。</p></div>
+            <div class="quiz-card inline-quiz" data-quiz-id="q7" data-answer="B" data-explanation="把重大问题分类成次要问题，是一个独立的问题。"><p class="question">7. 一项期间现金流遗漏被报告归类为“标注问题”，你复算后认为它是数值遗漏。你的检查结论应写什么？</p><div class="choices horizontal-choices two-choices"><button class="choice" data-choice="A">A. 只写“已发现该问题”，分类以报告为准</button><button class="choice" data-choice="B">B. 同时指出分类被写小了，并说明数值遗漏与标注问题对读者的影响不同</button></div><p class="feedback" aria-live="polite">选择一个答案，马上看到理由。</p></div>
+          </div>
+        </section>
+
+        <section class="reader-section recall-section" id="recall" data-reader-section>
+          <p class="section-kicker">07 · 一页毕业结论</p><h2>先独立写完，再打开答案</h2>
+          <p class="section-lead">先讲清估值链条和关键输入，再说明方法适用性、三个风险、未知和使用等级。必须写下“做对了什么”和“不该降级的地方”。</p>
+          <textarea class="note-area reader-note" data-note="day-7" placeholder="估值怎样从经营假设走到每股价值：&#10;当前情景与关键输入：&#10;方法是否适合：&#10;做对了什么：&#10;不该降级的地方：&#10;三个最重要风险及严重性：&#10;无法确认：&#10;使用等级与理由："></textarea>
+          <p class="plain-note"><a href="../cases/01-yofc/answer-key.md">完成后对答案</a></p>
+        </section>
+
+        <section class="reader-section boundary-section" id="boundary" data-reader-section>
+          <p class="section-kicker">08 · 本课边界</p><h2>毕业代表能解释、复算并检查，不代表能做交易决策</h2>
+          <div class="boundary-grid">
+            <div><span aria-hidden="true">✓</span><div><strong>现在可以</strong><p>给出有证据的使用等级，并且知道哪些缺口不该触发降级。六个失败模式到这里全部收口。</p></div></div>
+            <div><span aria-hidden="true">—</span><div><strong>还不可以</strong><p>独立预测真实公司的全部未来，或据此作出交易决策。</p></div></div>
+          </div>
+          <p class="next-preview"><span>完成后</span><strong>毕业测验</strong>——至少答对 8/10，并完成一页“估值解释 + 检查结论”。</p>
+        </section>
+
+        <nav class="lesson-end-actions" aria-label="完成课程并继续">
+          <a href="day-6.html">← 上一课</a><a href="../course/DAY-7.md">文字版</a><button class="reader-complete" data-complete-lesson>标记本课完成</button><a class="continue" href="index.html">回到课程首页 <span>→</span></a>
+        </nav>
+      </article>
+    </main>
+  </div>
+  <dialog class="markdown-reference-dialog" id="day-7-markdown-reference" data-markdown-reference-dialog aria-labelledby="day-7-markdown-reference-title">
+    <div class="markdown-reference-panel">
+      <header class="markdown-reference-header">
+        <div><small>DAY 7 · 专业参考章</small><strong id="day-7-markdown-reference-title">长飞综合练习</strong></div>
+        <button type="button" data-markdown-reference-close aria-label="关闭专业参考章" title="关闭">×</button>
+      </header>
+      <iframe class="markdown-reference-frame" data-markdown-reference-frame src="generated/day-7-reference.html" title="Day 7 专业 Markdown 参考章"></iframe>
+      <footer class="markdown-reference-footer"><span>内容由 DAY-7.md 离线生成</span><a href="../course/DAY-7.md">打开原始 Markdown</a></footer>
     </div>
-  </section>
-
-  <section class="section"><h2>负对照：一份复杂材料里合规的那一半</h2>
-    <p>毕业练习最容易走偏的方向，是把“找到几条问题”当成成绩。下面这些特征出现时，<strong>都不该触发降级</strong>。</p>
-    <div class="table-scroll"><table>
-      <thead><tr><th>表面信号</th><th>为什么当前不降级</th></tr></thead>
-      <tbody>
-        <tr><td>同时出现三种市值口径</td><td>三者用途分别写明，库存股已剔除；多口径并存正是双重上市公司的正确做法</td></tr>
-        <tr><td>结论被标为 PROVISIONAL，没有给出目标价</td><td>这是边界披露，不是分析不完整</td></tr>
-        <tr><td>报告拒绝使用外部研报现成的EPS</td><td>因为该EPS对应的股本与当前股本不同——这是第2课分母纪律的正确应用</td></tr>
-        <tr><td>有息债务把租赁负债计入</td><td>经检查没有在经营成本里重复扣除</td></tr>
-        <tr><td>敏感性表显示某乐观组合仍不翻转结论，余量约5%</td><td>量化余量并声明未覆盖未测试因素，是诚实而不是保守</td></tr>
-      </tbody>
-    </table></div>
-    <p><strong>知道何时不该报警，和知道何时必须报警，是同一项能力的两半。</strong></p>
-  </section>
-
-  <section class="section"><h2>闯关</h2>
-    <div class="quiz-card" data-quiz-id="q1" data-answer="B" data-explanation="工程正确只证明输入被一致计算，不证明输入有经济依据。"><p class="question">1. 计算程序全部通过测试，是否足以证明经营假设可信？</p><div class="choices"><button class="choice" data-choice="A">A. 足够</button><button class="choice" data-choice="B">B. 不足够</button></div><p class="feedback"></p></div>
-    <div class="quiz-card" data-quiz-id="q2" data-answer="A" data-explanation="方法和经济证据要分别评价。"><p class="question">2. 方法适合但关键销量和ASP无证据，最可能的等级是：</p><div class="choices"><button class="choice" data-choice="A">A. 带条件使用</button><button class="choice" data-choice="B">B. 因方法正确而自动通过</button></div><p class="feedback"></p></div>
-    <div class="quiz-card" data-quiz-id="q3" data-answer="B" data-explanation="对象正确是估值前提，不是投资结论。"><p class="question">3. A/H股本和公式正确，能否仅凭此判断A股值得买？</p><div class="choices"><button class="choice" data-choice="A">A. 能</button><button class="choice" data-choice="B">B. 不能</button></div><p class="feedback"></p></div>
-    <div class="quiz-card" data-quiz-id="q4" data-answer="B" data-explanation="严重性由对结论和用途的影响决定，不由数量决定。"><p class="question">4. 一个重大问题影响报告最可引用结论，五个次要问题只影响展示。严重性排序应怎样？</p><div class="choices"><button class="choice" data-choice="A">A. 五个次要问题更重要，因为数量多</button><button class="choice" data-choice="B">B. 重大问题优先，因为影响核心用途</button></div><p class="feedback"></p></div>
-    <div class="quiz-card" data-quiz-id="q5" data-answer="B" data-explanation="敏感性只能覆盖实际改变过的参数与组合。"><p class="question">5. 旋钮实验中某个乐观组合仍未翻转方向，可以断言所有未知都不会翻转吗？</p><div class="choices"><button class="choice" data-choice="A">A. 可以</button><button class="choice" data-choice="B">B. 不可以，只能描述已测试组合</button></div><p class="feedback"></p></div>
-    <div class="quiz-card" data-quiz-id="q6" data-answer="B" data-explanation="多口径并存且用途分明是正确做法。"><p class="question">6. 材料同时列出H股等价、实际分类和A股等价三种市值，各自用途写明且库存股已剔除。应如何处理？</p><div class="choices"><button class="choice" data-choice="A">A. 出现多个市值口径，自动降级</button><button class="choice" data-choice="B">B. 状态不变，不降级；这是双重上市公司的正确做法</button></div><p class="feedback"></p></div>
-    <div class="quiz-card" data-quiz-id="q7" data-answer="B" data-explanation="把重大问题分类成次要问题，是一个独立的问题。"><p class="question">7. 一项期间现金流遗漏被报告归类为“标注问题”，你复算后认为它是数值遗漏。你的检查结论应写什么？</p><div class="choices"><button class="choice" data-choice="A">A. 只写“已发现该问题”，分类以报告为准</button><button class="choice" data-choice="B">B. 同时指出分类被写小了，并说明数值遗漏与标注问题对读者的影响不同</button></div><p class="feedback"></p></div>
-  </section>
-
-  <section class="section"><h2>本课边界</h2>
-    <p>毕业代表你能解释、复算并检查一套简化估值，能够给出有证据的使用等级，并且知道哪些缺口<strong>不该</strong>触发降级。它不代表你已经能独立预测真实公司的全部未来，也不代表你能据此作出交易决策。</p>
-    <p>六个失败模式到这里全部收口：利润不等于现金与错股本（第2课）、错时点（第3课）、峰值永久化与隐藏终值（第4课）、方法错配（第6课），每一个都有对应的记录验证状态和一条验收测试；第5课交付的条件句表述纪律贯穿其中。</p>
-  </section>
-
-  <section class="section"><h2>一页毕业结论</h2>
-    <p>先独立写完，再打开答案。先讲清估值链条和关键输入，再说明方法适用性、三个风险、未知和使用等级。必须写下“做对了什么”和“不该降级的地方”。</p>
-    <textarea class="note-area" data-note="day-7" placeholder="估值怎样从经营假设走到每股价值：&#10;当前情景与关键输入：&#10;方法是否适合：&#10;做对了什么：&#10;不该降级的地方：&#10;三个最重要风险及严重性：&#10;无法确认：&#10;使用等级与理由："></textarea>
-    <div class="button-row"><button class="primary" data-complete-lesson>标记本课完成</button><a class="secondary" href="../cases/01-yofc/answer-key.md">完成后对答案</a></div>
-  </section>
-  <nav class="footer-nav"><a href="day-6.html">← 第6课</a><a href="index.html">回到课程首页 →</a></nav>
-</article></main>
+  </dialog>
 </body>
 </html>

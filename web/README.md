@@ -4,9 +4,9 @@
 
 互动版不请求外部网络，不上传学习记录。完成状态、复习勾选和笔记保存在浏览器本机。
 
-## Day 1 专业参考章
+## 专业参考章
 
-Day 1 标题栏的文档图标会打开由 [`course/DAY-1.md`](../course/DAY-1.md) 生成的离线专业参考页。Markdown 是该抽屉内容的唯一来源；修改后运行：
+每一课标题栏的文档图标会打开由对应 `course/DAY-N.md` 生成的离线专业参考页。Markdown 是该抽屉内容的唯一来源；修改后运行：
 
 ```bash
 python3 scripts/render_course_markdown.py
@@ -18,4 +18,4 @@ python3 scripts/render_course_markdown.py
 python3 scripts/render_course_markdown.py --check
 ```
 
-生成器只接受课程使用的受控 Markdown 子集，遇到未支持的语法会失败，不会静默省略内容。
+生成器只接受课程使用的受控 Markdown 子集，遇到未支持的语法会失败，不会静默省略内容。生成页在抽屉里隐藏顶栏，单独打开时使用与课程页相同的导航。

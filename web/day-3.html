@@ -4,119 +4,196 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>第3课：检查估值输入</title>
+  <meta name="description" content="核对对象、时点、单位和来源，亲手把资本结构从报告日桥接到估值日。">
   <link rel="stylesheet" href="assets/styles.css">
+  <script defer src="assets/glossary.js"></script>
   <script defer src="assets/app.js"></script>
   <script defer src="assets/tools.js"></script>
 </head>
-<body data-lesson="day-3">
-<header class="topbar"><a class="brand" href="index.html">valuation-lab · 互动版</a><nav class="topnav"><a href="index.html">课程</a><a href="study-methods.html">科学学习法</a><a href="../course/DAY-3.md">文字版</a></nav><div class="progress-wrap"><div class="progress-label"><span>学习进度</span><strong data-progress-text>0/7</strong></div><div class="progress-track"><div class="progress-bar" data-progress-bar></div></div></div></header>
-<main class="page lesson-layout"><aside class="lesson-nav"><strong>七天课程</strong><a href="day-1.html">01 信息性质</a><a href="day-2.html">02 价值桥</a><a class="current" href="day-3.html">03 检查输入</a><a href="day-4.html">04 最小DCF</a><a href="day-5.html">05 反向DCF</a><a href="day-6.html">06 方法匹配</a><a href="day-7.html">07 长飞练习</a><a class="method-link" href="study-methods.html">科学学习法</a></aside>
-<article class="lesson-main">
-  <section class="hero"><p class="eyebrow">DAY 03 · 55 MIN</p><h1>检查估值<br>输入</h1><p>不重做价值桥，先确认送进桥里的数字是谁、何时有效、用什么单位、来自哪里。亲手把资本结构从报告日桥接到估值日。</p><div class="hero-meta"><span class="pill">对象</span><span class="pill">时点桥</span><span class="pill">单位与币种</span><span class="pill">来源</span></div></section>
-
-  <section class="section"><h2>动手：资本结构时点桥</h2>
-    <p>本节唯一改变的是资本结构的时点。EV 和股本都不动。发债同时增加债务和现金，净债务不变；改变净债务的是把钱花掉。</p>
-    <div class="tool">
-      <div class="controls">
-        <div class="control"><label>EV <span>亿元</span></label><input id="pit-ev" data-pit-input type="number" value="200" step="1"></div>
-        <div class="control"><label>报告日现金 <span>亿元</span></label><input id="pit-cash" data-pit-input type="number" value="20" step="1"></div>
-        <div class="control"><label>报告日债务 <span>亿元</span></label><input id="pit-debt" data-pit-input type="number" value="50" step="1"></div>
-        <div class="control"><label>总股本 <span>亿股</span></label><input id="pit-total-shares" data-pit-input type="number" value="10.5" step="0.1"></div>
-        <div class="control"><label>库存股 <span>亿股</span></label><input id="pit-treasury" data-pit-input type="number" value="0.5" step="0.1"></div>
-        <div class="control"><label>发债 <span>亿元</span></label><input id="pit-bond" data-pit-input type="number" value="50" step="1"></div>
-        <div class="control"><label>现金收购 <span>亿元</span></label><input id="pit-acquisition" data-pit-input type="number" value="30" step="1"></div>
-        <div class="control"><label>期间OCF下限 <span>亿元</span></label><input id="pit-ocf-low" data-pit-input type="number" value="0" step="1"></div>
-        <div class="control"><label>期间OCF上限 <span>亿元</span></label><input id="pit-ocf-high" data-pit-input type="number" value="10" step="1"></div>
+<body class="reader-page" data-lesson="day-3">
+  <header class="reader-topbar">
+    <a class="reader-brand" href="index.html" aria-label="返回课程首页">
+      <span class="reader-brand-mark" aria-hidden="true">V</span>
+      <span><strong>估值实验室</strong><small>看懂估值，不迷信数字</small></span>
+    </a>
+    <div class="reader-heading">
+      <div class="reader-breadcrumb">
+        <span>7天估值判断课</span><b>/</b><strong>检查估值输入</strong><em>双层课</em>
+        <button class="markdown-reference-trigger" type="button" data-markdown-reference-open aria-label="打开 Day 3 专业 Markdown 参考章" aria-controls="day-3-markdown-reference" aria-expanded="false" title="打开专业参考章">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.75 3.75h7.5l3 3v13.5H6.75z"></path><path d="M14.25 3.75v3h3M9 11h6M9 14h6M9 17h4.5"></path></svg>
+        </button>
       </div>
-      <div class="result-grid">
-        <div class="metric"><span>报告日净债务</span><strong id="pit-report-nd">—</strong></div>
-        <div class="metric"><span>估值日净债务下限</span><strong id="pit-nd-low">—</strong></div>
-        <div class="metric"><span>估值日净债务上限</span><strong id="pit-nd-high">—</strong></div>
-        <div class="metric"><span>股权价值下限</span><strong id="pit-equity-low">—</strong></div>
-        <div class="metric"><span>股权价值上限</span><strong id="pit-equity-high">—</strong></div>
-        <div class="metric"><span>每股下限</span><strong id="pit-ps-low">—</strong></div>
-        <div class="metric"><span>每股上限</span><strong id="pit-ps-high">—</strong></div>
+      <div class="reader-course-progress" aria-label="课程位置：第3课，共7课"><div class="day-dots" data-day-dots></div><small>3 / 7</small></div>
+    </div>
+    <nav class="reader-actions" aria-label="辅助导航"><a href="index.html">课程首页</a><a href="glossary.html">术语表</a><a href="study-methods.html">学习方法</a></nav>
+  </header>
+
+  <div class="reader-shell">
+    <aside class="reader-sidebar" aria-label="本课目录">
+      <label class="lesson-search"><span aria-hidden="true">⌕</span><span class="visually-hidden">搜索本课知识点</span><input type="search" placeholder="搜索本课知识点…" data-lesson-search></label>
+      <details class="course-switcher">
+        <summary><span aria-hidden="true">◎</span><strong data-course-switcher-current>7天课程 · 第3天</strong><span aria-hidden="true">⌄</span></summary>
+        <nav class="course-switcher-list" data-course-switcher-list aria-label="跳转到其他课"></nav>
+      </details>
+      <div class="toc-heading"><small>本课目录</small><strong>检查估值输入</strong></div>
+      <nav class="lesson-toc" data-lesson-toc>
+        <a class="active" href="day-3.html#opening" data-toc-link><span></span>先记住这一句话</a>
+        <a href="day-3.html#pit" data-toc-link><span></span>资本结构时点桥</a>
+        <a href="day-3.html#negative" data-toc-link><span></span>负对照</a>
+        <a href="day-3.html#matrix" data-toc-link><span></span>失败状态矩阵</a>
+        <a href="day-3.html#write-test" data-toc-link><span></span>练习：写一条验收测试</a>
+        <a href="day-3.html#checklist" data-toc-link><span></span>一页验收清单</a>
+        <a href="day-3.html#quizzes" data-toc-link><span></span>闯关</a>
+        <a href="day-3.html#recall" data-toc-link><span></span>主动回忆</a>
+        <a href="day-3.html#boundary" data-toc-link><span></span>学完后能做什么</a>
+      </nav>
+      <div class="sidebar-footnote">
+        <strong>本课目标</strong>
+        <p>核对对象、时点、单位和来源，筛掉会让估值失真的输入。</p>
+        <span>基础检查 35 分钟 · 进阶检查 20 分钟</span>
+        <div class="sidebar-stats"><span data-read-count>0 / 9 小节已读</span><span data-quiz-score>7 题未开始</span></div>
       </div>
-      <p class="tool-note">课文输入应得净债务 50—60、每股 14.0—15.0。区间来自期间经营现金流那一格未知，把它写成单点是把未知伪装成精度。</p>
+    </aside>
+
+    <main class="reader-content">
+      <article class="lesson-article">
+        <header class="lesson-intro" id="opening" data-reader-section>
+          <div class="track-row" aria-label="课程层级"><span class="track-pill foundation">基础检查 · 35分钟</span><span class="track-pill builder">进阶检查 · 20分钟</span></div>
+          <p class="reader-eyebrow">先确认送进桥里的数字 · 第 3 课</p>
+          <h1>检查估值输入</h1>
+          <p class="lesson-deck">不重做价值桥，先确认送进桥里的数字是谁、何时有效、用什么单位、来自哪里。亲手把资本结构从报告日桥接到估值日。</p>
+          <div class="takeaway"><span>一句话速览</span><p>本节唯一改变的是资本结构的时点。EV 和股本都不动。发债同时增加债务和现金，净债务不变；改变净债务的是把钱花掉。</p></div>
+        </header>
+
+        <section class="reader-section" id="pit" data-reader-section>
+          <p class="section-kicker">01 · 动手计算</p><h2>资本结构时点桥</h2>
+          <p class="section-lead">课文输入应得净债务 50—60、每股 14.0—15.0。区间来自期间经营现金流那一格未知，把它写成单点是把未知伪装成精度。</p>
+          <div class="tool">
+            <div class="controls">
+              <div class="control"><label>EV <span>亿元</span></label><input id="pit-ev" data-pit-input type="number" value="200" step="1"></div>
+              <div class="control"><label>报告日现金 <span>亿元</span></label><input id="pit-cash" data-pit-input type="number" value="20" step="1"></div>
+              <div class="control"><label>报告日债务 <span>亿元</span></label><input id="pit-debt" data-pit-input type="number" value="50" step="1"></div>
+              <div class="control"><label>总股本 <span>亿股</span></label><input id="pit-total-shares" data-pit-input type="number" value="10.5" step="0.1"></div>
+              <div class="control"><label>库存股 <span>亿股</span></label><input id="pit-treasury" data-pit-input type="number" value="0.5" step="0.1"></div>
+              <div class="control"><label>发债 <span>亿元</span></label><input id="pit-bond" data-pit-input type="number" value="50" step="1"></div>
+              <div class="control"><label>现金收购 <span>亿元</span></label><input id="pit-acquisition" data-pit-input type="number" value="30" step="1"></div>
+              <div class="control"><label>期间OCF下限 <span>亿元</span></label><input id="pit-ocf-low" data-pit-input type="number" value="0" step="1"></div>
+              <div class="control"><label>期间OCF上限 <span>亿元</span></label><input id="pit-ocf-high" data-pit-input type="number" value="10" step="1"></div>
+            </div>
+            <div class="result-grid">
+              <div class="metric"><span>报告日净债务</span><strong id="pit-report-nd">—</strong></div>
+              <div class="metric"><span>估值日净债务下限</span><strong id="pit-nd-low">—</strong></div>
+              <div class="metric"><span>估值日净债务上限</span><strong id="pit-nd-high">—</strong></div>
+              <div class="metric"><span>股权价值下限</span><strong id="pit-equity-low">—</strong></div>
+              <div class="metric"><span>股权价值上限</span><strong id="pit-equity-high">—</strong></div>
+              <div class="metric"><span>每股下限</span><strong id="pit-ps-low">—</strong></div>
+              <div class="metric"><span>每股上限</span><strong id="pit-ps-high">—</strong></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="reader-section" id="negative" data-reader-section>
+          <p class="section-kicker">02 · 负对照</p><h2>三个日期不等于三个错误</h2>
+          <p class="section-lead">只会喊「日期不一致」的检查器，在真实项目里每天都会误报。</p>
+          <div class="comparison-grid">
+            <div class="comparison-card good-copy"><span>当前不降级</span><p>两个时点已被识别并给出逐项桥和区间；换汇有报价方向和换算日；净债务写成50—60亿元是对未知的诚实；三种股本用途没有混用。</p></div>
+            <div class="comparison-card bad-copy"><span>关键词误报</span><p>见到日期不同、币种不止一种、股本数字太多就降级。知道何时不该报警，和知道何时必须报警，是同一项能力的两半。</p></div>
+          </div>
+        </section>
+
+        <section class="reader-section" id="matrix" data-reader-section>
+          <p class="section-kicker">03 · 失败状态矩阵</p><h2>第二列只用第1课词表</h2>
+          <p class="section-lead">不要混入清单项的用语。</p>
+          <div class="table-scroll"><table>
+            <thead><tr><th>触发条件</th><th>记录验证状态 + 使用等级</th><th>影响</th><th>还不能断言</th></tr></thead>
+            <tbody>
+              <tr><td>A股价格乘以A+H全部股份，仍命名为A股流通市值</td><td>明确错误；停止使用该市值及其下游比较</td><td>对象与数值不对应</td><td>发行人整体价值一定算错</td></tr>
+              <tr><td>价格与资本结构时点不同，材料未说明期间是否发生重大事项</td><td>无法确认；每股输出带条件使用</td><td>净债务与股权价值可能系统性偏移</td><td>期间一定发生了重大事项</td></tr>
+              <tr><td>已确认期间发生大额融资或收购，模型仍原样使用旧资本结构</td><td>明确错误；停止使用股权价值与每股输出</td><td>本课示例为高估13.3%—21.4%</td><td>收购本身是坏决策，或EV算错</td></tr>
+              <tr><td>财报单位与模型读数不一致（百万元当亿元）</td><td>明确错误；停止使用受影响的全部派生值</td><td>金额放大或缩小整数倍</td><td>只影响展示或小数点</td></tr>
+              <tr><td>换汇缺报价方向或换算日</td><td>无法确认；该价格带条件使用</td><td>无法判断该乘还是该除</td><td>汇率来源本身不可靠</td></tr>
+              <tr><td>来源发布日晚于研究时点仍被用作当时输入</td><td>明确错误（未来信息污染）；停止使用受影响结论</td><td>当时判断被后验信息污染</td><td>该来源不能用于事后复盘</td></tr>
+              <tr><td>异步数据已给出逐项桥与影响区间</td><td>状态不变，不降级</td><td>按区间继续使用</td><td>区间一定会收敛到中点</td></tr>
+              <tr><td>材料同时列出多种股本或多个币种，且各自用途写清</td><td>状态不变，不降级</td><td>按各自用途继续使用</td><td>多个口径天然冲突</td></tr>
+            </tbody>
+          </table></div>
+        </section>
+
+        <section class="reader-section" id="write-test" data-reader-section>
+          <p class="section-kicker">04 · 练习：写一条验收测试</p><h2>第三列才是回归测试的本体</h2>
+          <div class="table-scroll write-test-table"><table>
+            <thead><tr><th>变更（一次只改一个条件）</th><th>Agent 必须返回什么</th><th>什么必须<strong>不变</strong></th></tr></thead>
+            <tbody>
+              <tr class="seeded"><td>把现金债务的报告日从6月30日改到3月31日，期间事项未知</td><td>资本结构无法确认，影响区间变宽</td><td>EV、股本口径、价格和汇率记录的验证状态</td></tr>
+              <tr class="seeded"><td>在材料中补上“期间无发行股份、无新增债券”的公告证据</td><td>状态可以升级，但只升一格；不能把两个日期写成同一天</td><td>时点仍不相同这一事实</td></tr>
+              <tr><td>把汇率记录中的报价方向字段删掉，数值0.865保留</td><td><em>由你填写</em></td><td><em>由你填写</em></td></tr>
+              <tr><td>把券商报告发布日从7月22日改到8月20日，研究时点仍是8月17日</td><td><em>由你填写</em></td><td><em>由你填写</em></td></tr>
+              <tr><td>把年报引用页码从第42页改成第43页，数值仍可在第43页定位</td><td><em>由你填写</em></td><td><em>由你填写</em></td></tr>
+            </tbody>
+          </table></div>
+          <textarea class="note-area reader-note" data-note="day-3-tests" placeholder="第3行 · 必须返回：____&#10;第3行 · 必须不变：____&#10;&#10;第4行 · 必须返回：____&#10;第4行 · 必须不变：____&#10;&#10;第5行 · 必须返回：____&#10;第5行 · 必须不变：____"></textarea>
+          <details class="answer-details"><summary>写完后展开参考答案</summary>
+            <p><strong>第3行</strong>：应返回“换汇无法确认”；受影响的是全部以港元计价的输入；不变的是人民币计价输入、股本和EV的状态。</p>
+            <p><strong>第4行</strong>：应返回“未来信息污染”，该预测必须退出8月17日的模型输入。不变的是8月17日之前发布的价格、汇率、财报。</p>
+            <p><strong>第5行</strong>：<strong>状态不变，不降级。</strong>证据仍可定位，指针只是更精确了。</p>
+          </details>
+        </section>
+
+        <section class="reader-section" id="checklist" data-reader-section>
+          <p class="section-kicker">05 · 一页验收清单</p><h2>离开本课前核对这七项</h2>
+          <ul class="checklist">
+            <li>估值对象是发行人整体、某类证券还是分部？（D1）</li>
+            <li>价格、汇率、财报和股本分别对应哪一天？（D2）</li>
+            <li>期间的融资、偿债、收购、分红和经营现金流是否逐项桥接或给出区间？（D2）</li>
+            <li>“发债”与“花钱”是否被分开处理？（D2）</li>
+            <li>每个金额是否随数值保存单位、币种、换算日和报价方向？（D3）</li>
+            <li>来源发布日是否都不晚于研究时点？（D4）</li>
+            <li>输出精度是否超过了输入本身能支持的精度？（D5）</li>
+          </ul>
+        </section>
+
+        <section class="reader-section checkpoint" id="quizzes" data-reader-section>
+          <div class="checkpoint-heading"><span>闯关 7 题</span><div><p>先选，再看解释</p><h2>对象、时点和单位会在哪里失真？</h2></div></div>
+          <div class="quiz-stack">
+            <div class="quiz-card inline-quiz" data-quiz-id="q1" data-answer="B" data-explanation="异步已被识别和处理，下一步验证桥接，而不是按日期不同自动否决。"><p class="question">1. 价格和资本结构相差四个月，但期间没有重大融资，模型量化了期间现金流。应如何判断？</p><div class="choices horizontal-choices two-choices"><button class="choice" data-choice="A">A. 日期不同所以必然失败</button><button class="choice" data-choice="B">B. 可以继续使用，但要检查桥接依据与区间</button></div><p class="feedback" aria-live="polite">选择一个答案，马上看到理由。</p></div>
+            <div class="quiz-card inline-quiz" data-quiz-id="q2" data-answer="B" data-explanation="Beta无法复算。注意这里要用记录验证状态，不要写成清单项用语。"><p class="question">2. 输入只写“Beta 0.9，行业惯例”，没有数据、窗口和市场基准。最合适的记录验证状态是：</p><div class="choices horizontal-choices two-choices"><button class="choice" data-choice="A">A. 已复核</button><button class="choice" data-choice="B">B. 无法确认</button></div><p class="feedback" aria-live="polite">选择一个答案，马上看到理由。</p></div>
+            <div class="quiz-card inline-quiz" data-quiz-id="q3" data-answer="A" data-explanation="该计算可以另有用途，但不能冒充A股流通市值。"><p class="question">3. A股价格乘A+H全部股份，被命名为“A股流通市值”。这是：</p><div class="choices horizontal-choices two-choices"><button class="choice" data-choice="A">A. 对象/语义失败</button><button class="choice" data-choice="B">B. 只是格式问题</button></div><p class="feedback" aria-live="polite">选择一个答案，马上看到理由。</p></div>
+            <div class="quiz-card inline-quiz" data-quiz-id="q4" data-answer="B" data-explanation="百万元到亿元相差100倍；不是小数点格式问题。"><p class="question">4. 财报单位为百万元，模型按亿元读取，数值不变。最直接影响是：</p><div class="choices horizontal-choices two-choices"><button class="choice" data-choice="A">A. 只影响展示</button><button class="choice" data-choice="B">B. 进入模型的金额放大100倍，依赖它的结果必须重算</button></div><p class="feedback" aria-live="polite">选择一个答案，马上看到理由。</p></div>
+            <div class="quiz-card inline-quiz" data-quiz-id="q5" data-answer="B" data-explanation="网址可访问不等于历史输入可追溯。"><p class="question">5. 汇率网址今天仍能打开，但只返回今天值。它能否证明三个月前模型使用的汇率？</p><div class="choices horizontal-choices two-choices"><button class="choice" data-choice="A">A. 能</button><button class="choice" data-choice="B">B. 不能，需要历史记录或冻结证据</button></div><p class="feedback" aria-live="polite">选择一个答案，马上看到理由。</p></div>
+            <div class="quiz-card inline-quiz" data-quiz-id="q6" data-answer="B" data-explanation="借钱同时增加债务和现金；改变净债务的是把钱花出去。"><p class="question">6. 公司在期间发行了50亿元债券，钱还躺在账上没有动用。净债务怎样变化？</p><div class="choices horizontal-choices"><button class="choice" data-choice="A">A. 增加50亿元</button><button class="choice" data-choice="B">B. 基本不变，因为债务和现金同时增加</button><button class="choice" data-choice="C">C. 减少50亿元</button></div><p class="feedback" aria-live="polite">选择一个答案，马上看到理由。</p></div>
+            <div class="quiz-card inline-quiz" data-quiz-id="q7" data-answer="B" data-explanation="取中点会把一格真实未知伪装成精度。区间不是含糊，它是对未知的诚实标注。"><p class="question">7. 期间经营现金流只能估计在0—10亿元之间，材料给出净债务50—60亿元的区间。最合适的处理是：</p><div class="choices horizontal-choices two-choices"><button class="choice" data-choice="A">A. 取中点55亿元作为单点，方便下游使用</button><button class="choice" data-choice="B">B. 保留区间，并说明宽度来自哪一格未知</button></div><p class="feedback" aria-live="polite">选择一个答案，马上看到理由。</p></div>
+          </div>
+        </section>
+
+        <section class="reader-section recall-section" id="recall" data-reader-section>
+          <p class="section-kicker">06 · 主动回忆</p><h2>写下你的输入检查记录</h2>
+          <textarea class="note-area reader-note" data-note="day-3" placeholder="对象与证券：&#10;估值日与异步数据桥：&#10;最重要的来源缺口：&#10;当前等级与还不能断言："></textarea>
+        </section>
+
+        <section class="reader-section boundary-section" id="boundary" data-reader-section>
+          <p class="section-kicker">07 · 本课边界</p><h2>输入记录完整，还不等于预测合理</h2>
+          <div class="boundary-grid">
+            <div><span aria-hidden="true">✓</span><div><strong>现在可以</strong><p>检查对象、时点、单位和来源，并亲手把资本结构从报告日桥接到估值日。</p></div></div>
+            <div><span aria-hidden="true">—</span><div><strong>还不可以</strong><p>仅凭来源很强就断言未来一定发生，或由输入检查推出买卖结论。</p></div></div>
+          </div>
+          <p class="next-preview"><span>下一课</span><strong>完成最小 DCF</strong>——把现金流折现为企业价值和股权价值，并让退出倍数与永续增长互查。</p>
+        </section>
+
+        <nav class="lesson-end-actions" aria-label="完成课程并继续">
+          <a href="day-2.html">← 上一课</a><a href="../course/DAY-3.md">文字版</a><button class="reader-complete" data-complete-lesson>标记本课完成</button><a class="continue" href="day-4.html">进入下一课 <span>→</span></a>
+        </nav>
+      </article>
+    </main>
+  </div>
+  <dialog class="markdown-reference-dialog" id="day-3-markdown-reference" data-markdown-reference-dialog aria-labelledby="day-3-markdown-reference-title">
+    <div class="markdown-reference-panel">
+      <header class="markdown-reference-header">
+        <div><small>DAY 3 · 专业参考章</small><strong id="day-3-markdown-reference-title">检查估值输入</strong></div>
+        <button type="button" data-markdown-reference-close aria-label="关闭专业参考章" title="关闭">×</button>
+      </header>
+      <iframe class="markdown-reference-frame" data-markdown-reference-frame src="generated/day-3-reference.html" title="Day 3 专业 Markdown 参考章"></iframe>
+      <footer class="markdown-reference-footer"><span>内容由 DAY-3.md 离线生成</span><a href="../course/DAY-3.md">打开原始 Markdown</a></footer>
     </div>
-  </section>
-
-  <section class="section"><h2>负对照：三个日期不等于三个错误</h2>
-    <p>只会喊「日期不一致」的检查器，在真实项目里每天都会误报。</p>
-    <div class="grid-2">
-      <div class="card good"><h3>当前不降级</h3><p>两个时点已被识别并给出逐项桥和区间；换汇有报价方向和换算日；净债务写成50—60亿元是对未知的诚实；三种股本用途没有混用。</p></div>
-      <div class="card bad"><h3>关键词误报</h3><p>见到日期不同、币种不止一种、股本数字太多就降级。知道何时不该报警，和知道何时必须报警，是同一项能力的两半。</p></div>
-    </div>
-  </section>
-
-  <section class="section"><h2>失败状态矩阵</h2>
-    <p>第二列只用第1课词表，不要混入清单项的用语。</p>
-    <div class="table-scroll"><table>
-      <thead><tr><th>触发条件</th><th>记录验证状态 + 使用等级</th><th>影响</th><th>还不能断言</th></tr></thead>
-      <tbody>
-        <tr><td>A股价格乘以A+H全部股份，仍命名为A股流通市值</td><td>明确错误；停止使用该市值及其下游比较</td><td>对象与数值不对应</td><td>发行人整体价值一定算错</td></tr>
-        <tr><td>价格与资本结构时点不同，材料未说明期间是否发生重大事项</td><td>无法确认；每股输出带条件使用</td><td>净债务与股权价值可能系统性偏移</td><td>期间一定发生了重大事项</td></tr>
-        <tr><td>已确认期间发生大额融资或收购，模型仍原样使用旧资本结构</td><td>明确错误；停止使用股权价值与每股输出</td><td>本课示例为高估13.3%—21.4%</td><td>收购本身是坏决策，或EV算错</td></tr>
-        <tr><td>财报单位与模型读数不一致（百万元当亿元）</td><td>明确错误；停止使用受影响的全部派生值</td><td>金额放大或缩小整数倍</td><td>只影响展示或小数点</td></tr>
-        <tr><td>换汇缺报价方向或换算日</td><td>无法确认；该价格带条件使用</td><td>无法判断该乘还是该除</td><td>汇率来源本身不可靠</td></tr>
-        <tr><td>来源发布日晚于研究时点仍被用作当时输入</td><td>明确错误（未来信息污染）；停止使用受影响结论</td><td>当时判断被后验信息污染</td><td>该来源不能用于事后复盘</td></tr>
-        <tr><td>异步数据已给出逐项桥与影响区间</td><td>状态不变，不降级</td><td>按区间继续使用</td><td>区间一定会收敛到中点</td></tr>
-        <tr><td>材料同时列出多种股本或多个币种，且各自用途写清</td><td>状态不变，不降级</td><td>按各自用途继续使用</td><td>多个口径天然冲突</td></tr>
-      </tbody>
-    </table></div>
-  </section>
-
-  <section class="section" id="write-test"><h2>练习：写一条验收测试</h2>
-    <div class="table-scroll write-test-table"><table>
-      <thead><tr><th>变更（一次只改一个条件）</th><th>Agent 必须返回什么</th><th>什么必须<strong>不变</strong></th></tr></thead>
-      <tbody>
-        <tr class="seeded"><td>把现金债务的报告日从6月30日改到3月31日，期间事项未知</td><td>资本结构无法确认，影响区间变宽</td><td>EV、股本口径、价格和汇率记录的验证状态</td></tr>
-        <tr class="seeded"><td>在材料中补上“期间无发行股份、无新增债券”的公告证据</td><td>状态可以升级，但只升一格；不能把两个日期写成同一天</td><td>时点仍不相同这一事实</td></tr>
-        <tr><td>把汇率记录中的报价方向字段删掉，数值0.865保留</td><td><em>由你填写</em></td><td><em>由你填写</em></td></tr>
-        <tr><td>把券商报告发布日从7月22日改到8月20日，研究时点仍是8月17日</td><td><em>由你填写</em></td><td><em>由你填写</em></td></tr>
-        <tr><td>把年报引用页码从第42页改成第43页，数值仍可在第43页定位</td><td><em>由你填写</em></td><td><em>由你填写</em></td></tr>
-      </tbody>
-    </table></div>
-    <textarea class="note-area" data-note="day-3-tests" placeholder="第3行 · 必须返回：____&#10;第3行 · 必须不变：____&#10;&#10;第4行 · 必须返回：____&#10;第4行 · 必须不变：____&#10;&#10;第5行 · 必须返回：____&#10;第5行 · 必须不变：____"></textarea>
-    <details class="answer-details"><summary>写完后展开参考答案</summary>
-      <p><strong>第3行</strong>：应返回“换汇无法确认”；受影响的是全部以港元计价的输入；不变的是人民币计价输入、股本和EV的状态。</p>
-      <p><strong>第4行</strong>：应返回“未来信息污染”，该预测必须退出8月17日的模型输入。不变的是8月17日之前发布的价格、汇率、财报。</p>
-      <p><strong>第5行</strong>：<strong>状态不变，不降级。</strong>证据仍可定位，指针只是更精确了。</p>
-    </details>
-  </section>
-
-  <section class="section"><h2>一页验收清单</h2>
-    <ul>
-      <li>估值对象是发行人整体、某类证券还是分部？（D1）</li>
-      <li>价格、汇率、财报和股本分别对应哪一天？（D2）</li>
-      <li>期间的融资、偿债、收购、分红和经营现金流是否逐项桥接或给出区间？（D2）</li>
-      <li>“发债”与“花钱”是否被分开处理？（D2）</li>
-      <li>每个金额是否随数值保存单位、币种、换算日和报价方向？（D3）</li>
-      <li>来源发布日是否都不晚于研究时点？（D4）</li>
-      <li>输出精度是否超过了输入本身能支持的精度？（D5）</li>
-    </ul>
-  </section>
-
-  <section class="section"><h2>闯关</h2>
-    <div class="quiz-card" data-quiz-id="q1" data-answer="B" data-explanation="异步已被识别和处理，下一步验证桥接，而不是按日期不同自动否决。"><p class="question">1. 价格和资本结构相差四个月，但期间没有重大融资，模型量化了期间现金流。应如何判断？</p><div class="choices"><button class="choice" data-choice="A">A. 日期不同所以必然失败</button><button class="choice" data-choice="B">B. 可以继续使用，但要检查桥接依据与区间</button></div><p class="feedback"></p></div>
-    <div class="quiz-card" data-quiz-id="q2" data-answer="B" data-explanation="Beta无法复算。注意这里要用记录验证状态，不要写成清单项用语。"><p class="question">2. 输入只写“Beta 0.9，行业惯例”，没有数据、窗口和市场基准。最合适的记录验证状态是：</p><div class="choices"><button class="choice" data-choice="A">A. 已复核</button><button class="choice" data-choice="B">B. 无法确认</button></div><p class="feedback"></p></div>
-    <div class="quiz-card" data-quiz-id="q3" data-answer="A" data-explanation="该计算可以另有用途，但不能冒充A股流通市值。"><p class="question">3. A股价格乘A+H全部股份，被命名为“A股流通市值”。这是：</p><div class="choices"><button class="choice" data-choice="A">A. 对象/语义失败</button><button class="choice" data-choice="B">B. 只是格式问题</button></div><p class="feedback"></p></div>
-    <div class="quiz-card" data-quiz-id="q4" data-answer="B" data-explanation="百万元到亿元相差100倍；不是小数点格式问题。"><p class="question">4. 财报单位为百万元，模型按亿元读取，数值不变。最直接影响是：</p><div class="choices"><button class="choice" data-choice="A">A. 只影响展示</button><button class="choice" data-choice="B">B. 进入模型的金额放大100倍，依赖它的结果必须重算</button></div><p class="feedback"></p></div>
-    <div class="quiz-card" data-quiz-id="q5" data-answer="B" data-explanation="网址可访问不等于历史输入可追溯。"><p class="question">5. 汇率网址今天仍能打开，但只返回今天值。它能否证明三个月前模型使用的汇率？</p><div class="choices"><button class="choice" data-choice="A">A. 能</button><button class="choice" data-choice="B">B. 不能，需要历史记录或冻结证据</button></div><p class="feedback"></p></div>
-    <div class="quiz-card" data-quiz-id="q6" data-answer="B" data-explanation="借钱同时增加债务和现金；改变净债务的是把钱花出去。"><p class="question">6. 公司在期间发行了50亿元债券，钱还躺在账上没有动用。净债务怎样变化？</p><div class="choices"><button class="choice" data-choice="A">A. 增加50亿元</button><button class="choice" data-choice="B">B. 基本不变，因为债务和现金同时增加</button><button class="choice" data-choice="C">C. 减少50亿元</button></div><p class="feedback"></p></div>
-    <div class="quiz-card" data-quiz-id="q7" data-answer="B" data-explanation="取中点会把一格真实未知伪装成精度。区间不是含糊，它是对未知的诚实标注。"><p class="question">7. 期间经营现金流只能估计在0—10亿元之间，材料给出净债务50—60亿元的区间。最合适的处理是：</p><div class="choices"><button class="choice" data-choice="A">A. 取中点55亿元作为单点，方便下游使用</button><button class="choice" data-choice="B">B. 保留区间，并说明宽度来自哪一格未知</button></div><p class="feedback"></p></div>
-  </section>
-
-  <section class="section"><h2>本课边界</h2>
-    <p>输入记录完整不代表预测合理；来源很强也不代表未来一定发生。</p>
-    <p>第1课列出的六个失败模式，本课交付了<strong>错时点</strong>：它落到失败状态矩阵里“已确认期间发生大额融资或收购仍用旧资本结构”那一行，以及练习表的第1、2行，而不是停在“要注意日期”。</p>
-  </section>
-
-  <section class="section"><h2>我的输入检查记录</h2>
-    <textarea class="note-area" data-note="day-3" placeholder="对象与证券：&#10;估值日与异步数据桥：&#10;最重要的来源缺口：&#10;当前等级与还不能断言："></textarea>
-    <div class="button-row"><button class="primary" data-complete-lesson>标记本课完成</button><a class="secondary" href="../docs/AUDIT-CHECKLIST.md">完整清单</a></div>
-  </section>
-  <nav class="footer-nav"><a href="day-2.html">← 第2课</a><a href="day-4.html">第4课：完成最小 DCF →</a></nav>
-</article></main>
+  </dialog>
 </body>
 </html>

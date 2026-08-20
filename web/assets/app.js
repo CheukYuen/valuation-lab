@@ -7,12 +7,12 @@
 
   const LESSONS = [
     { id: "day-1", title: "模型到底在说什么" },
-    { id: "day-2", title: "看懂最小价值桥" },
+    { id: "day-2", title: "亲手打通价值桥" },
     { id: "day-3", title: "检查估值输入" },
-    { id: "day-4", title: "谁在控制结果" },
+    { id: "day-4", title: "完成最小 DCF" },
     { id: "day-5", title: "反向 DCF" },
     { id: "day-6", title: "方法适不适合" },
-    { id: "day-7", title: "长飞毕业审计" },
+    { id: "day-7", title: "长飞综合练习" },
   ];
 
   function readProgress() {
@@ -106,7 +106,8 @@
       list.innerHTML = "";
       LESSONS.forEach(lesson => {
         const link = document.createElement("a");
-        link.href = `${lesson.id}.html`;
+        const prefix = document.body.dataset.lessonHrefPrefix || "";
+        link.href = `${prefix}${lesson.id}.html`;
         link.className = "course-switcher-item";
         if (lesson.id === current) link.classList.add("current");
         const isDone = Boolean(p[lesson.id]);

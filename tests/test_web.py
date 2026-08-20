@@ -204,6 +204,53 @@ class WebCourseTests(unittest.TestCase):
         self.assertIn('aria-expanded="false"', page_text)
         self.assertIn('src="generated/day-1-reference.html"', page_text)
 
+    def test_every_lesson_uses_the_reader_chrome_and_shared_nav(self):
+        nav = ["href=\"index.html\"", "href=\"glossary.html\"", "href=\"study-methods.html\""]
+        for day in range(1, 8):
+            page = WEB / f"day-{day}.html"
+            text = page.read_text()
+            parser = parse(page)
+            self.assertIn('class="reader-page"', text, page.name)
+            self.assertIn("reader-topbar", text, page.name)
+            self.assertIn("估值实验室", text, page.name)
+            self.assertIn("data-course-switcher-list", text, page.name)
+            self.assertEqual(parser.markdown_openers, 1, page.name)
+            self.assertEqual(parser.markdown_dialogs, 1, page.name)
+            self.assertEqual(parser.markdown_frames, 1, page.name)
+            self.assertIn(f"day-{day}-markdown-reference", parser.ids)
+            self.assertIn(f'src="generated/day-{day}-reference.html"', text)
+            for item in nav:
+                self.assertIn(item, text, f"{page.name} missing {item}")
+
+        for name in ("index.html", "glossary.html", "study-methods.html"):
+            text = (WEB / name).read_text()
+            self.assertIn("reader-topbar", text, name)
+            self.assertIn("估值实验室", text, name)
+            for item in nav:
+                self.assertIn(item, text, f"{name} missing {item}")
+
+    def test_every_lesson_has_a_generated_markdown_reference(self):
+        result = subprocess.run(
+            ["python3", str(ROOT / "scripts" / "render_course_markdown.py"), "--check"],
+            capture_output=True,
+            text=True,
+        )
+        self.assertEqual(result.returncode, 0, result.stderr)
+        for day in range(1, 8):
+            generated = WEB / "generated" / f"day-{day}-reference.html"
+            self.assertTrue(generated.is_file(), generated.name)
+            text = generated.read_text()
+            self.assertNotIn("\x00", text)
+            source_hash = hashlib.sha256((ROOT / "course" / f"DAY-{day}.md").read_bytes()).hexdigest()
+            self.assertIn(f'<meta name="source-sha256" content="{source_hash}">', text)
+            self.assertIn("reader-topbar", text)
+            self.assertIn("估值实验室", text)
+            self.assertIn("markdown-reference-lesson-nav", text)
+            self.assertIn("../index.html", text)
+            self.assertIn("../glossary.html", text)
+            self.assertIn("../study-methods.html", text)
+            self.assertIn(f"../day-{day}.html", text)
+
     def test_data_term_references_resolve_in_glossary(self):
         glossary_keys = set(re.findall(r'"([^"]+)":\s*\{', (WEB / "assets/glossary.js").read_text()))
         self.assertTrue(glossary_keys, "no term keys parsed from glossary.js")

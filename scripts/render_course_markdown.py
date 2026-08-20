@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render the controlled Day 1 Markdown subset into an offline HTML reference."""
+"""Render each course DAY-*.md file into an offline HTML reference."""
 
 from __future__ import annotations
 
@@ -14,9 +14,23 @@ from urllib.parse import urlsplit, urlunsplit
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT / "course" / "DAY-1.md"
-OUTPUT = ROOT / "web" / "generated" / "day-1-reference.html"
+COURSE = ROOT / "course"
+OUTPUT_DIR = ROOT / "web" / "generated"
 STYLESHEET = ROOT / "web" / "assets" / "styles.css"
+APP_SCRIPT = ROOT / "web" / "assets" / "app.js"
+
+LESSONS = [
+    {"day": 1, "source": "DAY-1.md", "output": "day-1-reference.html", "title": "模型到底在说什么", "interactive": "day-1.html"},
+    {"day": 2, "source": "DAY-2.md", "output": "day-2-reference.html", "title": "亲手打通价值桥", "interactive": "day-2.html"},
+    {"day": 3, "source": "DAY-3.md", "output": "day-3-reference.html", "title": "检查估值输入", "interactive": "day-3.html"},
+    {"day": 4, "source": "DAY-4.md", "output": "day-4-reference.html", "title": "完成最小 DCF", "interactive": "day-4.html"},
+    {"day": 5, "source": "DAY-5.md", "output": "day-5-reference.html", "title": "反向 DCF", "interactive": "day-5.html"},
+    {"day": 6, "source": "DAY-6.md", "output": "day-6-reference.html", "title": "方法适不适合", "interactive": "day-6.html"},
+    {"day": 7, "source": "DAY-7.md", "output": "day-7-reference.html", "title": "长飞综合练习", "interactive": "day-7.html"},
+]
+
+SOURCE = COURSE / "DAY-1.md"
+OUTPUT = OUTPUT_DIR / "day-1-reference.html"
 
 HEADING = re.compile(r"^(#{1,4})\s+(.+)$")
 LIST_ITEM = re.compile(r"^(\s*)([-*]|\d+\.)\s+(.+)$")
@@ -269,24 +283,71 @@ def render_markdown(markdown: str, source: Path, output: Path) -> str:
     return "\n".join(rendered)
 
 
-def build_document(source: Path = SOURCE, output: Path = OUTPUT) -> str:
+def lesson_nav(current_day: int) -> str:
+    links = []
+    for lesson in LESSONS:
+        href = html.escape(lesson["output"], quote=True)
+        label = html.escape(f'{lesson["day"]}. {lesson["title"]}')
+        current = ' class="current" aria-current="page"' if lesson["day"] == current_day else ""
+        links.append(f'<a href="{href}"{current}>{label}</a>')
+    return "\n      ".join(links)
+
+
+def lesson_for(source: Path) -> dict:
+    try:
+        return next(item for item in LESSONS if item["source"] == source.name)
+    except StopIteration as error:
+        raise MarkdownRenderError(f"no lesson registered for {source.name}") from error
+
+
+def build_document(source: Path | dict = SOURCE, output: Path | None = OUTPUT) -> str:
+    lesson = source if isinstance(source, dict) else lesson_for(Path(source))
+    source = COURSE / lesson["source"]
+    output = OUTPUT_DIR / lesson["output"] if output is None else output
     source_bytes = source.read_bytes()
     source_hash = hashlib.sha256(source_bytes).hexdigest()
     article = render_markdown(source_bytes.decode("utf-8"), source, output)
     stylesheet = html.escape(relative_href(STYLESHEET, output), quote=True)
+    app_script = html.escape(relative_href(APP_SCRIPT, output), quote=True)
     source_link = html.escape(relative_href(source, output), quote=True)
+    index_link = html.escape(relative_href(ROOT / "web" / "index.html", output), quote=True)
+    glossary_link = html.escape(relative_href(ROOT / "web" / "glossary.html", output), quote=True)
+    methods_link = html.escape(relative_href(ROOT / "web" / "study-methods.html", output), quote=True)
+    interactive_link = html.escape(relative_href(ROOT / "web" / lesson["interactive"], output), quote=True)
+    title = html.escape(lesson["title"])
+    day = lesson["day"]
     return f"""<!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="source-sha256" content="{source_hash}">
-  <title>Day 1 专业参考章</title>
+  <title>第{day}课专业参考章 · {title}</title>
   <link rel="stylesheet" href="{stylesheet}">
+  <script>
+    if (window.self !== window.top) document.documentElement.classList.add("markdown-reference-embedded");
+  </script>
+  <script defer src="{app_script}"></script>
 </head>
-<body class="markdown-reference-page">
+<body class="markdown-reference-page" data-lesson="day-{day}" data-lesson-href-prefix="../">
+  <header class="reader-topbar">
+    <a class="reader-brand" href="{index_link}" aria-label="返回课程首页">
+      <span class="reader-brand-mark" aria-hidden="true">V</span>
+      <span><strong>估值实验室</strong><small>看懂估值，不迷信数字</small></span>
+    </a>
+    <div class="reader-heading">
+      <div class="reader-breadcrumb">
+        <span>7天估值判断课</span><b>/</b><strong>{title}</strong><em>专业参考章</em>
+      </div>
+      <div class="reader-course-progress" aria-label="课程位置：第{day}课，共7课"><div class="day-dots" data-day-dots></div><small>{day} / 7</small></div>
+    </div>
+    <nav class="reader-actions" aria-label="辅助导航"><a href="{index_link}">课程首页</a><a href="{glossary_link}">术语表</a><a href="{methods_link}">学习方法</a></nav>
+  </header>
   <main class="markdown-reference-document">
-    <p class="markdown-reference-source">由 <a href="{source_link}">course/DAY-1.md</a> 生成 · SHA-256 {source_hash[:12]}</p>
+    <nav class="markdown-reference-lesson-nav" aria-label="七课专业参考章">
+      {lesson_nav(day)}
+    </nav>
+    <p class="markdown-reference-source">由 <a href="{source_link}">course/{html.escape(lesson["source"])}</a> 生成 · SHA-256 {source_hash[:12]} · <a href="{interactive_link}">打开本课互动页</a></p>
 {article}
   </main>
 </body>
@@ -294,27 +355,36 @@ def build_document(source: Path = SOURCE, output: Path = OUTPUT) -> str:
 """
 
 
+def expected_documents() -> list[tuple[Path, str]]:
+    return [(OUTPUT_DIR / lesson["output"], build_document(lesson)) for lesson in LESSONS]
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--check", action="store_true", help="verify that the generated reference is current")
+    parser.add_argument("--check", action="store_true", help="verify that generated references are current")
     args = parser.parse_args()
 
     try:
-        expected = build_document()
+        documents = expected_documents()
     except (OSError, UnicodeError, MarkdownRenderError) as error:
         print(f"render failed: {error}", file=sys.stderr)
         return 1
 
     if args.check:
-        if not OUTPUT.exists() or OUTPUT.read_text(encoding="utf-8") != expected:
-            print(f"generated reference is stale: {OUTPUT.relative_to(ROOT)}", file=sys.stderr)
+        stale = []
+        for path, expected in documents:
+            if not path.exists() or path.read_text(encoding="utf-8") != expected:
+                stale.append(str(path.relative_to(ROOT)))
+        if stale:
+            print("generated reference is stale: " + ", ".join(stale), file=sys.stderr)
             return 1
-        print(f"generated reference is current: {OUTPUT.relative_to(ROOT)}")
+        print("generated references are current: " + ", ".join(path.relative_to(ROOT).as_posix() for path, _ in documents))
         return 0
 
-    OUTPUT.parent.mkdir(parents=True, exist_ok=True)
-    OUTPUT.write_text(expected, encoding="utf-8")
-    print(f"generated {OUTPUT.relative_to(ROOT)}")
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    for path, expected in documents:
+        path.write_text(expected, encoding="utf-8")
+        print(f"generated {path.relative_to(ROOT)}")
     return 0
 
 
