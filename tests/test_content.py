@@ -58,14 +58,70 @@ class ContentTests(unittest.TestCase):
             "开发者层：验收一段投研 Agent 输出",
             "失败状态矩阵",
             "正反验收测试",
+            "负对照：不是所有缺口都等于停用",
+            "练习：写一条验收测试",
             "一页验收清单",
             "投研 Agent 开发的最低能力",
+            "交给后面几课",
         ]
         for concept in required_concepts:
             self.assertIn(concept, text, f"DAY-1 missing {concept}")
 
         for information_type in ["已发生事实", "公司指引", "外部预测", "内部假设", "派生计算", "分析判断"]:
             self.assertIn(information_type, text, f"DAY-1 missing information type {information_type}")
+
+    def test_day_one_vocabulary_does_not_drift_between_markdown_and_web(self):
+        # DAY-1.md and web/day-1.html are maintained by hand and already drifted
+        # once (the web copy silently dropped 处理状态). Break the build instead.
+        markdown = (ROOT / "course" / "DAY-1.md").read_text()
+        page = (ROOT / "web" / "day-1.html").read_text()
+
+        dimensions = ["信息性质", "来源身份", "处理状态", "验证状态"]
+        natures = ["已发生事实", "公司指引", "外部预测", "内部假设", "派生计算", "分析判断"]
+        failure_states = ["未来信息污染", "证据指针缺失", "明确错误"]
+
+        missing = [term for term in dimensions + natures + failure_states
+                   if term not in markdown or term not in page]
+        self.assertEqual(missing, [], f"terms missing from DAY-1.md or day-1.html: {missing}")
+
+    def test_day_one_surfaces_never_name_a_stale_information_type_count(self):
+        # Narrow on purpose: this only guards the *count word* on the five day-1
+        # surfaces. Stale five-item enumerations that name no count still exist in
+        # DAY-3 and docs/AUDIT-CHECKLIST.md and are a later round of work.
+        surfaces = [
+            ROOT / "course" / "DAY-1.md",
+            ROOT / "web" / "index.html",
+            ROOT / "web" / "day-1.html",
+            ROOT / "web" / "study-methods.html",
+            ROOT / "CLAUDE.md",
+        ]
+        # "第七类信息" is a deliberate phrase in DAY-1 (AI is not a seventh type),
+        # so only an unprefixed count is a drift.
+        stale = re.compile(r"(?<!第)[四五七]类信息")
+        wrong = []
+        for path in surfaces:
+            for hit in set(stale.findall(path.read_text())):
+                wrong.append(f"{path.relative_to(ROOT)} says {hit}")
+        self.assertEqual(wrong, [], "\n".join(wrong))
+
+    def test_day_one_teaches_when_not_to_flag(self):
+        # 知道何时不该报警 is half the acceptance skill; without it the course
+        # rewards an agent that returns 无法确认 for everything.
+        markdown = (ROOT / "course" / "DAY-1.md").read_text()
+        for phrase in ["不降级", "状态不变", "负对照"]:
+            self.assertIn(phrase, markdown, f"DAY-1 missing {phrase}")
+
+    def test_stated_course_hours_reconcile_with_the_day_table(self):
+        # A stated total that does not reconcile with its own parts is exactly the
+        # defect class this course teaches; keep the README honest about it.
+        readme = (ROOT / "README.md").read_text()
+        minutes = [int(m) for m in re.findall(r"^\| \d \|[^|]+\| (\d+) 分钟 \|", readme, re.MULTILINE)]
+        self.assertEqual(len(minutes), 7, f"expected 7 lesson rows, parsed {minutes}")
+
+        stated = re.search(r"约 (\d+) 小时", readme)
+        self.assertIsNotNone(stated, "README no longer states a total")
+        self.assertEqual(round(sum(minutes) / 60), int(stated.group(1)),
+                         f"day table sums to {sum(minutes)} minutes")
 
     def test_markdown_renderer_fails_closed_on_unsupported_html(self):
         script = ROOT / "scripts" / "render_course_markdown.py"

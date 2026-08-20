@@ -1,0 +1,17 @@
+{
+  "label": "研究时点之后发布的一季报被用于当时输入",
+  "expect_codes": ["pit"],
+  "subject": "长河科技（发行人合并口径）",
+  "metric": "营业收入",
+  "value": 130.0,
+  "unit": "亿元",
+  "currency": "CNY",
+  "period_end": "2026-12-31",
+  "nature": "assumption",
+  "source": "公司2026年一季报",
+  "source_published_at": "2026-04-20",
+  "adopted_at": "2026-04-20",
+  "research_as_of": "2026-03-31",
+  "evidence_pointer": "2026年一季报 第8页 表2",
+  "verification": "partial"
+}

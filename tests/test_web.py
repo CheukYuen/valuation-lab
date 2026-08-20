@@ -23,6 +23,8 @@ class PageParser(HTMLParser):
         self.sorter_items = 0
         self.agent_audits = 0
         self.agent_issues = 0
+        self.agent_variants = 0
+        self.correct_states = []
         self.markdown_openers = 0
         self.markdown_dialogs = 0
         self.markdown_frames = 0
@@ -45,6 +47,10 @@ class PageParser(HTMLParser):
             self.agent_audits += 1
         if "data-agent-issue" in values:
             self.agent_issues += 1
+        if "data-agent-variant" in values:
+            self.agent_variants += 1
+        if "data-correct-state" in values:
+            self.correct_states.append(values["data-correct-state"])
         if "data-markdown-reference-open" in values:
             self.markdown_openers += 1
         if "data-markdown-reference-dialog" in values:
@@ -105,8 +111,9 @@ class WebCourseTests(unittest.TestCase):
     def test_day_one_dual_track_interaction_contract(self):
         parser = parse(WEB / "day-1.html")
         self.assertEqual(parser.sorter_items, 10)
-        self.assertEqual(parser.agent_audits, 1)
-        self.assertEqual(parser.agent_issues, 5)
+        self.assertEqual(parser.agent_variants, 2)
+        self.assertEqual(parser.agent_audits, 2)
+        self.assertEqual(parser.agent_issues, 10)
         self.assertIn("agent-audit-summary", parser.ids)
 
         text = (WEB / "day-1.html").read_text()
@@ -114,6 +121,34 @@ class WebCourseTests(unittest.TestCase):
             self.assertIn(f'data-sorter-choice="{value}"', text)
         for grade in ["usable", "partial", "unknown"]:
             self.assertIn(f'data-agent-grade="{grade}"', text)
+
+    def test_day_one_audit_scores_judgement_not_clicks(self):
+        # The old exercise shipped the answer inside the button and scored "clicked
+        # all five". Every clause must now carry a hidden answer the learner picks.
+        text = (WEB / "day-1.html").read_text()
+        parser = parse(WEB / "day-1.html")
+        self.assertEqual(len(parser.correct_states), parser.agent_issues)
+        for state in ["consensus", "pit", "bridge", "evidence", "recompute", "conflict", "compliant"]:
+            self.assertIn(f'data-agent-state="{state}"', text)
+
+    def test_day_one_audit_has_a_negative_control(self):
+        # CLAUDE.md: 危险信号是筛查线索，不自动等于模型错误. Without compliant clauses a
+        # learner who flags everything scores full marks, which teaches the opposite.
+        parser = parse(WEB / "day-1.html")
+        self.assertGreaterEqual(parser.correct_states.count("compliant"), 3)
+
+        text = (WEB / "day-1.html").read_text()
+        # The two outputs must not resolve to the same usage grade, otherwise the
+        # exercise never shows that a known gap can still be 带条件使用.
+        self.assertIn('data-agent-answer="unknown"', text)
+        self.assertIn('data-agent-answer="partial"', text)
+
+    def test_day_one_has_a_test_authoring_exercise(self):
+        parser = parse(WEB / "day-1.html")
+        self.assertIn("write-test", parser.ids)
+        text = (WEB / "day-1.html").read_text()
+        self.assertIn('data-note="day-1-tests"', text)
+        self.assertIn("什么必须<strong>不变</strong>", text)
 
     def test_day_one_markdown_reference_contract(self):
         parser = parse(WEB / "day-1.html")

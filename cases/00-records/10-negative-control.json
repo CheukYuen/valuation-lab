@@ -1,0 +1,23 @@
+{
+  "label": "负对照：8家机构汇总预测，样本方法截点齐全——不应降级",
+  "expect_codes": [],
+  "subject": "长河科技（发行人合并口径）",
+  "metric": "营业收入",
+  "value": 121.0,
+  "unit": "亿元",
+  "currency": "CNY",
+  "period_end": "2026-12-31",
+  "nature": "forecast",
+  "labelled_as_consensus": true,
+  "consensus": {
+    "sample_size": 8,
+    "method": "中位数，剔除超过90天未更新的预测",
+    "cutoff": "2026-03-20"
+  },
+  "source": "内部汇总表 附表B-2",
+  "source_published_at": "2026-03-20",
+  "adopted_at": "2026-03-31",
+  "research_as_of": "2026-03-31",
+  "evidence_pointer": "附表B-2 第1页 8家明细",
+  "verification": "reviewed"
+}

@@ -378,55 +378,114 @@
   }
 
   function setupAgentAudit() {
+    document.querySelectorAll("[data-agent-variant-tab]").forEach(tab => {
+      tab.addEventListener("click", () => {
+        const wanted = tab.dataset.agentVariantTab;
+        document.querySelectorAll("[data-agent-variant-tab]").forEach(other => {
+          other.setAttribute("aria-selected", String(other.dataset.agentVariantTab === wanted));
+        });
+        document.querySelectorAll("[data-agent-variant]").forEach(panel => {
+          panel.hidden = panel.dataset.agentVariant !== wanted;
+        });
+      });
+    });
+
     document.querySelectorAll("[data-agent-audit]").forEach(audit => {
       const issues = Array.from(audit.querySelectorAll("[data-agent-issue]"));
       const grades = Array.from(audit.querySelectorAll("[data-agent-grade]"));
-      const explanation = audit.querySelector("[data-agent-explanation]");
       const summary = audit.querySelector("[data-agent-summary]");
+      const retryButton = audit.querySelector("[data-agent-retry]");
+      const expectedGrade = audit.dataset.agentAnswer || "unknown";
       let selectedGrade = "";
+
+      // A judgement is scored three ways: correct, false alarm (a compliant clause
+      // marked as a defect) and miss (a real defect waved through as compliant).
+      const judged = () => issues.filter(issue => issue.dataset.judged);
+      const correct = () => issues.filter(issue => issue.dataset.judged === issue.dataset.correctState);
+      const falseAlarms = () => issues.filter(issue =>
+        issue.dataset.correctState === "compliant" && issue.dataset.judged && issue.dataset.judged !== "compliant");
+      const misses = () => issues.filter(issue =>
+        issue.dataset.correctState !== "compliant" && issue.dataset.judged === "compliant");
+
+      const gradeLabel = { usable: "可继续使用", partial: "带条件使用", unknown: "无法确认" };
+      const verdictNote = {
+        unknown: "关键缺口没有一条被关闭：来源无法定位、时点被穿越、内部调整无桥、派生值未复算。补齐前不能声称“已经验证”。",
+        partial: "多数条款已经可追溯、可复算，只剩终值增长缺可定位证据。缺口已知且可隔离，因此限定用途继续用，而不是整份停用。"
+      };
 
       const renderSummary = () => {
         if (!summary) return;
-        const checked = issues.filter(issue => issue.classList.contains("active")).length;
-        if (checked < issues.length) {
+        const done = judged().length;
+        const line = `已判断 ${done} / ${issues.length} · 正确 ${correct().length} · 误报 ${falseAlarms().length} · 漏判 ${misses().length}`;
+        if (done < issues.length) {
           summary.className = "agent-audit-summary";
-          summary.innerHTML = `<strong>继续检查</strong><p>已检查 ${checked} / ${issues.length} 个问题；${selectedGrade ? "已选择使用等级，但仍要完成全部问题检查。" : "尚未选择使用等级。"}</p>`;
+          summary.innerHTML = `<strong>继续判断</strong><p>${line}。判完全部条款后再选使用等级。</p>`;
           return;
         }
         if (!selectedGrade) {
           summary.className = "agent-audit-summary ready";
-          summary.innerHTML = `<strong>五个问题已识别</strong><p>现在选择这段输出的使用等级。</p>`;
+          summary.innerHTML = `<strong>条款判断完成</strong><p>${line}。现在选择这段输出的使用等级。</p>`;
           return;
         }
-        if (selectedGrade !== "unknown") {
+        if (selectedGrade !== expectedGrade) {
           summary.className = "agent-audit-summary incorrect";
-          summary.innerHTML = `<strong>还不能放行</strong><p>五类关键问题都没有关闭，现有输出不能标为可使用或部分可用；最准确的状态是“无法确认”。</p>`;
+          summary.innerHTML = `<strong>等级不成立</strong><p>${line}。这段输出的准确等级是“${gradeLabel[expectedGrade]}”：${verdictNote[expectedGrade] || ""}</p>`;
+          return;
+        }
+        if (falseAlarms().length || misses().length) {
+          summary.className = "agent-audit-summary incorrect";
+          summary.innerHTML = `<strong>等级对了，判断还没对</strong><p>${line}。等级选对不能掩盖误报或漏判——一个把合规条款也标成问题的验收器，和一个全部放行的验收器同样不可用。</p>`;
           return;
         }
         summary.className = "agent-audit-summary complete";
-        summary.innerHTML = `<strong>验收完成：无法确认</strong><p>先移除未来信息，补齐预测来源和内部调整桥，再保存模型输入、公式与独立重算结果。完成前不能声称“已经验证”。</p>`;
+        summary.innerHTML = `<strong>验收完成：${gradeLabel[expectedGrade]}</strong><p>${line}，没有误报和漏判。${verdictNote[expectedGrade] || ""}</p>`;
+      };
+
+      const reset = () => {
+        selectedGrade = "";
+        grades.forEach(grade => grade.classList.remove("chosen"));
+        issues.forEach(issue => {
+          delete issue.dataset.judged;
+          issue.classList.remove("correct", "incorrect");
+          issue.querySelectorAll("[data-agent-state]").forEach(b => b.classList.remove("chosen"));
+          const feedback = issue.querySelector("[data-agent-issue-feedback]");
+          if (feedback) feedback.textContent = "";
+        });
+        renderSummary();
       };
 
       issues.forEach(issue => {
-        issue.addEventListener("click", () => {
-          issue.classList.add("active");
-          const state = issue.querySelector("em");
-          if (state) state.textContent = "已识别";
-          if (explanation) {
-            explanation.innerHTML = `<strong>${issue.dataset.title || "问题说明"}</strong><p>${issue.dataset.explanation || ""}</p>`;
-          }
-          renderSummary();
+        issue.querySelectorAll("[data-agent-state]").forEach(button => {
+          button.addEventListener("click", () => {
+            if (issue.dataset.judged) return;
+            const picked = button.dataset.agentState || "";
+            const expected = issue.dataset.correctState || "";
+            issue.dataset.judged = picked;
+            button.classList.add("chosen");
+            const ok = picked === expected;
+            issue.classList.add(ok ? "correct" : "incorrect");
+            const feedback = issue.querySelector("[data-agent-issue-feedback]");
+            if (feedback) {
+              let prefix = ok ? "✓ 判断正确。" : "✗ 判断不成立。";
+              if (!ok && expected === "compliant") prefix = "✗ 误报：这一条其实合规。";
+              if (!ok && picked === "compliant") prefix = "✗ 漏判：这一条不能放行。";
+              feedback.textContent = `${prefix}${issue.dataset.explanation || ""}`;
+            }
+            renderSummary();
+          });
         });
       });
 
       grades.forEach(button => {
         button.addEventListener("click", () => {
+          if (judged().length < issues.length) return;
           selectedGrade = button.dataset.agentGrade || "";
           grades.forEach(grade => grade.classList.toggle("chosen", grade === button));
           renderSummary();
         });
       });
 
+      if (retryButton) retryButton.addEventListener("click", reset);
       renderSummary();
     });
   }

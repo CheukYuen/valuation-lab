@@ -1,0 +1,22 @@
+{
+  "label": "长河科技｜2026财年合并收入｜内部Base假设（语义完整）",
+  "expect_codes": [],
+  "subject": "长河科技（发行人合并口径）",
+  "metric": "营业收入",
+  "value": 125.0,
+  "unit": "亿元",
+  "currency": "CNY",
+  "period_end": "2026-12-31",
+  "nature": "assumption",
+  "source": "公司2026-03-28业绩指引公告",
+  "source_published_at": "2026-03-28",
+  "adopted_at": "2026-03-31",
+  "research_as_of": "2026-03-31",
+  "transform": {
+    "rule": "指引中值 + 内部产能爬坡调整",
+    "from_value": 120.0,
+    "bridge": "三条新产线2026H2投产；量价桥见附表B-4"
+  },
+  "evidence_pointer": "2026-03-28指引公告 第3页 表1",
+  "verification": "partial"
+}

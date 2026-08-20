@@ -41,13 +41,14 @@
         <a href="day-1.html#information-types" data-toc-link><span></span>人能读懂：六类信息</a>
         <a href="day-1.html#checkpoint-1" data-toc-link><span></span>判断：单家预测是什么</a>
         <a href="day-1.html#sorter" data-toc-link><span></span>动手分类：10条句子</a>
-        <a href="day-1.html#dimensions" data-toc-link><span></span>三个维度不能混</a>
+        <a href="day-1.html#dimensions" data-toc-link><span></span>四个维度不能混</a>
         <a href="day-1.html#passport" data-toc-link><span></span>Agent能记录：数字身份证</a>
         <a href="day-1.html#lineage" data-toc-link><span></span>证据怎样走到结论</a>
         <a href="day-1.html#checkpoint-2" data-toc-link><span></span>判断：时点穿越</a>
         <a href="day-1.html#pit" data-toc-link><span></span>PIT：当时知道什么</a>
         <a href="day-1.html#comparison" data-toc-link><span></span>好坏材料差在哪里</a>
         <a href="day-1.html#agent-lab" data-toc-link><span></span>开发者验收实验</a>
+        <a href="day-1.html#write-test" data-toc-link><span></span>练习：写一条验收测试</a>
         <a href="day-1.html#checkpoint-3" data-toc-link><span></span>判断：引用等于验证吗</a>
         <a href="day-1.html#minimum" data-toc-link><span></span>Agent开发最低能力</a>
         <a href="day-1.html#recall" data-toc-link><span></span>主动回忆</a>
@@ -56,15 +57,15 @@
       <div class="sidebar-footnote">
         <strong>本课目标</strong>
         <p>把信息读对、记录对，并判断 Agent 输出能否验收。</p>
-        <span>基础层 35 分钟 · 开发者层 25 分钟</span>
-        <div class="sidebar-stats"><span data-read-count>0 / 16 小节已读</span><span data-quiz-score>3 题未开始</span></div>
+        <span>基础层 35 分钟 · 开发者层 40 分钟</span>
+        <div class="sidebar-stats"><span data-read-count>0 / 17 小节已读</span><span data-quiz-score>3 题未开始</span></div>
       </div>
     </aside>
 
     <main class="reader-content">
       <article class="lesson-article">
         <header class="lesson-intro" id="opening" data-reader-section>
-          <div class="track-row" aria-label="课程层级"><span class="track-pill foundation">基础层 · 35分钟</span><span class="track-pill builder">开发者层 · 25分钟</span></div>
+          <div class="track-row" aria-label="课程层级"><span class="track-pill foundation">基础层 · 35分钟</span><span class="track-pill builder">开发者层 · 40分钟</span></div>
           <p class="reader-eyebrow">从识别信息到验收投研 Agent · 第 1 课</p>
           <h1>模型到底在说什么</h1>
           <p class="lesson-deck">估值模型不是价格测量仪。它更像一台“假设翻译器”：把未来收入、利润、现金和风险的假设，翻译成今天的价值。</p>
@@ -125,11 +126,12 @@
 
         <section class="reader-section developer-section" id="dimensions" data-reader-section>
           <div class="developer-heading"><span>开发者层</span><p>从“看懂一句话”进入“设计系统记录”</p></div>
-          <p class="section-kicker">04 · 三个维度不能混</p><h2>来源可靠，不等于它是事实</h2>
-          <p class="section-lead">Agent 最容易把信息性质、来源身份和验证状态压成一个“可信度”。这会让系统无法解释：一份可靠的公司公告为什么仍可能只是前瞻指引，一条有引用的计算为什么仍未复核。</p>
+          <p class="section-kicker">04 · 四个维度不能混</p><h2>来源可靠，不等于它是事实</h2>
+          <p class="section-lead">Agent 最容易把信息性质、来源身份、处理状态和验证状态压成一个“可信度”。这会让系统无法解释：一份可靠的公司公告为什么仍可能只是前瞻指引，一条被 AI 生成摘要转述过的数字为什么仍要回到原文，一条有引用的计算为什么仍未复核。</p>
           <div class="dimension-grid">
             <div><span>信息性质</span><strong>它是什么</strong><p>事实、指引、预测、假设、计算或判断。</p></div>
             <div><span>来源身份</span><strong>谁提供它</strong><p>公司、交易所、券商、数据库、研究者或 Agent。</p></div>
+            <div><span>处理状态</span><strong>它经历了什么</strong><p>原文、提取、标准化、调整、计算或生成。</p></div>
             <div><span>验证状态</span><strong>我们做到哪一步</strong><p>已复核、部分可用、无法确认，或发现明确错误。</p></div>
           </div>
           <p class="plain-note"><strong>AI 不是信息性质：</strong>AI 是提取、变换或表达信息的处理者。另一个模型重复同一句话，不会把“无法确认”升级成“已验证”。</p>
@@ -190,21 +192,107 @@
 
         <section class="reader-section developer-section" id="agent-lab" data-reader-section>
           <div class="developer-heading"><span>开发者层</span><p>本地验收实验</p></div>
-          <p class="section-kicker">09 · 给 Agent 输出做验收</p><h2>找出五个必须关闭的问题</h2>
-          <p class="section-lead">研究时点固定为 <strong>2026年3月31日</strong>。先读完整输出，再逐项点击你确认存在的问题。所有操作只发生在当前页面。</p>
-          <blockquote class="agent-output">“长河科技2025年收入100亿元。市场共识预计2026年收入125亿元；该数字来自华东证券一份报告。公司随后公布的2026年一季报证明需求强劲，因此我们把Base收入上调到130亿元。根据模型，公司股权价值为240亿元，结论已经验证，可以继续使用。”</blockquote>
-          <div class="agent-audit" data-agent-audit>
-            <div class="agent-issue-list">
-              <button type="button" data-agent-issue data-title="单家预测冒充共识" data-explanation="只有一家券商报告，没有共识的样本、统计方法和截点。应改标为单家外部预测。"><span>01</span><strong>125亿元的“市场共识”是否成立？</strong><em>点击检查</em></button>
-              <button type="button" data-agent-issue data-title="未来信息污染" data-explanation="研究时点是3月31日，随后发布的一季报不能进入当时输入，只能用于事后复盘。"><span>02</span><strong>一季报能否证明3月31日的判断？</strong><em>点击检查</em></button>
-              <button type="button" data-agent-issue data-title="内部调整无桥接" data-explanation="125亿元上调至130亿元，却没有量、价、产能或口径桥。130亿元只能先标为未闭合的内部假设。"><span>03</span><strong>125亿怎样变成130亿？</strong><em>点击检查</em></button>
-              <button type="button" data-agent-issue data-title="来源无法定位" data-explanation="只写机构名称，没有报告标题、发布日期、页码或证据记录，无法回到原始依据。"><span>04</span><strong>“华东证券一份报告”够不够？</strong><em>点击检查</em></button>
-              <button type="button" data-agent-issue data-title="派生价值无法复算" data-explanation="240亿元缺输入、公式、模型版本和独立重算结果。“已经验证”超出了现有证据。"><span>05</span><strong>240亿元是否真的“已经验证”？</strong><em>点击检查</em></button>
-            </div>
-            <div class="agent-issue-explanation" data-agent-explanation aria-live="polite"><strong>尚未检查</strong><p>点击任一问题，查看为什么它会阻止验收。</p></div>
-            <fieldset class="agent-grade"><legend>五项检查后，这段输出应是什么状态？</legend><div><button type="button" data-agent-grade="usable">可使用</button><button type="button" data-agent-grade="partial">部分可用</button><button type="button" data-agent-grade="unknown">无法确认</button></div></fieldset>
-            <div class="agent-audit-summary" id="agent-audit-summary" data-agent-summary aria-live="polite"><strong>待完成</strong><p>已检查 0 / 5 个问题；尚未选择使用等级。</p></div>
+          <p class="section-kicker">09 · 给 Agent 输出做验收</p><h2>先判断，再看解释</h2>
+          <p class="section-lead">研究时点固定为 <strong>2026年3月31日</strong>。逐条读被摘出的句子，从失败状态里选一个——<strong>包括「合规，无需降级」</strong>。判错要计分，把合规条款误判成问题（误报）也要计分。所有操作只发生在当前页面。</p>
+          <p class="plain-note"><strong>为什么有两段输出：</strong>一个只会喊“有问题”的验收器和一个只会放行的验收器一样没用。输出 B 里大部分条款其实合规，请不要为了凑满问题而降级。</p>
+          <div class="variant-switch" role="tablist" aria-label="选择要验收的输出">
+            <button type="button" role="tab" data-agent-variant-tab="a" aria-selected="true" aria-controls="agent-variant-a">输出 A · 未修复</button>
+            <button type="button" role="tab" data-agent-variant-tab="b" aria-selected="false" aria-controls="agent-variant-b">输出 B · 已修复大部分</button>
           </div>
+
+          <div class="agent-variant" id="agent-variant-a" data-agent-variant="a" role="tabpanel">
+            <blockquote class="agent-output">“长河科技2025年收入100亿元。市场共识预计2026年收入125亿元；该数字来自华东证券一份报告。公司随后公布的2026年一季报证明需求强劲，因此我们把Base收入上调到130亿元。根据模型，公司股权价值为240亿元，结论已经验证，可以继续使用。”</blockquote>
+            <div class="agent-audit" data-agent-audit data-agent-answer="unknown">
+              <div class="agent-clause-list">
+              <div class="agent-clause" data-agent-issue data-correct-state="consensus" data-explanation="只有一家券商报告，没有共识的样本、统计方法和截点。应改标为单家外部预测，共识本身无法确认。">
+                <p class="clause-text"><span>01</span>“市场共识预计2026年收入125亿元”</p>
+                <div class="state-choices"><button type="button" data-agent-state="consensus">单家预测冒充共识</button><button type="button" data-agent-state="pit">未来信息污染</button><button type="button" data-agent-state="bridge">内部调整无桥</button><button type="button" data-agent-state="evidence">证据指针缺失</button><button type="button" data-agent-state="recompute">尚未程序复核</button><button type="button" data-agent-state="conflict">明确错误</button><button type="button" data-agent-state="compliant">合规，无需降级</button></div>
+                <p class="clause-feedback" data-agent-issue-feedback aria-live="polite"></p>
+              </div>
+              <div class="agent-clause" data-agent-issue data-correct-state="evidence" data-explanation="只写机构名称，没有报告标题、发布日期、页码或可复取记录，无法回到原始依据。">
+                <p class="clause-text"><span>02</span>“该数字来自华东证券一份报告”</p>
+                <div class="state-choices"><button type="button" data-agent-state="consensus">单家预测冒充共识</button><button type="button" data-agent-state="pit">未来信息污染</button><button type="button" data-agent-state="bridge">内部调整无桥</button><button type="button" data-agent-state="evidence">证据指针缺失</button><button type="button" data-agent-state="recompute">尚未程序复核</button><button type="button" data-agent-state="conflict">明确错误</button><button type="button" data-agent-state="compliant">合规，无需降级</button></div>
+                <p class="clause-feedback" data-agent-issue-feedback aria-live="polite"></p>
+              </div>
+              <div class="agent-clause" data-agent-issue data-correct-state="pit" data-explanation="研究时点是3月31日，随后发布的一季报不能进入当时输入，只能作为事后复盘证据另存。">
+                <p class="clause-text"><span>03</span>“公司随后公布的2026年一季报证明需求强劲”</p>
+                <div class="state-choices"><button type="button" data-agent-state="consensus">单家预测冒充共识</button><button type="button" data-agent-state="pit">未来信息污染</button><button type="button" data-agent-state="bridge">内部调整无桥</button><button type="button" data-agent-state="evidence">证据指针缺失</button><button type="button" data-agent-state="recompute">尚未程序复核</button><button type="button" data-agent-state="conflict">明确错误</button><button type="button" data-agent-state="compliant">合规，无需降级</button></div>
+                <p class="clause-feedback" data-agent-issue-feedback aria-live="polite"></p>
+              </div>
+              <div class="agent-clause" data-agent-issue data-correct-state="bridge" data-explanation="125亿元上调至130亿元，却没有量、价、产能或口径桥。130亿元只能先标为未闭合的内部假设。">
+                <p class="clause-text"><span>04</span>“因此我们把Base收入上调到130亿元”</p>
+                <div class="state-choices"><button type="button" data-agent-state="consensus">单家预测冒充共识</button><button type="button" data-agent-state="pit">未来信息污染</button><button type="button" data-agent-state="bridge">内部调整无桥</button><button type="button" data-agent-state="evidence">证据指针缺失</button><button type="button" data-agent-state="recompute">尚未程序复核</button><button type="button" data-agent-state="conflict">明确错误</button><button type="button" data-agent-state="compliant">合规，无需降级</button></div>
+                <p class="clause-feedback" data-agent-issue-feedback aria-live="polite"></p>
+              </div>
+              <div class="agent-clause" data-agent-issue data-correct-state="recompute" data-explanation="240亿元缺输入、公式、模型版本和独立重算结果。“已经验证”超出了现有证据能支持的范围。">
+                <p class="clause-text"><span>05</span>“股权价值为240亿元，结论已经验证”</p>
+                <div class="state-choices"><button type="button" data-agent-state="consensus">单家预测冒充共识</button><button type="button" data-agent-state="pit">未来信息污染</button><button type="button" data-agent-state="bridge">内部调整无桥</button><button type="button" data-agent-state="evidence">证据指针缺失</button><button type="button" data-agent-state="recompute">尚未程序复核</button><button type="button" data-agent-state="conflict">明确错误</button><button type="button" data-agent-state="compliant">合规，无需降级</button></div>
+                <p class="clause-feedback" data-agent-issue-feedback aria-live="polite"></p>
+              </div>
+              </div>
+              <fieldset class="agent-grade"><legend>五条都判完后，这段输出应是什么状态？</legend><div><button type="button" data-agent-grade="usable">可继续使用</button><button type="button" data-agent-grade="partial">带条件使用</button><button type="button" data-agent-grade="unknown">无法确认</button></div></fieldset>
+              <div class="agent-audit-summary" id="agent-audit-summary" data-agent-summary aria-live="polite"><strong>待完成</strong><p>已判断 0 / 5 · 正确 0 · 误报 0；尚未选择使用等级。</p></div>
+              <div class="agent-audit-footer"><button type="button" class="sorter-retry" data-agent-retry>重新开始</button></div>
+            </div>
+          </div>
+
+          <div class="agent-variant" id="agent-variant-b" data-agent-variant="b" role="tabpanel" hidden>
+            <blockquote class="agent-output">“长河科技2025年审计收入104.3亿元（2025年报第42页）。截至2026年3月20日，8家机构对2026年收入的预测中位数为121亿元，样本与截点见附表B-2。公司2026年3月28日发布的指引为约120亿元，已核对公告原文。Base情景采用125亿元，相对指引的5亿元上调来自三条新产线的爬坡量价桥（附表B-4）。在附表B-6保存的输入与折现公式下，模型输出股权价值228亿元，已由独立脚本重算一致。2027年以后的终值增长采用2%，与行业惯例一致。”</blockquote>
+            <div class="agent-audit" data-agent-audit data-agent-answer="partial">
+              <div class="agent-clause-list">
+              <div class="agent-clause" data-agent-issue data-correct-state="compliant" data-explanation="样本家数、统计方法和截点都在，且已标为外部预测而非事实。它看起来像“共识”陷阱，实际符合记录要求，不需要降级。">
+                <p class="clause-text"><span>01</span>“截至2026年3月20日，8家机构对2026年收入的预测中位数为121亿元，样本与截点见附表B-2”</p>
+                <div class="state-choices"><button type="button" data-agent-state="consensus">单家预测冒充共识</button><button type="button" data-agent-state="pit">未来信息污染</button><button type="button" data-agent-state="bridge">内部调整无桥</button><button type="button" data-agent-state="evidence">证据指针缺失</button><button type="button" data-agent-state="recompute">尚未程序复核</button><button type="button" data-agent-state="conflict">明确错误</button><button type="button" data-agent-state="compliant">合规，无需降级</button></div>
+                <p class="clause-feedback" data-agent-issue-feedback aria-live="polite"></p>
+              </div>
+              <div class="agent-clause" data-agent-issue data-correct-state="compliant" data-explanation="发布日3月28日早于研究时点3月31日，PIT 序关系成立，且证据已回到公告原文。日期出现在材料里不等于时点穿越。">
+                <p class="clause-text"><span>02</span>“公司2026年3月28日发布的指引为约120亿元，已核对公告原文”</p>
+                <div class="state-choices"><button type="button" data-agent-state="consensus">单家预测冒充共识</button><button type="button" data-agent-state="pit">未来信息污染</button><button type="button" data-agent-state="bridge">内部调整无桥</button><button type="button" data-agent-state="evidence">证据指针缺失</button><button type="button" data-agent-state="recompute">尚未程序复核</button><button type="button" data-agent-state="conflict">明确错误</button><button type="button" data-agent-state="compliant">合规，无需降级</button></div>
+                <p class="clause-feedback" data-agent-issue-feedback aria-live="polite"></p>
+              </div>
+              <div class="agent-clause" data-agent-issue data-correct-state="compliant" data-explanation="内部调整被单独标出，并给出了逐项量价桥和可定位的附表。这正是输出 A 第04条缺的东西。">
+                <p class="clause-text"><span>03</span>“Base采用125亿元，相对指引的5亿元上调来自三条新产线的爬坡量价桥（附表B-4）”</p>
+                <div class="state-choices"><button type="button" data-agent-state="consensus">单家预测冒充共识</button><button type="button" data-agent-state="pit">未来信息污染</button><button type="button" data-agent-state="bridge">内部调整无桥</button><button type="button" data-agent-state="evidence">证据指针缺失</button><button type="button" data-agent-state="recompute">尚未程序复核</button><button type="button" data-agent-state="conflict">明确错误</button><button type="button" data-agent-state="compliant">合规，无需降级</button></div>
+                <p class="clause-feedback" data-agent-issue-feedback aria-live="polite"></p>
+              </div>
+              <div class="agent-clause" data-agent-issue data-correct-state="compliant" data-explanation="输入、公式和独立重算结果都在，复算路径完整。注意“独立脚本重算”才算数，“另一个模型也这么说”不算。">
+                <p class="clause-text"><span>04</span>“在附表B-6保存的输入与折现公式下，模型输出股权价值228亿元，已由独立脚本重算一致”</p>
+                <div class="state-choices"><button type="button" data-agent-state="consensus">单家预测冒充共识</button><button type="button" data-agent-state="pit">未来信息污染</button><button type="button" data-agent-state="bridge">内部调整无桥</button><button type="button" data-agent-state="evidence">证据指针缺失</button><button type="button" data-agent-state="recompute">尚未程序复核</button><button type="button" data-agent-state="conflict">明确错误</button><button type="button" data-agent-state="compliant">合规，无需降级</button></div>
+                <p class="clause-feedback" data-agent-issue-feedback aria-live="polite"></p>
+              </div>
+              <div class="agent-clause" data-agent-issue data-correct-state="evidence" data-explanation="“行业惯例”不是可定位证据：没有数据来源、样本或口径，无法复取。这是本段唯一真实缺口。">
+                <p class="clause-text"><span>05</span>“2027年以后的终值增长采用2%，与行业惯例一致”</p>
+                <div class="state-choices"><button type="button" data-agent-state="consensus">单家预测冒充共识</button><button type="button" data-agent-state="pit">未来信息污染</button><button type="button" data-agent-state="bridge">内部调整无桥</button><button type="button" data-agent-state="evidence">证据指针缺失</button><button type="button" data-agent-state="recompute">尚未程序复核</button><button type="button" data-agent-state="conflict">明确错误</button><button type="button" data-agent-state="compliant">合规，无需降级</button></div>
+                <p class="clause-feedback" data-agent-issue-feedback aria-live="polite"></p>
+              </div>
+              </div>
+              <fieldset class="agent-grade"><legend>五条都判完后，这段输出应是什么状态？</legend><div><button type="button" data-agent-grade="usable">可继续使用</button><button type="button" data-agent-grade="partial">带条件使用</button><button type="button" data-agent-grade="unknown">无法确认</button></div></fieldset>
+              <div class="agent-audit-summary" id="agent-audit-summary-b" data-agent-summary aria-live="polite"><strong>待完成</strong><p>已判断 0 / 5 · 正确 0 · 误报 0；尚未选择使用等级。</p></div>
+              <div class="agent-audit-footer"><button type="button" class="sorter-retry" data-agent-retry>重新开始</button></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="reader-section developer-section" id="write-test" data-reader-section>
+          <div class="developer-heading"><span>开发者层</span><p>写测试，不只是读矩阵</p></div>
+          <p class="section-kicker">10 · 练习：写一条验收测试</p><h2>第三列才是回归测试的本体</h2>
+          <p class="section-lead">读懂失败矩阵不等于会写测试。一条验收测试至少要写清三件事，其中<strong>第三列最常被漏掉</strong>：它逼你说出这次变更<strong>不应该</strong>波及什么。一个把每次变更都当成全局降级的 Agent，通不过任何一条第三列。</p>
+          <div class="table-scroll write-test-table"><table><thead><tr><th>变更（输入怎么改）</th><th>Agent 必须返回什么</th><th>什么必须<strong>不变</strong></th></tr></thead><tbody>
+            <tr class="seeded"><td>把券商报告发布日从3月20日改到4月20日</td><td>未来信息污染；该预测退出3月31日模型输入</td><td>2025年审计收入、公司指引和已复算的派生值状态</td></tr>
+            <tr class="seeded"><td>删除估值输入文件中的折现率字段</td><td>派生值降级为尚未程序复核</td><td>上游事实与外部预测的验证状态，以及证据指针</td></tr>
+            <tr><td>把「8家机构中位数」改写为「市场一致预期」，其余不动</td><td><em>由你填写</em></td><td><em>由你填写</em></td></tr>
+            <tr><td>把年报引用页码从第42页改成第43页，数值仍可在第43页定位</td><td><em>由你填写</em></td><td><em>由你填写</em></td></tr>
+            <tr><td>把收入单位从「亿元」改成「万元」，数值不变</td><td><em>由你填写</em></td><td><em>由你填写</em></td></tr>
+          </tbody></table></div>
+          <p class="plain-note"><strong>先写后看：</strong>把后三行的答案写在下面，再展开参考答案。笔记只保存在这台设备上。</p>
+          <textarea class="note-area reader-note" data-note="day-1-tests" placeholder="第3行 · 必须返回：____&#10;第3行 · 必须不变：____&#10;&#10;第4行 · 必须返回：____&#10;第4行 · 必须不变：____&#10;&#10;第5行 · 必须返回：____&#10;第5行 · 必须不变：____"></textarea>
+          <details class="answer-details">
+            <summary>写完后展开参考答案</summary>
+            <p><strong>第3行</strong>：应返回「单家/汇总口径被改写，共识命名无法确认」——样本、方法和截点没有变，但表述把可质证的汇总换成了不可质证的命名。不变的是：底层8家预测值、截点日期，以及派生计算的状态。</p>
+            <p><strong>第4行</strong>：<strong>状态不变，不降级。</strong>证据仍可定位，指针只是更精确了。这一行的正确答案就是「什么都不该发生」；如果你的系统在这里报警，它会在真实项目里天天误报。</p>
+            <p><strong>第5行</strong>：应返回明确错误——单位与数值必须同时改，否则记录自相矛盾。受影响的是全部派生计算，必须重算；不变的是信息性质、来源身份、发布日和采用日，它们和单位错误无关。</p>
+            <p>参考答案不唯一。判分看三点：是否给出了具体的失败状态而不是「报错」，是否写了第三列，以及有没有把第4行也判成降级。</p>
+          </details>
         </section>
 
         <section class="reader-section checkpoint" id="checkpoint-3" data-reader-section>
@@ -218,7 +306,7 @@
 
         <section class="reader-section developer-section" id="minimum" data-reader-section>
           <div class="developer-heading"><span>开发者层</span><p>最低完成标准</p></div>
-          <p class="section-kicker">10 · 从会读到会验收</p><h2>投研 Agent 开发至少要做到什么</h2>
+          <p class="section-kicker">11 · 从会读到会验收</p><h2>投研 Agent 开发至少要做到什么</h2>
           <ul class="minimum-list">
             <li><span>01</span><div><strong>定义记录契约</strong><p>关键数字的对象、时点、单位、来源、变换和状态完整。</p></div></li>
             <li><span>02</span><div><strong>追溯证据链</strong><p>能从最终表述反查原始证据和每一步处理。</p></div></li>
@@ -230,13 +318,13 @@
         </section>
 
         <section class="reader-section recall-section" id="recall" data-reader-section>
-          <p class="section-kicker">11 · 主动回忆</p><h2>写一条真正可执行的验收意见</h2>
+          <p class="section-kicker">12 · 主动回忆</p><h2>写一条真正可执行的验收意见</h2>
           <p class="section-lead">不用复述定义。写清楚：你发现了什么、影响哪一步、补什么证据或计算才能重新开放使用。笔记只保存在这台设备上。</p>
           <textarea class="note-area reader-note" data-note="day-1" placeholder="当前状态：____&#10;证据链断在：____&#10;影响：____&#10;关闭条件：____&#10;仍不能断言：____"></textarea>
         </section>
 
         <section class="reader-section boundary-section" id="boundary" data-reader-section>
-          <p class="section-kicker">12 · 本课边界</p><h2>现在能验收什么，还不能决定什么</h2>
+          <p class="section-kicker">13 · 本课边界</p><h2>现在能验收什么，还不能决定什么</h2>
           <div class="boundary-grid">
             <div><span aria-hidden="true">✓</span><div><strong>现在可以</strong><p>判断信息性质，设计关键数字记录，并识别 Agent 输出中的来源、时点、桥接和复算缺口。</p></div></div>
             <div><span aria-hidden="true">—</span><div><strong>还不可以</strong><p>仅凭这一课判断预测是否合理、独立完成正式估值，或由模型价值推出股票是否值得买。</p></div></div>

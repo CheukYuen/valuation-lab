@@ -1,0 +1,13 @@
+{
+  "label": "只保存了一个数字：缺对象、期间、单位、性质与时点",
+  "expect_codes": [
+    "semantics",
+    "semantics",
+    "semantics",
+    "semantics",
+    "semantics",
+    "semantics",
+    "evidence"
+  ],
+  "value": 125.0
+}

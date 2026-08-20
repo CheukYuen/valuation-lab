@@ -1,0 +1,22 @@
+{
+  "label": "派生股权价值缺输入、公式与独立重算",
+  "expect_codes": ["recompute"],
+  "subject": "长河科技（A股+H股合计股权）",
+  "metric": "股权价值",
+  "value": 240.0,
+  "unit": "亿元",
+  "currency": "CNY",
+  "period_end": "2026-12-31",
+  "nature": "derived",
+  "source": "内部估值模型",
+  "source_published_at": "2026-03-31",
+  "adopted_at": "2026-03-31",
+  "research_as_of": "2026-03-31",
+  "computation": {
+    "inputs_version": "",
+    "formula": "",
+    "recomputed_by": ""
+  },
+  "evidence_pointer": "估值模型 Sheet DCF 单元格 B42",
+  "verification": "unknown"
+}

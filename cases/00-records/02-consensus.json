@@ -1,0 +1,18 @@
+{
+  "label": "单家券商预测被命名为市场共识",
+  "expect_codes": ["consensus"],
+  "subject": "长河科技（发行人合并口径）",
+  "metric": "营业收入",
+  "value": 125.0,
+  "unit": "亿元",
+  "currency": "CNY",
+  "period_end": "2026-12-31",
+  "nature": "forecast",
+  "labelled_as_consensus": true,
+  "source": "华东证券研究报告",
+  "source_published_at": "2026-03-20",
+  "adopted_at": "2026-03-31",
+  "research_as_of": "2026-03-31",
+  "evidence_pointer": "华东证券《长河科技深度》2026-03-20 第12页",
+  "verification": "partial"
+}

@@ -1,0 +1,22 @@
+{
+  "label": "派生值由另一个语言模型复述，冒充独立计算",
+  "expect_codes": ["recompute"],
+  "subject": "长河科技（A股+H股合计股权）",
+  "metric": "股权价值",
+  "value": 228.0,
+  "unit": "亿元",
+  "currency": "CNY",
+  "period_end": "2026-12-31",
+  "nature": "derived",
+  "source": "内部估值模型",
+  "source_published_at": "2026-03-31",
+  "adopted_at": "2026-03-31",
+  "research_as_of": "2026-03-31",
+  "computation": {
+    "inputs_version": "inputs-2026-03-31-r3",
+    "formula": "EV = sum(FCFF_t/(1+r)^t) + TV/(1+r)^n; Equity = EV - NetDebt",
+    "recomputed_by": "model:另一个大模型给出了相同答案"
+  },
+  "evidence_pointer": "估值模型 Sheet DCF 单元格 B42",
+  "verification": "partial"
+}
