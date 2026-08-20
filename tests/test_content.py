@@ -135,16 +135,99 @@ class ContentTests(unittest.TestCase):
         text = (ROOT / "course" / "DAY-2.md").read_text()
         self.assertIn("净现金", text, "DAY-2 must show the net-cash case where the direction flips")
 
-    def test_day_two_failure_matrix_uses_only_day_one_vocabulary(self):
+    def test_failure_matrices_use_only_day_one_vocabulary(self):
         # 仓库里有两套词表：记录验证状态（第1课）与清单项状态（AUDIT-CHECKLIST）。
         # 失败矩阵必须只用前者，否则下游无法渲染一致的状态。
-        text = (ROOT / "course" / "DAY-2.md").read_text()
-        section = text.split("### 失败状态矩阵", 1)[1].split("\n## ", 1)[0]
-        table = [line for line in section.splitlines() if line.startswith("|")]
-        self.assertGreaterEqual(len(table), 8, "failure matrix rows not found")
-        for line in table:
-            for stale in ["警告", "通过"]:
-                self.assertNotIn(stale, line, f"checklist vocabulary leaked into the matrix: {line}")
+        # 切片必须在下一个任意层级标题处截断：矩阵后面还跟着「练习」和「一页验收清单」，
+        # 而清单**故意**引用 AUDIT-CHECKLIST 的 通过/警告/失败 词表，切多了会误报，
+        # 而「修复」误报的自然做法是删掉正确的教学内容。
+        checked = []
+        for day in range(1, 8):
+            text = (ROOT / "course" / f"DAY-{day}.md").read_text()
+            if "### 失败状态矩阵" not in text:
+                continue
+            checked.append(day)
+            section = re.split(r"\n#{2,3} ", text.split("### 失败状态矩阵", 1)[1], 1)[0]
+            table = [line for line in section.splitlines() if line.startswith("|")]
+            self.assertGreaterEqual(len(table), 8, f"DAY-{day} failure matrix rows not found")
+            for line in table:
+                for stale in ["警告", "通过"]:
+                    self.assertNotIn(stale, line, f"DAY-{day} checklist vocabulary in matrix: {line}")
+        # 覆盖面由 test_every_failure_mode_lands_on... 按模式逐条保证；
+        # 这里只确认确实切到了矩阵，不锁定哪几课有矩阵。
+        self.assertGreaterEqual(len(checked), 6, f"matrices found on {checked}")
+
+    def test_every_failure_mode_lands_on_a_lesson_that_ships_a_matrix_and_an_exercise(self):
+        # DAY-1 和 DAY-2 都写明：六个失败模式最终都要落到一个失败状态和一条验收测试上。
+        # 没有这条测试，那句承诺就是 DAY-1 自己警告过的「挂件」。
+        delivered_by = {
+            "利润不等于现金": 2,
+            "错股本": 2,
+            "错时点": 3,
+            "峰值永久化": 4,
+            "隐藏终值": 4,
+            "方法错配": 6,
+        }
+        day_one = (ROOT / "course" / "DAY-1.md").read_text()
+        day_seven = (ROOT / "course" / "DAY-7.md").read_text()
+        for mode, day in delivered_by.items():
+            self.assertIn(mode, day_one, f"DAY-1 handoff table missing {mode}")
+            self.assertIn(mode, day_seven, f"DAY-7 recycling table missing {mode}")
+            lesson = (ROOT / "course" / f"DAY-{day}.md").read_text()
+            self.assertIn(mode, lesson, f"DAY-{day} never names {mode}")
+            self.assertIn("失败状态矩阵", lesson, f"DAY-{day} delivers {mode} without a matrix")
+            self.assertIn("什么必须不变", lesson, f"DAY-{day} delivers {mode} without a test exercise")
+
+    def test_every_lesson_teaches_when_not_to_flag(self):
+        # CLAUDE.md：危险信号只是检查线索，不自动等于模型错误。少了这一半，
+        # 课程会奖励一个对所有材料都返回「无法确认」的验收器。
+        for day in range(1, 8):
+            text = (ROOT / "course" / f"DAY-{day}.md").read_text()
+            for phrase in ["不降级", "状态不变", "负对照"]:
+                self.assertIn(phrase, text, f"DAY-{day} missing {phrase}")
+
+    def test_information_type_enumerations_name_all_six(self):
+        # 枚举信息性质时漏掉派生计算和分析判断，正好漏掉最容易被写成事实的两类。
+        # 这几个面之前分别写成三类、四类和五类。
+        surfaces = [
+            ROOT / "course" / "DAY-3.md",
+            ROOT / "course" / "DAY-7.md",
+            ROOT / "course" / "README.md",
+            ROOT / "docs" / "AUDIT-CHECKLIST.md",
+        ]
+        types = ["已发生事实", "公司指引", "外部预测", "内部假设", "派生计算", "分析判断"]
+        missing = []
+        for path in surfaces:
+            text = path.read_text()
+            missing += [f"{path.relative_to(ROOT)} missing {t}" for t in types if t not in text]
+        self.assertEqual(missing, [], "\n".join(missing))
+
+    def test_acceptance_checklists_anchor_to_real_audit_ids(self):
+        # 一页验收清单挂 D 编号才能回查。编号写错等于把读者送进空目录。
+        known = set(re.findall(r"^\| (D\d+) \|", (ROOT / "docs" / "AUDIT-CHECKLIST.md").read_text(), re.MULTILINE))
+        self.assertTrue(known, "no D-ids parsed from AUDIT-CHECKLIST.md")
+        broken = []
+        for day in range(2, 7):
+            text = (ROOT / "course" / f"DAY-{day}.md").read_text()
+            self.assertIn("一页验收清单", text, f"DAY-{day} missing 一页验收清单")
+            section = re.split(r"\n## ", text.split("## 一页验收清单", 1)[1], 1)[0]
+            broken += [f"DAY-{day} -> {i}" for i in set(re.findall(r"（(D\d+)", section)) - known]
+        self.assertEqual(broken, [], "\n".join(broken))
+
+    def test_each_lesson_states_the_same_budget_as_the_readme_table(self):
+        # README 说第3课55分钟、第3课自己说35分钟，正是本课程教的那类缺陷。
+        # 现有的小时数测试只解析 README，两处写岔它抓不到。
+        readme = (ROOT / "README.md").read_text()
+        table = {int(d): int(m) for d, m in
+                 re.findall(r"^\| (\d) \|[^|]+\| (\d+) 分钟 \|", readme, re.MULTILINE)}
+        self.assertEqual(len(table), 7, table)
+        wrong = []
+        for day, minutes in table.items():
+            headline = (ROOT / "course" / f"DAY-{day}.md").read_text().split("\n")[2]
+            stated = sum(int(m) for m in re.findall(r"约?(\d+)分钟", headline))
+            if stated != minutes:
+                wrong.append(f"DAY-{day}: lesson says {stated}, README says {minutes}")
+        self.assertEqual(wrong, [], "\n".join(wrong))
 
     def test_day_two_hands_its_beginner_case_and_checklist_to_the_learner(self):
         # 案例3（利润不等于现金）曾经不被任何一课引用，而它正是第2课的主题。
