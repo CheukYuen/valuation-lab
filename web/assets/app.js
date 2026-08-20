@@ -8,7 +8,7 @@
   const LESSONS = [
     { id: "day-1", title: "模型到底在说什么" },
     { id: "day-2", title: "看懂最小价值桥" },
-    { id: "day-3", title: "五分钟初筛" },
+    { id: "day-3", title: "检查估值输入" },
     { id: "day-4", title: "谁在控制结果" },
     { id: "day-5", title: "反向 DCF" },
     { id: "day-6", title: "方法适不适合" },

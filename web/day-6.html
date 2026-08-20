@@ -1,21 +1,133 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>第6课：方法适不适合</title><link rel="stylesheet" href="assets/styles.css"><script defer src="assets/app.js"></script><script defer src="assets/tools.js"></script></head>
-<body data-lesson="day-6"><header class="topbar"><a class="brand" href="index.html">valuation-lab · 互动版</a><nav class="topnav"><a href="index.html">课程</a><a href="study-methods.html">科学学习法</a><a href="../course/DAY-6.md">文字版</a></nav><div class="progress-wrap"><div class="progress-label"><span>学习进度</span><strong data-progress-text>0/7</strong></div><div class="progress-track"><div class="progress-bar" data-progress-bar></div></div></div></header>
-<main class="page lesson-layout"><aside class="lesson-nav"><strong>七天课程</strong><a href="day-1.html">01 信息性质</a><a href="day-2.html">02 价值桥</a><a href="day-3.html">03 快速门</a><a href="day-4.html">04 敏感性</a><a href="day-5.html">05 反向DCF</a><a class="current" href="day-6.html">06 方法匹配</a><a href="day-7.html">07 长飞审计</a><a class="method-link" href="study-methods.html">科学学习法</a></aside><article class="lesson-main">
-  <section class="hero"><p class="eyebrow">DAY 06 · 40 MIN</p><h1>方法<br>适不适合</h1><p>先问价值由什么驱动，再选尺子。行业标签相同，不代表商业模式、周期和资本强度可比。</p><div class="hero-meta"><span class="pill">DCF</span><span class="pill">PE/PB</span><span class="pill">EV/EBITDA</span><span class="pill">SOTP</span></div></section>
-  <section class="section"><h2>互动匹配器</h2><div class="tool"><div class="control"><label for="method-business">这门生意最像哪一种？</label><select id="method-business"><option value="stable">稳定现金流资产</option><option value="cyclical">周期品</option><option value="bank">银行/保险</option><option value="heavy">重资产企业</option><option value="group">多业务集团</option><option value="early">早期/无盈利公司</option></select></div><div class="result-grid"><div class="metric"><span>常用主方法</span><strong id="method-result">DCF / 股息折现</strong></div></div><p class="tool-note" id="method-caution"></p></div></section>
-  <section class="section"><h2>五种常见误用</h2><div class="grid-2">
-    <div class="card warning"><h3>周期高点 × 历史PE</h3><p>低PE可能反映利润即将回落，不自动代表便宜。</p></div>
-    <div class="card warning"><h3>重资产只看EV/EBITDA</h3><p>EBITDA没有扣除维持性Capex和营运资金。</p></div>
-    <div class="card warning"><h3>银行套工业FCFF</h3><p>存贷款和资本要求是业务本体，不能当普通融资项机械处理。</p></div>
-    <div class="card warning"><h3>数据不足强行SOTP</h3><p>分部利润、资产、Capex和总部费用无法拆分时，加总只是表面精细。</p></div>
-    <div class="card warning"><h3>早期公司精确DCF</h3><p>输入高度不确定时，可以做宽情景，不能制造小数点目标价。</p></div>
-  </div></section>
-  <section class="section"><h2>闯关</h2>
-    <div class="quiz-card" data-quiz-id="q1" data-answer="B" data-explanation="先对齐收入结构、周期、资本强度和盈利口径。"><p class="question">1. 两家公司都属于通信行业，可以直接比较整体PE吗？</p><div class="choices"><button class="choice" data-choice="A">A. 可以</button><button class="choice" data-choice="B">B. 先检查业务可比性</button></div><p class="feedback"></p></div>
-    <div class="quiz-card" data-quiz-id="q2" data-answer="B" data-explanation="还要看维持性Capex和营运资金。"><p class="question">2. EV/EBITDA低能自动证明重资产公司便宜吗？</p><div class="choices"><button class="choice" data-choice="A">A. 能</button><button class="choice" data-choice="B">B. 不能</button></div><p class="feedback"></p></div>
-    <div class="quiz-card" data-quiz-id="q3" data-answer="B" data-explanation="问题是可靠性和表达边界，不是绝对禁令。"><p class="question">3. 早期公司是否永远不能用DCF？</p><div class="choices"><button class="choice" data-choice="A">A. 永远不能</button><button class="choice" data-choice="B">B. 可做宽情景，但不能伪精确</button></div><p class="feedback"></p></div>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>第6课：方法适不适合</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <script defer src="assets/app.js"></script>
+  <script defer src="assets/tools.js"></script>
+</head>
+<body data-lesson="day-6">
+<header class="topbar"><a class="brand" href="index.html">valuation-lab · 互动版</a><nav class="topnav"><a href="index.html">课程</a><a href="study-methods.html">科学学习法</a><a href="../course/DAY-6.md">文字版</a></nav><div class="progress-wrap"><div class="progress-label"><span>学习进度</span><strong data-progress-text>0/7</strong></div><div class="progress-track"><div class="progress-bar" data-progress-bar></div></div></div></header>
+<main class="page lesson-layout"><aside class="lesson-nav"><strong>七天课程</strong><a href="day-1.html">01 信息性质</a><a href="day-2.html">02 价值桥</a><a href="day-3.html">03 检查输入</a><a href="day-4.html">04 最小DCF</a><a href="day-5.html">05 反向DCF</a><a class="current" href="day-6.html">06 方法匹配</a><a href="day-7.html">07 长飞练习</a><a class="method-link" href="study-methods.html">科学学习法</a></aside>
+<article class="lesson-main">
+  <section class="hero"><p class="eyebrow">DAY 06 · 55 MIN</p><h1>方法<br>适不适合</h1><p>先问价值由什么驱动，再选尺子。行业标签相同，不代表商业模式、周期和资本强度可比。四种方法的数字由同一套公式算出，不要在页面里另写一份。</p><div class="hero-meta"><span class="pill">DCF</span><span class="pill">PE / PB</span><span class="pill">EV/EBITDA</span><span class="pill">方法错配</span></div></section>
+
+  <section class="section"><h2>互动匹配器</h2>
+    <div class="tool">
+      <div class="control"><label for="method-business">这门生意最像哪一种？</label>
+        <select id="method-business">
+          <option value="stable">稳定现金流资产</option>
+          <option value="cyclical">周期品</option>
+          <option value="bank">银行/保险</option>
+          <option value="heavy">重资产企业</option>
+          <option value="group">多业务集团</option>
+          <option value="early">早期/无盈利公司</option>
+        </select>
+      </div>
+      <div class="result-grid"><div class="metric"><span>常用主方法</span><strong id="method-result">—</strong></div></div>
+      <p class="tool-note" id="method-caution"></p>
+    </div>
   </section>
-  <section class="section"><h2>交错练习</h2><p>任选三种生意，不看上表，写出“主方法 + 一个最容易误用的地方”。</p><textarea class="note-area" data-note="day-6" placeholder="周期品：____&#10;银行：____&#10;早期公司：____"></textarea><div class="button-row"><button class="primary" data-complete-lesson>标记本课完成</button><a class="secondary" href="../docs/GLOSSARY.md">估值方法术语</a></div></section>
-  <nav class="footer-nav"><a href="day-5.html">← 第5课</a><a href="day-7.html">第7课：长飞审计 →</a></nav>
-</article></main></body></html>
+
+  <section class="section"><h2>同一家制造企业的四种股权价值</h2>
+    <p>净利润12亿元、账面权益80亿元、EBITDA 30亿元、净债务30亿元。可比倍数：PE 15、PB 1.8、EV/EBITDA 8。DCF沿用第4课五个数，净债务改为30亿元。</p>
+    <div class="tool">
+      <div class="result-grid">
+        <div class="metric"><span>DCF</span><strong id="method-dcf-equity">—</strong></div>
+        <div class="metric"><span>PE</span><strong id="method-pe">—</strong></div>
+        <div class="metric"><span>PB</span><strong id="method-pb">—</strong></div>
+        <div class="metric"><span>EV/EBITDA − 净债务</span><strong id="method-ev-ebitda">—</strong></div>
+      </div>
+      <p class="tool-note">四个结果都是股权价值口径。EV/EBITDA必须先得到EV，再扣净债务；直接拿EV去和PE比，就是对象错位。</p>
+    </div>
+  </section>
+
+  <section class="section"><h2>银行错配：存款不是普通有息债务</h2>
+    <div class="tool">
+      <div class="result-grid">
+        <div class="metric"><span>把存款当债务扣除</span><strong id="method-bank-with">—</strong></div>
+        <div class="metric"><span>存款移出EV桥</span><strong id="method-bank-without">—</strong></div>
+      </div>
+      <p class="tool-note">同一套8倍、同一份数据，一个项目的处理方式就决定了结果的符号。修好符号不等于这把尺子适合银行。</p>
+    </div>
+  </section>
+
+  <section class="section"><h2>负对照：四个数差1.46倍不等于有人算错</h2>
+    <div class="grid-2">
+      <div class="card good"><h3>当前不降级</h3><p>离散度是方法差异的度量；EV/EBITDA被标明为量级校验且已完成资本结构桥；PB列示后因账面权益不反映无形资产而排除。</p></div>
+      <div class="card bad"><h3>会误报的检查器</h3><p>见到“方法之间差距太大”就降级，会把方法论差异误判成计算错误。</p></div>
+    </div>
+  </section>
+
+  <section class="section"><h2>失败状态矩阵</h2>
+    <div class="table-scroll"><table>
+      <thead><tr><th>触发条件</th><th>记录验证状态 + 使用等级</th><th>影响</th><th>还不能断言</th></tr></thead>
+      <tbody>
+        <tr><td>把银行存款当普通有息债务从工业式EV中扣除</td><td>明确错误；停止使用该方法的全部输出</td><td>价值对象失去经济含义</td><td>银行股权价值为负，或该银行便宜/昂贵</td></tr>
+        <tr><td>EV口径结果与股权价值口径结果直接比较，未走资本结构桥</td><td>明确错误；停止使用该比较</td><td>凭空制造口径差距</td><td>两个方法本身一定有一个算错</td></tr>
+        <tr><td>把多种方法结果简单平均，并声称平均后更客观</td><td>无法确认（掩盖假设差异）；该单点停止使用</td><td>四套不同假设被压成一个无法复算的数字</td><td>平均值一定偏离真实价值</td></tr>
+        <tr><td>周期峰值EPS对应的低PE被直接解释为便宜</td><td>无法确认；该结论带条件使用</td><td>盈利正常化未完成</td><td>该证券一定昂贵</td></tr>
+        <tr><td>辅助校验结果被当作主结论对外表述</td><td>明确错误（方法角色错标）；该表述停止使用</td><td>结论强度超过方法定位</td><td>该辅助方法的数值算错了</td></tr>
+        <tr><td>多种方法结果离散，但主辅角色、口径和排除理由都已写明</td><td>状态不变，不降级</td><td>按主方法区间继续使用</td><td>离散度大一定意味着有人算错</td></tr>
+        <tr><td>某方法被列示后明确排除，并给出经济理由</td><td>状态不变，不降级</td><td>排除本身是可质证的判断</td><td>排除等于隐藏不利结果</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="section" id="write-test"><h2>练习：写一条验收测试</h2>
+    <div class="table-scroll write-test-table"><table>
+      <thead><tr><th>变更（一次只改一个条件）</th><th>Agent 必须返回什么</th><th>什么必须<strong>不变</strong></th></tr></thead>
+      <tbody>
+        <tr class="seeded"><td>把银行案例中的存款从EV桥里移出，其余不动</td><td>量级错误已修复，方法适用性仍无法确认</td><td>不能升级为已复核</td></tr>
+        <tr class="seeded"><td>把EV/EBITDA的240亿元直接与PE的180亿元并列为“两个股权价值”</td><td>明确错误（对象错位）</td><td>两个数字各自的计算状态</td></tr>
+        <tr><td>在报告结论处新增一行“四法平均177.02亿元”</td><td><em>由你填写</em></td><td><em>由你填写</em></td></tr>
+        <tr><td>把PB 144亿元从报告中删掉，不留任何说明</td><td><em>由你填写</em></td><td><em>由你填写</em></td></tr>
+        <tr><td>把PB 144亿元保留在表中，但注明因账面权益不反映无形资产而不参与区间</td><td><em>由你填写</em></td><td><em>由你填写</em></td></tr>
+      </tbody>
+    </table></div>
+    <textarea class="note-area" data-note="day-6-tests" placeholder="第3行 · 必须返回：____&#10;第3行 · 必须不变：____&#10;&#10;第4行 · 必须返回：____&#10;第4行 · 必须不变：____&#10;&#10;第5行 · 必须返回：____&#10;第5行 · 必须不变：____"></textarea>
+    <details class="answer-details"><summary>写完后展开参考答案</summary>
+      <p><strong>第3行</strong>：应返回“无法确认”，并要求删除或改写该平均值。不变的是四个方法各自的结果与状态。</p>
+      <p><strong>第4行</strong>：应返回“无法确认（选择性披露）”。不变的是其余三种方法的计算状态。</p>
+      <p><strong>第5行</strong>：<strong>状态不变，不降级。</strong>和第4行的唯一差别是一句理由。</p>
+    </details>
+  </section>
+
+  <section class="section"><h2>一页验收清单</h2>
+    <ul>
+      <li>每个结果落在哪个对象上：EV还是股权价值？（D8）</li>
+      <li>主方法是哪一个，理由是否写出来了？（D16）</li>
+      <li>辅助校验是否被标明为校验，而不是被当作结论？（D16、D18）</li>
+      <li>可比公司是否按收入结构、周期位置、资本强度对齐，而不是按行业标签？（D16）</li>
+      <li>多种方法结果是否被简单平均？（D17）</li>
+      <li>被排除的方法是否给出了经济理由？（D17）</li>
+      <li>方法错配产生的负值，是否被误读成经济结论？（D18）</li>
+    </ul>
+  </section>
+
+  <section class="section"><h2>闯关</h2>
+    <div class="quiz-card" data-quiz-id="q1" data-answer="B" data-explanation="行业名称不是经济可比性。"><p class="question">1. 两家公司都属于“通信行业”，可以直接比较整体PE吗？</p><div class="choices"><button class="choice" data-choice="A">A. 可以</button><button class="choice" data-choice="B">B. 先对齐业务结构、周期、资本强度和盈利口径</button></div><p class="feedback"></p></div>
+    <div class="quiz-card" data-quiz-id="q2" data-answer="B" data-explanation="EBITDA没有扣继续经营所需的资本投入。"><p class="question">2. EV/EBITDA较低能否自动证明重资产公司便宜？</p><div class="choices"><button class="choice" data-choice="A">A. 能</button><button class="choice" data-choice="B">B. 不能，还要看维持性Capex和营运资金</button></div><p class="feedback"></p></div>
+    <div class="quiz-card" data-quiz-id="q3" data-answer="B" data-explanation="平均不能消除各方法的口径与经济假设。"><p class="question">3. 四种方法得到144—210亿元，最专业的处理是：</p><div class="choices"><button class="choice" data-choice="A">A. 直接平均，消除主观性</button><button class="choice" data-choice="B">B. 解释各自假设，选择主方法并保留辅助校验</button></div><p class="feedback"></p></div>
+    <div class="quiz-card" data-quiz-id="q4" data-answer="B" data-explanation="问题是可靠性和表达边界，不是绝对禁令。"><p class="question">4. 早期公司是否永远不能用DCF？</p><div class="choices"><button class="choice" data-choice="A">A. 永远不能</button><button class="choice" data-choice="B">B. 可以做宽区间情景，但不能把高度不确定输入包装成精确锚点</button></div><p class="feedback"></p></div>
+    <div class="quiz-card" data-quiz-id="q5" data-answer="B" data-explanation="负值暴露方法失去含义，不是投资结论。"><p class="question">5. 银行工业式EV/EBITDA为负，应怎样处理？</p><div class="choices"><button class="choice" data-choice="A">A. 断言银行股权为负</button><button class="choice" data-choice="B">B. 停止使用错配方法，换用更匹配的框架</button></div><p class="feedback"></p></div>
+    <div class="quiz-card" data-quiz-id="q6" data-answer="B" data-explanation="修好一个明显错误最容易掩盖“方法本身不该用”的问题。"><p class="question">6. 把银行存款移出EV桥后，结果由-570亿元变为330亿元。可以据此认为方法已经适用了吗？</p><div class="choices"><button class="choice" data-choice="A">A. 可以，负值消失说明公式修好了</button><button class="choice" data-choice="B">B. 不可以，量级和符号恢复正常不等于这把尺子适合银行</button></div><p class="feedback"></p></div>
+    <div class="quiz-card" data-quiz-id="q7" data-answer="B" data-explanation="两个数字各自可能都算对了，错的是把它们放在同一行比较。"><p class="question">7. 报告把EV/EBITDA算出的240亿元与PE算出的180亿元并列为“两个估值结果”。最直接的问题是：</p><div class="choices"><button class="choice" data-choice="A">A. 倍数选得不合理</button><button class="choice" data-choice="B">B. 对象错位：240亿元是企业价值，180亿元是股权价值</button></div><p class="feedback"></p></div>
+  </section>
+
+  <section class="section"><h2>本课边界</h2>
+    <p>方法选对仍不代表输入和预测有证据。</p>
+    <p>第1课列出的六个失败模式，本课交付了最后一个：<strong>方法错配</strong>。至此六个模式全部有了对应的失败状态和验收测试：错股本与利润不等于现金在第2课，错时点在第3课，峰值永久化与隐藏终值在第4课，方法错配在本课。</p>
+  </section>
+
+  <section class="section"><h2>交错练习</h2>
+    <p>任选三种生意，不看上表，写出“主方法 + 一个最容易误用的地方”。</p>
+    <textarea class="note-area" data-note="day-6" placeholder="周期品：____&#10;银行：____&#10;早期公司：____"></textarea>
+    <div class="button-row"><button class="primary" data-complete-lesson>标记本课完成</button><a class="secondary" href="../docs/GLOSSARY.md">估值方法术语</a></div>
+  </section>
+  <nav class="footer-nav"><a href="day-5.html">← 第5课</a><a href="day-7.html">第7课：长飞综合练习 →</a></nav>
+</article></main>
+</body>
+</html>

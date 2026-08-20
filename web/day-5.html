@@ -1,23 +1,122 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>第5课：反向DCF</title><link rel="stylesheet" href="assets/styles.css"><script defer src="assets/app.js"></script><script defer src="assets/tools.js"></script></head>
-<body data-lesson="day-5"><header class="topbar"><a class="brand" href="index.html">valuation-lab · 互动版</a><nav class="topnav"><a href="index.html">课程</a><a href="study-methods.html">科学学习法</a><a href="../course/DAY-5.md">文字版</a></nav><div class="progress-wrap"><div class="progress-label"><span>学习进度</span><strong data-progress-text>0/7</strong></div><div class="progress-track"><div class="progress-bar" data-progress-bar></div></div></div></header>
-<main class="page lesson-layout"><aside class="lesson-nav"><strong>七天课程</strong><a href="day-1.html">01 信息性质</a><a href="day-2.html">02 价值桥</a><a href="day-3.html">03 快速门</a><a href="day-4.html">04 敏感性</a><a class="current" href="day-5.html">05 反向DCF</a><a href="day-6.html">06 方法匹配</a><a href="day-7.html">07 长飞审计</a><a class="method-link" href="study-methods.html">科学学习法</a></aside><article class="lesson-main">
-  <section class="hero"><p class="eyebrow">DAY 05 · 45 MIN</p><h1>反向<br>DCF</h1><p>不先问“值多少钱”，而问“在这组条件下，当前价格要求公司做到什么”。结果是一条条件曲线，不是市场唯一观点。</p><div class="hero-meta"><span class="pill">价格→经营要求</span><span class="pill">多组解</span><span class="pill">经济无解区</span></div></section>
-  <section class="section"><h2>正向和反向，只是方向不同</h2><div class="grid-2"><div class="card info"><h3>正向DCF</h3><div class="flow"><span>经营预测</span><b>→</b><span>现金流</span><b>→</b><span>模型价值</span></div></div><div class="card good"><h3>反向DCF</h3><div class="flow"><span>当前价格</span><b>→</b><span>所需现金流</span><b>→</b><span>增长/利润/时间</span></div></div></div><p class="lead">合格表述必须带条件：“在WACC 9%、显性期7年、永续增长2%和当前FCFF定义下……”</p></section>
-  <section class="section"><h2>动手：同一价格，不同WACC</h2><div class="tool"><div class="controls"><div class="control"><label>当前股权市值 <span>亿元</span></label><input id="reverse-target" data-reverse-input type="number" value="300" step="10"></div><div class="control"><label>起点FCFF <span>亿元</span></label><input id="reverse-fcf" data-reverse-input type="number" value="10" step="1"></div></div><div class="table-scroll"><table><thead><tr><th>WACC</th><th>要求的7年增长</th><th>下一步</th></tr></thead><tbody id="reverse-body"></tbody></table></div><p class="tool-note">固定：7年显性期、2%永续增长、20亿元净债务。改变市值，观察何时出现无解。</p></div>
-    <details><summary>二分求解代码</summary><pre><code>while high - low &gt; tolerance:
-    mid = (low + high) / 2
-    if dcf_value(growth=mid) &lt; market_value:
-        low = mid
-    else:
-        high = mid</code></pre><a class="code-link" href="../lab/reverse.py">打开完整Python源码</a></details>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>第5课：反向 DCF</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <script defer src="assets/app.js"></script>
+  <script defer src="assets/tools.js"></script>
+</head>
+<body data-lesson="day-5">
+<header class="topbar"><a class="brand" href="index.html">valuation-lab · 互动版</a><nav class="topnav"><a href="index.html">课程</a><a href="study-methods.html">科学学习法</a><a href="../course/DAY-5.md">文字版</a></nav><div class="progress-wrap"><div class="progress-label"><span>学习进度</span><strong data-progress-text>0/7</strong></div><div class="progress-track"><div class="progress-bar" data-progress-bar></div></div></div></header>
+<main class="page lesson-layout"><aside class="lesson-nav"><strong>七天课程</strong><a href="day-1.html">01 信息性质</a><a href="day-2.html">02 价值桥</a><a href="day-3.html">03 检查输入</a><a href="day-4.html">04 最小DCF</a><a class="current" href="day-5.html">05 反向DCF</a><a href="day-6.html">06 方法匹配</a><a href="day-7.html">07 长飞练习</a><a class="method-link" href="study-methods.html">科学学习法</a></aside>
+<article class="lesson-main">
+  <section class="hero"><p class="eyebrow">DAY 05 · 55 MIN</p><h1>反向<br>DCF</h1><p>不先问“值多少钱”，而问“在这组条件下，当前价格要求公司做到什么”。结果是一条条件曲线，不是市场唯一观点。</p><div class="hero-meta"><span class="pill">价格→经营要求</span><span class="pill">三条路径</span><span class="pill">经济无解区</span></div></section>
+
+  <section class="section"><h2>正向和反向，只是方向不同</h2>
+    <div class="grid-2">
+      <div class="card info"><h3>正向DCF</h3><div class="flow"><span>经营预测</span><b>→</b><span>现金流</span><b>→</b><span>模型价值</span></div></div>
+      <div class="card good"><h3>反向DCF</h3><div class="flow"><span>当前价格</span><b>→</b><span>所需现金流</span><b>→</b><span>增长 / 起点 / 时间</span></div></div>
+    </div>
+    <p class="lead">合格表述必须带条件：“在WACC 9%、显性期7年、永续增长2%和当前FCFF定义下……”</p>
   </section>
-  <section class="section"><h2>怎样把数字变成研究问题</h2><div class="grid-3"><div class="card"><h3>历史</h3><p>公司过去达到过这个增长或利润率吗？持续了几年？</p></div><div class="card"><h3>同行</h3><p>相似商业模式中谁做到过？靠什么竞争优势？</p></div><div class="card"><h3>经营机制</h3><p>需要怎样的销量、ASP、产能、成本和现金转化？</p></div></div></section>
+
+  <section class="section"><h2>动手：同一价格，不同WACC</h2>
+    <div class="tool">
+      <div class="controls">
+        <div class="control"><label>当前股权市值 <span>亿元</span></label><input id="reverse-target" data-reverse-input type="number" value="300" step="10"></div>
+        <div class="control"><label>起点FCFF <span>亿元</span></label><input id="reverse-fcf" data-reverse-input type="number" value="10" step="1"></div>
+      </div>
+      <div class="table-scroll"><table><thead><tr><th>WACC</th><th>要求的7年增长</th><th>下一步</th></tr></thead><tbody id="reverse-body"></tbody></table></div>
+      <p class="tool-note">固定：7年显性期、2%永续增长、20亿元净债务。改变市值，观察何时出现无解。</p>
+    </div>
+  </section>
+
+  <section class="section"><h2>第三条路：不提高增长，只延长时间</h2>
+    <p>保持起点FCFF、增长8%、WACC 9%和永续增长2%全部不变，只延长显性期年数。</p>
+    <div class="tool">
+      <div class="result-grid">
+        <div class="metric"><span>所需显性期</span><strong id="reverse-years">—</strong></div>
+        <div class="metric"><span>少一年</span><strong id="reverse-years-below">—</strong></div>
+        <div class="metric"><span>刚达到目标</span><strong id="reverse-years-at">—</strong></div>
+      </div>
+      <p class="tool-note">课文：目标股权价值 300 需要 8% 增长维持约 23 年（22 年 297.18，23 年 304.18）。三条路径是三个不同的经营故事。</p>
+    </div>
+  </section>
+
+  <section class="section"><h2>负对照：要求很高不等于材料有问题</h2>
+    <div class="grid-2">
+      <div class="card warning"><h3>要求高，要去质证</h3><p>拿历史、同行、产能和现金转化去核对，不要把模型条件写成市场共识。</p></div>
+      <div class="card good"><h3>要求高，不自动降级</h3><p>曲线、变量范围和固定条件都已披露，并且写明尚未判断能否实现时，状态不变。</p></div>
+    </div>
+  </section>
+
+  <section class="section"><h2>失败状态矩阵</h2>
+    <div class="table-scroll"><table>
+      <thead><tr><th>触发条件</th><th>记录验证状态 + 使用等级</th><th>影响</th><th>还不能断言</th></tr></thead>
+      <tbody>
+        <tr><td>输入本来是EV，模型仍按股权价值再加净债务</td><td>明确错误；停止使用反解结果</td><td>目标EV被抬高，所需增长被系统性高估</td><td>正向模型的EV桥也一定错</td></tr>
+        <tr><td>反解结果只报单点，不披露WACC、显性期和终值约定</td><td>无法确认；该结果停止使用</td><td>数字失去条件，无法解释也无法复算</td><td>该单点数值一定算错</td></tr>
+        <tr><td>反解结果被命名为“市场隐含预期”或“市场共识”</td><td>明确错误（性质错标）；表述停止使用</td><td>模型条件被伪装成他人观点</td><td>市场参与者一定不这样想</td></tr>
+        <tr><td>求解器返回无解，作者不断放宽搜索范围直到打印出数字</td><td>明确错误；该结果停止使用</td><td>无解这条诊断信息被抹掉</td><td>该价格一定无法被任何假设解释</td></tr>
+        <tr><td>只展示一条解释路径，未说明是否存在替代组合</td><td>部分可用；结论带条件使用</td><td>读者可能把一条条件解误读为唯一解</td><td>其他路径一定更合理</td></tr>
+        <tr><td>隐含要求很高，但曲线、变量范围和固定条件都已披露</td><td>状态不变，不降级</td><td>按条件句继续使用并去质证</td><td>要求高一定意味着高估</td></tr>
+        <tr><td>材料写明“该要求尚未与历史和产能比较，本报告不判断能否实现”</td><td>状态不变，不降级</td><td>这是边界披露，正是本课要求的表述</td><td>不给结论等于分析不完整</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="section" id="write-test"><h2>练习：写一条验收测试</h2>
+    <div class="table-scroll write-test-table"><table>
+      <thead><tr><th>变更（一次只改一个条件）</th><th>Agent 必须返回什么</th><th>什么必须<strong>不变</strong></th></tr></thead>
+      <tbody>
+        <tr class="seeded"><td>把输入的300亿元从“股权价值”改标为“EV”，模型内部逻辑不动</td><td>明确错误；目标EV被重复加了净债务，所需增长被高估</td><td>正向模型的184.09亿元及其上游输入状态</td></tr>
+        <tr class="seeded"><td>删除输出中的WACC字段，只保留“隐含增长16.25%”</td><td>无法确认；数值本身没有算错，缺的是条件</td><td>正向模型和输入记录的验证状态</td></tr>
+        <tr><td>把反向模型的现金流定义换成“收入×利润率×80%”，正向不动</td><td><em>由你填写</em></td><td><em>由你填写</em></td></tr>
+        <tr><td>把输出标题从“本模型条件下的隐含要求”改成“市场一致预期”</td><td><em>由你填写</em></td><td><em>由你填写</em></td></tr>
+        <tr><td>在原输出基础上补充起点FCFF与持续时间两条替代路径</td><td><em>由你填写</em></td><td><em>由你填写</em></td></tr>
+      </tbody>
+    </table></div>
+    <textarea class="note-area" data-note="day-5-tests" placeholder="第3行 · 必须返回：____&#10;第3行 · 必须不变：____&#10;&#10;第4行 · 必须返回：____&#10;第4行 · 必须不变：____&#10;&#10;第5行 · 必须返回：____&#10;第5行 · 必须不变：____"></textarea>
+    <details class="answer-details"><summary>写完后展开参考答案</summary>
+      <p><strong>第3行</strong>：应返回“口径不一致，无法确认”。不变的是各自内部的计算正确性。</p>
+      <p><strong>第4行</strong>：应返回明确错误（信息性质错标）。受影响的只有表述层；一个字都没改数字，性质错标依然是明确错误。</p>
+      <p><strong>第5行</strong>：<strong>状态不变，不降级。</strong>补充替代路径没有改变任何已有结果。</p>
+    </details>
+  </section>
+
+  <section class="section"><h2>一页验收清单</h2>
+    <ul>
+      <li>反解的目标是股权价值还是EV，资本结构桥有没有被重复计算？（D8）</li>
+      <li>正向与反向是否使用同一套FCFF定义？（D7）</li>
+      <li>输出是否带全模型条件：WACC、显性期、永续增长、净债务和现金流定义？（D15）</li>
+      <li>是否说明这一次只反解了哪一个变量？（D15）</li>
+      <li>是否展示曲线或至少两条替代解释路径，而不是单点？（D15）</li>
+      <li>出现无解时，是记录为诊断结果，还是通过放宽边界抹掉了？（D15）</li>
+    </ul>
+  </section>
+
   <section class="section"><h2>闯关</h2>
-    <div class="quiz-card" data-quiz-id="q1" data-answer="B" data-explanation="它是给定模型下的要求，不是调查得到的共识。"><p class="question">1. 反向DCF得到增长20%，能称为市场共识吗？</p><div class="choices"><button class="choice" data-choice="A">A. 能</button><button class="choice" data-choice="B">B. 不能</button></div><p class="feedback"></p></div>
-    <div class="quiz-card" data-quiz-id="q2" data-answer="B" data-explanation="实际经营没变，变化来自模型折现条件。"><p class="question">2. WACC升高，隐含增长也升高，说明什么？</p><div class="choices"><button class="choice" data-choice="A">A. 公司实际增长改变</button><button class="choice" data-choice="B">B. 隐含要求依赖模型约定</button></div><p class="feedback"></p></div>
-    <div class="quiz-card" data-quiz-id="q3" data-answer="A" data-explanation="先记录诊断，也要排除对象、单位、EV桥和搜索范围错误。"><p class="question">3. 反解无经济可行解时，正确动作是什么？</p><div class="choices"><button class="choice" data-choice="A">A. 记录无解并检查模型边界</button><button class="choice" data-choice="B">B. 不断放宽直到有数字</button></div><p class="feedback"></p></div>
+    <div class="quiz-card" data-quiz-id="q1" data-answer="B" data-explanation="它是模型条件下的要求，不是调查得到的共识。"><p class="question">1. 反向DCF得到增长20%，能否称为市场共识？</p><div class="choices"><button class="choice" data-choice="A">A. 能</button><button class="choice" data-choice="B">B. 不能</button></div><p class="feedback"></p></div>
+    <div class="quiz-card" data-quiz-id="q2" data-answer="B" data-explanation="现实没有改变，改变的是折现约定。"><p class="question">2. 折现率从8%变为10%，隐含增长从13%升至19%。这说明：</p><div class="choices"><button class="choice" data-choice="A">A. 公司实际增长改变了</button><button class="choice" data-choice="B">B. 隐含要求高度依赖模型约定</button></div><p class="feedback"></p></div>
+    <div class="quiz-card" data-quiz-id="q3" data-answer="A" data-explanation="目标EV被错误增加20亿元，求解器会要求更多现金流。"><p class="question">3. 输入300亿元本来是EV，模型却按股权价值再加20亿元净债务。最可能结果是：</p><div class="choices"><button class="choice" data-choice="A">A. 反解要求被抬高</button><button class="choice" data-choice="B">B. 没有影响</button></div><p class="feedback"></p></div>
+    <div class="quiz-card" data-quiz-id="q4" data-answer="A" data-explanation="无解是诊断结果，不应被静默抹掉。"><p class="question">4. 反解无经济可行解释时，正确做法是：</p><div class="choices"><button class="choice" data-choice="A">A. 记录无解区域，并检查对象、口径和模型约定</button><button class="choice" data-choice="B">B. 不断放宽假设直到得到可打印数字</button></div><p class="feedback"></p></div>
+    <div class="quiz-card" data-quiz-id="q5" data-answer="B" data-explanation="数值偶然接近不能修复定义错位。"><p class="question">5. 正向与反向模型使用不同FCFF定义，但结果数字接近。可以自动通过吗？</p><div class="choices"><button class="choice" data-choice="A">A. 可以，结果接近即可</button><button class="choice" data-choice="B">B. 不可以，先统一或桥接口径再比较</button></div><p class="feedback"></p></div>
+    <div class="quiz-card" data-quiz-id="q6" data-answer="B" data-explanation="两条路径都是合法的条件解，对应完全不同的经营故事。"><p class="question">6. 同一个300亿元既可由“7年16.25%增长”解释，也可由“8%增长维持23年”解释。这说明：</p><div class="choices"><button class="choice" data-choice="A">A. 其中必有一个是错的</button><button class="choice" data-choice="B">B. 反解一次只固定其他变量求一个解，替代路径本来就存在</button><button class="choice" data-choice="C">C. 应取两者平均作为市场预期</button></div><p class="feedback"></p></div>
+    <div class="quiz-card" data-quiz-id="q7" data-answer="B" data-explanation="写明尚未质证是诚实，不是缺失。"><p class="question">7. 一份反解材料写着“该要求尚未与公司历史和产能比较，本报告不判断能否实现”。应如何处理？</p><div class="choices"><button class="choice" data-choice="A">A. 结论不完整，降级</button><button class="choice" data-choice="B">B. 状态不变；这是必须有的边界披露</button></div><p class="feedback"></p></div>
   </section>
-  <section class="section"><h2>条件式表达练习</h2><textarea class="note-area" data-note="day-5" placeholder="不要写“市场认为……”。请写：在____假设下，当前价格要求____；下一步要检查____。"></textarea><div class="button-row"><button class="primary" data-complete-lesson>标记本课完成</button><a class="secondary" href="../lab/reverse.py">查看源码</a></div></section>
-  <nav class="footer-nav"><a href="day-4.html">← 第4课</a><a href="day-6.html">第6课：方法匹配 →</a></nav>
-</article></main></body></html>
+
+  <section class="section"><h2>本课边界</h2>
+    <p>反向DCF不证明公司能或不能实现要求，也不直接回答证券是否值得买。</p>
+    <p>本课不交付新的失败模式。本课交付的是<strong>条件句表述纪律</strong>：任何反解数字，只要脱离模型条件就不能使用。</p>
+  </section>
+
+  <section class="section"><h2>条件式表达练习</h2>
+    <textarea class="note-area" data-note="day-5" placeholder="在WACC____、显性期____、永续增长____、净债务____和____现金流定义下，&#10;当前股权价值____要求____；同一价格也可以由____解释；&#10;下一步要验证____；这不能证明____。"></textarea>
+    <div class="button-row"><button class="primary" data-complete-lesson>标记本课完成</button><a class="secondary" href="../lab/reverse.py">查看源码</a></div>
+  </section>
+  <nav class="footer-nav"><a href="day-4.html">← 第4课</a><a href="day-6.html">第6课：方法适不适合 →</a></nav>
+</article></main>
+</body>
+</html>

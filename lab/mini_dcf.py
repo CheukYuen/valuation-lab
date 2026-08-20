@@ -65,6 +65,47 @@ def elasticity(p, bump=0.01):
     return sorted(out, key=lambda kv: -abs(kv[1] if kv[1] is not None else 0))
 
 
+def terminal_bridge(p, exit_multiple=None):
+    """退出倍数与隐含永续增长互转。无倍数时返回 Gordon 终值的隐含倍数；
+    有倍数时用该倍数重算终值，并反解它所锁定的永续增长。"""
+    r = p["discount_rate"]
+    tg = p["terminal_growth"]
+    if r <= tg:
+        raise ValueError(f"折现率 {r:.4f} 必须大于永续增长 {tg:.4f}，否则终值公式发散")
+
+    gordon = value(p)
+    last_fcf = gordon["flows"][-1]
+    implied_exit_multiple = gordon["terminal_value"] / last_fcf
+    out = {
+        "last_fcf": last_fcf,
+        "gordon_terminal_value": gordon["terminal_value"],
+        "gordon_terminal_pv": gordon["terminal_pv"],
+        "gordon_explicit_pv": gordon["explicit_pv"],
+        "implied_exit_multiple": implied_exit_multiple,
+        "gordon_equity_value": gordon["equity_value"],
+    }
+    if exit_multiple is None:
+        return out
+
+    n = int(p["years"])
+    terminal_value = last_fcf * exit_multiple
+    terminal_pv = terminal_value / (1 + r) ** n
+    ev = gordon["explicit_pv"] + terminal_pv
+    # TV = last * (1+g)/(r-g)  =>  m = (1+g)/(r-g)  =>  g = (m*r - 1)/(m + 1)
+    implied_g = (exit_multiple * r - 1) / (exit_multiple + 1)
+    out.update({
+        "exit_multiple": exit_multiple,
+        "terminal_value": terminal_value,
+        "terminal_pv": terminal_pv,
+        "explicit_pv": gordon["explicit_pv"],
+        "enterprise_value": ev,
+        "equity_value": ev - p["net_debt"],
+        "terminal_share": (terminal_pv / ev) if ev else 0.0,
+        "implied_terminal_growth": implied_g,
+    })
+    return out
+
+
 def main():
     path = Path(sys.argv[1]) if len(sys.argv) > 1 else DEFAULT_INPUT
     p = json.loads(path.read_text())
@@ -92,6 +133,16 @@ def main():
     print(f"  企业价值            {v['enterprise_value']:>10.2f} {unit}")
     print(f"  股权价值            {v['equity_value']:>10.2f} {unit}")
     print(f"  终值占企业价值      {v['terminal_share']:>10.1%}   <- 占比较高时重点检查远期假设，不自动等于模型失效")
+    print()
+    tb = terminal_bridge(p)
+    print("终值的两种写法必须互查")
+    print(f"  第{int(p['years'])}年 FCFF          {tb['last_fcf']:>10.2f} {unit}")
+    print(f"  永续增长终值        {tb['gordon_terminal_value']:>10.2f} {unit}")
+    print(f"  隐含退出倍数        {tb['implied_exit_multiple']:>10.1f} 倍")
+    ten = terminal_bridge(p, exit_multiple=10)
+    print(f"  若改用 10 倍退出    股权价值 {ten['equity_value']:>8.2f} {unit}"
+          f"   隐含永续增长 {ten['implied_terminal_growth']:>+.2%}")
+    print("  切换写法等于切换远期假设；只报倍数、不报隐含增长，等于把远期状态藏起来。")
     print()
     print("弹性排序（输入 +1%，股权价值变动几个 %）")
     for name, e in elasticity(p):

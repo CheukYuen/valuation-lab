@@ -9,10 +9,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "lab"))
 
-from bridge import bridge, fcff, per_share, with_dilution  # noqa: E402
+from bridge import bridge, fcff, ocf_check, per_share, pit_bridge, with_dilution  # noqa: E402
 from methods import bank_demo, multiples, spread  # noqa: E402
-from mini_dcf import value  # noqa: E402
-from reverse import solve  # noqa: E402
+from mini_dcf import terminal_bridge, value  # noqa: E402
+from reverse import equity_at, required_years, solve  # noqa: E402
 
 
 class MiniDcfTests(unittest.TestCase):
@@ -53,6 +53,39 @@ class MiniDcfTests(unittest.TestCase):
         solved = solve(target, equity_at_growth, -0.5, 1.0)
         self.assertIsNotNone(solved)
         self.assertAlmostEqual(solved, expected_growth, places=10)
+
+    def test_gordon_growth_implies_the_lesson_exit_multiple(self):
+        # DAY-4：2% 永续增长隐含 14.6 倍（1.02 / 0.07）。
+        tb = terminal_bridge(self.params)
+        self.assertAlmostEqual(tb["implied_exit_multiple"], 1.02 / 0.07, places=10)
+        self.assertAlmostEqual(tb["implied_exit_multiple"], 14.6, places=1)
+
+    def test_a_ten_times_exit_multiple_implies_contraction(self):
+        # DAY-4：10 倍隐含 -0.91%，股权价值 141.23。
+        tb = terminal_bridge(self.params, exit_multiple=10)
+        self.assertAlmostEqual(tb["implied_terminal_growth"], -0.1 / 11, places=10)
+        self.assertAlmostEqual(tb["implied_terminal_growth"], -0.0091, places=4)
+        self.assertAlmostEqual(tb["equity_value"], 141.23, places=2)
+
+    def test_terminal_bridge_still_rejects_a_divergent_gordon_formula(self):
+        invalid = copy.deepcopy(self.params)
+        invalid["discount_rate"] = invalid["terminal_growth"]
+        with self.assertRaises(ValueError):
+            terminal_bridge(invalid)
+
+    def test_required_years_for_300_matches_the_lesson(self):
+        # DAY-5：目标 300 需要约 23 年（22 年 297.18，23 年 304.18）。
+        solved = required_years(self.params, 300)
+        self.assertIsNotNone(solved)
+        self.assertEqual(solved["required_years"], 23)
+        self.assertEqual(solved["years_below"], 22)
+        self.assertAlmostEqual(solved["equity_below"], 297.18, places=2)
+        self.assertAlmostEqual(solved["equity_at"], 304.18, places=2)
+        self.assertAlmostEqual(equity_at(self.params, years=22), solved["equity_below"], places=10)
+        self.assertAlmostEqual(equity_at(self.params, years=23), solved["equity_at"], places=10)
+
+    def test_required_years_returns_none_when_the_price_cannot_be_reached(self):
+        self.assertIsNone(required_years(self.params, 10_000, max_years=5))
 
 
 class BridgeTests(unittest.TestCase):
@@ -113,6 +146,41 @@ class BridgeTests(unittest.TestCase):
         broken["treasury_shares"] = broken["total_shares"]
         with self.assertRaises(ValueError):
             per_share(broken)
+
+    def test_ocf_cross_check_reproduces_the_lesson_numbers(self):
+        # DAY-2：净利润 14.4、OCF 15.4、OCF-Capex 10.4、FCFF 12.0、差额=税后利息 1.6。
+        o = ocf_check(self.params)
+        self.assertAlmostEqual(o["net_income"], 14.4)
+        self.assertAlmostEqual(o["ocf"], 15.4)
+        self.assertAlmostEqual(o["ocf_minus_capex"], 10.4)
+        self.assertAlmostEqual(o["fcff"], 12.0)
+        self.assertAlmostEqual(o["gap"], 1.6)
+        self.assertAlmostEqual(o["gap"], o["after_tax_interest"])
+
+    def test_missing_interest_is_not_silently_zero(self):
+        incomplete = copy.deepcopy(self.params)
+        del incomplete["interest"]
+        with self.assertRaises(KeyError):
+            ocf_check(incomplete)
+
+    def test_pit_bridge_reproduces_the_lesson_range(self):
+        # DAY-3：估值日净债务 50—60，每股 14.0—15.0。
+        t = pit_bridge(self.params)
+        self.assertAlmostEqual(t["report_net_debt"], 30.0)
+        self.assertAlmostEqual(t["net_debt_low"], 50.0)
+        self.assertAlmostEqual(t["net_debt_high"], 60.0)
+        self.assertAlmostEqual(t["per_share_low"], 14.0)
+        self.assertAlmostEqual(t["per_share_high"], 15.0)
+        self.assertAlmostEqual(t["stale_per_share"], 17.0)
+
+    def test_missing_period_is_not_silently_zero(self):
+        incomplete = copy.deepcopy(self.params)
+        del incomplete["period"]
+        with self.assertRaises(KeyError):
+            pit_bridge(incomplete)
+        incomplete["period"] = {"bond_issue": 50.0}
+        with self.assertRaises(KeyError):
+            pit_bridge(incomplete)
 
 
 class MethodsTests(unittest.TestCase):

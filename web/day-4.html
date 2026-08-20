@@ -1,28 +1,126 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>第4课：谁在控制结果</title><link rel="stylesheet" href="assets/styles.css"><script defer src="assets/app.js"></script><script defer src="assets/tools.js"></script></head>
-<body data-lesson="day-4"><header class="topbar"><a class="brand" href="index.html">valuation-lab · 互动版</a><nav class="topnav"><a href="index.html">课程</a><a href="study-methods.html">科学学习法</a><a href="../course/DAY-4.md">文字版</a></nav><div class="progress-wrap"><div class="progress-label"><span>学习进度</span><strong data-progress-text>0/7</strong></div><div class="progress-track"><div class="progress-bar" data-progress-bar></div></div></div></header>
-<main class="page lesson-layout"><aside class="lesson-nav"><strong>七天课程</strong><a href="day-1.html">01 信息性质</a><a href="day-2.html">02 价值桥</a><a href="day-3.html">03 快速门</a><a class="current" href="day-4.html">04 敏感性</a><a href="day-5.html">05 反向DCF</a><a href="day-6.html">06 方法匹配</a><a href="day-7.html">07 长飞审计</a><a class="method-link" href="study-methods.html">科学学习法</a></aside><article class="lesson-main">
-  <section class="hero"><p class="eyebrow">DAY 04 · 45 MIN</p><h1>谁在<br>控制结果</h1><p>不要寻找唯一正确数字。先预测方向，再一次只动一个输入，观察结论对什么最脆弱。</p><div class="hero-meta"><span class="pill">敏感性</span><span class="pill">终值</span><span class="pill">正常化</span><span class="pill">可运行DCF</span></div></section>
-  <section class="section"><h2>五个控制杆</h2><div class="grid-3"><div class="card"><h3>起点现金</h3><p>现在大致能产生多少FCFF。</p></div><div class="card"><h3>增长</h3><p>收入、利润和现金以多快速度变化。</p></div><div class="card"><h3>持续时间</h3><p>较高增长或利润能维持几年。</p></div><div class="card"><h3>远期状态</h3><p>明细预测结束后的增长、利润和资本回报。</p></div><div class="card"><h3>折现率</h3><p>未来现金折回今天时要求的回报。</p></div></div></section>
-  <section class="section"><h2>动手：最小DCF实验</h2><p>先写下预测：“WACC从9%升到10%，股权价值会上升还是下降？”然后修改输入。</p><div class="tool"><div class="controls">
-    <div class="control"><label>起点FCFF <span>亿元</span></label><input id="dcf-fcf" data-dcf-input type="number" value="10" step="1"></div>
-    <div class="control"><label>显性期增长 <span>%</span></label><input id="dcf-growth" data-dcf-input type="number" value="8" step="1"></div>
-    <div class="control"><label>显性期年数 <span>年</span></label><input id="dcf-years" data-dcf-input type="number" value="7" min="1" max="30"></div>
-    <div class="control"><label>永续增长 <span>%</span></label><input id="dcf-terminal" data-dcf-input type="number" value="2" step="0.5"></div>
-    <div class="control"><label>WACC <span>%</span></label><input id="dcf-wacc" data-dcf-input type="number" value="9" step="0.5"></div>
-    <div class="control"><label>净债务 <span>亿元</span></label><input id="dcf-debt" data-dcf-input type="number" value="20" step="1"></div>
-  </div><div class="result-grid"><div class="metric"><span>企业价值EV</span><strong id="dcf-ev">204.1 亿元</strong></div><div class="metric"><span>股权价值</span><strong id="dcf-equity">184.1 亿元</strong></div><div class="metric"><span>终值占EV</span><strong id="dcf-terminal-share">66.9%</strong></div><div class="metric"><span>WACC再+1%影响</span><strong id="dcf-wacc-impact">-14.6%</strong></div></div><p class="tool-note" id="dcf-error"></p></div>
-    <details><summary>模型核心代码与Python原版</summary><pre><code>flows = [base_fcf * (1 + growth) ** t for t in years]
-explicit_pv = sum(flow / (1 + wacc) ** t)
-terminal_value = last_flow * (1 + g) / (wacc - g)
-equity_value = explicit_pv + terminal_pv - net_debt</code></pre><a class="code-link" href="../lab/mini_dcf.py">打开可运行Python源码</a></details>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>第4课：完成最小 DCF</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <script defer src="assets/app.js"></script>
+  <script defer src="assets/tools.js"></script>
+</head>
+<body data-lesson="day-4">
+<header class="topbar"><a class="brand" href="index.html">valuation-lab · 互动版</a><nav class="topnav"><a href="index.html">课程</a><a href="study-methods.html">科学学习法</a><a href="../course/DAY-4.md">文字版</a></nav><div class="progress-wrap"><div class="progress-label"><span>学习进度</span><strong data-progress-text>0/7</strong></div><div class="progress-track"><div class="progress-bar" data-progress-bar></div></div></div></header>
+<main class="page lesson-layout"><aside class="lesson-nav"><strong>七天课程</strong><a href="day-1.html">01 信息性质</a><a href="day-2.html">02 价值桥</a><a href="day-3.html">03 检查输入</a><a class="current" href="day-4.html">04 最小DCF</a><a href="day-5.html">05 反向DCF</a><a href="day-6.html">06 方法匹配</a><a href="day-7.html">07 长飞练习</a><a class="method-link" href="study-methods.html">科学学习法</a></aside>
+<article class="lesson-main">
+  <section class="hero"><p class="eyebrow">DAY 04 · 60 MIN</p><h1>完成最小<br>DCF</h1><p>把现金流折现为企业价值和股权价值。先预测方向，再一次只动一个输入，并让退出倍数与永续增长互查。</p><div class="hero-meta"><span class="pill">五个控制杆</span><span class="pill">终值</span><span class="pill">退出倍数</span></div></section>
+
+  <section class="section"><h2>五个控制杆</h2>
+    <div class="grid-3">
+      <div class="card"><h3>起点现金</h3><p>现在大致能产生多少FCFF。</p></div>
+      <div class="card"><h3>增长</h3><p>收入、利润和现金以多快速度变化。</p></div>
+      <div class="card"><h3>持续时间</h3><p>较高增长或利润能维持几年。</p></div>
+      <div class="card"><h3>远期状态</h3><p>明细预测结束后的增长、利润和资本回报。</p></div>
+      <div class="card"><h3>折现率</h3><p>未来现金折回今天时要求的回报。</p></div>
+    </div>
   </section>
-  <section class="section"><h2>终值占比怎样读</h2><div class="grid-2"><div class="card warning"><h3>占比高，是警告</h3><p>表示更多价值来自遥远未来。要重点检查终值利润率、增长和WACC。</p></div><div class="card info"><h3>占比高，不是自动失败</h3><p>稳定长寿命资产可能天然有较高终值；高速变化业务则更难支撑。</p></div></div></section>
+
+  <section class="section"><h2>动手：最小DCF实验</h2>
+    <p>先写下预测：“WACC从9%升到10%，股权价值会上升还是下降？”然后修改输入。</p>
+    <div class="tool">
+      <div class="controls">
+        <div class="control"><label>起点FCFF <span>亿元</span></label><input id="dcf-fcf" data-dcf-input type="number" value="10" step="1"></div>
+        <div class="control"><label>显性期增长 <span>%</span></label><input id="dcf-growth" data-dcf-input type="number" value="8" step="1"></div>
+        <div class="control"><label>显性期年数 <span>年</span></label><input id="dcf-years" data-dcf-input type="number" value="7" min="1" max="30"></div>
+        <div class="control"><label>永续增长 <span>%</span></label><input id="dcf-terminal" data-dcf-input type="number" value="2" step="0.5"></div>
+        <div class="control"><label>WACC <span>%</span></label><input id="dcf-wacc" data-dcf-input type="number" value="9" step="0.5"></div>
+        <div class="control"><label>净债务 <span>亿元</span></label><input id="dcf-debt" data-dcf-input type="number" value="20" step="1"></div>
+        <div class="control"><label>退出倍数 <span>倍</span></label><input id="dcf-exit-multiple" data-dcf-input type="number" value="10" step="0.5"></div>
+      </div>
+      <div class="result-grid">
+        <div class="metric"><span>企业价值EV</span><strong id="dcf-ev">—</strong></div>
+        <div class="metric"><span>股权价值</span><strong id="dcf-equity">—</strong></div>
+        <div class="metric"><span>终值占EV</span><strong id="dcf-terminal-share">—</strong></div>
+        <div class="metric"><span>WACC再+1%影响</span><strong id="dcf-wacc-impact">—</strong></div>
+        <div class="metric"><span>2%永续增长的隐含倍数</span><strong id="dcf-implied-multiple">—</strong></div>
+        <div class="metric"><span>该退出倍数下的股权价值</span><strong id="dcf-exit-equity">—</strong></div>
+        <div class="metric"><span>该倍数隐含的永续增长</span><strong id="dcf-implied-g">—</strong></div>
+      </div>
+      <p class="tool-note" id="dcf-error"></p>
+      <p class="tool-note">课文：2% 永续增长隐含 14.6 倍；10 倍隐含约 -0.91%，股权价值 141.23。切换写法等于切换远期假设。</p>
+    </div>
+  </section>
+
+  <section class="section"><h2>负对照：高终值占比不等于模型失效</h2>
+    <div class="grid-2">
+      <div class="card warning"><h3>占比高，是质证信号</h3><p>表示更多价值来自遥远未来。要检查剩余经营期、远期现金和折现率。</p></div>
+      <div class="card good"><h3>占比高，不是自动失败</h3><p>收费公路终值占比74.1%，但远期假设已写明并可质证，当前不降级。不披露占比才是缺陷。</p></div>
+    </div>
+  </section>
+
+  <section class="section"><h2>失败状态矩阵</h2>
+    <div class="table-scroll"><table>
+      <thead><tr><th>触发条件</th><th>记录验证状态 + 使用等级</th><th>影响</th><th>还不能断言</th></tr></thead>
+      <tbody>
+        <tr><td>把当期周期峰值利润率直接作为终值利润率永久延续</td><td>无法确认；终值与EV带条件使用或停止使用</td><td>终值可能被系统性抬高</td><td>峰值一定不可持续</td></tr>
+        <tr><td>WACC 小于或等于永续增长率，模型仍打印终值</td><td>明确错误；停止使用终值及其下游</td><td>该终值公式没有可解释结果</td><td>换个公式后价值一定更低</td></tr>
+        <tr><td>模型不披露终值现值占EV的比重</td><td>无法确认（披露缺口）；EV带条件使用</td><td>无法判断结论依赖近端还是远端假设</td><td>底层折现计算一定算错</td></tr>
+        <tr><td>只报退出倍数，不报隐含永续增长</td><td>无法确认；终值带条件使用</td><td>本课示例中10倍隐含-0.91%</td><td>该倍数一定不合理</td></tr>
+        <tr><td>Bear/Base/Bull 只把结果乘0.8/1.0/1.2</td><td>无法确认（情景无机制）；情景区间停止使用</td><td>区间宽度不携带任何经营信息</td><td>真实区间一定更宽或更窄</td></tr>
+        <tr><td>终值占比高，但业务寿命、远期假设和敏感性都已披露</td><td>状态不变，不降级</td><td>按已披露区间继续使用</td><td>高终值占比一定意味着高估</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="section" id="write-test"><h2>练习：写一条验收测试</h2>
+    <div class="table-scroll write-test-table"><table>
+      <thead><tr><th>变更（一次只改一个条件）</th><th>Agent 必须返回什么</th><th>什么必须<strong>不变</strong></th></tr></thead>
+      <tbody>
+        <tr class="seeded"><td>把永续增长率从2%改到9.5%，WACC仍为9%</td><td>明确错误；永续公式失去经济意义，不得打印终值</td><td>显性期七年现金流及其现值</td></tr>
+        <tr class="seeded"><td>删除报告中的终值占比一行，其余数字全部保留</td><td>披露缺口，无法确认；EV降级为带条件使用</td><td>全部输入、公式和派生值的计算状态</td></tr>
+        <tr><td>把终值写法从2%永续增长改为10倍退出倍数，不披露隐含增长</td><td><em>由你填写</em></td><td><em>由你填写</em></td></tr>
+        <tr><td>把显性期从7年改为10年，增长线仍是同一条8%</td><td><em>由你填写</em></td><td><em>由你填写</em></td></tr>
+        <tr><td>补充终值占比66.9%和WACC与永续增长的双向敏感性表</td><td><em>由你填写</em></td><td><em>由你填写</em></td></tr>
+      </tbody>
+    </table></div>
+    <textarea class="note-area" data-note="day-4-tests" placeholder="第3行 · 必须返回：____&#10;第3行 · 必须不变：____&#10;&#10;第4行 · 必须返回：____&#10;第4行 · 必须不变：____&#10;&#10;第5行 · 必须返回：____&#10;第5行 · 必须不变：____"></textarea>
+    <details class="answer-details"><summary>写完后展开参考答案</summary>
+      <p><strong>第3行</strong>：应返回“终值假设无法确认”，并要求补出隐含永续增长-0.91%。受影响的是终值现值、EV和股权价值；不变的是显性期现值、净债务和股本口径。</p>
+      <p><strong>第4行</strong>：应返回“无法确认”——多出的三年沿用无证据的增长线。不变的是折现公式结构、WACC和净债务记录的状态。</p>
+      <p><strong>第5行</strong>：<strong>状态不变，不降级。</strong>补充披露没有改变任何数字。</p>
+    </details>
+  </section>
+
+  <section class="section"><h2>一页验收清单</h2>
+    <ul>
+      <li><code>WACC &gt; 永续增长率</code> 是否成立，模型在不成立时是否拒绝打印？（D11）</li>
+      <li>终值用的是永续增长还是退出倍数，另一种写法的隐含值是否同时披露？（D12）</li>
+      <li>终值利润率是否是可持续的远期状态，而不是当前峰值？（D12）</li>
+      <li>终值现值占EV的比重是否披露？（D12）</li>
+      <li>Bear/Base/Bull 是否回到量、价、成本、Capex和现金转化？（D14）</li>
+      <li>输出精度是否超过输入本身能支持的精度？（D5）</li>
+    </ul>
+  </section>
+
   <section class="section"><h2>闯关</h2>
-    <div class="quiz-card" data-quiz-id="q1" data-answer="B" data-explanation="高占比要求更深入质证，但要结合资产寿命与稳定性。"><p class="question">1. 终值占比75%的收费公路模型一定失败吗？</p><div class="choices"><button class="choice" data-choice="A">A. 一定</button><button class="choice" data-choice="B">B. 不一定</button></div><p class="feedback"></p></div>
-    <div class="quiz-card" data-quiz-id="q2" data-answer="A" data-explanation="只缩放净利润不是经营情景，无法回到量、价、成本。"><p class="question">2. Bear/Base/Bull只把净利润乘0.8/1.0/1.2，状态是什么？</p><div class="choices"><button class="choice" data-choice="A">A. 警告或失败</button><button class="choice" data-choice="B">B. 自动通过</button></div><p class="feedback"></p></div>
-    <div class="quiz-card" data-quiz-id="q3" data-answer="B" data-explanation="同方向小假设会叠加成偏向，需要组合压力测试。"><p class="question">3. 五个“略保守”假设同时压低价值，应怎样审？</p><div class="choices"><button class="choice" data-choice="A">A. 因为保守直接相信</button><button class="choice" data-choice="B">B. 反向测试整组假设</button></div><p class="feedback"></p></div>
+    <div class="quiz-card" data-quiz-id="q1" data-answer="B" data-explanation="分母为零或负数时，这套终值公式没有可解释结果。"><p class="question">1. WACC等于永续增长率时，应如何处理？</p><div class="choices"><button class="choice" data-choice="A">A. 继续计算，得到一个很大的终值</button><button class="choice" data-choice="B">B. 该永续公式发散，必须调整模型约定并说明理由</button></div><p class="feedback"></p></div>
+    <div class="quiz-card" data-quiz-id="q2" data-answer="B" data-explanation="高终值占比是质证信号，不是统一失败线。本课负对照那段材料终值占比74.1%，仍然不降级。"><p class="question">2. 终值占比75%的收费公路模型一定失败吗？</p><div class="choices"><button class="choice" data-choice="A">A. 一定</button><button class="choice" data-choice="B">B. 不一定，但必须重点检查剩余经营期、远期现金和折现率</button></div><p class="feedback"></p></div>
+    <div class="quiz-card" data-quiz-id="q3" data-answer="A" data-explanation="结果缩放不是经营情景，无法验证量、价、成本和现金联动。注意用记录验证状态词。"><p class="question">3. Bear/Base/Bull只把净利润乘0.8/1.0/1.2，没有经营机制。最合适的记录验证状态是：</p><div class="choices"><button class="choice" data-choice="A">A. 无法确认；情景区间不携带经营信息</button><button class="choice" data-choice="B">B. 已复核；三个情景都算对了</button></div><p class="feedback"></p></div>
+    <div class="quiz-card" data-quiz-id="q4" data-answer="A" data-explanation="净债务使股权价值基数小于EV，同一经营变化在股权端的百分比更大。"><p class="question">4. 输入增长提高1%，股权价值提高超过1%。最可能还受到什么影响？</p><div class="choices"><button class="choice" data-choice="A">A. 净债务使经营价值变化落到股权时被放大</button><button class="choice" data-choice="B">B. 说明增长预测一定正确</button></div><p class="feedback"></p></div>
+    <div class="quiz-card" data-quiz-id="q5" data-answer="B" data-explanation="保守不等于中立，组合方向必须量化。"><p class="question">5. 五个“略保守”假设全部压低价值，但未展示反向组合。你应：</p><div class="choices"><button class="choice" data-choice="A">A. 因为保守所以直接相信</button><button class="choice" data-choice="B">B. 把整组假设反向压力测试，观察结论余量</button></div><p class="feedback"></p></div>
+    <div class="quiz-card" data-quiz-id="q6" data-answer="B" data-explanation="倍数同时锁定了一个远期增长假设；要求的是把它写出来，不是换一个数。"><p class="question">6. 一份材料只给出“第7年按10倍FCFF退出”，不提永续增长。最合适的动作是：</p><div class="choices"><button class="choice" data-choice="A">A. 退出倍数是市场做法，不必追问</button><button class="choice" data-choice="B">B. 反解隐含永续增长并要求质证，本例约为-0.91%</button><button class="choice" data-choice="C">C. 直接判定该模型高估，因为倍数太低</button></div><p class="feedback"></p></div>
+    <div class="quiz-card" data-quiz-id="q7" data-answer="B" data-explanation="数值一个都没错，降级的是可质证性。"><p class="question">7. 报告数字全部正确，只是没有写终值占EV的比重。受影响的是什么？</p><div class="choices"><button class="choice" data-choice="A">A. 计算结果本身，必须重算</button><button class="choice" data-choice="B">B. 可质证性，属于披露缺口；数值不变但结论要带条件</button></div><p class="feedback"></p></div>
   </section>
-  <section class="section"><h2>实验记录</h2><textarea class="note-area" data-note="day-4" placeholder="我的方向预测：&#10;本案例最敏感的输入：&#10;这能说明什么 / 不能说明什么："></textarea><div class="button-row"><button class="primary" data-complete-lesson>标记本课完成</button><a class="secondary" href="../docs/FIVE-NUMBERS.md">补充阅读</a></div></section>
+
+  <section class="section"><h2>本课边界</h2>
+    <p>你已经亲手完成一套最小DCF，并知道退出倍数与永续增长互为镜像。你还没有证明任何现实公司的增长、WACC或终值假设正确。</p>
+    <p>第1课列出的六个失败模式，本课交付了两个：<strong>峰值永久化</strong>（远期状态那一格）和<strong>隐藏终值</strong>（不披露占比、只报倍数不报隐含增长）。</p>
+  </section>
+
+  <section class="section"><h2>实验记录</h2>
+    <textarea class="note-area" data-note="day-4" placeholder="我的方向预测：&#10;本案例最敏感的输入：&#10;这能说明什么 / 不能说明什么："></textarea>
+    <div class="button-row"><button class="primary" data-complete-lesson>标记本课完成</button><a class="secondary" href="../docs/FIVE-NUMBERS.md">补充阅读</a></div>
+  </section>
   <nav class="footer-nav"><a href="day-3.html">← 第3课</a><a href="day-5.html">第5课：反向DCF →</a></nav>
-</article></main></body></html>
+</article></main>
+</body>
+</html>

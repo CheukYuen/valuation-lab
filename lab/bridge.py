@@ -20,9 +20,11 @@ ROOT = Path(__file__).resolve().parent
 DEFAULT_INPUT = ROOT / "inputs" / "bridge.json"
 
 FLOW = ["ebit", "tax_rate", "depreciation", "capex", "working_capital_increase"]
+OCF = FLOW + ["interest"]
 STRUCTURE = ["ev", "cash", "debt", "lease_liability", "minority_interest", "non_operating_assets"]
 DENOMINATOR = ["total_shares", "treasury_shares", "option_dilution",
                "convertible_shares", "convertible_debt", "float_shares"]
+PERIOD = ["bond_issue", "acquisition_cash", "ocf_low", "ocf_high"]
 
 
 def _pad(text, width):
@@ -90,6 +92,55 @@ def per_share(p):
     }
 
 
+def ocf_check(p):
+    """与财报经营活动现金流交叉检查。差额应等于税后利息，不是错误。"""
+    require(p, OCF)
+    net_income = (p["ebit"] - p["interest"]) * (1 - p["tax_rate"])
+    ocf = net_income + p["depreciation"] - p["working_capital_increase"]
+    ocf_minus_capex = ocf - p["capex"]
+    flow = fcff(p)["fcff"]
+    after_tax_interest = p["interest"] * (1 - p["tax_rate"])
+    return {
+        "net_income": net_income,
+        "ocf": ocf,
+        "ocf_minus_capex": ocf_minus_capex,
+        "fcff": flow,
+        "gap": flow - ocf_minus_capex,
+        "after_tax_interest": after_tax_interest,
+    }
+
+
+def pit_bridge(p):
+    """资本结构时点桥：报告日净债务走到估值日区间，再落到股权价值和每股。"""
+    require(p, ["ev", "cash", "debt", "total_shares", "treasury_shares"])
+    period = p.get("period")
+    if not isinstance(period, dict):
+        raise KeyError("输入缺少 ['period']；未知不能当作 0，请补证据或显式写 0 并说明依据")
+    require(period, PERIOD)
+    basic = p["total_shares"] - p["treasury_shares"]
+    if basic <= 0:
+        raise ValueError(f"扣除库存股后的外部普通股为 {basic}，分母必须为正")
+    report_net_debt = p["debt"] - p["cash"]
+    # 发债同时增加债务和现金，净债务不变；改变净债务的是把现金花掉。
+    net_debt_high = report_net_debt + period["acquisition_cash"] - period["ocf_low"]
+    net_debt_low = report_net_debt + period["acquisition_cash"] - period["ocf_high"]
+    equity_low = p["ev"] - net_debt_high
+    equity_high = p["ev"] - net_debt_low
+    return {
+        "report_net_debt": report_net_debt,
+        "bond_issue": period["bond_issue"],
+        "acquisition_cash": period["acquisition_cash"],
+        "net_debt_low": net_debt_low,
+        "net_debt_high": net_debt_high,
+        "equity_low": equity_low,
+        "equity_high": equity_high,
+        "basic_shares": basic,
+        "per_share_low": equity_low / basic,
+        "per_share_high": equity_high / basic,
+        "stale_per_share": (p["ev"] - report_net_debt) / basic,
+    }
+
+
 def with_dilution(p):
     """把 dilution_variant 覆盖到基准输入上。主线案例没有稀释项，稀释是显式变体。"""
     variant = dict(p)
@@ -126,6 +177,18 @@ def main():
     print(f"  把 NOPAT 直接当 FCFF，会漏掉净投入 {b['skipped_reinvestment']:.2f} {unit}"
           f"（= Capex + 营运资金增加 - 折旧）。")
     print("  漏掉不等于扩产是坏事，只说明这一步的现金流桥算错了。")
+    print()
+
+    o = ocf_check(p)
+    print("与财报现金流交叉检查（利息已扣，属于股东视角之后的口径）")
+    print(f"  净利润 = (EBIT - 利息 {p['interest']:.2f}) × (1 - {p['tax_rate']:.0%})"
+          f"     {o['net_income']:>9.2f} {unit}")
+    print(f"  经营活动现金流 = 净利润 + 折旧 - 营运资金增加   {o['ocf']:>9.2f} {unit}")
+    print(f"  经营活动现金流 - Capex                         {o['ocf_minus_capex']:>9.2f} {unit}")
+    print(f"  本课 FCFF                                      {o['fcff']:>9.2f} {unit}")
+    print(f"  差额                                           {o['gap']:>9.2f} {unit}"
+          f"   （= 税后利息 {o['after_tax_interest']:.2f}）")
+    print("  差额能对上只证明两套口径自洽，不证明 EBIT、Capex 这些输入本身有证据。")
     print()
 
     print("第二座桥：企业价值怎样走到每股价值")
@@ -178,6 +241,20 @@ def main():
         gap = w["ev_per_share"] / w["per_share_basic"] - 1
         print(f"  {_pad(label, 26)}现金 {cash:>6.2f} / 债务 {debt:>6.2f}   "
               f"EV÷股本 {w['ev_per_share']:>6.2f}   正确 {w['per_share_basic']:>6.2f}   {gap:>+7.1%}")
+    print()
+
+    t = pit_bridge(p)
+    print("资本结构时点桥（第3课：报告日走到估值日，EV 和股本都不动）")
+    print(f"  报告日净债务     {t['report_net_debt']:>9.2f} {unit}")
+    print(f"  + 发债 {t['bond_issue']:.0f}（净债务不变）")
+    print(f"  + 现金收购       {t['acquisition_cash']:>9.2f} {unit}")
+    print(f"  - 期间经营现金流 {p['period']['ocf_low']:.0f} 至 {p['period']['ocf_high']:.0f}")
+    print(f"  = 估值日净债务   {t['net_debt_low']:>9.2f} 至 {t['net_debt_high']:<9.2f} {unit}")
+    print(f"  股权价值         {t['equity_low']:>9.2f} 至 {t['equity_high']:<9.2f} {unit}")
+    print(f"  每股价值         {t['per_share_low']:>9.1f} 至 {t['per_share_high']:<9.1f} 元")
+    print(f"  若仍用报告日净债务，每股 {t['stale_per_share']:.2f} 元，相对区间高估 "
+          f"{t['stale_per_share'] / t['per_share_high'] - 1:.1%}—"
+          f"{t['stale_per_share'] / t['per_share_low'] - 1:.1%}")
     print()
 
     print("单变量实验对答案（每次只改一个输入，其余不变）")

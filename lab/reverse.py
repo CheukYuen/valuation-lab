@@ -45,6 +45,36 @@ def equity_at(p, **override):
     return value(q)["equity_value"]
 
 
+def required_years(p, target, max_years=80):
+    """其余输入不变，找使股权价值达到目标的最小显性期年数。年数是整数。
+    无解时返回 None，不返回边界值。"""
+    at_one = equity_at(p, years=1)
+    at_cap = equity_at(p, years=max_years)
+    if at_one > target:
+        return {
+            "required_years": 1,
+            "years_below": 0,
+            "equity_below": None,
+            "equity_at": at_one,
+        }
+    if at_cap < target:
+        return None
+    n = 1
+    previous = at_one
+    while n <= max_years:
+        current = equity_at(p, years=n)
+        if current >= target:
+            return {
+                "required_years": n,
+                "years_below": n - 1,
+                "equity_below": previous if n > 1 else None,
+                "equity_at": current,
+            }
+        previous = current
+        n += 1
+    return None
+
+
 def main():
     if len(sys.argv) < 2:
         raise SystemExit("用法：python3 lab/reverse.py <当前股权市值> [输入.json]")
@@ -92,8 +122,21 @@ def main():
             print(f"   {r:<10.2%}{f:>12.2f} {unit}   {f / p['base_fcf'] - 1:>+7.1%}{tag}")
     print()
 
-    print("怎么用这两张表")
+    print("③ 当前价格要求的显性期年数（增长、起点、WACC 和永续增长全部不变）")
+    years = required_years(p, target_equity)
+    if years is None:
+        print(f"   无解：即使把显性期拉到 80 年，{p['growth']:.0%} 增长也撑不到这个价格")
+    else:
+        n = years["required_years"]
+        print(f"   需要约 {n} 年")
+        if years["equity_below"] is not None:
+            print(f"   {years['years_below']:>2d} 年   股权价值 {years['equity_below']:>9.2f} {unit}")
+        print(f"   {n:>2d} 年   股权价值 {years['equity_at']:>9.2f} {unit}")
+    print()
+
+    print("怎么用这三张表")
     print("  · 每一行都是一个可质证的条件：历史上做到过吗？靠什么做到？能持续几年？")
+    print("  · 三条路径是三个不同的经营故事。一次只反解一个变量，不要把一条条件解写成唯一观点。")
     print("  · 表里如果出现「无解」，那说明当前价格无法由这组假设的经济含义解释——")
     print("    先记录这个诊断，并排除对象、单位、EV 桥和搜索范围错误，不要只为凑数放宽假设。")
     print("  · 同一个价格在不同折现率下要求完全不同。谁给你一个反解结果而不给折现率，")

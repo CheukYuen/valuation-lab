@@ -76,6 +76,110 @@
     return { ...fcffBridge(input), ...equityBridge(input), ...perShare(input) };
   }
 
+  const OCF = [...FLOW, "interest"];
+  const PERIOD = ["bondIssue", "acquisitionCash", "ocfLow", "ocfHigh"];
+
+  function ocfCheck(input) {
+    require(input, OCF);
+    const netIncome = (input.ebit - input.interest) * (1 - input.taxRate);
+    const ocf = netIncome + input.depreciation - input.workingCapitalIncrease;
+    const ocfMinusCapex = ocf - input.capex;
+    const flow = fcffBridge(input).fcff;
+    const afterTaxInterest = input.interest * (1 - input.taxRate);
+    return {
+      netIncome,
+      ocf,
+      ocfMinusCapex,
+      fcff: flow,
+      gap: flow - ocfMinusCapex,
+      afterTaxInterest
+    };
+  }
+
+  function pitBridge(input) {
+    require(input, ["ev", "cash", "debt", "totalShares", "treasuryShares"]);
+    if (!input.period || typeof input.period !== "object") {
+      throw new Error("输入缺少 period；未知不能当作 0");
+    }
+    require(input.period, PERIOD);
+    const basic = input.totalShares - input.treasuryShares;
+    if (basic <= 0) throw new Error(`扣除库存股后的外部普通股为 ${basic}，分母必须为正`);
+    const reportNetDebt = input.debt - input.cash;
+    const netDebtHigh = reportNetDebt + input.period.acquisitionCash - input.period.ocfLow;
+    const netDebtLow = reportNetDebt + input.period.acquisitionCash - input.period.ocfHigh;
+    const equityLow = input.ev - netDebtHigh;
+    const equityHigh = input.ev - netDebtLow;
+    return {
+      reportNetDebt,
+      bondIssue: input.period.bondIssue,
+      acquisitionCash: input.period.acquisitionCash,
+      netDebtLow,
+      netDebtHigh,
+      equityLow,
+      equityHigh,
+      basicShares: basic,
+      perShareLow: equityLow / basic,
+      perShareHigh: equityHigh / basic,
+      stalePerShare: (input.ev - reportNetDebt) / basic
+    };
+  }
+
+  function terminalBridge(input, exitMultiple) {
+    const { baseFcf, growth, years, terminalGrowth, discountRate, netDebt } = input;
+    if (discountRate <= terminalGrowth) throw new Error("折现率必须高于永续增长率");
+    const gordon = dcf(input);
+    const lastFcf = baseFcf * (1 + growth) ** years;
+    const gordonTerminalValue = lastFcf * (1 + terminalGrowth) / (discountRate - terminalGrowth);
+    const out = {
+      lastFcf,
+      gordonTerminalValue,
+      gordonTerminalPv: gordon.terminalPv,
+      gordonExplicitPv: gordon.explicitPv,
+      impliedExitMultiple: gordonTerminalValue / lastFcf,
+      gordonEquityValue: gordon.equity
+    };
+    if (exitMultiple === undefined || exitMultiple === null) return out;
+    const terminalValue = lastFcf * exitMultiple;
+    const terminalPv = terminalValue / (1 + discountRate) ** years;
+    const ev = gordon.explicitPv + terminalPv;
+    const impliedG = (exitMultiple * discountRate - 1) / (exitMultiple + 1);
+    return {
+      ...out,
+      exitMultiple,
+      terminalValue,
+      terminalPv,
+      explicitPv: gordon.explicitPv,
+      enterpriseValue: ev,
+      equityValue: ev - netDebt,
+      terminalShare: ev ? terminalPv / ev : 0,
+      impliedTerminalGrowth: impliedG
+    };
+  }
+
+  function requiredYears(input, target, maxYears = 80) {
+    const at = n => dcf({ ...input, years: n }).equity;
+    const atOne = at(1);
+    const atCap = at(maxYears);
+    if (atOne > target) {
+      return { requiredYears: 1, yearsBelow: 0, equityBelow: null, equityAt: atOne };
+    }
+    if (atCap < target) return null;
+    let previous = atOne;
+    for (let n = 1; n <= maxYears; n += 1) {
+      const current = at(n);
+      if (current >= target) {
+        return {
+          requiredYears: n,
+          yearsBelow: n - 1,
+          equityBelow: n > 1 ? previous : null,
+          equityAt: current
+        };
+      }
+      previous = current;
+    }
+    return null;
+  }
+
   // 第6课：同一家公司的四种方法。唯一来源是 lab/methods.py。
   function multiples(input) {
     return {
@@ -116,6 +220,57 @@
     update();
   }
 
+  function setupOcfCheck() {
+    if (!byId("ocf-ocf")) return;
+    const update = () => {
+      const r = ocfCheck({
+        ebit: number("bridge-ebit"),
+        taxRate: number("bridge-tax") / 100,
+        depreciation: number("bridge-da"),
+        capex: number("bridge-capex"),
+        workingCapitalIncrease: number("bridge-wc"),
+        interest: number("ocf-interest")
+      });
+      setText("ocf-income", yi(r.netIncome));
+      setText("ocf-ocf", yi(r.ocf));
+      setText("ocf-minus-capex", yi(r.ocfMinusCapex));
+      setText("ocf-fcff", yi(r.fcff));
+      setText("ocf-gap", yi(r.gap));
+    };
+    document.querySelectorAll("[data-bridge-input], [data-ocf-input]").forEach(el => {
+      el.addEventListener("input", update);
+    });
+    update();
+  }
+
+  function setupPitBridge() {
+    if (!byId("pit-nd-low")) return;
+    const update = () => {
+      const r = pitBridge({
+        ev: number("pit-ev"),
+        cash: number("pit-cash"),
+        debt: number("pit-debt"),
+        totalShares: number("pit-total-shares"),
+        treasuryShares: number("pit-treasury"),
+        period: {
+          bondIssue: number("pit-bond"),
+          acquisitionCash: number("pit-acquisition"),
+          ocfLow: number("pit-ocf-low"),
+          ocfHigh: number("pit-ocf-high")
+        }
+      });
+      setText("pit-report-nd", yi(r.reportNetDebt));
+      setText("pit-nd-low", yi(r.netDebtLow));
+      setText("pit-nd-high", yi(r.netDebtHigh));
+      setText("pit-equity-low", yi(r.equityLow));
+      setText("pit-equity-high", yi(r.equityHigh));
+      setText("pit-ps-low", `${r.perShareLow.toFixed(1)} 元`);
+      setText("pit-ps-high", `${r.perShareHigh.toFixed(1)} 元`);
+    };
+    document.querySelectorAll("[data-pit-input]").forEach(el => el.addEventListener("input", update));
+    update();
+  }
+
   function setupDcf() {
     if (!byId("dcf-fcf")) return;
     const update = () => {
@@ -135,6 +290,7 @@
         const up = dcf({ ...p, discountRate: p.discountRate + 0.01 });
         setText("dcf-wacc-impact", pct(up.equity / r.equity - 1));
         setText("dcf-error", "");
+        setupTerminal(p);
       } catch (error) {
         setText("dcf-error", error.message);
       }
@@ -144,6 +300,24 @@
       el.addEventListener("change", update);
     });
     update();
+  }
+
+  function setupTerminal(params) {
+    if (!byId("dcf-implied-multiple")) return;
+    const p = params || {
+      baseFcf: number("dcf-fcf"),
+      growth: number("dcf-growth") / 100,
+      years: Math.round(number("dcf-years")),
+      terminalGrowth: number("dcf-terminal") / 100,
+      discountRate: number("dcf-wacc") / 100,
+      netDebt: number("dcf-debt")
+    };
+    const gordon = terminalBridge(p);
+    setText("dcf-implied-multiple", `${gordon.impliedExitMultiple.toFixed(1)} 倍`);
+    const multiple = number("dcf-exit-multiple");
+    const alt = terminalBridge(p, multiple);
+    setText("dcf-exit-equity", `${alt.equityValue.toFixed(2)} 亿元`);
+    setText("dcf-implied-g", pct(alt.impliedTerminalGrowth));
   }
 
   function solve(target, fn, low, high) {
@@ -171,9 +345,31 @@
         row.innerHTML = `<td>${pct(rate)}</td><td>${growth === null ? "无解" : pct(growth)}</td><td>${growth === null ? "检查模型边界" : "拿历史与经营机制质证"}</td>`;
         body.appendChild(row);
       });
+      setupRequiredYears(base, target);
     };
     document.querySelectorAll("[data-reverse-input]").forEach(el => el.addEventListener("input", update));
     update();
+  }
+
+  function setupRequiredYears(params, target) {
+    if (!byId("reverse-years")) return;
+    const p = params || {
+      baseFcf: number("reverse-fcf"), growth: 0.08, years: 7,
+      terminalGrowth: 0.02, discountRate: 0.09, netDebt: 20
+    };
+    const t = target === undefined ? number("reverse-target") : target;
+    const r = requiredYears(p, t);
+    if (r === null) {
+      setText("reverse-years", "无解");
+      setText("reverse-years-below", "—");
+      setText("reverse-years-at", "—");
+      return;
+    }
+    setText("reverse-years", `约 ${r.requiredYears} 年`);
+    setText("reverse-years-below", r.equityBelow === null
+      ? "—"
+      : `${r.yearsBelow} 年 ${r.equityBelow.toFixed(2)} 亿元`);
+    setText("reverse-years-at", `${r.requiredYears} 年 ${r.equityAt.toFixed(2)} 亿元`);
   }
 
   function setupAudit() {
@@ -214,6 +410,30 @@
     update();
   }
 
+  function setupMethodNumbers() {
+    if (!byId("method-dcf-equity")) return;
+    const input = {
+      netIncome: 12, bookEquity: 80, ebitda: 30, netDebt: 30,
+      peerPe: 15, peerPb: 1.8, peerEvEbitda: 8,
+      dcf: {
+        baseFcf: 10, growth: 0.08, years: 7,
+        terminalGrowth: 0.02, discountRate: 0.09, netDebt: 30
+      },
+      bank: {
+        operatingIncome: 40, deposits: 900, otherDebt: 50, cash: 60,
+        bookEquity: 100, netIncome: 15, peerPe: 6, peerPb: 0.8, peerEvEbitda: 8
+      }
+    };
+    const m = multiples(input);
+    const b = bankDemo(input);
+    setText("method-dcf-equity", `${m.dcf.toFixed(2)} 亿元`);
+    setText("method-pe", `${m.pe.toFixed(0)} 亿元`);
+    setText("method-pb", `${m.pb.toFixed(0)} 亿元`);
+    setText("method-ev-ebitda", `${m.evEbitda.toFixed(0)} 亿元`);
+    setText("method-bank-with", `${b.evEbitdaWithDeposits.toFixed(0)} 亿元`);
+    setText("method-bank-without", `${b.evEbitdaWithoutDeposits.toFixed(0)} 亿元`);
+  }
+
   const yofc = {
     "6.0": [425.64, 800.42, 1619.92],
     "6.6": [390.47, 707.54, 1393.73],
@@ -243,15 +463,18 @@
     update();
   }
 
-  globalThis.ValuationLabTools = { dcf, solve, fcffBridge, equityBridge, perShare, bridge, multiples, bankDemo };
+  globalThis.ValuationLabTools = { dcf, solve, fcffBridge, equityBridge, perShare, bridge, ocfCheck, pitBridge, terminalBridge, requiredYears, multiples, bankDemo };
 
   if (typeof document !== "undefined") {
     document.addEventListener("DOMContentLoaded", () => {
       setupCashBridge();
+      setupOcfCheck();
+      setupPitBridge();
       setupDcf();
       setupReverse();
       setupAudit();
       setupMethodMatcher();
+      setupMethodNumbers();
       setupYofc();
     });
   }

@@ -123,10 +123,10 @@ class WebCourseTests(unittest.TestCase):
 
     def test_interactive_model_contracts(self):
         expected_ids = {
-            "day-2.html": {"bridge-ebit", "bridge-fcff"},
-            "day-3.html": {"audit-summary"},
-            "day-4.html": {"dcf-fcf", "dcf-equity", "dcf-terminal-share"},
-            "day-5.html": {"reverse-target", "reverse-body"},
+            "day-2.html": {"bridge-ebit", "bridge-fcff", "ocf-ocf"},
+            "day-3.html": {"pit-nd-low"},
+            "day-4.html": {"dcf-fcf", "dcf-equity", "dcf-terminal-share", "dcf-implied-multiple"},
+            "day-5.html": {"reverse-target", "reverse-body", "reverse-years"},
             "day-6.html": {"method-business", "method-result"},
             "day-7.html": {"yofc-wacc", "yofc-conversion", "yofc-bull"},
         }
@@ -239,6 +239,56 @@ class WebCourseTests(unittest.TestCase):
         for key, value in expected.items():
             self.assertAlmostEqual(actual[camel(key)], value, places=10, msg=key)
 
+    def assert_js_matches(self, expected, actual):
+        self.assertEqual(sorted(actual), sorted(camel(k) for k in expected))
+        for key, value in expected.items():
+            if value is None:
+                self.assertIsNone(actual[camel(key)], key)
+            else:
+                self.assertAlmostEqual(actual[camel(key)], value, places=10, msg=key)
+
+    @unittest.skipUnless(shutil.which("node"), "Node.js not installed; browser model parity cannot run")
+    def test_browser_ocf_check_matches_lab(self):
+        sys.path.insert(0, str(ROOT / "lab"))
+        from bridge import ocf_check  # noqa: PLC0415
+
+        params = json.loads((ROOT / "lab/inputs/bridge.json").read_text())
+        expected = ocf_check(params)
+        actual = run_node(f"globalThis.ValuationLabTools.ocfCheck({json.dumps(to_js_input(params))})")
+        self.assert_js_matches(expected, actual)
+
+    @unittest.skipUnless(shutil.which("node"), "Node.js not installed; browser model parity cannot run")
+    def test_browser_pit_bridge_matches_lab(self):
+        sys.path.insert(0, str(ROOT / "lab"))
+        from bridge import pit_bridge  # noqa: PLC0415
+
+        params = json.loads((ROOT / "lab/inputs/bridge.json").read_text())
+        expected = pit_bridge(params)
+        actual = run_node(f"globalThis.ValuationLabTools.pitBridge({json.dumps(to_js_input(params))})")
+        self.assert_js_matches(expected, actual)
+
+    @unittest.skipUnless(shutil.which("node"), "Node.js not installed; browser model parity cannot run")
+    def test_browser_terminal_bridge_matches_lab(self):
+        sys.path.insert(0, str(ROOT / "lab"))
+        from mini_dcf import terminal_bridge  # noqa: PLC0415
+
+        params = json.loads((ROOT / "lab/inputs/simple.json").read_text())
+        js_input = json.dumps(to_js_input(params))
+        gordon = run_node(f"globalThis.ValuationLabTools.terminalBridge({js_input})")
+        self.assert_js_matches(terminal_bridge(params), gordon)
+        ten = run_node(f"globalThis.ValuationLabTools.terminalBridge({js_input}, 10)")
+        self.assert_js_matches(terminal_bridge(params, 10), ten)
+
+    @unittest.skipUnless(shutil.which("node"), "Node.js not installed; browser model parity cannot run")
+    def test_browser_required_years_matches_lab(self):
+        sys.path.insert(0, str(ROOT / "lab"))
+        from reverse import required_years  # noqa: PLC0415
+
+        params = json.loads((ROOT / "lab/inputs/simple.json").read_text())
+        js_input = json.dumps(to_js_input(params))
+        actual = run_node(f"globalThis.ValuationLabTools.requiredYears({js_input}, 300)")
+        self.assert_js_matches(required_years(params, 300), actual)
+
     @unittest.skipUnless(shutil.which("node"), "Node.js not installed; browser model parity cannot run")
     def test_browser_methods_match_lab_methods(self):
         sys.path.insert(0, str(ROOT / "lab"))
@@ -257,7 +307,11 @@ class WebCourseTests(unittest.TestCase):
         exported = re.search(r"globalThis\.ValuationLabTools = \{([^}]+)\}", source)
         self.assertIsNotNone(exported, "tools.js no longer exports a tool surface")
         names = {name.strip() for name in exported.group(1).split(",")}
-        self.assertTrue({"bridge", "fcffBridge", "multiples", "bankDemo"}.issubset(names), names)
+        self.assertTrue(
+            {"bridge", "fcffBridge", "ocfCheck", "pitBridge", "terminalBridge",
+             "requiredYears", "multiples", "bankDemo"}.issubset(names),
+            names,
+        )
 
     @unittest.skipUnless(shutil.which("node"), "Node.js not installed; browser JavaScript remains runtime-only")
     def test_javascript_syntax(self):
@@ -267,19 +321,15 @@ class WebCourseTests(unittest.TestCase):
 
     @unittest.skipUnless(shutil.which("node"), "Node.js not installed; browser model parity cannot run")
     def test_browser_dcf_matches_python_fixture(self):
-        script = WEB / "assets/tools.js"
-        js = (
-            f"require({json.dumps(str(script))});"
-            "const r=globalThis.ValuationLabTools.dcf({baseFcf:10,growth:.08,years:7,"
-            "terminalGrowth:.02,discountRate:.09,netDebt:20});"
-            "process.stdout.write(JSON.stringify(r));"
-        )
-        result = subprocess.run(["node", "-e", js], capture_output=True, text=True)
-        self.assertEqual(result.returncode, 0, result.stderr)
-        output = json.loads(result.stdout)
-        self.assertAlmostEqual(output["ev"], 204.08792958352166, places=10)
-        self.assertAlmostEqual(output["equity"], 184.08792958352166, places=10)
-        self.assertAlmostEqual(output["terminalShare"], 0.66936902981735, places=10)
+        sys.path.insert(0, str(ROOT / "lab"))
+        from mini_dcf import value  # noqa: PLC0415
+
+        params = json.loads((ROOT / "lab/inputs/simple.json").read_text())
+        expected = value(params)
+        actual = run_node(f"globalThis.ValuationLabTools.dcf({json.dumps(to_js_input(params))})")
+        self.assertAlmostEqual(actual["ev"], expected["enterprise_value"], places=10)
+        self.assertAlmostEqual(actual["equity"], expected["equity_value"], places=10)
+        self.assertAlmostEqual(actual["terminalShare"], expected["terminal_share"], places=10)
 
 
 if __name__ == "__main__":

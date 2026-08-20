@@ -1,25 +1,135 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>第2课：看懂最小价值桥</title><link rel="stylesheet" href="assets/styles.css"><script defer src="assets/app.js"></script><script defer src="assets/tools.js"></script></head>
-<body data-lesson="day-2"><header class="topbar"><a class="brand" href="index.html">valuation-lab · 互动版</a><nav class="topnav"><a href="index.html">课程</a><a href="study-methods.html">科学学习法</a><a href="../course/DAY-2.md">文字版</a></nav><div class="progress-wrap"><div class="progress-label"><span>学习进度</span><strong data-progress-text>0/7</strong></div><div class="progress-track"><div class="progress-bar" data-progress-bar></div></div></div></header>
-<main class="page lesson-layout"><aside class="lesson-nav"><strong>七天课程</strong><a href="day-1.html">01 信息性质</a><a class="current" href="day-2.html">02 价值桥</a><a href="day-3.html">03 快速门</a><a href="day-4.html">04 敏感性</a><a href="day-5.html">05 反向DCF</a><a href="day-6.html">06 方法匹配</a><a href="day-7.html">07 长飞审计</a><a class="method-link" href="study-methods.html">科学学习法</a></aside><article class="lesson-main">
-  <section class="hero"><p class="eyebrow">DAY 02 · 45 MIN</p><h1>看懂最小<br>价值桥</h1><p>利润不是现金，企业价值也不是每股价值。今天用一座可以拖动的现金流桥抓住两类常见错配。</p><div class="hero-meta"><span class="pill">EBIT→FCFF</span><span class="pill">EV→股权</span><span class="pill">互动计算</span></div></section>
-  <section class="section"><h2>只记两座桥</h2><div class="flow"><span>EBIT</span><b>→ 扣经营税</b><span>NOPAT</span><b>→ +折旧 −Capex −营运资金</b><span>FCFF</span></div><div class="flow"><span>EV</span><b>→ +现金 −债务等</b><span>股权价值</span><b>→ ÷正确股本</b><span>每股价值</span></div><p class="lead">如果模型从利润直接跳到价值，或者从企业价值直接跳到每股价格，就去找消失的桥。</p></section>
-  <section class="section"><h2>动手：利润怎样变成现金</h2><div class="tool"><h3>FCFF现金流桥</h3><div class="controls">
-    <div class="control"><label>EBIT <span>亿元</span></label><input id="bridge-ebit" data-bridge-input type="number" value="20" step="1"></div>
-    <div class="control"><label>税率 <span>%</span></label><input id="bridge-tax" data-bridge-input type="number" value="20" step="1"></div>
-    <div class="control"><label>折旧 <span>亿元</span></label><input id="bridge-da" data-bridge-input type="number" value="3" step="1"></div>
-    <div class="control"><label>资本开支 <span>亿元</span></label><input id="bridge-capex" data-bridge-input type="number" value="5" step="1"></div>
-    <div class="control"><label>营运资金增加 <span>亿元</span></label><input id="bridge-wc" data-bridge-input type="number" value="2" step="1"></div>
-  </div><div class="result-grid"><div class="metric"><span>NOPAT</span><strong id="bridge-nopat">16.0 亿元</strong></div><div class="metric"><span>FCFF</span><strong id="bridge-fcff">12.0 亿元</strong></div><div class="metric"><span>EBIT与FCFF差额</span><strong id="bridge-gap">8.0 亿元</strong></div></div><p class="tool-note">先预测：把Capex从5改成12，FCFF怎样变？改变一个输入后再观察。</p></div>
-    <details><summary>对应的Python公式</summary><pre><code>nopat = ebit * (1 - tax_rate)
-fcff = nopat + depreciation - capex - working_capital_increase</code></pre><a class="code-link" href="../docs/GLOSSARY.md">查看术语与完整例子</a></details>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>第2课：亲手打通价值桥</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <script defer src="assets/app.js"></script>
+  <script defer src="assets/tools.js"></script>
+</head>
+<body data-lesson="day-2">
+<header class="topbar"><a class="brand" href="index.html">valuation-lab · 互动版</a><nav class="topnav"><a href="index.html">课程</a><a href="study-methods.html">科学学习法</a><a href="../course/DAY-2.md">文字版</a></nav><div class="progress-wrap"><div class="progress-label"><span>学习进度</span><strong data-progress-text>0/7</strong></div><div class="progress-track"><div class="progress-bar" data-progress-bar></div></div></div></header>
+<main class="page lesson-layout"><aside class="lesson-nav"><strong>七天课程</strong><a href="day-1.html">01 信息性质</a><a class="current" href="day-2.html">02 价值桥</a><a href="day-3.html">03 检查输入</a><a href="day-4.html">04 最小DCF</a><a href="day-5.html">05 反向DCF</a><a href="day-6.html">06 方法匹配</a><a href="day-7.html">07 长飞练习</a><a class="method-link" href="study-methods.html">科学学习法</a></aside>
+<article class="lesson-main">
+  <section class="hero"><p class="eyebrow">DAY 02 · 70 MIN</p><h1>亲手打通<br>价值桥</h1><p>利润不是现金，企业价值也不是每股价值。今天亲手从 EBIT 走到 FCFF、股权价值和每股价值，并与财报现金流交叉检查。</p><div class="hero-meta"><span class="pill">EBIT→FCFF</span><span class="pill">OCF交叉检查</span><span class="pill">EV→每股</span></div></section>
+
+  <section class="section"><h2>只记两座桥</h2>
+    <div class="flow"><span>EBIT</span><b>→ 扣经营税</b><span>NOPAT</span><b>→ +折旧 −Capex −营运资金</b><span>FCFF</span></div>
+    <div class="flow"><span>EV</span><b>→ +现金 −债务等</b><span>股权价值</span><b>→ ÷正确股本</b><span>每股价值</span></div>
+    <p class="lead">任何一座桥断掉，最后的每股数字都可能失真。不要替作者脑补中间项。</p>
   </section>
-  <section class="section"><h2>好坏对照</h2><div class="grid-2"><div class="card good"><h3>桥完整</h3><p>逐项展示税、折旧、Capex和营运资金，并解释与财报现金流的差异。</p></div><div class="card bad"><h3>利润冒充现金</h3><p>EBIT增长50%，模型不处理扩产和库存，直接让FCFF也增长50%。</p></div></div></section>
+
+  <section class="section"><h2>动手：利润怎样变成现金</h2>
+    <div class="tool"><h3>FCFF现金流桥</h3>
+      <div class="controls">
+        <div class="control"><label>EBIT <span>亿元</span></label><input id="bridge-ebit" data-bridge-input type="number" value="20" step="1"></div>
+        <div class="control"><label>税率 <span>%</span></label><input id="bridge-tax" data-bridge-input type="number" value="20" step="1"></div>
+        <div class="control"><label>折旧 <span>亿元</span></label><input id="bridge-da" data-bridge-input type="number" value="3" step="1"></div>
+        <div class="control"><label>资本开支 <span>亿元</span></label><input id="bridge-capex" data-bridge-input type="number" value="5" step="1"></div>
+        <div class="control"><label>营运资金增加 <span>亿元</span></label><input id="bridge-wc" data-bridge-input type="number" value="2" step="1"></div>
+      </div>
+      <div class="result-grid">
+        <div class="metric"><span>NOPAT</span><strong id="bridge-nopat">—</strong></div>
+        <div class="metric"><span>FCFF</span><strong id="bridge-fcff">—</strong></div>
+        <div class="metric"><span>EBIT与FCFF差额</span><strong id="bridge-gap">—</strong></div>
+      </div>
+      <p class="tool-note">先预测：把Capex从5改成12，FCFF怎样变？改变一个输入后再观察。</p>
+    </div>
+  </section>
+
+  <section class="section"><h2>动手：与财报现金流交叉检查</h2>
+    <p>经营活动现金流已经扣过利息，FCFF 是付利息之前。差额应等于税后利息，能对上只证明口径自洽。</p>
+    <div class="tool">
+      <div class="controls">
+        <div class="control"><label>利息费用 <span>亿元</span></label><input id="ocf-interest" data-ocf-input type="number" value="2" step="0.5"></div>
+      </div>
+      <div class="result-grid">
+        <div class="metric"><span>净利润</span><strong id="ocf-income">—</strong></div>
+        <div class="metric"><span>经营活动现金流</span><strong id="ocf-ocf">—</strong></div>
+        <div class="metric"><span>OCF − Capex</span><strong id="ocf-minus-capex">—</strong></div>
+        <div class="metric"><span>本课 FCFF</span><strong id="ocf-fcff">—</strong></div>
+        <div class="metric"><span>差额（应=税后利息）</span><strong id="ocf-gap">—</strong></div>
+      </div>
+      <p class="tool-note">课文输入应得 15.4 / 10.4 / 12.0 / 1.6。差额能解释，交叉检查才算通过。</p>
+    </div>
+  </section>
+
+  <section class="section"><h2>负对照：危险信号不等于自动报错</h2>
+    <p>Capex 12亿元、营运资金为负、同时出现三种股本——看起来危险，但用途写清、公式扣对时<strong>不该降级</strong>。</p>
+    <div class="grid-2">
+      <div class="card good"><h3>当前不降级</h3><p>高Capex有逐项用途并已在FCFF中扣除；负数营运资金被明确为释放现金；10.5亿 / 10亿 / 8亿各有用途。</p></div>
+      <div class="card bad"><h3>会误报的检查器</h3><p>见到“Capex高”“出现负数”“股本数字不止一个”就报警。验收器必须同时会抓错误和放过合规条款。</p></div>
+    </div>
+  </section>
+
+  <section class="section"><h2>失败状态矩阵</h2>
+    <p>第二列只用第1课词表：已复核 / 部分可用 / 无法确认 / 明确错误，加上可继续使用 / 带条件使用 / 停止使用。</p>
+    <div class="table-scroll"><table>
+      <thead><tr><th>触发条件</th><th>记录验证状态 + 使用等级</th><th>影响</th><th>还不能断言</th></tr></thead>
+      <tbody>
+        <tr><td>EBIT 或 NOPAT 未经调整直接命名为 FCFF</td><td>明确错误；停止使用当前 FCFF 与下游结果</td><td>EV、股权价值和每股价值需重算</td><td>公司经营差或证券高估</td></tr>
+        <tr><td>Capex 或营运资金缺失，材料无法判断是否为零</td><td>无法确认；受影响输出带条件使用或停止使用</td><td>现金转化与结果方向不可靠</td><td>缺失项一定很大</td></tr>
+        <tr><td>EV 直接除以股本，资本结构桥缺失</td><td>无法确认；若已知存在债务却未扣则为明确错误；停止使用每股输出</td><td>方向取决于净债务符号</td><td>EV 本身一定算错</td></tr>
+        <tr><td>增发后仍使用旧股本</td><td>明确错误；停止使用每股输出</td><td>每股分母失真，必须重算</td><td>总股权价值也一定错误</td></tr>
+        <tr><td>存在期权或可转债，材料只报基本股数且未说明</td><td>无法确认；每股输出带条件使用</td><td>每股可能偏高，幅度取决于稀释规模</td><td>稀释一定让每股变低</td></tr>
+        <tr><td>有总股本和流通股两种口径，且各自用途解释清楚</td><td>状态不变，不降级</td><td>按各自用途继续使用</td><td>多种股本数字天然冲突</td></tr>
+        <tr><td>高 Capex 有逐项证据且 FCFF 已正确扣除</td><td>状态不变，不降级</td><td>当期 FCFF 较低被如实反映</td><td>高 Capex 一定创造或毁灭价值</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="section" id="write-test"><h2>练习：写一条验收测试</h2>
+    <p>一条合格测试至少写清三列。第三列最常被漏掉：它逼你说出这次变更<strong>不应该</strong>波及什么。</p>
+    <div class="table-scroll write-test-table"><table>
+      <thead><tr><th>变更（一次只改一个条件）</th><th>Agent 必须返回什么</th><th>什么必须<strong>不变</strong></th></tr></thead>
+      <tbody>
+        <tr class="seeded"><td>删除5亿元Capex输入，其余不变</td><td>FCFF 无法确认，不得静默把缺失当零</td><td>EBIT、税率、NOPAT、折旧和营运资金记录的验证状态</td></tr>
+        <tr class="seeded"><td>把营运资金增加2亿元改为释放2亿元</td><td>重算 FCFF 为16亿元；这是输入变化，不是错误</td><td>其他输入的验证状态、EV 公式结构和股本记录</td></tr>
+        <tr><td>删除债务字段（不写明是否为零），EV 仍为200亿元</td><td><em>由你填写</em></td><td><em>由你填写</em></td></tr>
+        <tr><td>把外部普通股从10亿股改为12.5亿股</td><td><em>由你填写</em></td><td><em>由你填写</em></td></tr>
+        <tr><td>新增“流通股8亿股，仅用于流动性说明”</td><td><em>由你填写</em></td><td><em>由你填写</em></td></tr>
+      </tbody>
+    </table></div>
+    <textarea class="note-area" data-note="day-2-tests" placeholder="第3行 · 必须返回：____&#10;第3行 · 必须不变：____&#10;&#10;第4行 · 必须返回：____&#10;第4行 · 必须不变：____&#10;&#10;第5行 · 必须返回：____&#10;第5行 · 必须不变：____"></textarea>
+    <details class="answer-details"><summary>写完后展开参考答案</summary>
+      <p><strong>第3行</strong>：应返回“股权价值桥无法确认”，不能把未知自动当成零。FCFF 与 EV 的计算状态、股本关系不变。</p>
+      <p><strong>第4行</strong>：应把每股价值重算为13.6元，并使旧17元失效。170亿元股权价值及其上游状态不变。</p>
+      <p><strong>第5行</strong>：<strong>状态不变，不降级。</strong>新增字段用途明确且没有进入价值分母。</p>
+    </details>
+  </section>
+
+  <section class="section"><h2>一页验收清单</h2>
+    <ul>
+      <li>起点究竟是 EBIT、EBITDA、净利润还是经营现金流？（D6）</li>
+      <li>折旧、Capex、营运资金是否逐项说明方向？（D7）</li>
+      <li>FCFF 与财报现金流的重大差异能否解释？（D9）</li>
+      <li>EV 到普通股股权价值的逐项桥是否完整？（D8）</li>
+      <li>总股本、流通股、库存股和外部普通股是否各有明确用途？（D1）</li>
+      <li>每股口径是基本还是稀释？期权与可转债有没有被重复处理？（D1）</li>
+    </ul>
+  </section>
+
   <section class="section"><h2>闯关</h2>
-    <div class="quiz-card" data-quiz-id="q1" data-answer="B" data-explanation="库存、应收和Capex可能吃掉利润增长。"><p class="question">1. EBIT增长30%，FCFF一定增长30%吗？</p><div class="choices"><button class="choice" data-choice="A">A. 一定</button><button class="choice" data-choice="B">B. 不一定</button></div><p class="feedback"></p></div>
-    <div class="quiz-card" data-quiz-id="q2" data-answer="B" data-explanation="合并经营价值可能包含不属于母公司普通股股东的权益。"><p class="question">2. 合并FCFF计算EV，却没有处理少数股东权益，应怎样做？</p><div class="choices"><button class="choice" data-choice="A">A. 直接通过</button><button class="choice" data-choice="B">B. 要求解释EV桥</button></div><p class="feedback"></p></div>
-    <div class="quiz-card" data-quiz-id="q3" data-answer="A" data-explanation="分母会直接改变每股结果。"><p class="question">3. 公司回购形成库存股后，优先检查什么？</p><div class="choices"><button class="choice" data-choice="A">A. 分母是否剔除库存股且口径一致</button><button class="choice" data-choice="B">B. 报告页数</button></div><p class="feedback"></p></div>
+    <div class="quiz-card" data-quiz-id="q1" data-answer="C" data-explanation="利润必须经过现金流桥；Capex 从5亿元升到12亿元时，FCFF 由12亿元降到5亿元，方向可以相反。"><p class="question">1. EBIT增长30%，但库存、应收和Capex增长更多。关于FCFF，最合适的说法是：</p><div class="choices"><button class="choice" data-choice="A">A. FCFF 同样增长30%</button><button class="choice" data-choice="B">B. FCFF 增速低于30%，但仍然是正增长</button><button class="choice" data-choice="C">C. 不能断言方向，必须逐项走完现金流桥才知道</button></div><p class="feedback"></p></div>
+    <div class="quiz-card" data-quiz-id="q2" data-answer="A" data-explanation="未知不等于零；缺少关键输入时不能声称派生值已复核。"><p class="question">2. 模型的 Capex 字段为空，Agent 自动按零计算。最合适的判断是：</p><div class="choices"><button class="choice" data-choice="A">A. 无法确认；缺失不能静默填零</button><button class="choice" data-choice="B">B. 明确错误；空值就代表零</button><button class="choice" data-choice="C">C. 上一年 Capex 很小，按零处理影响有限</button></div><p class="feedback"></p></div>
+    <div class="quiz-card" data-quiz-id="q3" data-answer="B" data-explanation="合并经营价值可能包含不属于母公司普通股股东的部分，但具体处理仍要结合口径判断。"><p class="question">3. 模型用合并FCFF计算EV，却完全没说明少数股东权益如何处理。最合适的动作是：</p><div class="choices"><button class="choice" data-choice="A">A. 直接继续使用</button><button class="choice" data-choice="B">B. 要求解释EV到归母普通股价值的桥</button><button class="choice" data-choice="C">C. 按合并报表里的少数股东权益金额直接扣掉</button></div><p class="feedback"></p></div>
+    <div class="quiz-card" data-quiz-id="q4" data-answer="A" data-explanation="每股结果对分母直接敏感，库存股和潜在稀释要在同一权益口径下一起处理。"><p class="question">4. 公司回购形成库存股，同时还有一批未行权期权。每股价值应优先检查：</p><div class="choices"><button class="choice" data-choice="A">A. 分母是否剔除库存股，以及潜在稀释是否按同一权益口径处理</button><button class="choice" data-choice="B">B. 回购公告披露的总股本是否已经更新</button></div><p class="feedback"></p></div>
+    <div class="quiz-card" data-quiz-id="q5" data-answer="B" data-explanation="多个口径可以同时正确，关键是定义和用途没有混用。"><p class="question">5. 材料同时列出10亿外部普通股和8亿流通股，明确前者用于每股价值、后者只说明流动性。应如何处理？</p><div class="choices"><button class="choice" data-choice="A">A. 出现两个股本数字，所以自动失败</button><button class="choice" data-choice="B">B. 用途清楚且未混用，不因数字不同自动降级</button><button class="choice" data-choice="C">C. 取两者中间值作为分母</button></div><p class="feedback"></p></div>
+    <div class="quiz-card" data-quiz-id="q6" data-answer="B" data-explanation="可转债先当债务扣掉，转股股份又进了分母，同一笔要求权被计了两次，方向和漏掉稀释相反。"><p class="question">6. 一笔可转债既在EV桥里当债务扣除，转股股份又被加进分母。这份材料的每股输出会：</p><div class="choices"><button class="choice" data-choice="A">A. 偏高，因为分母里的股份还没有真正发行</button><button class="choice" data-choice="B">B. 偏低，因为同一笔要求权被计了两次</button><button class="choice" data-choice="C">C. 不受影响，两处处理正好互相抵消</button></div><p class="feedback"></p></div>
+    <div class="quiz-card" data-quiz-id="q7" data-answer="B" data-explanation="修正分母只处理了计算错误，不构成买卖或高低估结论；股权价值本身没有因为这次修正改变。"><p class="question">7. 修正旧股本后，每股价值从17元降到13.6元。可以直接断言股票被高估吗？</p><div class="choices"><button class="choice" data-choice="A">A. 可以</button><button class="choice" data-choice="B">B. 不可以；只证明旧的每股输出错误</button><button class="choice" data-choice="C">C. 不可以，但可以断言公司股权价值也被高估了</button></div><p class="feedback"></p></div>
   </section>
-  <section class="section"><h2>主动回忆笔记</h2><textarea class="note-area" data-note="day-2" placeholder="不用公式解释：为什么20亿元EBIT可能只有12亿元FCFF？"></textarea><div class="button-row"><button class="primary" data-complete-lesson>标记本课完成</button><a class="secondary" href="../docs/GLOSSARY.md">打开白话术语表</a></div></section>
-  <nav class="footer-nav"><a href="day-1.html">← 第1课</a><a href="day-3.html">第3课：快速门 →</a></nav>
-</article></main></body></html>
+
+  <section class="section"><h2>本课边界</h2>
+    <p>你现在能够解释利润怎样变成现金、EV 怎样变成每股价值，并写出包含“必须改变”和“必须不变”的验收测试。</p>
+    <p>第1课列出的六个失败模式，本课交付了两个：<strong>利润不等于现金</strong>（第一座桥）和<strong>错股本</strong>（分母，含稀释）。剩下四个——错时点、峰值永久化、隐藏终值、方法错配——分别由第3、4、6课交付。第5课不交付新的失败模式，交付的是条件句表述纪律。</p>
+  </section>
+
+  <section class="section"><h2>主动回忆笔记</h2>
+    <textarea class="note-area" data-note="day-2" placeholder="不用公式解释：为什么20亿元EBIT可能只有12亿元FCFF？"></textarea>
+    <div class="button-row"><button class="primary" data-complete-lesson>标记本课完成</button><a class="secondary" href="../docs/GLOSSARY.md">打开白话术语表</a></div>
+  </section>
+  <nav class="footer-nav"><a href="day-1.html">← 第1课</a><a href="day-3.html">第3课：检查估值输入 →</a></nav>
+</article></main>
+</body>
+</html>
