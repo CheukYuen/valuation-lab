@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="source-sha256" content="a115a7e50ea2379a69fc3db747eb1a7cafb634732aec2d196e97b3cc475a76e9">
+  <title>分层审计清单 · 课程资料</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+  <script>
+    if (window.self !== window.top) document.documentElement.classList.add("markdown-reference-embedded");
+  </script>
+  <script defer src="../assets/app.js"></script>
+</head>
+<body class="markdown-reference-page" data-lesson-href-prefix="../">
+  <header class="reader-topbar">
+    <a class="reader-brand" href="../index.html" aria-label="返回课程首页">
+      <span class="reader-brand-mark" aria-hidden="true">V</span>
+      <span><strong>估值实验室</strong><small>看懂估值，不迷信数字</small></span>
+    </a>
+    <div class="reader-heading">
+      <div class="reader-breadcrumb">
+        <span>课程资料</span><b>/</b><strong>分层审计清单</strong><em>检查材料时使用</em>
+      </div>
+    </div>
+    <nav class="reader-actions" aria-label="辅助导航"><a href="../index.html">课程首页</a><a href="../glossary.html">术语表</a><a href="../study-methods.html">学习方法</a></nav>
+  </header>
+  <main class="markdown-reference-document">
+    <nav class="markdown-reference-lesson-nav" aria-label="课程资料">
+      <a href="audit-checklist-reference.html" class="current" aria-current="page">分层审计清单</a>
+      <a href="glossary-reference.html">白话术语表</a>
+      <a href="five-numbers-reference.html">DCF 的五个控制杆</a>
+      <a href="pretest-reference.html">入门测验</a>
+      <a href="posttest-reference.html">毕业测验</a>
+    </nav>
+    <p class="markdown-reference-source">由 <a href="../../docs/AUDIT-CHECKLIST.md">docs/AUDIT-CHECKLIST.md</a> 生成 · SHA-256 a115a7e50ea2 · <a href="../index.html">回到课程首页</a></p>
+<h1 id="分层审计清单">分层审计清单</h1>
+<p>目标不是证明估值“绝对正确”，而是判断它是否值得继续使用。</p>
+<p>每项使用四种状态：</p>
+<div class="reference-table-scroll"><table><thead><tr><th>状态</th><th>含义</th></tr></thead><tbody><tr><td><strong>通过</strong></td><td>有证据支持，口径能够复核</td></tr><tr><td><strong>警告</strong></td><td>可能合理，但缺少解释或对结果影响较大</td></tr><tr><td><strong>失败</strong></td><td>已发现矛盾、错配或经济上不可行</td></tr><tr><td><strong>无法确认</strong></td><td>当前材料不足；不能擅自当作通过或失败</td></tr></tbody></table></div>
+<p>记录时必须同时写下“我看到了什么”和“它会怎样影响结论”。</p>
+<h2 id="第一层六道快速门">第一层：六道快速门</h2>
+<p>先用 5–10 分钟筛查。不要一上来读目标价。</p>
+<div class="reference-table-scroll"><table><thead><tr><th>门</th><th>查什么</th><th>为什么可疑</th><th>还不能据此断言什么</th></tr></thead><tbody><tr><td>1. 对象与分母</td><td>公司、证券、股本、库存股、每股分母是否对应</td><td>分母错会直接使每股结果失真；A/H 或增发尤其常见</td><td>看到多个股本口径不等于一定错，关键是各自用途是否解释</td></tr><tr><td>2. 时点、币种与单位</td><td>价格、汇率、现金、债务和财报日期能否对齐</td><td>异步数据可能漏掉现金流或资本变化；单位错可放大百倍</td><td>日期不同不自动无效，但必须有桥接或影响说明</td></tr><tr><td>3. 信息性质</td><td>六类信息（已发生事实、公司指引、外部预测、内部假设、派生计算、分析判断）是否分开；共识与单家预测是否区分</td><td>把假设写成事实会制造虚假的确定性</td><td>使用券商预测本身没有错，冒充事实才是问题</td></tr><tr><td>4. 利润到现金</td><td>利润是否经过税、资本开支、营运资金等变成现金流</td><td>利润增长可能被库存、应收或扩产吃掉</td><td>现金流短期下降不自动说明生意差，可能处于合理投资期</td></tr><tr><td>5. 敏感性与终值</td><td>是否展示关键假设区间、终值占比和正常化依据</td><td>单点会隐藏结果对 WACC、利润率和终值的依赖</td><td>缺表是披露警告，不单独证明底层计算错误；终值高也不自动无效</td></tr><tr><td>6. 方法匹配</td><td>方法是否适合商业模式和所处阶段</td><td>峰值 PE、亏损公司 PE、不可拆分的 SOTP 都可能失真</td><td>没有一种方法天然正确；辅助方法也可以提供量级校验</td></tr></tbody></table></div>
+<h3 id="快速结论">快速结论</h3>
+<ul><li><strong>停止使用</strong>：对象/分母、币种/单位或核心计算口径已经确认失败，足以推翻输出。</li><li><strong>带条件使用</strong>：关键假设、现金流或时点存在警告/无法确认，方向可看但不能依赖单点。</li><li><strong>可继续使用</strong>：六道门无重大失败，关键警告已量化并进入敏感性；继续做深入审计。</li></ul>
+<p>“可继续使用”不是“估值正确”，更不是“股票便宜”。</p>
+<h2 id="第二层深入审计清单">第二层：深入审计清单</h2>
+<p>通过快速门后再做。原有18条纪律保留在这里，但按判断任务分组。</p>
+<h3 id="对象时点与证据">对象、时点与证据</h3>
+<div class="reference-table-scroll"><table><thead><tr><th>#</th><th>检查项</th><th>失败或警告示例</th></tr></thead><tbody><tr><td>D1</td><td>股本关系与每股权利</td><td>总股本、流通股、扣库存股后股数静默混用；双重上市每股权利未核验</td></tr><tr><td>D2</td><td>同一估值时点</td><td>价格是8月、资本结构是3月，中间现金流无人处理</td></tr><tr><td>D3</td><td>币种和单位</td><td>港元报价直接接人民币报表；万元、百万元、亿元混用</td></tr><tr><td>D4</td><td>原始存证</td><td>只有会变化的网址，没有冻结文件、时间戳或哈希</td></tr><tr><td>D5</td><td>输出精度</td><td>输入约为20亿，输出却声称精确到0.01亿</td></tr></tbody></table></div>
+<h3 id="报表与现金流">报表与现金流</h3>
+<div class="reference-table-scroll"><table><thead><tr><th>#</th><th>检查项</th><th>失败或警告示例</th></tr></thead><tbody><tr><td>D6</td><td>利润口径</td><td>归母净利、总净利、EBIT、EBITDA混用</td></tr><tr><td>D7</td><td>FCFF定义</td><td>正向模型逐项计算，反向模型改用未解释的固定转化率</td></tr><tr><td>D8</td><td>EV桥</td><td>现金、债务、租赁、少数股东权益来自不同报告期或重复处理</td></tr><tr><td>D9</td><td>OCF交叉检查</td><td><code>经营现金流 - Capex</code> 与 FCFF 差异无法解释</td></tr><tr><td>D10</td><td>经营联动</td><td>收入、利润率、营运资金和Capex出现无机制解释的跳变</td></tr></tbody></table></div>
+<h3 id="假设终值与方法">假设、终值与方法</h3>
+<div class="reference-table-scroll"><table><thead><tr><th>#</th><th>检查项</th><th>失败或警告示例</th></tr></thead><tbody><tr><td>D11</td><td>WACC来源</td><td>无风险利率币种不匹配；Beta没有数据；只给习惯值</td></tr><tr><td>D12</td><td>终值正常化</td><td>直接把周期峰值利润率永久化</td></tr><tr><td>D13</td><td>增长与再投资</td><td>长期增长没有相应资本投入；<code>g = 再投资率 × ROIC</code> 无法解释</td></tr><tr><td>D14</td><td>情景机制</td><td>Bear/Base/Bull只改净利润，没有量、价、成本和现金转化差异</td></tr><tr><td>D15</td><td>反向DCF</td><td>只报单点，不报替代组合；超过100%利润率仍当作普通数字</td></tr><tr><td>D16</td><td>可比业务</td><td>用“同属一个行业”代替收入结构、周期和会计口径可比</td></tr></tbody></table></div>
+<h3 id="输出纪律">输出纪律</h3>
+<div class="reference-table-scroll"><table><thead><tr><th>#</th><th>检查项</th><th>失败或警告示例</th></tr></thead><tbody><tr><td>D17</td><td>概率和单点</td><td>主观概率没有依据却加权成精确目标价</td></tr><tr><td>D18</td><td>结论边界</td><td>用股价、资金流或估值模型反向证明基本面；模型价值直接变成买卖动作</td></tr></tbody></table></div>
+<h2 id="严重性怎么定">严重性怎么定</h2>
+<div class="reference-table-scroll"><table><thead><tr><th>严重性</th><th>定义</th><th>处理</th></tr></thead><tbody><tr><td><strong>致命</strong></td><td>已确认足以使核心输出失效</td><td>停止使用，修正后重算</td></tr><tr><td><strong>重大</strong></td><td>很可能改变方向、区间或最可引用结论</td><td>带条件使用并量化敏感性</td></tr><tr><td><strong>次要</strong></td><td>影响披露、精度或局部可回查性，不太可能单独翻转方向</td><td>记录并修复</td></tr><tr><td><strong>暂无法确认</strong></td><td>证据不足，影响大小也不确定</td><td>保持未知，不替模型补答案</td></tr></tbody></table></div>
+<p>严重性取决于对本次结论的影响，不由规则编号自动决定。同一个日期错配，在低现金流公司可能次要，在刚完成大额融资的公司可能致命。</p>
+<h2 id="一页审计输出模板">一页审计输出模板</h2>
+<pre><code class="language-text">材料：
+估值对象与 as_of：
+方法是否适合：
+使用等级：可继续使用 / 带条件使用 / 停止使用
+
+做对了什么：
+1.
+2.
+
+最重要的三个风险：
+1. [严重性] 证据 → 影响
+2. [严重性] 证据 → 影响
+3. [严重性] 证据 → 影响
+
+决定结果的核心假设：
+目前无法确认：
+能得出的结论：
+不能得出的结论：</code></pre>
+  </main>
+</body>
+</html>

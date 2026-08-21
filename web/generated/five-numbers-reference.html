@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="source-sha256" content="ca5a47f50db29fd0af51b29dae49ddd3829e48e2b0340f98f495f43d7fe73d0e">
+  <title>DCF 的五个控制杆 · 课程资料</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+  <script>
+    if (window.self !== window.top) document.documentElement.classList.add("markdown-reference-embedded");
+  </script>
+  <script defer src="../assets/app.js"></script>
+</head>
+<body class="markdown-reference-page" data-lesson-href-prefix="../">
+  <header class="reader-topbar">
+    <a class="reader-brand" href="../index.html" aria-label="返回课程首页">
+      <span class="reader-brand-mark" aria-hidden="true">V</span>
+      <span><strong>估值实验室</strong><small>看懂估值，不迷信数字</small></span>
+    </a>
+    <div class="reader-heading">
+      <div class="reader-breadcrumb">
+        <span>课程资料</span><b>/</b><strong>DCF 的五个控制杆</strong><em>第4课可选补充</em>
+      </div>
+    </div>
+    <nav class="reader-actions" aria-label="辅助导航"><a href="../index.html">课程首页</a><a href="../glossary.html">术语表</a><a href="../study-methods.html">学习方法</a></nav>
+  </header>
+  <main class="markdown-reference-document">
+    <nav class="markdown-reference-lesson-nav" aria-label="课程资料">
+      <a href="audit-checklist-reference.html">分层审计清单</a>
+      <a href="glossary-reference.html">白话术语表</a>
+      <a href="five-numbers-reference.html" class="current" aria-current="page">DCF 的五个控制杆</a>
+      <a href="pretest-reference.html">入门测验</a>
+      <a href="posttest-reference.html">毕业测验</a>
+    </nav>
+    <p class="markdown-reference-source">由 <a href="../../docs/FIVE-NUMBERS.md">docs/FIVE-NUMBERS.md</a> 生成 · SHA-256 ca5a47f50db2 · <a href="../index.html">回到课程首页</a></p>
+<h1 id="dcf-的五个控制杆">DCF 的五个控制杆</h1>
+<p>这是第4课的可选补充，不是入门前置知识。陌生术语先查 <a href="glossary-reference.html"><code>GLOSSARY.md</code></a>。</p>
+<h2 id="五个控制杆">五个控制杆</h2>
+<p>不管模型有多少个工作表，DCF 最终都离不开：</p>
+<div class="reference-table-scroll"><table><thead><tr><th>控制杆</th><th>人话</th><th>常见名称</th></tr></thead><tbody><tr><td>起点现金</td><td>现在大致能产生多少自由现金</td><td>FCF / FCFF</td></tr><tr><td>增长</td><td>现金流以多快速度变化</td><td>收入增速、利润率路径</td></tr><tr><td>持续时间</td><td>较高增长或利润能维持多久</td><td>显性期、竞争优势期</td></tr><tr><td>远期状态</td><td>明细预测结束后的正常经营</td><td>终值、永续增长、终值ROIC</td></tr><tr><td>折现率</td><td>未来现金折回今天时要求多高回报</td><td>WACC、贴现率</td></tr></tbody></table></div>
+<p>看不懂模型时，不必先读全部公式。先找到这五个控制杆以及各自来源。</p>
+<h2 id="敏感性回答什么">敏感性回答什么</h2>
+<p>敏感性不是用来找“正确数字”，而是观察：哪个合理变化最能改变结论。</p>
+<p>运行可选实验：</p>
+<pre><code class="language-bash">python3 lab/mini_dcf.py</code></pre>
+<p>默认虚构案例中，折现率由9%升至10%，股权价值下降约14.6%；起点现金、增长和终值也会影响结果。这只是该组输入下的表现，不能推广成“所有估值都由折现率决定”。不同期限、债务和商业模式会得到不同排序。</p>
+<h2 id="怎样读终值占比">怎样读终值占比</h2>
+<pre><code class="language-text">终值占比 = 终值现值 ÷ 企业价值</code></pre>
+<p>占比越高，结论越依赖显性期结束后的利润率、增长、资本回报和折现率。</p>
+<p>可以把60%当作提醒自己停下来质证终值的经验线，但不能当作统一合格线：</p>
+<ul><li>稳定、长寿命资产可能天然有较高终值占比；</li><li>技术和竞争格局快速变化的公司，高终值占比通常更难支撑；</li><li>拉长显性期可能只是把远期假设挪进明细表，并不自动提高可信度。</li></ul>
+<h2 id="反向-dcf-的正确读法">反向 DCF 的正确读法</h2>
+<p>正向 DCF 问“按我的预测值多少”；反向 DCF 问“在这组模型约定下，当前价格要求什么”。</p>
+<pre><code class="language-bash">python3 lab/reverse.py 300</code></pre>
+<p>必须同时看到：</p>
+<ol><li>使用了什么折现率、现金流定义和终值；</li><li>增长、利润率、持续时间之间有哪些替代组合；</li><li>是否出现经济上难以解释的区域；</li><li>隐含要求能否与公司历史、同行和经营机制比较。</li></ol>
+<p>反向 DCF 没有把未来预测变成事实。它只是把争论从“目标价是多少”改成“哪些经营条件才能解释价格”。</p>
+<h2 id="方法与生意的匹配">方法与生意的匹配</h2>
+<div class="reference-table-scroll"><table><thead><tr><th>业务特征</th><th>常用主方法或校验</th><th>需要警惕</th></tr></thead><tbody><tr><td>周期品</td><td>周期正常化、反向DCF、情景分析</td><td>峰值利润乘历史PE</td></tr><tr><td>稳定现金流</td><td>DCF、股息折现</td><td>折现率或终值缺少敏感性</td></tr><tr><td>平台/订阅</td><td>单位经济、长期利润率、情景DCF</td><td>用短期亏损直接否定价值</td></tr><tr><td>重资产</td><td>DCF、EV/EBITDA与资本回报结合</td><td>EBITDA忽略Capex和营运资金</td></tr><tr><td>银行/保险</td><td>PB/ROE、剩余收益等</td><td>生搬普通工业公司的FCFF</td></tr><tr><td>早期/无盈利</td><td>单位经济、里程碑和宽区间情景</td><td>用遥远假设制造精确DCF</td></tr></tbody></table></div>
+<p>这些是起点，不是机械规则。最终仍要检查数据是否足以支撑所选方法。</p>
+  </main>
+</body>
+</html>

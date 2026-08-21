@@ -491,11 +491,14 @@
     });
   }
 
+  const REFERENCE_CLOSE_MESSAGE = "valuation-lab:close-reference";
+
   function setupMarkdownReference() {
     const dialog = document.querySelector("[data-markdown-reference-dialog]");
     const openers = Array.from(document.querySelectorAll("[data-markdown-reference-open]"));
     if (!dialog || !openers.length) return;
     const closeButton = dialog.querySelector("[data-markdown-reference-close]");
+    const frame = dialog.querySelector("[data-markdown-reference-frame]");
     let lastFocused = null;
 
     const setExpanded = expanded => {
@@ -539,6 +542,39 @@
       if (event.key !== "Escape" || !dialog.open) return;
       event.preventDefault();
       closeDialog();
+    });
+    // 抽屉里的参考章通过 postMessage 请求关闭：file:// 下父子文档同源检查不可用，只能比对 window 引用。
+    window.addEventListener("message", event => {
+      if (!frame || event.source !== frame.contentWindow) return;
+      if (event.data !== REFERENCE_CLOSE_MESSAGE) return;
+      closeDialog();
+    });
+  }
+
+  function setupEmbeddedReferenceLinks() {
+    const body = document.body;
+    if (!body || !body.classList.contains("markdown-reference-page")) return;
+    if (window.self === window.top) return;
+
+    const prefix = body.dataset.lessonHrefPrefix || "";
+    const lesson = body.dataset.lesson || "";
+    const lessonHref = lesson ? `${prefix}${lesson}.html` : "";
+
+    document.querySelectorAll("a[href]").forEach(link => {
+      const href = link.getAttribute("href");
+      if (!href || href.startsWith("#") || /^[a-z][a-z0-9+.-]*:/i.test(href)) return;
+      if (href !== lessonHref) {
+        // 其余仓库文件不能在窄抽屉里打开，交给整页窗口。
+        link.target = "_top";
+        return;
+      }
+      link.title = "关闭参考章，回到本课互动页";
+      link.setAttribute("aria-label", "关闭参考章，回到本课互动页");
+      if (!link.firstElementChild) link.textContent = "回到本课互动页";
+      link.addEventListener("click", event => {
+        event.preventDefault();
+        window.parent.postMessage(REFERENCE_CLOSE_MESSAGE, "*");
+      });
     });
   }
 
@@ -642,6 +678,7 @@
     setupAnnotate();
     setupAgentAudit();
     setupMarkdownReference();
+    setupEmbeddedReferenceLinks();
     setupSourceCitations();
     setupGlossary();
     renderProgress();

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="source-sha256" content="5ea37d139d97b0baf22dcb95fc5c72018da736c28383a4ce939441684ce7ae21">
+  <title>白话术语表 · 课程资料</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+  <script>
+    if (window.self !== window.top) document.documentElement.classList.add("markdown-reference-embedded");
+  </script>
+  <script defer src="../assets/app.js"></script>
+</head>
+<body class="markdown-reference-page" data-lesson-href-prefix="../">
+  <header class="reader-topbar">
+    <a class="reader-brand" href="../index.html" aria-label="返回课程首页">
+      <span class="reader-brand-mark" aria-hidden="true">V</span>
+      <span><strong>估值实验室</strong><small>看懂估值，不迷信数字</small></span>
+    </a>
+    <div class="reader-heading">
+      <div class="reader-breadcrumb">
+        <span>课程资料</span><b>/</b><strong>白话术语表</strong><em>查陌生术语</em>
+      </div>
+    </div>
+    <nav class="reader-actions" aria-label="辅助导航"><a href="../index.html">课程首页</a><a href="../glossary.html">术语表</a><a href="../study-methods.html">学习方法</a></nav>
+  </header>
+  <main class="markdown-reference-document">
+    <nav class="markdown-reference-lesson-nav" aria-label="课程资料">
+      <a href="audit-checklist-reference.html">分层审计清单</a>
+      <a href="glossary-reference.html" class="current" aria-current="page">白话术语表</a>
+      <a href="five-numbers-reference.html">DCF 的五个控制杆</a>
+      <a href="pretest-reference.html">入门测验</a>
+      <a href="posttest-reference.html">毕业测验</a>
+    </nav>
+    <p class="markdown-reference-source">由 <a href="../../docs/GLOSSARY.md">docs/GLOSSARY.md</a> 生成 · SHA-256 5ea37d139d97 · <a href="../index.html">回到课程首页</a></p>
+<h1 id="白话术语表">白话术语表</h1>
+<p>只记一条主线：</p>
+<pre><code class="language-text">收入 → EBIT → NOPAT → FCFF → EV → 股权价值 → 每股价值</code></pre>
+<p>下面用一家虚构公司解释。它一年收入 100 亿元，经营成本和费用 80 亿元，所以经营利润 20 亿元。</p>
+<h2 id="收入">收入</h2>
+<p>公司卖产品或服务取得的钱。收入大不代表赚钱多，更不代表现金多。</p>
+<h2 id="ebit息税前利润">EBIT：息税前利润</h2>
+<p>暂时不考虑利息和所得税，公司经营本身赚了多少。</p>
+<pre><code class="language-text">收入 100 - 经营成本和费用 80 = EBIT 20 亿元
+EBIT margin = EBIT ÷ 收入 = 20%</code></pre>
+<h2 id="nopat税后经营利润">NOPAT：税后经营利润</h2>
+<p>把 EBIT 扣掉经营应承担的税，但仍不混入融资利息。</p>
+<pre><code class="language-text">NOPAT = EBIT × (1 - 税率)
+      = 20 × (1 - 20%)
+      = 16 亿元</code></pre>
+<h2 id="fcff企业自由现金流">FCFF：企业自由现金流</h2>
+<p>公司经营产生、扣除继续经营所需投入后，可供股东和债权人共同支配的现金。它不是财报直接给出的一个统一数字，需要由报表项目计算并解释调整。</p>
+<p>假设折旧 3 亿元、资本开支 5 亿元、库存和应收账款多占用 2 亿元：</p>
+<pre><code class="language-text">FCFF = NOPAT + 折旧 - 资本开支 - 营运资金增加
+     = 16 + 3 - 5 - 2
+     = 12 亿元</code></pre>
+<p>这说明公司有 20 亿元 EBIT，不代表有 20 亿元自由现金。</p>
+<h2 id="dcf现金流折现">DCF：现金流折现</h2>
+<p>把未来每年的自由现金流折算成今天的价值。未来越远、风险越高，今天值的钱通常越少。</p>
+<h2 id="wacc折现率">WACC：折现率</h2>
+<p>模型用来表达时间和经营风险的折现率。你暂时不需要推导它，只需要检查：来源是否解释、币种和业务风险是否匹配、是否做了区间敏感性。</p>
+<h2 id="终值">终值</h2>
+<p>显性预测期结束以后全部现金流在模型中的合计价值。终值占比高，表示结论更依赖遥远未来的利润率、增长和折现率。</p>
+<p>高终值占比是需要重点质证的警告，不自动证明模型无效。稳定长寿命业务和高速变化业务的合理占比可能不同。</p>
+<h2 id="ev企业价值">EV：企业价值</h2>
+<p>经营资产对股东和债权人的总价值。它还不是股东最终拥有的价值。</p>
+<h2 id="股权价值">股权价值</h2>
+<p>从 EV 走到股东价值，需要处理现金、债务、租赁负债、少数股东权益和可确认的非经营资产。</p>
+<p>简化示例：</p>
+<pre><code class="language-text">股权价值 = EV + 现金 - 债务</code></pre>
+<p>如果 EV 为 200 亿元、现金 20 亿元、债务 50 亿元，股权价值是 170 亿元。</p>
+<h2 id="每股价值与股本分母">每股价值与股本分母</h2>
+<pre><code class="language-text">每股价值 = 股权价值 ÷ 对应的外部普通股股数</code></pre>
+<p>总股本、流通股、扣除库存股后的普通股不是一回事。双重上市、增发、回购或库存股都可能使分母出错。</p>
+<p>分母还分<strong>基本</strong>和<strong>稀释</strong>两种：</p>
+<ul><li><strong>基本股数</strong>：现在实际由外部股东持有的普通股，等于总股本减库存股。</li><li><strong>稀释股数</strong>：再加上已经有人有权拿到、但现在还没发出来的股份——期权、限制性股票、可转债转股。期权通常按<strong>库存股法</strong>折算：先假设行权款用于按市价回购一部分股份，只把净增部分计入分母。</li><li><strong>优先股</strong>及其他排在普通股之前的要求权，应在得到普通股股权价值之前扣掉，而不是留在分子里被普通股分掉。</li></ul>
+<p>可转债有两条都合法的处理路径：留在债务里（分母不加转股股份），或按 <strong>if-converted</strong> 把债务加回权益、分母同时加股份。两条路径的结果接近但不相同；错误的是混着走——债务里扣了一次，分母里又加了一次，同一笔要求权被计了两次。第2课有完整数字例子。</p>
+<h2 id="桥bridge">桥：bridge</h2>
+<p>英文就是 <strong>bridge</strong>。投行、咨询和财务分析里的口语：从起点 A 用<strong>逐项加减</strong>走到终点 B，每一项都要能复算。图常画成 waterfall（瀑布图）；会计里更正式的说法是 reconciliation（调节表）。同类说法还有 walk（从 A 走到 B）。</p>
+<p>本课里「桥」出现两层，不要混成一个东西：</p>
+<ol><li><strong>假设怎么改</strong>（第1课）：内部把数字调了，必须写出量、价、产能或口径桥。例如指引 120 亿元 + 新产线爬坡 5 亿元 = Base 125 亿元。这叫 volume–price / capacity bridge（量价桥、产能桥）。只有终点、没有加减表，就是失败状态「内部调整无桥」。</li><li><strong>价值怎么算</strong>（第2课）：主线上的箭头就是价值桥。第一座是 EBIT → FCFF（利润怎样变成现金）；第二座是 EV → 股权价值（企业价值怎样走到普通股）。</li></ol>
+<p>沿用上面同一家公司，第二座桥的最小样子是：</p>
+<pre><code class="language-text">EV 200 + 现金 20 − 债务 50 = 股权价值 170 亿元</code></pre>
+<p>没有桥不等于模型算错，只说明这个数字还不能当已闭合输入或已复算输出使用。补齐前不能声称已经验证，也不能由此推出该买或该卖。</p>
+<h2 id="pe市盈率">PE：市盈率</h2>
+<pre><code class="language-text">PE = 股权市值 ÷ 净利润</code></pre>
+<p>适合快速比较盈利口径可对齐的公司或同一公司的不同阶段。周期峰值利润、亏损公司和业务差异很大的“同行”会使 PE 容易误导。</p>
+<h2 id="pb市净率">PB：市净率</h2>
+<pre><code class="language-text">PB = 股权市值 ÷ 净资产</code></pre>
+<p>常与 ROE 一起用于银行、保险等资产负债表驱动的业务。它不是所有公司的通用主方法。</p>
+<h2 id="evebitda">EV/EBITDA</h2>
+<p>用企业价值除以未扣利息、税、折旧摊销前利润。它能减少融资和折旧口径差异，但不会自动处理资本开支和营运资金，因此不能等同于现金流。</p>
+<h2 id="sotp分部加总估值">SOTP：分部加总估值</h2>
+<p>把不同业务分别估值后再加总。只有分部利润、资产、资本开支和总部费用能够可靠拆分时，SOTP 才有足够基础。</p>
+<h2 id="正向-dcf-与反向-dcf">正向 DCF 与反向 DCF</h2>
+<ul><li><strong>正向 DCF</strong>：先预测经营和现金流，再计算价值。</li><li><strong>反向 DCF</strong>：把当前价格作为输入，反推需要怎样的增长、利润率或持续时间才能解释它。</li></ul>
+<p>反向 DCF 的结果依赖折现率、现金转化和终值等假设。它是“在这组假设下的成绩要求”，不是市场唯一观点，也不是未来经营事实。</p>
+  </main>
+</body>
+</html>

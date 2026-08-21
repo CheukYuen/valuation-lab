@@ -1,4 +1,5 @@
 import hashlib
+import importlib.util
 import json
 import re
 import shutil
@@ -119,9 +120,14 @@ class WebCourseTests(unittest.TestCase):
                     if target[1:] not in parser.ids:
                         failures.append(f"missing anchor: {page.name} -> {target}")
                     continue
-                path_text = target.split("#", 1)[0]
+                path_text, _, fragment = target.partition("#")
                 if path_text and not (page.parent / path_text).exists():
                     failures.append(f"missing: {page.name} -> {target}")
+                    continue
+                # 跨文件锚点也要真的存在，否则跳转会停在页首而不报错。
+                if fragment and path_text.endswith(".html"):
+                    if fragment not in parse(page.parent / path_text).ids:
+                        failures.append(f"missing anchor: {page.name} -> {target}")
         self.assertEqual(failures, [], "\n".join(failures))
 
     def test_interactive_model_contracts(self):
@@ -373,6 +379,63 @@ class WebCourseTests(unittest.TestCase):
         day3 = (WEB / "day-3.html").read_text()
         self.assertIn('data-lab-run="pit"', day3)
         self.assertIn("运行时点桥", day3)
+    def test_reference_drawer_links_never_navigate_inside_the_drawer(self):
+        # 参考章是在右侧抽屉的 iframe 里打开的：任何链接都不能把整页文档塞回这个窄抽屉。
+        app = (WEB / "assets/app.js").read_text()
+        self.assertIn("setupEmbeddedReferenceLinks();", app)
+        self.assertIn('const REFERENCE_CLOSE_MESSAGE = "valuation-lab:close-reference";', app)
+        # file:// 下父子文档是不同源，只能比对 window 引用，不能比对 origin。
+        self.assertIn("event.source !== frame.contentWindow", app)
+        self.assertNotIn("event.origin", app)
+        self.assertIn('link.target = "_top";', app)
+        self.assertIn('href.startsWith("#")', app)
+
+        for day in range(1, 8):
+            text = (WEB / "generated" / f"day-{day}-reference.html").read_text()
+            body = re.sub(r'<header class="reader-topbar">.*?</header>', "", text, flags=re.DOTALL)
+            interactive = set(re.findall(r'href="(\.\./day-\d\.html)"', body))
+            self.assertTrue(interactive, f"day-{day}-reference.html has no link back to its lesson")
+            self.assertEqual(
+                interactive,
+                {f"../day-{day}.html"},
+                f"day-{day}-reference.html links to another lesson's interactive page",
+            )
+
+    def test_course_documents_reach_the_browser_as_html(self):
+        # 浏览器不渲染 .md：课程内部的材料必须有 HTML 双胞胎，否则点击变成下载。
+        script = ROOT / "scripts" / "render_course_markdown.py"
+        spec = importlib.util.spec_from_file_location("render_course_markdown_documents", script)
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+
+        twins = {ROOT / "course" / lesson["source"] for lesson in module.LESSONS}
+        twins |= {ROOT / document["path"] for document in module.DOCUMENTS}
+
+        for document in module.DOCUMENTS:
+            source = ROOT / document["path"]
+            generated = WEB / "generated" / document["output"]
+            self.assertTrue(source.is_file(), document["path"])
+            self.assertTrue(generated.is_file(), document["output"])
+            text = generated.read_text()
+            source_hash = hashlib.sha256(source.read_bytes()).hexdigest()
+            self.assertIn(f'<meta name="source-sha256" content="{source_hash}">', text)
+            self.assertIn("reader-topbar", text, document["output"])
+            self.assertIn(document["title"], text, document["output"])
+
+        # 唯一允许指向 .md 原文件的，是标签本身就说明这是原始材料的溯源链接。
+        link = re.compile(r'<a [^>]*href="([^"#?]+\.md)"[^>]*>(.*?)</a>', re.DOTALL)
+        offenders = []
+        for page in sorted(WEB.rglob("*.html")):
+            for href, label in link.findall(page.read_text()):
+                target = (page.parent / href).resolve()
+                if target not in twins:
+                    continue
+                text = re.sub(r"<[^>]+>", "", label).strip()
+                if ".md" in text or "原始 Markdown" in text:
+                    continue
+                offenders.append(f"{page.relative_to(ROOT)}: {text} -> {href}")
+        self.assertEqual(offenders, [], "\n".join(offenders))
+
     def test_the_shared_engine_is_the_only_place_formulas_live(self):
         # 页面可以读 tools.js 的结果，但不能自己再写一份算式。
         source = (WEB / "assets/tools.js").read_text()

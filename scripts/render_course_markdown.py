@@ -29,6 +29,14 @@ LESSONS = [
     {"day": 7, "source": "DAY-7.md", "output": "day-7-reference.html", "title": "长飞综合练习", "interactive": "day-7.html"},
 ]
 
+DOCUMENTS = [
+    {"path": "docs/AUDIT-CHECKLIST.md", "output": "audit-checklist-reference.html", "title": "分层审计清单", "eyebrow": "检查材料时使用"},
+    {"path": "docs/GLOSSARY.md", "output": "glossary-reference.html", "title": "白话术语表", "eyebrow": "查陌生术语"},
+    {"path": "docs/FIVE-NUMBERS.md", "output": "five-numbers-reference.html", "title": "DCF 的五个控制杆", "eyebrow": "第4课可选补充"},
+    {"path": "course/PRETEST.md", "output": "pretest-reference.html", "title": "入门测验", "eyebrow": "开课前"},
+    {"path": "course/POSTTEST.md", "output": "posttest-reference.html", "title": "毕业测验", "eyebrow": "第7课之后"},
+]
+
 SOURCE = COURSE / "DAY-1.md"
 OUTPUT = OUTPUT_DIR / "day-1-reference.html"
 
@@ -48,6 +56,17 @@ def relative_href(target: Path, output: Path) -> str:
     return os.path.relpath(target, output.parent).replace(os.sep, "/")
 
 
+def generated_twin(target: Path) -> Path:
+    """课程内部的链接留在 HTML 这条线上：浏览器不会渲染 .md，直接点会变成下载。"""
+    for lesson in LESSONS:
+        if target == COURSE / lesson["source"]:
+            return OUTPUT_DIR / lesson["output"]
+    for document in DOCUMENTS:
+        if target == ROOT / document["path"]:
+            return OUTPUT_DIR / document["output"]
+    return target
+
+
 def rewrite_link(href: str, source: Path, output: Path) -> str:
     parsed = urlsplit(href)
     if parsed.scheme or parsed.netloc or href.startswith("#"):
@@ -55,6 +74,7 @@ def rewrite_link(href: str, source: Path, output: Path) -> str:
     if not parsed.path:
         return href
     target = (source.parent / parsed.path).resolve()
+    target = generated_twin(target)
     rewritten = relative_href(target, output)
     return urlunsplit(("", "", rewritten, parsed.query, parsed.fragment))
 
@@ -173,6 +193,7 @@ def render_markdown(markdown: str, source: Path, output: Path) -> str:
     rendered: list[str] = []
     index = 0
     details_depth = 0
+    slugs: dict[str, int] = {}
 
     while index < len(lines):
         line = lines[index]
@@ -189,8 +210,15 @@ def render_markdown(markdown: str, source: Path, output: Path) -> str:
             source_id = SOURCE_ID.search(heading.group(2))
             if heading.group(2) == "资料来源与核查":
                 anchor = ' id="sources"'
+            elif source_id:
+                anchor = f' id="{source_id.group(1)}"'
             else:
-                anchor = f' id="{source_id.group(1)}"' if source_id else ""
+                slug = heading_slug(heading.group(2))
+                if slug:
+                    slugs[slug] = slugs.get(slug, 0) + 1
+                    if slugs[slug] > 1:
+                        slug = f"{slug}-{slugs[slug] - 1}"
+                anchor = f' id="{html.escape(slug, quote=True)}"' if slug else ""
             rendered.append(f"<h{level}{anchor}>{render_inline(heading.group(2), source, output)}</h{level}>")
             index += 1
             continue
@@ -292,12 +320,30 @@ def render_markdown(markdown: str, source: Path, output: Path) -> str:
     return "\n".join(rendered)
 
 
+def heading_slug(text: str) -> str:
+    """按 GitHub 的标题锚点规则生成 id，让 Markdown 里的 `文件.md#标题` 在生成页同样能跳。"""
+    plain = re.sub(r"\[([^\]]+)\]\([^)]*\)", r"\1", text)
+    plain = plain.replace("`", "").replace("*", "").strip().lower()
+    plain = re.sub(r"[^\w\s-]", "", plain, flags=re.UNICODE)
+    return re.sub(r"\s+", "-", plain).strip("-")
+
+
 def lesson_nav(current_day: int) -> str:
     links = []
     for lesson in LESSONS:
         href = html.escape(lesson["output"], quote=True)
         label = html.escape(f'{lesson["day"]}. {lesson["title"]}')
         current = ' class="current" aria-current="page"' if lesson["day"] == current_day else ""
+        links.append(f'<a href="{href}"{current}>{label}</a>')
+    return "\n      ".join(links)
+
+
+def document_nav(current_output: str) -> str:
+    links = []
+    for document in DOCUMENTS:
+        href = html.escape(document["output"], quote=True)
+        label = html.escape(document["title"])
+        current = ' class="current" aria-current="page"' if document["output"] == current_output else ""
         links.append(f'<a href="{href}"{current}>{label}</a>')
     return "\n      ".join(links)
 
@@ -364,8 +410,63 @@ def build_document(source: Path | dict = SOURCE, output: Path | None = OUTPUT) -
 """
 
 
+def build_reference_document(document: dict, output: Path | None = None) -> str:
+    source = ROOT / document["path"]
+    output = OUTPUT_DIR / document["output"] if output is None else output
+    source_bytes = source.read_bytes()
+    source_hash = hashlib.sha256(source_bytes).hexdigest()
+    article = render_markdown(source_bytes.decode("utf-8"), source, output)
+    stylesheet = html.escape(relative_href(STYLESHEET, output), quote=True)
+    app_script = html.escape(relative_href(APP_SCRIPT, output), quote=True)
+    source_link = html.escape(relative_href(source, output), quote=True)
+    index_link = html.escape(relative_href(ROOT / "web" / "index.html", output), quote=True)
+    glossary_link = html.escape(relative_href(ROOT / "web" / "glossary.html", output), quote=True)
+    methods_link = html.escape(relative_href(ROOT / "web" / "study-methods.html", output), quote=True)
+    title = html.escape(document["title"])
+    eyebrow = html.escape(document["eyebrow"])
+    source_label = html.escape(document["path"])
+    return f"""<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="source-sha256" content="{source_hash}">
+  <title>{title} · 课程资料</title>
+  <link rel="stylesheet" href="{stylesheet}">
+  <script>
+    if (window.self !== window.top) document.documentElement.classList.add("markdown-reference-embedded");
+  </script>
+  <script defer src="{app_script}"></script>
+</head>
+<body class="markdown-reference-page" data-lesson-href-prefix="../">
+  <header class="reader-topbar">
+    <a class="reader-brand" href="{index_link}" aria-label="返回课程首页">
+      <span class="reader-brand-mark" aria-hidden="true">V</span>
+      <span><strong>估值实验室</strong><small>看懂估值，不迷信数字</small></span>
+    </a>
+    <div class="reader-heading">
+      <div class="reader-breadcrumb">
+        <span>课程资料</span><b>/</b><strong>{title}</strong><em>{eyebrow}</em>
+      </div>
+    </div>
+    <nav class="reader-actions" aria-label="辅助导航"><a href="{index_link}">课程首页</a><a href="{glossary_link}">术语表</a><a href="{methods_link}">学习方法</a></nav>
+  </header>
+  <main class="markdown-reference-document">
+    <nav class="markdown-reference-lesson-nav" aria-label="课程资料">
+      {document_nav(document["output"])}
+    </nav>
+    <p class="markdown-reference-source">由 <a href="{source_link}">{source_label}</a> 生成 · SHA-256 {source_hash[:12]} · <a href="{index_link}">回到课程首页</a></p>
+{article}
+  </main>
+</body>
+</html>
+"""
+
+
 def expected_documents() -> list[tuple[Path, str]]:
-    return [(OUTPUT_DIR / lesson["output"], build_document(lesson)) for lesson in LESSONS]
+    pages = [(OUTPUT_DIR / lesson["output"], build_document(lesson)) for lesson in LESSONS]
+    pages.extend((OUTPUT_DIR / item["output"], build_reference_document(item)) for item in DOCUMENTS)
+    return pages
 
 
 def main() -> int:
