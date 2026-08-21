@@ -73,7 +73,7 @@
           <p class="reader-eyebrow">把价格翻译成经营要求 · 第 5 课</p>
           <h1>反向 DCF</h1>
           <p class="lesson-deck">不先问“值多少钱”，而问“在这组条件下，当前价格要求公司做到什么”。结果是一条条件曲线，不是市场唯一观点。</p>
-          <div class="takeaway"><span>一句话速览</span><p>合格表述必须带条件：“在WACC 9%、显性期7年、永续增长2%和当前FCFF定义下……” <a class="source-citation" href="#D5-S1">〔D5-S1〕</a></p></div>
+          <div class="takeaway"><span>一句话速览</span><p>合格表述必须带条件：“在WACC 9%、显性期7年、永续增长2%和当前FCFF定义下……”带全条件的价格隐含要求可用；没有调查样本时不能叫市场共识。<a class="source-citation" href="#D5-S1">〔D5-S1〕</a> <a class="source-citation" href="#D5-S3">〔D5-S3〕</a></p></div>
         </header>
 
         <section class="reader-section" id="direction" data-reader-section>
@@ -124,7 +124,8 @@
             <tbody>
               <tr><td>输入本来是EV，模型仍按股权价值再加净债务</td><td>明确错误；停止使用反解结果</td><td>目标EV被抬高，所需增长被系统性高估</td><td>正向模型的EV桥也一定错</td></tr>
               <tr><td>反解结果只报单点，不披露WACC、显性期和终值约定</td><td>无法确认；该结果停止使用</td><td>数字失去条件，无法解释也无法复算</td><td>该单点数值一定算错</td></tr>
-              <tr><td>反解结果被命名为“市场隐含预期”或“市场共识”</td><td>明确错误（性质错标）；表述停止使用</td><td>模型条件被伪装成他人观点</td><td>市场参与者一定不这样想</td></tr>
+              <tr><td>反解结果被命名为“市场共识”，但没有调查样本、统计口径和截点</td><td>明确错误（性质错标）；表述停止使用</td><td>模型条件解被伪装成调查汇总</td><td>市场参与者一定不这样想</td></tr>
+              <tr><td>只写“市场隐含增长16.25%”，省略 WACC、终值、现金流定义和单变量约束</td><td>无法确认；该表述停止使用</td><td>数字失去条件，无法解释也无法复算</td><td>该单点数值一定算错</td></tr>
               <tr><td>求解器返回无解，作者不断放宽搜索范围直到打印出数字</td><td>明确错误；该结果停止使用</td><td>无解这条诊断信息被抹掉</td><td>该价格一定无法被任何假设解释</td></tr>
               <tr><td>只展示一条解释路径，未说明是否存在替代组合</td><td>部分可用；结论带条件使用</td><td>读者可能把一条条件解误读为唯一解</td><td>其他路径一定更合理</td></tr>
               <tr><td>隐含要求很高，但曲线、变量范围和固定条件都已披露</td><td>状态不变，不降级</td><td>按条件句继续使用并去质证</td><td>要求高一定意味着高估</td></tr>
@@ -162,6 +163,7 @@
             <li>是否说明这一次只反解了哪一个变量？（D15）</li>
             <li>是否展示曲线或至少两条替代解释路径，而不是单点？（D15）</li>
             <li>出现无解时，是记录为诊断结果，还是通过放宽边界抹掉了？（D15）</li>
+            <li>没有调查样本时，是否仍把反解写成“市场共识”？“价格隐含要求”是否带全模型条件？</li>
           </ul>
         </section>
 
@@ -228,6 +230,7 @@ def required_years(p, target, max_years=80):
             <div class="source-list">
               <article class="source-item" id="D5-S1" data-source-id="D5-S1" data-source-url="../lab/reverse.py"><span>课程规则</span><h3>〔D5-S1〕 本仓库反向 DCF 教学实现</h3><dl><div><dt>发布机构</dt><dd>valuation-lab</dd></div><div><dt>发布 / 版本</dt><dd>当前仓库版本</dd></div><div><dt>访问日期</dt><dd>2026-08-20</dd></div><div><dt>支持内容</dt><dd>固定其余输入后反解增长、起点现金流或持续时间，并返回无解区域。</dd></div></dl><a href="../lab/reverse.py">打开本地地址</a></article>
               <article class="source-item" id="D5-S2" data-source-id="D5-S2" data-source-url="https://pages.stern.nyu.edu/~adamodar/New_Home_Page/littlebook/intrinsicvsrelative.htm"><span>专业教材</span><h3>〔D5-S2〕 Intrinsic Valuation</h3><dl><div><dt>发布机构</dt><dd>NYU Stern / Aswath Damodaran</dd></div><div><dt>发布 / 版本</dt><dd>配套网页；原页面未标注发布日期</dd></div><div><dt>访问日期</dt><dd>2026-08-20</dd></div><div><dt>支持内容</dt><dd>DCF 是预期现金流按反映风险的折现率折回现值的关系。</dd></div></dl><a href="https://pages.stern.nyu.edu/~adamodar/New_Home_Page/littlebook/intrinsicvsrelative.htm" target="_blank" rel="noopener noreferrer">打开原始地址</a></article>
+              <article class="source-item" id="D5-S3" data-source-id="D5-S3" data-source-url="https://pages.stern.nyu.edu/~adamodar/pdfiles/eqnotes/dcfall.pdf"><span>专业教材</span><h3>〔D5-S3〕 Discounted Cashflow Valuation</h3><dl><div><dt>发布机构</dt><dd>NYU Stern / Aswath Damodaran</dd></div><div><dt>发布 / 版本</dt><dd>股权估值讲义（DCF）；原 PDF 未标注本次文件发布日期</dd></div><div><dt>访问日期</dt><dd>2026-08-21</dd></div><div><dt>支持内容</dt><dd>可以把市场价格代回 DCF，求解 implied growth rate；该数字是模型条件下的价格隐含要求，不是调查得到的市场共识。</dd></div></dl><a href="https://pages.stern.nyu.edu/~adamodar/pdfiles/eqnotes/dcfall.pdf" target="_blank" rel="noopener noreferrer">打开原始地址</a></article>
             </div>
           </details>
         </section>

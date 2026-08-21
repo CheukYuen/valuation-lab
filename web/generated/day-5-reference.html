@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="source-sha256" content="36e111cd8cbafab863d52860e73df8b74bd66071c514f65613dc5e06e973d736">
+  <meta name="source-sha256" content="7889f8aaf8d3863ad8e7af5094cec984fe04237da51f9dbe926185f1bac6a76d">
   <title>第5课专业参考章 · 反向 DCF</title>
   <link rel="stylesheet" href="../assets/styles.css">
   <script>
@@ -35,7 +35,7 @@
       <a href="day-6-reference.html">6. 方法适不适合</a>
       <a href="day-7-reference.html">7. 长飞综合练习</a>
     </nav>
-    <p class="markdown-reference-source">由 <a href="../../course/DAY-5.md">course/DAY-5.md</a> 生成 · SHA-256 36e111cd8cba · <a href="../day-5.html">打开本课互动页</a></p>
+    <p class="markdown-reference-source">由 <a href="../../course/DAY-5.md">course/DAY-5.md</a> 生成 · SHA-256 7889f8aaf8d3 · <a href="../day-5.html">打开本课互动页</a></p>
 <h1 id="第5天反向-dcf">第5天：反向 DCF</h1>
 <p><strong>本课目标</strong>：把当前价格翻译成带条件的经营要求，理解多组解、口径一致和经济不可行区。基础计算约35分钟，进阶检查约20分钟。</p>
 <blockquote><p><a href="../day-5.html"><code>打开本课互动HTML</code></a></p></blockquote>
@@ -50,7 +50,7 @@
 <p>它不预测未来，也不读取市场参与者脑中的统一答案。它只是说：<strong>在指定模型约定下，要让公式等于当前价格，某个经营变量必须达到什么水平。</strong></p>
 <p>因此反向结果必须是一条条件句：</p>
 <blockquote><p>在WACC 9%、显性期7年、永续增长2%、净债务20亿元和本课FCFF定义下，300亿元股权价值要求显性期FCFF年增长约16.25%。</p></blockquote>
-<p>删掉任一条件，“16.25%”就像失去单位的数字，无法解释。</p>
+<p>删掉任一条件，“16.25%”就像失去单位的数字，无法解释。专业材料可以把这个数字称为价格隐含增长率；那是模型条件下的 implied growth，不是市场共识。<a href="#D5-S3">〔D5-S3〕</a></p>
 <h3 id="先对齐股权价值和ev">先对齐股权价值和EV</h3>
 <p>本课命令接收的是<strong>当前股权价值</strong>300亿元。模型内部仍要经过资本结构桥：</p>
 <pre><code class="language-text">目标EV = 目标股权价值 + 净债务
@@ -96,7 +96,7 @@
 <blockquote><p>在本课FCFF定义、净债务20亿元、7年显性期、2%永续增长下，300亿元股权价值在WACC 7%—11%时要求FCFF年增长约9.68%—21.78%。基准WACC 9%对应16.25%。同一价格也可由起点FCFF提高至15.68亿元，或由8%增长维持约23年解释；本报告一次只反解一个变量。下一步需与公司历史、产能、再投资和现金转化比较；该区间不是市场共识，也不证明公司能够实现。</p></blockquote>
 <p><strong>不合格输出</strong>：</p>
 <blockquote><p>市场隐含公司未来增长16.25%，因此低于这个预测就是悲观，高于就是乐观。</p></blockquote>
-<p>后一段隐藏了折现率与全部替代组合，还把模型条件伪装成市场统一观点。</p>
+<p>后一段的问题不是用了“隐含”这个词，而是删掉了全部模型条件，又把一条单变量条件解写成市场统一观点。专业材料可以把市场价格代回模型，写出带条件的价格隐含增长率；<a href="#D5-S3">〔D5-S3〕</a> 那才是 implied growth 的合法用法。</p>
 <h2 id="单变量实验先预测再求解">单变量实验：先预测，再求解</h2>
 <ol><li>目标股权价值仍为300亿元，只把WACC从9%升至10%，隐含增长怎样变化？</li><li>WACC仍为9%，只把目标股权价值降低，隐含增长通常怎样变化？</li><li>数学解出长期EBIT利润率110%，是否应把110%当普通预测写入Base？</li><li>输入的300亿元本来就是EV，模型仍按股权价值再加20亿元净债务。反解结果怎样偏？</li></ol>
 <details>
@@ -118,7 +118,7 @@
 <h2 id="进阶检查把反解问题写成失败状态">进阶检查：把反解问题写成失败状态</h2>
 <h3 id="失败状态矩阵">失败状态矩阵</h3>
 <p>第二列统一使用第1课的<strong>记录验证状态</strong>（已复核 / 部分可用 / 无法确认 / 明确错误）加<strong>材料使用等级</strong>。<code>cases/00-basics</code> 和 <a href="audit-checklist-reference.html"><code>分层审计清单</code></a> 里的“通过 / 警告 / 失败”是<strong>清单项状态</strong>，粒度不同，两套词不要混着写。</p>
-<div class="reference-table-scroll"><table><thead><tr><th>触发条件</th><th>记录验证状态 + 使用等级</th><th>影响</th><th>还不能断言</th></tr></thead><tbody><tr><td>输入本来是EV，模型仍按股权价值再加净债务</td><td>明确错误；停止使用反解结果</td><td>目标EV被抬高，所需增长被系统性高估</td><td>正向模型的EV桥也一定错</td></tr><tr><td>反解结果只报单点，不披露WACC、显性期和终值约定</td><td>无法确认；该结果停止使用</td><td>数字失去条件，无法解释也无法复算</td><td>该单点数值一定算错</td></tr><tr><td>反解结果被命名为“市场隐含预期”或“市场共识”</td><td>明确错误（性质错标）；表述停止使用</td><td>模型条件被伪装成他人观点</td><td>市场参与者一定不这样想</td></tr><tr><td>正向与反向使用不同FCFF定义，且未解释或桥接</td><td>无法确认（口径不一致）；跨口径比较停止使用</td><td>两个增长率不在同一根轴上，数值接近也不能互证</td><td>哪一边更接近现实</td></tr><tr><td>求解器返回无解，作者不断放宽搜索范围直到打印出数字</td><td>明确错误；该结果停止使用</td><td>无解这条诊断信息被抹掉</td><td>该价格一定无法被任何假设解释</td></tr><tr><td>数学解出长期利润率超过100%或产能超物理上限，仍写入Base</td><td>明确错误（经济不可行区当普通预测）；停止使用该情景</td><td>情景失去经济含义</td><td>当前价格一定不合理</td></tr><tr><td>只展示一条解释路径，未说明是否存在替代组合</td><td>部分可用；结论带条件使用</td><td>读者可能把一条条件解误读为唯一解</td><td>其他路径一定更合理</td></tr><tr><td>隐含要求很高，但曲线、变量范围和固定条件都已披露</td><td>状态不变，不降级</td><td>按条件句继续使用并去质证</td><td>要求高一定意味着高估</td></tr><tr><td>材料写明“该要求尚未与历史和产能比较，本报告不判断能否实现”</td><td>状态不变，不降级</td><td>这是边界披露，正是本课要求的表述</td><td>不给结论等于分析不完整</td></tr></tbody></table></div>
+<div class="reference-table-scroll"><table><thead><tr><th>触发条件</th><th>记录验证状态 + 使用等级</th><th>影响</th><th>还不能断言</th></tr></thead><tbody><tr><td>输入本来是EV，模型仍按股权价值再加净债务</td><td>明确错误；停止使用反解结果</td><td>目标EV被抬高，所需增长被系统性高估</td><td>正向模型的EV桥也一定错</td></tr><tr><td>反解结果只报单点，不披露WACC、显性期和终值约定</td><td>无法确认；该结果停止使用</td><td>数字失去条件，无法解释也无法复算</td><td>该单点数值一定算错</td></tr><tr><td>反解结果被命名为“市场共识”，但没有调查样本、统计口径和截点</td><td>明确错误（性质错标）；表述停止使用</td><td>模型条件解被伪装成调查汇总</td><td>市场参与者一定不这样想</td></tr><tr><td>只写“市场隐含增长16.25%”，省略 WACC、终值、现金流定义和单变量约束</td><td>无法确认；该表述停止使用</td><td>数字失去条件，无法解释也无法复算</td><td>该单点数值一定算错</td></tr><tr><td>写成“价格/市场隐含要求”，并披露完整模型条件</td><td>状态不变，不降级</td><td>这是带条件的 implied growth，专业材料允许这样写</td><td>该要求一定能实现</td></tr><tr><td>正向与反向使用不同FCFF定义，且未解释或桥接</td><td>无法确认（口径不一致）；跨口径比较停止使用</td><td>两个增长率不在同一根轴上，数值接近也不能互证</td><td>哪一边更接近现实</td></tr><tr><td>求解器返回无解，作者不断放宽搜索范围直到打印出数字</td><td>明确错误；该结果停止使用</td><td>无解这条诊断信息被抹掉</td><td>该价格一定无法被任何假设解释</td></tr><tr><td>数学解出长期利润率超过100%或产能超物理上限，仍写入Base</td><td>明确错误（经济不可行区当普通预测）；停止使用该情景</td><td>情景失去经济含义</td><td>当前价格一定不合理</td></tr><tr><td>只展示一条解释路径，未说明是否存在替代组合</td><td>部分可用；结论带条件使用</td><td>读者可能把一条条件解误读为唯一解</td><td>其他路径一定更合理</td></tr><tr><td>隐含要求很高，但曲线、变量范围和固定条件都已披露</td><td>状态不变，不降级</td><td>按条件句继续使用并去质证</td><td>要求高一定意味着高估</td></tr><tr><td>材料写明“该要求尚未与历史和产能比较，本报告不判断能否实现”</td><td>状态不变，不降级</td><td>这是边界披露，正是本课要求的表述</td><td>不给结论等于分析不完整</td></tr></tbody></table></div>
 <h3 id="练习写一条验收测试">练习：写一条验收测试</h3>
 <div class="reference-table-scroll"><table><thead><tr><th>变更（一次只改一个条件）</th><th>Agent 必须返回什么</th><th>什么必须不变</th></tr></thead><tbody><tr><td>把输入的300亿元从“股权价值”改标为“EV”，模型内部逻辑不动</td><td></td><td></td></tr><tr><td>删除输出中的WACC字段，只保留“隐含增长16.25%”</td><td></td><td></td></tr><tr><td>把反向模型的现金流定义换成“收入×利润率×80%”，正向不动</td><td></td><td></td></tr><tr><td>把输出标题从“本模型条件下的隐含要求”改成“市场一致预期”</td><td></td><td></td></tr><tr><td>在原输出基础上补充起点FCFF与持续时间两条替代路径</td><td></td><td></td></tr></tbody></table></div>
 <details>
@@ -142,7 +142,7 @@
 <p>第二空是本课新增的：只写一条路径的输出，等于向读者暗示它是唯一解释。</p>
 <h2 id="一页验收清单">一页验收清单</h2>
 <p>这张清单是 <a href="audit-checklist-reference.html"><code>分层审计清单</code></a> 第二层 D7、D8、D15 在本课的展开；括号里是清单编号。</p>
-<ul><li>反解的目标是股权价值还是EV，资本结构桥有没有被重复计算？（D8）</li><li>正向与反向是否使用同一套FCFF定义，切换口径是否解释并给了敏感性？（D7）</li><li>输出是否带全模型条件：WACC、显性期、永续增长、净债务和现金流定义？（D15）</li><li>是否说明这一次只反解了哪一个变量？（D15）</li><li>是否展示曲线或至少两条替代解释路径，而不是单点？（D15）</li><li>超过100%利润率或超物理上限的解，是否被标为经济不可行区而不是普通预测？（D15）</li><li>出现无解时，是记录为诊断结果，还是通过放宽边界抹掉了？（D15）</li><li>反解结果是否被错误命名为“市场共识”或“市场隐含预期”？</li><li>结论是否写明该要求尚未质证，以及不能据此推出什么？</li></ul>
+<ul><li>反解的目标是股权价值还是EV，资本结构桥有没有被重复计算？（D8）</li><li>正向与反向是否使用同一套FCFF定义，切换口径是否解释并给了敏感性？（D7）</li><li>输出是否带全模型条件：WACC、显性期、永续增长、净债务和现金流定义？（D15）</li><li>是否说明这一次只反解了哪一个变量？（D15）</li><li>是否展示曲线或至少两条替代解释路径，而不是单点？（D15）</li><li>超过100%利润率或超物理上限的解，是否被标为经济不可行区而不是普通预测？（D15）</li><li>出现无解时，是记录为诊断结果，还是通过放宽边界抹掉了？（D15）</li><li>没有调查样本、统计口径和截点时，是否仍把反解结果写成“市场共识”？</li><li>使用“价格/市场隐含要求”时，是否披露了 WACC、终值、现金流定义和单变量约束？只写“市场隐含增长16.25%”却省略条件的，该表述能否继续使用？</li><li>结论是否写明该要求尚未质证，以及不能据此推出什么？</li></ul>
 <h2 id="闯关">闯关</h2>
 <ol><li>反向DCF得到增长20%，能否称为市场共识？<ul><li>A. 能</li><li>B. 不能</li></ul></li></ol>
 <ol start="2"><li>折现率从8%变为10%，隐含增长从13%升至19%。这说明：<ul><li>A. 公司实际增长改变了</li><li>B. 隐含要求高度依赖模型约定</li></ul></li></ol>
@@ -166,6 +166,8 @@
 <ul><li>类型：课程规则</li><li>发布机构：valuation-lab</li><li>发布 / 版本：当前仓库版本</li><li>访问日期：2026-08-20</li><li>地址：<a href="../../lab/reverse.py"><code>lab/reverse.py</code></a></li><li>支持内容：固定其余输入后分别反解增长、起点现金流或持续时间，并显式返回无解区域；这是本课数值可复算的直接实现。<a href="../../lab/reverse.py">〔D5-S1〕</a></li></ul>
 <h3 id="D5-S2">〔D5-S2〕 Aswath Damodaran：Intrinsic Valuation</h3>
 <ul><li>类型：专业教材</li><li>发布机构：New York University Stern School of Business</li><li>发布 / 版本：The Little Book of Valuation 配套网页；原页面未标注发布日期</li><li>访问日期：2026-08-20</li><li>地址：<a href="https://pages.stern.nyu.edu/~adamodar/New_Home_Page/littlebook/intrinsicvsrelative.htm" target="_blank" rel="noopener noreferrer">https://pages.stern.nyu.edu/~adamodar/New_Home_Page/littlebook/intrinsicvsrelative.htm</a></li><li>支持内容：DCF 把预期现金流按反映风险的折现率折回现值；本课在同一关系上反解价格隐含条件，不把条件解当成事实。<a href="https://pages.stern.nyu.edu/~adamodar/New_Home_Page/littlebook/intrinsicvsrelative.htm" target="_blank" rel="noopener noreferrer">〔D5-S2〕</a></li></ul>
+<h3 id="D5-S3">〔D5-S3〕 Aswath Damodaran：Discounted Cashflow Valuation</h3>
+<ul><li>类型：专业教材</li><li>发布机构：New York University Stern School of Business</li><li>发布 / 版本：股权估值讲义（DCF）；原 PDF 未标注本次文件发布日期</li><li>访问日期：2026-08-21</li><li>地址：<a href="https://pages.stern.nyu.edu/~adamodar/pdfiles/eqnotes/dcfall.pdf" target="_blank" rel="noopener noreferrer">https://pages.stern.nyu.edu/~adamodar/pdfiles/eqnotes/dcfall.pdf</a></li><li>支持内容：可以把市场价格代回 DCF，求解 implied growth rate；该数字是模型条件下的价格隐含要求，不是调查得到的市场共识。<a href="https://pages.stern.nyu.edu/~adamodar/pdfiles/eqnotes/dcfall.pdf" target="_blank" rel="noopener noreferrer">〔D5-S3〕</a></li></ul>
 </details>
 <p>下一课将判断这把尺子是否适合这门生意：<a href="day-6-reference.html"><code>方法适不适合</code></a>。</p>
   </main>

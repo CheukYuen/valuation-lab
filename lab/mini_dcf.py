@@ -66,8 +66,10 @@ def elasticity(p, bump=0.01):
 
 
 def terminal_bridge(p, exit_multiple=None):
-    """退出倍数与隐含永续增长互转。无倍数时返回 Gordon 终值的隐含倍数；
-    有倍数时用该倍数重算终值，并反解它所锁定的永续增长。"""
+    """FCFF终值倍数与隐含永续增长互转。倍数的分母是第 n 年 FCFF，
+    不是 EV/EBITDA。无倍数时返回 Gordon 终值 ÷ 第 n 年 FCFF；
+    有倍数时用该倍数重算终值，并反解它所锁定的永续增长。
+    市场材料若给的是 EV/EBITDA，不能把那个 10 直接代入本函数。"""
     r = p["discount_rate"]
     tg = p["terminal_growth"]
     if r <= tg:
@@ -135,14 +137,14 @@ def main():
     print(f"  终值占企业价值      {v['terminal_share']:>10.1%}   <- 占比较高时重点检查远期假设，不自动等于模型失效")
     print()
     tb = terminal_bridge(p)
-    print("终值的两种写法必须互查")
+    print("终值的两种写法只有分母和时点对齐后才能互译")
     print(f"  第{int(p['years'])}年 FCFF          {tb['last_fcf']:>10.2f} {unit}")
     print(f"  永续增长终值        {tb['gordon_terminal_value']:>10.2f} {unit}")
-    print(f"  隐含退出倍数        {tb['implied_exit_multiple']:>10.1f} 倍")
+    print(f"  隐含FCFF终值倍数    {tb['implied_exit_multiple']:>10.1f} 倍")
     ten = terminal_bridge(p, exit_multiple=10)
-    print(f"  若改用 10 倍退出    股权价值 {ten['equity_value']:>8.2f} {unit}"
+    print(f"  若改用 10 倍第{int(p['years'])}年FCFF    股权价值 {ten['equity_value']:>8.2f} {unit}"
           f"   隐含永续增长 {ten['implied_terminal_growth']:>+.2%}")
-    print("  切换写法等于切换远期假设；只报倍数、不报隐含增长，等于把远期状态藏起来。")
+    print("  切换写法等于切换远期假设；-0.91% 只对应 10 倍第 n 年 FCFF，不是 10 倍 EV/EBITDA。")
     print()
     print("弹性排序（输入 +1%，股权价值变动几个 %）")
     for name, e in elasticity(p):

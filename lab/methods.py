@@ -50,13 +50,16 @@ def spread(p):
 
 
 def bank_demo(p):
-    """把银行存款当普通有息债务扣除会怎样。对应 cases/00-basics 案例6。"""
+    """把银行存款当普通有息债务扣除会怎样。对应 cases/00-basics 案例6。
+    operating_profit_proxy 是教学用的经营利润代理量，故意误当成 EBITDA；
+    两组输出都不是有效银行估值。"""
     b = p["bank"]
+    proxy = b["operating_profit_proxy"]
     ex_deposits = b["other_debt"] - b["cash"]
     return {
-        "ev_ebitda_with_deposits": b["operating_income"] * b["peer_ev_ebitda"]
+        "ev_ebitda_with_deposits": proxy * b["peer_ev_ebitda"]
         - (b["deposits"] + ex_deposits),
-        "ev_ebitda_without_deposits": b["operating_income"] * b["peer_ev_ebitda"] - ex_deposits,
+        "ev_ebitda_without_deposits": proxy * b["peer_ev_ebitda"] - ex_deposits,
         "pe": b["net_income"] * b["peer_pe"],
         "pb": b["book_equity"] * b["peer_pb"],
     }
@@ -94,10 +97,11 @@ def main():
     print(f"  PB                            {b['pb']:>9.2f} {unit}")
     print()
     print("  存款是银行的经营投入，不是等待偿还的融资负债；工业公司式 EV 桥套到银行上，")
-    print("  错的不是精度，是量级和符号。这时该换框架，而不是调倍数。")
+    print("  错的不是精度，是量级和符号。机械移出存款只隔离 900 亿元影响，")
+    print("  不构成一座正确的银行 EV 桥；两组输出都不是有效银行估值。")
     print()
-    print("边界：脚本只演示方法之间的差距和一个已知的错配。它不判断哪个倍数合理、")
-    print("      可比公司选得对不对，也不产出目标价、评级或买卖动作。")
+    print("边界：脚本只演示方法之间的差距和一个已知的错配。40 亿元是经营利润代理量，")
+    print("      故意误当成 EBITDA。它不判断哪个倍数合理，也不产出目标价或买卖动作。")
 
 
 if __name__ == "__main__":

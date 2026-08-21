@@ -135,6 +135,7 @@
   }
 
   function terminalBridge(input, exitMultiple) {
+    // 倍数分母是第 n 年 FCFF，不是 EV/EBITDA。内部键名保持 exitMultiple 以便 parity。
     const { baseFcf, growth, years, terminalGrowth, discountRate, netDebt } = input;
     if (discountRate <= terminalGrowth) throw new Error("折现率必须高于永续增长率");
     const gordon = dcf(input);
@@ -204,8 +205,8 @@
     const b = input.bank;
     const exDeposits = b.otherDebt - b.cash;
     return {
-      evEbitdaWithDeposits: b.operatingIncome * b.peerEvEbitda - (b.deposits + exDeposits),
-      evEbitdaWithoutDeposits: b.operatingIncome * b.peerEvEbitda - exDeposits,
+      evEbitdaWithDeposits: b.operatingProfitProxy * b.peerEvEbitda - (b.deposits + exDeposits),
+      evEbitdaWithoutDeposits: b.operatingProfitProxy * b.peerEvEbitda - exDeposits,
       pe: b.netIncome * b.peerPe,
       pb: b.bookEquity * b.peerPb
     };
@@ -435,7 +436,7 @@
         terminalGrowth: 0.02, discountRate: 0.09, netDebt: 30
       },
       bank: {
-        operatingIncome: 40, deposits: 900, otherDebt: 50, cash: 60,
+        operatingProfitProxy: 40, deposits: 900, otherDebt: 50, cash: 60,
         bookEquity: 100, netIncome: 15, peerPe: 6, peerPb: 0.8, peerEvEbitda: 8
       }
     };
@@ -497,7 +498,7 @@
     peerPe: 15, peerPb: 1.8, peerEvEbitda: 8,
     dcf: { ...DEFAULT_DCF, netDebt: 30 },
     bank: {
-      operatingIncome: 40, deposits: 900, otherDebt: 50, cash: 60,
+      operatingProfitProxy: 40, deposits: 900, otherDebt: 50, cash: 60,
       bookEquity: 100, netIncome: 15, peerPe: 6, peerPb: 0.8, peerEvEbitda: 8
     }
   };
@@ -711,11 +712,12 @@
       `  股权价值            ${yi2(r.equity)}`,
       `  终值占企业价值      ${pct(r.terminalShare)}`,
       "",
-      "终值的两种写法必须互查",
+      "终值的两种写法只有分母和时点对齐后才能互译",
       `  第${p.years}年 FCFF          ${yi2(tb.lastFcf)}`,
       `  永续增长终值        ${yi2(tb.gordonTerminalValue)}`,
-      `  隐含退出倍数        ${tb.impliedExitMultiple.toFixed(1)} 倍`,
-      `  若改用 ${multiple} 倍退出    股权价值 ${tb.equityValue.toFixed(2)} 亿元   隐含永续增长 ${pct2(tb.impliedTerminalGrowth)}`,
+      `  隐含FCFF终值倍数    ${tb.impliedExitMultiple.toFixed(1)} 倍`,
+      `  若改用 ${multiple} 倍第${p.years}年FCFF    股权价值 ${tb.equityValue.toFixed(2)} 亿元   隐含永续增长 ${pct2(tb.impliedTerminalGrowth)}`,
+      "  -0.91% 只对应 10 倍第 n 年 FCFF，不是 10 倍 EV/EBITDA。",
       "",
       "边界：输出不是“这家公司值多少”，而是“哪个假设在决定这个数”。"
     ].join("\n");
@@ -777,6 +779,9 @@
       `  EV/EBITDA，存款不按债务扣除   ${yi2(b.evEbitdaWithoutDeposits)}`,
       `  PE                            ${yi2(b.pe)}`,
       `  PB                            ${yi2(b.pb)}`,
+      "",
+      "机械移出存款只隔离 900 亿元影响，不构成一座正确的银行 EV 桥。",
+      "40 亿元是经营利润代理量，故意误当成 EBITDA；两组输出都不是有效银行估值。",
       "",
       "边界：脚本只演示方法差距和错配，不判断哪个倍数合理。"
     ].join("\n");

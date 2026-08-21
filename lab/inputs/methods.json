@@ -22,9 +22,9 @@
     "net_debt": 30.0
   },
 
-  "_银行": "存款是银行的经营投入，不是普通有息债务",
+  "_银行": "40 亿元是故意误当成 EBITDA 的经营利润代理量，不是标准银行 EBITDA；存款是经营投入，不是普通有息债务",
   "bank": {
-    "operating_income": 40.0,
+    "operating_profit_proxy": 40.0,
     "deposits": 900.0,
     "other_debt": 50.0,
     "cash": 60.0,
