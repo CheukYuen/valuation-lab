@@ -79,8 +79,36 @@
         <section class="reader-section" id="two-bridges" data-reader-section>
           <p class="section-kicker">01 · 先记住结构</p><h2>只记两座桥</h2>
           <p class="section-lead">第一座桥回答经营利润最后留下多少现金；第二座桥回答经营资产的价值中，有多少真正属于对应的普通股股东。</p>
-          <div class="flow"><span>EBIT</span><b>→ 扣经营税</b><span>NOPAT</span><b>→ +折旧 −Capex −营运资金</b><span>FCFF</span></div>
-          <div class="flow"><span>EV</span><b>→ +现金 −债务等</b><span>股权价值</span><b>→ ÷正确股本</b><span>每股价值</span></div>
+          <div class="bridge-formula">
+            <p class="bridge-formula-line">
+              <span class="bridge-token">EBIT</span>
+              <span class="bridge-sign">−</span>
+              <span class="bridge-label">经营税</span>
+              <span class="bridge-sign bridge-sign-eq">=</span>
+              <span class="bridge-token">NOPAT</span>
+              <span class="bridge-sign">+</span>
+              <span class="bridge-label">折旧</span>
+              <span class="bridge-sign">−</span>
+              <span class="bridge-label">Capex</span>
+              <span class="bridge-sign">−</span>
+              <span class="bridge-label">营运资金增加</span>
+              <span class="bridge-sign bridge-sign-eq">=</span>
+              <span class="bridge-token bridge-token-result">FCFF</span>
+            </p>
+            <p class="bridge-formula-line">
+              <span class="bridge-token">EV</span>
+              <span class="bridge-sign">+</span>
+              <span class="bridge-label">现金</span>
+              <span class="bridge-sign">−</span>
+              <span class="bridge-label">债务等</span>
+              <span class="bridge-sign bridge-sign-eq">=</span>
+              <span class="bridge-token">股权价值</span>
+              <span class="bridge-sign">÷</span>
+              <span class="bridge-label">正确股本</span>
+              <span class="bridge-sign bridge-sign-eq">=</span>
+              <span class="bridge-token bridge-token-result">每股价值</span>
+            </p>
+          </div>
           <p class="plain-note"><strong>检查原则：</strong>模型从利润直接跳到价值，或从 EV 直接跳到每股价值时，要让材料把桥写出来。</p>
         </section>
 
@@ -267,7 +295,13 @@ def per_share(p):
         <button type="button" data-markdown-reference-close aria-label="关闭专业参考章" title="关闭">×</button>
       </header>
       <iframe class="markdown-reference-frame" data-markdown-reference-frame src="generated/day-2-reference.html" title="Day 2 专业 Markdown 参考章"></iframe>
-      <footer class="markdown-reference-footer"><span>内容由 DAY-2.md 离线生成</span><a href="../course/DAY-2.md">打开原始 Markdown</a></footer>
+      <footer class="markdown-reference-footer">
+        <span>内容由 DAY-2.md 离线生成</span>
+        <span class="markdown-reference-footer-links">
+          <a href="generated/day-2-reference.html" target="_blank" rel="opener" data-open-reference-window>新窗口打开</a>
+          <a href="../course/DAY-2.md" target="_blank" rel="opener">打开原始 Markdown</a>
+        </span>
+      </footer>
     </div>
   </dialog>
 </body>

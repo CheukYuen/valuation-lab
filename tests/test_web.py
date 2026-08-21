@@ -396,6 +396,9 @@ class WebCourseTests(unittest.TestCase):
         self.assertNotIn("event.origin", app)
         self.assertIn('link.target = "_top";', app)
         self.assertIn('href.startsWith("#")', app)
+        # file:// 新窗口不能带 noopener，否则会从 about:blank 再跳本地文件而被拦截。
+        self.assertNotIn("noopener,noreferrer", app)
+        self.assertIn('rel="opener"', (WEB / "day-2.html").read_text())
 
         for day in range(1, 8):
             text = (WEB / "generated" / f"day-{day}-reference.html").read_text()

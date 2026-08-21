@@ -95,6 +95,53 @@ button { cursor: pointer; }
 .flow span { padding: 9px 12px; background: var(--green-soft); color: #144e3a; border-radius: 10px; font-weight: 700; }
 .flow b { color: var(--muted); }
 
+.bridge-formula {
+  display: grid;
+  gap: 10px;
+  margin: 18px 0;
+  padding: 14px 16px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+.bridge-formula-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 8px;
+  margin: 0;
+  font-size: .92rem;
+  line-height: 1.45;
+}
+.bridge-token {
+  padding: 6px 11px;
+  background: var(--green-soft);
+  color: #144e3a;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: .88rem;
+  white-space: nowrap;
+}
+.bridge-token-result {
+  box-shadow: inset 0 0 0 1px rgba(20, 78, 58, .18);
+}
+.bridge-sign {
+  color: var(--ink);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.bridge-sign-eq {
+  color: var(--green);
+  font-size: 1.08rem;
+  font-weight: 800;
+  padding: 0 1px;
+}
+.bridge-label {
+  color: var(--muted);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
 .quiz-card { margin-top: 16px; padding: 18px; border: 1px solid var(--line); border-radius: 14px; background: #fff; }
 .quiz-card .question { margin: 0 0 12px; font-weight: 750; }
 .choices { display: grid; gap: 8px; }
@@ -846,6 +893,16 @@ summary { cursor: pointer; color: var(--green); font-weight: 700; }
 .reader-page .tool-note { color: var(--reader-muted); }
 .reader-page .flow { margin: 16px 0; }
 .reader-page .flow span { background: var(--reader-green-soft); color: var(--reader-green-deep); }
+.reader-page .bridge-formula {
+  margin: 16px 0;
+  border-color: var(--reader-line);
+}
+.reader-page .bridge-token {
+  background: var(--reader-green-soft);
+  color: var(--reader-green-deep);
+}
+.reader-page .bridge-sign-eq { color: var(--reader-green); }
+.reader-page .bridge-label { color: var(--reader-muted); }
 .reader-page .card { background: #fff; border-color: var(--reader-line); }
 .reader-page .table-scroll {
   margin: 18px 0 24px;
@@ -986,6 +1043,7 @@ html.markdown-reference-open { overflow: hidden; }
 .markdown-reference-header button:hover, .markdown-reference-header button:focus-visible { color: #fff; background: var(--reader-green); outline: none; }
 .markdown-reference-frame { width: 100%; height: 100%; background: #faf9f6; border: 0; }
 .markdown-reference-footer { display: flex; align-items: center; justify-content: space-between; gap: 18px; min-height: 52px; padding: 10px 22px; color: #7d8782; background: #fff; border-top: 1px solid var(--reader-line); font-size: .72rem; }
+.markdown-reference-footer-links { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
 .markdown-reference-footer a { color: var(--reader-green); font-weight: 750; }
 
 /* Standalone generated Markdown document (loaded inside the drawer iframe) */

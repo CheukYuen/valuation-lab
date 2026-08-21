@@ -591,6 +591,17 @@
 
     openers.forEach(opener => opener.addEventListener("click", () => openDialog(opener)));
     if (closeButton) closeButton.addEventListener("click", closeDialog);
+    dialog.querySelectorAll("[data-open-reference-window]").forEach(control => {
+      control.addEventListener("click", event => {
+        const href = control.getAttribute("href");
+        if (!href) return;
+        const url = new URL(href, window.location.href).href;
+        // file:// 下每个文件都是独立源。带 noopener 时新窗口会先停在
+        // about:blank，再跳到本地文件会被 Chrome 拦截，当前课页也可能被换掉。
+        const opened = window.open(url, "valuation-lab-reference", "width=1100,height=900");
+        if (opened) event.preventDefault();
+      });
+    });
     dialog.addEventListener("close", () => {
       setExpanded(false);
       if (lastFocused) lastFocused.focus();
