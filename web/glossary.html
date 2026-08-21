@@ -28,7 +28,7 @@
     <section class="hero">
       <p class="eyebrow">GLOSSARY · 白话术语表</p>
       <h1>只记一条主线</h1>
-      <p>收入 → EBIT → NOPAT → FCFF → EV → 股权价值 → 每股价值。不认识的词就在这里查，不需要额外看书。这页和 <a href="../docs/GLOSSARY.md" style="color:#d7e3dc">docs/GLOSSARY.md</a> 保持一致。</p>
+      <p>收入 → EBIT → NOPAT → FCFF → EV → 股权价值 → 每股价值。每个英文缩写都写出全称，例如 EBIT = Earnings Before Interest and Taxes。这页和 <a href="../docs/GLOSSARY.md" style="color:#d7e3dc">docs/GLOSSARY.md</a> 保持一致。</p>
     </section>
     <section class="section">
       <p class="eyebrow">SEARCH</p><h2>16 个术语</h2>
@@ -45,6 +45,7 @@
       grid.innerHTML = entries.map(entry => `
         <article class="term-card" data-term-card data-term-name="${entry.term.toLowerCase()}">
           <h3>${entry.term}</h3>
+          ${entry.expand ? `<p class="term-expand">英文全称：${entry.expand}</p>` : ""}
           <p>${entry.short}</p>
           ${entry.formula ? `<code>${entry.formula}</code>` : ""}
           ${entry.caution ? `<p class="caution">${entry.caution}</p>` : ""}

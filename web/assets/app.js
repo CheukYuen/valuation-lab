@@ -651,6 +651,7 @@
       trigger.setAttribute("aria-expanded", "true");
       popover.innerHTML = `
         <strong class="term-popover-title">${entry.term}</strong>
+        ${entry.expand ? `<p class="term-popover-expand">英文全称：${entry.expand}</p>` : ""}
         <p class="term-popover-short">${entry.short}</p>
         ${entry.formula ? `<code class="term-popover-formula">${entry.formula}</code>` : ""}
         ${entry.caution ? `<p class="term-popover-caution">${entry.caution}</p>` : ""}
