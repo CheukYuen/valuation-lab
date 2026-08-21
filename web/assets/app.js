@@ -260,11 +260,33 @@
     const readKey = READ_PREFIX + lesson;
     const visited = new Set(lesson ? JSON.parse(localStorage.getItem(readKey) || "[]") : []);
 
+    const drawer = document.querySelector(".lesson-toc-drawer");
+    const drawerLabel = document.querySelector("[data-toc-drawer-current]");
+    const mobileToc = window.matchMedia("(max-width: 800px)");
+    const syncDrawerOpen = () => {
+      if (!drawer) return;
+      if (!mobileToc.matches) drawer.open = true;
+    };
+    if (drawer) {
+      mobileToc.addEventListener("change", syncDrawerOpen);
+      syncDrawerOpen();
+    }
+
     const setActive = id => {
       const active = linksById.get(id);
       links.forEach(link => link.classList.toggle("active", link === active));
-      if (active && window.innerWidth <= 800) active.scrollIntoView({ block: "nearest", inline: "center" });
+      if (drawerLabel && active) {
+        drawerLabel.textContent = active.textContent.trim();
+      }
+      if (active && mobileToc.matches) active.scrollIntoView({ block: "nearest" });
     };
+    const initial = links.find(link => link.classList.contains("active")) || links[0];
+    if (drawerLabel && initial) drawerLabel.textContent = initial.textContent.trim();
+    links.forEach(link => {
+      link.addEventListener("click", () => {
+        if (drawer && mobileToc.matches) drawer.open = false;
+      });
+    });
 
     const renderReadCount = () => {
       document.querySelectorAll("[data-read-count]").forEach(el => {
