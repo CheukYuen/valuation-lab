@@ -150,7 +150,7 @@ FCFF - (OCF - Capex)   = 1.6亿元
 
 #### 情形二：利息支付列在筹资活动
 
-中国《企业会计准则第31号》把偿付利息的现金列为筹资活动，并要求在净利润调节经营活动现金流时披露财务费用调整。[〔D2-S3〕](#D2-S3) 在本课把利息费用简化为现金利息、暂不考虑其他财务费用和现金税时点差异：
+中国《企业会计准则第31号》第十五条把偿付利息的现金列为筹资活动，第十六条要求在附注中披露将净利润调节为经营活动现金流量的信息（含财务费用等调节项目）。[〔D2-S3〕](#D2-S3) 在本课把利息费用简化为现金利息、暂不考虑其他财务费用和现金税时点差异：
 
 ```text
 经营活动现金流         = 14.4 + 利息费用2 + 折旧3 - 营运资金增加2 = 17.4亿元
@@ -572,14 +572,14 @@ FCFF = 16 + 3 - 12 - (-2) = 9亿元
 - 地址：[https://pages.stern.nyu.edu/~adamodar/New_Home_Page/littlebook/valuepershare.htm](https://pages.stern.nyu.edu/~adamodar/New_Home_Page/littlebook/valuepershare.htm)
 - 支持内容：从经营资产价值到股权价值和每股价值时，需要处理现金、债务、潜在权利要求和股份口径。[〔D2-S2〕](https://pages.stern.nyu.edu/~adamodar/New_Home_Page/littlebook/valuepershare.htm)
 
-### 〔D2-S3〕 中国注册会计师协会：企业会计准则第31号——现金流量表
+### 〔D2-S3〕 财政部会计准则委员会：企业会计准则第31号——现金流量表
 
 - 类型：一手原文
-- 发布机构：财政部；中国注册会计师协会存档
+- 发布机构：财政部；财政部会计准则委员会发布全文
 - 发布 / 版本：财会〔2006〕3号
 - 访问日期：2026-08-21
-- 地址：[https://www.cicpa.org.cn/news/newsaffix/307_2006328_31.pdf](https://www.cicpa.org.cn/news/newsaffix/307_2006328_31.pdf)
-- 支持内容：第15条将“分配股利、利润或偿付利息支付的现金”列入筹资活动；第16条要求披露净利润调节经营活动现金流时的财务费用等项目。[〔D2-S3〕](https://www.cicpa.org.cn/news/newsaffix/307_2006328_31.pdf)
+- 地址：[https://www.casc.org.cn/2018/0814/202775.shtml](https://www.casc.org.cn/2018/0814/202775.shtml)
+- 支持内容：第十五条第（五）项将“分配股利、利润或偿付利息支付的现金”列入筹资活动；第十六条要求在附注中披露将净利润调节为经营活动现金流量的信息（含财务费用等调节项目）。[〔D2-S3〕](https://www.casc.org.cn/2018/0814/202775.shtml)
 
 ### 〔D2-S4〕 IFRS Foundation：IAS 7 Statement of Cash Flows
 

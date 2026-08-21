@@ -233,6 +233,7 @@
   function setupOcfCheck() {
     if (!byId("ocf-ocf")) return;
     const update = () => {
+      const classification = byId("ocf-classification").value;
       const r = ocfCheck({
         ebit: number("bridge-ebit"),
         taxRate: number("bridge-tax") / 100,
@@ -240,16 +241,16 @@
         capex: number("bridge-capex"),
         workingCapitalIncrease: number("bridge-wc"),
         interest: number("ocf-interest"),
-        interestCashFlowClassification: byId("ocf-classification").value
+        interestCashFlowClassification: classification
       });
       setText("ocf-income", yi(r.netIncome));
       setText("ocf-ocf", yi(r.ocf));
       setText("ocf-minus-capex", yi(r.ocfMinusCapex));
       setText("ocf-fcff", yi(r.fcff));
       setText("ocf-gap", yi(r.gap));
-      setText("ocf-gap-rule", r.interestAddback
-        ? `简化条件下应为负的利息税盾：-${r.taxShield.toFixed(1)} 亿元`
-        : `简化条件下应为税后利息：${r.afterTaxInterest.toFixed(1)} 亿元`);
+      setText("ocf-gap-rule", classification === "financing"
+        ? `简化条件下应为负的利息税盾：${r.expectedGap.toFixed(1)} 亿元`
+        : `简化条件下应为税后利息：${r.expectedGap.toFixed(1)} 亿元`);
     };
     document.querySelectorAll("[data-bridge-input], [data-ocf-input]").forEach(el => {
       el.addEventListener("input", update);
@@ -643,8 +644,8 @@
       `  本课 FCFF                                   ${yi2(o.fcff)}`,
       `  FCFF - (OCF - Capex)                        ${yi2(o.gap)}`,
       p.interestCashFlowClassification === "operating"
-        ? `  简化解释：税后利息                        ${yi2(o.afterTaxInterest)}`
-        : `  简化解释：负的利息税盾                    -${yi2(o.taxShield)}`,
+        ? `  简化解释：税后利息                        ${yi2(o.expectedGap)}`
+        : `  简化解释：负的利息税盾                    ${yi2(o.expectedGap)}`,
       "",
       "第二座桥：企业价值怎样走到每股价值",
       `  EV（输入）                 ${yi2(p.ev)}`,
