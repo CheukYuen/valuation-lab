@@ -395,12 +395,14 @@ summary { cursor: pointer; color: var(--green); font-weight: 700; }
 .toc-heading small, .toc-heading strong { display: block; }
 .toc-heading small { color: #9aa29e; font-size: .7rem; font-weight: 750; letter-spacing: .12em; }
 .toc-heading strong { margin-top: 3px; font-size: .93rem; }
-.lesson-toc { display: grid; gap: 3px; }
-.lesson-toc a { display: grid; grid-template-columns: 16px minmax(0, 1fr); align-items: center; gap: 9px; min-height: 40px; padding: 7px 10px; color: #5f6964; border: 1px solid transparent; border-radius: 10px; font-size: .82rem; line-height: 1.35; transition: color .16s ease, background .16s ease, border-color .16s ease; }
-.lesson-toc a > span { width: 9px; height: 9px; border: 1.5px solid #aab2ae; border-radius: 50%; }
+.lesson-toc { display: grid; gap: 3px; counter-reset: lesson-toc; }
+.lesson-toc a { display: grid; grid-template-columns: 22px minmax(0, 1fr); align-items: center; gap: 9px; min-height: 40px; padding: 7px 10px; color: #5f6964; border: 1px solid transparent; border-radius: 10px; font-size: .82rem; line-height: 1.35; transition: color .16s ease, background .16s ease, border-color .16s ease; counter-increment: lesson-toc; }
+.lesson-toc a > span { display: grid; place-items: center; width: 22px; color: #8c9591; font-size: .72rem; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1; }
+.lesson-toc a > span::before { content: counter(lesson-toc); }
 .lesson-toc a:hover { color: var(--reader-green); background: #f7faf8; }
+.lesson-toc a:hover > span { color: var(--reader-green); }
 .lesson-toc a.active { color: var(--reader-green-deep); background: var(--reader-green-soft); border-color: #c8ddd4; font-weight: 750; }
-.lesson-toc a.active > span { background: var(--reader-green); border-color: var(--reader-green); box-shadow: 0 0 0 3px #fff, 0 0 0 4px var(--reader-green); }
+.lesson-toc a.active > span { color: var(--reader-green-deep); font-weight: 800; }
 .lesson-toc a.search-hidden { display: none; }
 .lesson-toc-drawer { display: contents; }
 .lesson-toc-drawer > summary { display: none; }
@@ -600,9 +602,10 @@ summary { cursor: pointer; color: var(--green); font-weight: 700; }
     scrollbar-width: thin;
   }
   .lesson-toc a {
-    display: flex;
+    display: grid;
+    grid-template-columns: 22px minmax(0, 1fr);
     align-items: center;
-    gap: 0;
+    gap: 8px;
     min-height: 36px;
     padding: 8px 12px;
     background: #f5f7f5;
@@ -611,7 +614,6 @@ summary { cursor: pointer; color: var(--green); font-weight: 700; }
     line-height: 1.35;
     white-space: normal;
   }
-  .lesson-toc a > span { display: none; }
   .lesson-toc a.active { border-color: transparent; }
   .reader-content { width: 100%; }
   .lesson-article { width: min(100% - 34px, 720px); padding-top: 42px; }
