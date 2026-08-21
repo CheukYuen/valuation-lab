@@ -329,11 +329,49 @@ summary { cursor: pointer; color: var(--green); font-weight: 700; }
 }
 .markdown-reference-trigger svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 .reader-course-progress { display: flex; align-items: center; gap: 8px; flex: 0 0 auto; margin-top: 0; padding-left: 14px; border-left: 1px solid var(--reader-line); }
-.day-dots { display: flex; gap: 5px; }
-.day-dot { width: 7px; height: 7px; background: #dde2df; border-radius: 50%; transition: background .16s ease, transform .16s ease, box-shadow .16s ease; }
-.day-dot.done { background: #7eab98; }
-.day-dot.current { background: var(--reader-green, var(--green)); box-shadow: 0 0 0 3px var(--reader-green-soft, var(--green-soft)); transform: scale(1.15); }
-.reader-course-progress small { min-width: 28px; color: #9aa29e; font-size: .72rem; font-weight: 750; font-variant-numeric: tabular-nums; }
+.day-dots { display: flex; align-items: center; gap: 1px; }
+.day-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  background: transparent;
+  border-radius: 50%;
+  text-decoration: none;
+  cursor: pointer;
+}
+.day-dot::after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #dde2df;
+  transition: background .16s ease, transform .16s ease, box-shadow .16s ease;
+}
+.day-dot.done::after { background: #7eab98; }
+.day-dot.current::after {
+  background: var(--reader-green, var(--green));
+  box-shadow: 0 0 0 3px var(--reader-green-soft, var(--green-soft));
+  transform: scale(1.15);
+}
+.day-dot:hover::after { background: #9aa29e; }
+.day-dot.done:hover::after, .day-dot.current:hover::after { background: var(--reader-green, var(--green)); }
+.day-dot:focus-visible { outline: 2px solid var(--reader-green, var(--green)); outline-offset: 1px; }
+.reader-course-progress small,
+.reader-course-progress .reader-progress-count {
+  min-width: 28px;
+  color: #9aa29e;
+  font-size: .72rem;
+  font-weight: 750;
+  font-variant-numeric: tabular-nums;
+  text-decoration: none;
+}
+.reader-course-progress .reader-progress-count:hover,
+.reader-course-progress .reader-progress-count:focus-visible {
+  color: var(--reader-green, var(--green));
+  outline: none;
+}
 .reader-actions { display: flex; align-items: center; gap: 4px; }
 .reader-actions a {
   padding: 7px 11px;
@@ -595,8 +633,10 @@ summary { cursor: pointer; color: var(--green); font-weight: 700; }
   .reader-breadcrumb { font-size: .75rem; }
   .reader-breadcrumb em { display: none; }
   .reader-course-progress { gap: 6px; padding-left: 8px; }
-  .reader-course-progress small { font-size: .66rem; min-width: 24px; }
-  .day-dot { width: 6px; height: 6px; }
+  .reader-course-progress small,
+  .reader-course-progress .reader-progress-count { font-size: .66rem; min-width: 24px; }
+  .day-dot { width: 14px; height: 14px; }
+  .day-dot::after { width: 6px; height: 6px; }
   .lesson-article { width: min(100% - 28px, 560px); padding-bottom: 60px; }
   .lesson-intro { padding-bottom: 42px; }
   .lesson-deck { font-size: 1rem; }

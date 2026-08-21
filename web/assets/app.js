@@ -79,6 +79,34 @@
     });
   }
 
+  function lessonPageHref(lessonId) {
+    const prefix = document.body.dataset.lessonHrefPrefix || "";
+    return `${prefix}${lessonId}.html`;
+  }
+
+  function bindProgressCount(label, current) {
+    const targetId = current || (firstIncompleteLesson() || LESSONS[0]).id;
+    const href = lessonPageHref(targetId);
+    const day = targetId.replace("day-", "");
+    const aria = `打开第${day}课`;
+    if (label.tagName === "A") {
+      label.href = href;
+      label.setAttribute("aria-label", aria);
+      decorateEmbeddedReferenceLink(label);
+      return;
+    }
+    const link = document.createElement("a");
+    link.className = "reader-progress-count";
+    if (label.hasAttribute("data-progress-text")) {
+      link.setAttribute("data-progress-text", "");
+    }
+    link.textContent = label.textContent;
+    link.href = href;
+    link.setAttribute("aria-label", aria);
+    label.replaceWith(link);
+    decorateEmbeddedReferenceLink(link);
+  }
+
   function renderDayDots() {
     const containers = document.querySelectorAll("[data-day-dots]");
     if (!containers.length) return;
@@ -86,14 +114,28 @@
     const current = document.body.dataset.lesson;
     containers.forEach(container => {
       container.innerHTML = "";
-      LESSONS.forEach(lesson => {
-        const dot = document.createElement("span");
+      LESSONS.forEach((lesson, index) => {
+        const day = index + 1;
+        const dot = document.createElement("a");
         dot.className = "day-dot";
+        dot.href = lessonPageHref(lesson.id);
         if (p[lesson.id]) dot.classList.add("done");
-        if (lesson.id === current) dot.classList.add("current");
-        dot.title = `${lesson.title}${p[lesson.id] ? " · 已完成" : ""}`;
+        if (lesson.id === current) {
+          dot.classList.add("current");
+          dot.setAttribute("aria-current", "page");
+        }
+        const status = p[lesson.id] ? " · 已完成" : "";
+        dot.title = `${lesson.title}${status}`;
+        dot.setAttribute("aria-label", `第${day}课：${lesson.title}${status}`);
         container.appendChild(dot);
+        decorateEmbeddedReferenceLink(dot);
       });
+      const progress = container.closest(".reader-course-progress");
+      if (!progress) return;
+      progress.setAttribute("role", "navigation");
+      progress.setAttribute("aria-label", "跳转到各课");
+      const label = progress.querySelector("small, .reader-progress-count");
+      if (label) bindProgressCount(label, current);
     });
   }
 
@@ -573,31 +615,38 @@
     });
   }
 
-  function setupEmbeddedReferenceLinks() {
+  function decorateEmbeddedReferenceLink(link) {
     const body = document.body;
     if (!body || !body.classList.contains("markdown-reference-page")) return;
     if (window.self === window.top) return;
+    if (link.dataset.embeddedDecorated) return;
+
+    const href = link.getAttribute("href");
+    if (!href || href.startsWith("#") || /^[a-z][a-z0-9+.-]*:/i.test(href)) return;
+    link.dataset.embeddedDecorated = "1";
 
     const prefix = body.dataset.lessonHrefPrefix || "";
     const lesson = body.dataset.lesson || "";
     const lessonHref = lesson ? `${prefix}${lesson}.html` : "";
-
-    document.querySelectorAll("a[href]").forEach(link => {
-      const href = link.getAttribute("href");
-      if (!href || href.startsWith("#") || /^[a-z][a-z0-9+.-]*:/i.test(href)) return;
-      if (href !== lessonHref) {
-        // 其余仓库文件不能在窄抽屉里打开，交给整页窗口。
-        link.target = "_top";
-        return;
-      }
+    if (href !== lessonHref) {
+      // 其余仓库文件不能在窄抽屉里打开，交给整页窗口。
+      link.target = "_top";
+      return;
+    }
+    const keepLabel = link.classList.contains("day-dot") || link.classList.contains("reader-progress-count");
+    if (!keepLabel) {
       link.title = "关闭参考章，回到本课互动页";
       link.setAttribute("aria-label", "关闭参考章，回到本课互动页");
       if (!link.firstElementChild) link.textContent = "回到本课互动页";
-      link.addEventListener("click", event => {
-        event.preventDefault();
-        window.parent.postMessage(REFERENCE_CLOSE_MESSAGE, "*");
-      });
+    }
+    link.addEventListener("click", event => {
+      event.preventDefault();
+      window.parent.postMessage(REFERENCE_CLOSE_MESSAGE, "*");
     });
+  }
+
+  function setupEmbeddedReferenceLinks() {
+    document.querySelectorAll("a[href]").forEach(decorateEmbeddedReferenceLink);
   }
 
   function setupSourceCitations() {
