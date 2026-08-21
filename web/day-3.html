@@ -71,7 +71,7 @@
           <p class="reader-eyebrow">先确认送进桥里的数字 · 第 3 课</p>
           <h1>检查估值输入</h1>
           <p class="lesson-deck">不重做价值桥，先确认送进桥里的数字是谁、何时有效、用什么单位、来自哪里。亲手把资本结构从报告日桥接到估值日。<a class="source-citation" href="#D3-S1">〔D3-S1〕</a> <a class="source-citation" href="#D3-S2">〔D3-S2〕</a></p>
-          <div class="takeaway"><span>一句话速览</span><p>本节唯一改变的是资本结构的时点。EV 和股本都不动。发债同时增加债务和现金，净债务不变；改变净债务的是把钱花掉。</p></div>
+          <div class="takeaway"><span>一句话速览</span><p>本节用现金分红练习资本结构时点桥：EV 和股本都不动。现金收购不同，它还可能改变经营价值，EV 与净债务必须同侧更新。</p></div>
         </header>
 
         <section class="reader-section" id="pit" data-reader-section>
@@ -82,8 +82,8 @@
               <header><strong>核心代码</strong><span>lab/bridge.py · pit_bridge</span></header>
               <pre><code>report_net_debt = debt - cash
 # 发债同时增加债务和现金，净债务不变
-net_debt_high = report_net_debt + acquisition_cash - ocf_low
-net_debt_low  = report_net_debt + acquisition_cash - ocf_high
+net_debt_high = report_net_debt + dividend_cash - ocf_low
+net_debt_low  = report_net_debt + dividend_cash - ocf_high
 equity_low  = ev - net_debt_high
 equity_high = ev - net_debt_low
 per_share = equity / (total_shares - treasury_shares)</code></pre>
@@ -95,7 +95,7 @@ per_share = equity / (total_shares - treasury_shares)</code></pre>
               <div class="control"><label>总股本 <span>亿股</span></label><input id="pit-total-shares" data-pit-input type="number" value="10.5" step="0.1"></div>
               <div class="control"><label>库存股 <span>亿股</span></label><input id="pit-treasury" data-pit-input type="number" value="0.5" step="0.1"></div>
               <div class="control"><label>发债 <span>亿元</span></label><input id="pit-bond" data-pit-input type="number" value="50" step="1"></div>
-              <div class="control"><label>现金收购 <span>亿元</span></label><input id="pit-acquisition" data-pit-input type="number" value="30" step="1"></div>
+              <div class="control"><label>现金分红 <span>亿元</span></label><input id="pit-dividend" data-pit-input type="number" value="30" step="1"></div>
               <div class="control"><label>期间OCF下限 <span>亿元</span></label><input id="pit-ocf-low" data-pit-input type="number" value="0" step="1"></div>
               <div class="control"><label>期间OCF上限 <span>亿元</span></label><input id="pit-ocf-high" data-pit-input type="number" value="10" step="1"></div>
             </div>
@@ -128,7 +128,8 @@ per_share = equity / (total_shares - treasury_shares)</code></pre>
             <tbody>
               <tr><td>A股价格乘以A+H全部股份，仍命名为A股流通市值</td><td>明确错误；停止使用该市值及其下游比较</td><td>对象与数值不对应</td><td>发行人整体价值一定算错</td></tr>
               <tr><td>价格与资本结构时点不同，材料未说明期间是否发生重大事项</td><td>无法确认；每股输出带条件使用</td><td>净债务与股权价值可能系统性偏移</td><td>期间一定发生了重大事项</td></tr>
-              <tr><td>已确认期间发生大额融资或收购，模型仍原样使用旧资本结构</td><td>明确错误；停止使用股权价值与每股输出</td><td>本课示例为高估13.3%—21.4%</td><td>收购本身是坏决策，或EV算错</td></tr>
+              <tr><td>已确认期间发生大额融资或现金分红，模型仍原样使用旧资本结构</td><td>明确错误；停止使用股权价值与每股输出</td><td>本课示例为高估13.3%—21.4%</td><td>融资或分红政策本身是坏决策</td></tr>
+              <tr><td>已完成现金收购，却把收购前 EV 与收购后净债务直接组合</td><td>明确错误；停止使用股权价值与每股输出</td><td>方向不能仅凭支付价确定</td><td>收购后 EV 必然增加支付价</td></tr>
               <tr><td>财报单位与模型读数不一致（百万元当亿元）</td><td>明确错误；停止使用受影响的全部派生值</td><td>金额放大或缩小整数倍</td><td>只影响展示或小数点</td></tr>
               <tr><td>换汇缺报价方向或换算日</td><td>无法确认；该价格带条件使用</td><td>无法判断该乘还是该除</td><td>汇率来源本身不可靠</td></tr>
               <tr><td>来源发布日晚于研究时点仍被用作当时输入</td><td>明确错误（未来信息污染）；停止使用受影响结论</td><td>当时判断被后验信息污染</td><td>该来源不能用于事后复盘</td></tr>

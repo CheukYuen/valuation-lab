@@ -309,9 +309,16 @@ class WebCourseTests(unittest.TestCase):
         from bridge import ocf_check  # noqa: PLC0415
 
         params = json.loads((ROOT / "lab/inputs/bridge.json").read_text())
-        expected = ocf_check(params)
-        actual = run_node(f"globalThis.ValuationLabTools.ocfCheck({json.dumps(to_js_input(params))})")
-        self.assert_js_matches(expected, actual)
+        for classification in ("operating", "financing"):
+            with self.subTest(classification=classification):
+                params["interest_cash_flow_classification"] = classification
+                expected = ocf_check(params)
+                js_params = to_js_input(params)
+                js_params["interestCashFlowClassification"] = classification
+                actual = run_node(
+                    f"globalThis.ValuationLabTools.ocfCheck({json.dumps(js_params)})"
+                )
+                self.assert_js_matches(expected, actual)
 
     @unittest.skipUnless(shutil.which("node"), "Node.js not installed; browser model parity cannot run")
     def test_browser_pit_bridge_matches_lab(self):

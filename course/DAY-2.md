@@ -121,33 +121,50 @@ FCFF = 16 + 3 - 5 - 2 = 12亿元
 
 上面第5条“能否与财报现金流做交叉检查”不能停在一句要求上。做法是把 FCFF 和财报的经营活动现金流放在同一张纸上，看差额能不能被解释。
 
-给长河制造补两个输入：利息费用2亿元，税率仍为20%。财报口径的净利润和经营现金流是：
+给长河制造补两个输入：利息费用2亿元，税率仍为20%。先算共同起点：
 
 ```text
 净利润 = (EBIT 20 - 利息 2) × (1 - 20%) = 14.4亿元
-经营活动现金流 = 14.4 + 折旧3 - 营运资金增加2 = 15.4亿元
 ```
 
-于是：
+接下来不能只写“财报口径”，必须先确认**利息支付在现金流量表中列为经营活动还是筹资活动**。
+
+#### 情形一：利息支付列在经营活动
+
+这是 CFA 教材中 `FCFF = CFO + 税后利息 - Capex` 这条简化桥所站的位置，也是 US GAAP 普通企业的分类。此时经营活动现金流已经包含利息支付：
 
 ```text
+经营活动现金流         = 14.4 + 折旧3 - 营运资金增加2 = 15.4亿元
 经营活动现金流 - Capex = 15.4 - 5 = 10.4亿元
 本课 FCFF              = 12.0亿元
-差额                   = 1.6亿元
+FCFF - (OCF - Capex)   = 1.6亿元
 ```
 
-这1.6亿元不是错误，它正好等于税后利息：
+这1.6亿元在本课简化条件下正好等于税后利息：
 
 ```text
 2 × (1 - 20%) = 1.6亿元
 ```
 
-原因是两个指标站在不同位置：经营活动现金流已经扣过利息，属于股东视角之后的口径；FCFF 是付利息**之前**、股东与债权人共同支配的现金。差额能被一项一项说清，交叉检查就算通过。
+原因是两个指标站在不同位置：利息现金已经离开经营活动现金流，而 FCFF 是付利息**之前**、股东与债权人共同支配的现金。这里不能把 OCF 直接叫作 FCFE；OCF 还没有扣 Capex，也没有处理净借入。简化关系是 `FCFE = OCF - Capex + 净借入`。[〔D2-S1〕](#D2-S1)
 
-- **为什么要做**：它用一条独立路径复核了整座桥。如果差额既不等于税后利息，也无法用其他非经常项目解释，说明某一项调整被漏算或重复计算了。
+#### 情形二：利息支付列在筹资活动
+
+中国《企业会计准则第31号》把偿付利息的现金列为筹资活动，并要求在净利润调节经营活动现金流时披露财务费用调整。[〔D2-S3〕](#D2-S3) 在本课把利息费用简化为现金利息、暂不考虑其他财务费用和现金税时点差异：
+
+```text
+经营活动现金流         = 14.4 + 利息费用2 + 折旧3 - 营运资金增加2 = 17.4亿元
+经营活动现金流 - Capex = 17.4 - 5 = 12.4亿元
+本课 FCFF              = 12.0亿元
+FCFF - (OCF - Capex)   = -0.4亿元
+```
+
+`-0.4亿元` 是负的利息税盾：`-2 × 20%`。现行 IAS 7 对一般企业的利息支付允许经营或筹资分类并要求保持一致；IFRS 18 对 IAS 7 的相关修订自2027年起生效后，没有特定主要业务活动的一般企业将把利息支付列入筹资活动。[〔D2-S4〕](#D2-S4) [〔D2-S5〕](#D2-S5)
+
+- **为什么要做**：它用一条独立路径复核了整座桥。如果差额与所选利息分类不匹配，也无法用其他项目解释，说明某一项调整可能被漏算或重复计算了。
 - **还不能断言什么**：差额能对上只证明两套口径自洽，不证明20亿元EBIT、5亿元Capex这些输入本身有证据。
 
-真实财报里差额通常还包含股份支付、递延税、一次性项目和分类差异，很少这样干净。要求不是差额为零，而是**差额可以逐项解释**（AUDIT `D9`）。
+真实财报里利息费用未必等于现金利息，财务费用可能包含汇兑等项目，现金税与理论税率也可能错期；差额还可能包含股份支付、递延税、一次性项目和其他分类差异。要求不是套一个唯一答案，而是**先确认分类，再逐项解释差额**（AUDIT `D9`）。
 
 ## 第二座桥：企业价值怎样走到每股价值
 
@@ -554,6 +571,33 @@ FCFF = 16 + 3 - 12 - (-2) = 9亿元
 - 访问日期：2026-08-20
 - 地址：[https://pages.stern.nyu.edu/~adamodar/New_Home_Page/littlebook/valuepershare.htm](https://pages.stern.nyu.edu/~adamodar/New_Home_Page/littlebook/valuepershare.htm)
 - 支持内容：从经营资产价值到股权价值和每股价值时，需要处理现金、债务、潜在权利要求和股份口径。[〔D2-S2〕](https://pages.stern.nyu.edu/~adamodar/New_Home_Page/littlebook/valuepershare.htm)
+
+### 〔D2-S3〕 中国注册会计师协会：企业会计准则第31号——现金流量表
+
+- 类型：一手原文
+- 发布机构：财政部；中国注册会计师协会存档
+- 发布 / 版本：财会〔2006〕3号
+- 访问日期：2026-08-21
+- 地址：[https://www.cicpa.org.cn/news/newsaffix/307_2006328_31.pdf](https://www.cicpa.org.cn/news/newsaffix/307_2006328_31.pdf)
+- 支持内容：第15条将“分配股利、利润或偿付利息支付的现金”列入筹资活动；第16条要求披露净利润调节经营活动现金流时的财务费用等项目。[〔D2-S3〕](https://www.cicpa.org.cn/news/newsaffix/307_2006328_31.pdf)
+
+### 〔D2-S4〕 IFRS Foundation：IAS 7 Statement of Cash Flows
+
+- 类型：一手原文
+- 发布机构：IFRS Foundation / IASB
+- 发布 / 版本：现行标准页面
+- 访问日期：2026-08-21
+- 地址：[https://www.ifrs.org/issued-standards/list-of-standards/ias-7-statement-of-cash-flows/](https://www.ifrs.org/issued-standards/list-of-standards/ias-7-statement-of-cash-flows/)
+- 支持内容：现金流量表分类与间接法调整；现行规则下利息现金流分类需结合企业采用的会计政策核对。[〔D2-S4〕](https://www.ifrs.org/issued-standards/list-of-standards/ias-7-statement-of-cash-flows/)
+
+### 〔D2-S5〕 IFRS Foundation：IFRS 18 Presentation and Disclosure in Financial Statements
+
+- 类型：一手原文
+- 发布机构：IFRS Foundation / IASB
+- 发布 / 版本：2027年1月1日起生效，允许提前采用
+- 访问日期：2026-08-21
+- 地址：[https://www.ifrs.org/issued-standards/list-of-standards/ifrs-18-presentation-and-disclosure-in-financial-statements/](https://www.ifrs.org/issued-standards/list-of-standards/ifrs-18-presentation-and-disclosure-in-financial-statements/)
+- 支持内容：IFRS 18 对 IAS 7 的间接法起点和利息、股利现金流分类作出修订；没有特定主要业务活动的一般企业将利息支付列入筹资活动，本课据此提醒学习者核对适用期间、企业类型与准则版本。[〔D2-S5〕](https://www.ifrs.org/issued-standards/list-of-standards/ifrs-18-presentation-and-disclosure-in-financial-statements/)
 
 </details>
 

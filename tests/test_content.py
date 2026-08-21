@@ -197,6 +197,25 @@ class ContentTests(unittest.TestCase):
         text = (ROOT / "course" / "DAY-2.md").read_text()
         self.assertIn("净现金", text, "DAY-2 must show the net-cash case where the direction flips")
 
+    def test_day_two_ocf_check_names_the_interest_classification(self):
+        markdown = (ROOT / "course" / "DAY-2.md").read_text()
+        page = (ROOT / "web" / "day-2.html").read_text()
+        for term in ["利息支付列在经营活动", "利息支付列在筹资活动", "-0.4亿元"]:
+            self.assertIn(term, markdown, f"DAY-2 missing OCF classification boundary: {term}")
+        self.assertIn('id="ocf-classification"', page)
+        self.assertNotIn("差额（应=税后利息）", page)
+
+    def test_day_three_pit_bridge_uses_dividend_not_acquisition_cash(self):
+        markdown = (ROOT / "course" / "DAY-3.md").read_text()
+        page = (ROOT / "web" / "day-3.html").read_text()
+        bridge = (ROOT / "lab" / "bridge.py").read_text()
+        for text in [markdown, page, bridge]:
+            self.assertIn("现金分红", text)
+        self.assertIn("收购前 EV", markdown)
+        self.assertIn("收购后净债务", markdown)
+        self.assertNotIn("pit-acquisition", page)
+        self.assertNotIn('period["acquisition_cash"]', bridge)
+
     def test_failure_matrices_use_only_day_one_vocabulary(self):
         # 仓库里有两套词表：记录验证状态（第1课）与清单项状态（AUDIT-CHECKLIST）。
         # 失败矩阵必须只用前者，否则下游无法渲染一致的状态。

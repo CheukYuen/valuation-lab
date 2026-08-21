@@ -147,15 +147,37 @@ class BridgeTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             per_share(broken)
 
-    def test_ocf_cross_check_reproduces_the_lesson_numbers(self):
-        # DAY-2：净利润 14.4、OCF 15.4、OCF-Capex 10.4、FCFF 12.0、差额=税后利息 1.6。
+    def test_ocf_cross_check_when_interest_is_operating(self):
+        # 利息现金列在经营活动：FCFF - (OCF-Capex) = 税后利息 1.6。
         o = ocf_check(self.params)
         self.assertAlmostEqual(o["net_income"], 14.4)
+        self.assertAlmostEqual(o["interest_addback"], 0.0)
         self.assertAlmostEqual(o["ocf"], 15.4)
         self.assertAlmostEqual(o["ocf_minus_capex"], 10.4)
         self.assertAlmostEqual(o["fcff"], 12.0)
         self.assertAlmostEqual(o["gap"], 1.6)
         self.assertAlmostEqual(o["gap"], o["after_tax_interest"])
+        self.assertAlmostEqual(o["gap"], o["expected_gap"])
+
+    def test_ocf_cross_check_when_interest_is_financing(self):
+        # 利息现金列在筹资活动：简化条件下差额为负的利息税盾 -0.4。
+        params = copy.deepcopy(self.params)
+        params["interest_cash_flow_classification"] = "financing"
+        o = ocf_check(params)
+        self.assertAlmostEqual(o["net_income"], 14.4)
+        self.assertAlmostEqual(o["interest_addback"], 2.0)
+        self.assertAlmostEqual(o["ocf"], 17.4)
+        self.assertAlmostEqual(o["ocf_minus_capex"], 12.4)
+        self.assertAlmostEqual(o["fcff"], 12.0)
+        self.assertAlmostEqual(o["gap"], -0.4)
+        self.assertAlmostEqual(o["gap"], -o["tax_shield"])
+        self.assertAlmostEqual(o["gap"], o["expected_gap"])
+
+    def test_ocf_cross_check_rejects_unknown_interest_classification(self):
+        params = copy.deepcopy(self.params)
+        params["interest_cash_flow_classification"] = "unknown"
+        with self.assertRaises(ValueError):
+            ocf_check(params)
 
     def test_missing_interest_is_not_silently_zero(self):
         incomplete = copy.deepcopy(self.params)
@@ -164,7 +186,7 @@ class BridgeTests(unittest.TestCase):
             ocf_check(incomplete)
 
     def test_pit_bridge_reproduces_the_lesson_range(self):
-        # DAY-3：估值日净债务 50—60，每股 14.0—15.0。
+        # DAY-3：现金分红后估值日净债务 50—60，每股 14.0—15.0。
         t = pit_bridge(self.params)
         self.assertAlmostEqual(t["report_net_debt"], 30.0)
         self.assertAlmostEqual(t["net_debt_low"], 50.0)

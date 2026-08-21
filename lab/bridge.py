@@ -20,11 +20,11 @@ ROOT = Path(__file__).resolve().parent
 DEFAULT_INPUT = ROOT / "inputs" / "bridge.json"
 
 FLOW = ["ebit", "tax_rate", "depreciation", "capex", "working_capital_increase"]
-OCF = FLOW + ["interest"]
+OCF = FLOW + ["interest", "interest_cash_flow_classification"]
 STRUCTURE = ["ev", "cash", "debt", "lease_liability", "minority_interest", "non_operating_assets"]
 DENOMINATOR = ["total_shares", "treasury_shares", "option_dilution",
                "convertible_shares", "convertible_debt", "float_shares"]
-PERIOD = ["bond_issue", "acquisition_cash", "ocf_low", "ocf_high"]
+PERIOD = ["bond_issue", "dividend_cash", "ocf_low", "ocf_high"]
 
 
 def _pad(text, width):
@@ -93,20 +93,32 @@ def per_share(p):
 
 
 def ocf_check(p):
-    """与财报经营活动现金流交叉检查。差额应等于税后利息，不是错误。"""
+    """按利息现金流分类复算 OCF，并解释 OCF-Capex 与 FCFF 的差额。"""
     require(p, OCF)
+    classification = p["interest_cash_flow_classification"]
+    if classification not in {"operating", "financing"}:
+        raise ValueError(
+            "interest_cash_flow_classification 必须是 'operating' 或 'financing'"
+        )
     net_income = (p["ebit"] - p["interest"]) * (1 - p["tax_rate"])
-    ocf = net_income + p["depreciation"] - p["working_capital_increase"]
+    interest_addback = p["interest"] if classification == "financing" else 0.0
+    ocf = (net_income + interest_addback + p["depreciation"]
+           - p["working_capital_increase"])
     ocf_minus_capex = ocf - p["capex"]
     flow = fcff(p)["fcff"]
     after_tax_interest = p["interest"] * (1 - p["tax_rate"])
+    tax_shield = p["interest"] * p["tax_rate"]
+    expected_gap = after_tax_interest if classification == "operating" else -tax_shield
     return {
         "net_income": net_income,
+        "interest_addback": interest_addback,
         "ocf": ocf,
         "ocf_minus_capex": ocf_minus_capex,
         "fcff": flow,
         "gap": flow - ocf_minus_capex,
         "after_tax_interest": after_tax_interest,
+        "tax_shield": tax_shield,
+        "expected_gap": expected_gap,
     }
 
 
@@ -121,15 +133,15 @@ def pit_bridge(p):
     if basic <= 0:
         raise ValueError(f"扣除库存股后的外部普通股为 {basic}，分母必须为正")
     report_net_debt = p["debt"] - p["cash"]
-    # 发债同时增加债务和现金，净债务不变；改变净债务的是把现金花掉。
-    net_debt_high = report_net_debt + period["acquisition_cash"] - period["ocf_low"]
-    net_debt_low = report_net_debt + period["acquisition_cash"] - period["ocf_high"]
+    # 发债同时增加债务和现金，净债务不变；现金分红只减少现金，不改变经营 EV。
+    net_debt_high = report_net_debt + period["dividend_cash"] - period["ocf_low"]
+    net_debt_low = report_net_debt + period["dividend_cash"] - period["ocf_high"]
     equity_low = p["ev"] - net_debt_high
     equity_high = p["ev"] - net_debt_low
     return {
         "report_net_debt": report_net_debt,
         "bond_issue": period["bond_issue"],
-        "acquisition_cash": period["acquisition_cash"],
+        "dividend_cash": period["dividend_cash"],
         "net_debt_low": net_debt_low,
         "net_debt_high": net_debt_high,
         "equity_low": equity_low,
@@ -180,15 +192,22 @@ def main():
     print()
 
     o = ocf_check(p)
-    print("与财报现金流交叉检查（利息已扣，属于股东视角之后的口径）")
+    classification = p["interest_cash_flow_classification"]
+    classification_label = "经营活动" if classification == "operating" else "筹资活动"
+    print(f"与财报现金流交叉检查（利息支付列在{classification_label}）")
     print(f"  净利润 = (EBIT - 利息 {p['interest']:.2f}) × (1 - {p['tax_rate']:.0%})"
           f"     {o['net_income']:>9.2f} {unit}")
-    print(f"  经营活动现金流 = 净利润 + 折旧 - 营运资金增加   {o['ocf']:>9.2f} {unit}")
+    if o["interest_addback"]:
+        print(f"  + 利息费用（现金列筹资活动）                   {o['interest_addback']:>9.2f} {unit}")
+    print(f"  经营活动现金流                                 {o['ocf']:>9.2f} {unit}")
     print(f"  经营活动现金流 - Capex                         {o['ocf_minus_capex']:>9.2f} {unit}")
     print(f"  本课 FCFF                                      {o['fcff']:>9.2f} {unit}")
-    print(f"  差额                                           {o['gap']:>9.2f} {unit}"
-          f"   （= 税后利息 {o['after_tax_interest']:.2f}）")
-    print("  差额能对上只证明两套口径自洽，不证明 EBIT、Capex 这些输入本身有证据。")
+    explanation = (f"税后利息 {o['after_tax_interest']:.2f}"
+                   if classification == "operating"
+                   else f"负的利息税盾 -{o['tax_shield']:.2f}")
+    print(f"  FCFF - (OCF - Capex)                           {o['gap']:>9.2f} {unit}"
+          f"   （简化条件下 = {explanation}）")
+    print("  先确认现金流量表分类，再解释差额；对上只证明口径自洽，不证明输入有证据。")
     print()
 
     print("第二座桥：企业价值怎样走到每股价值")
@@ -247,7 +266,7 @@ def main():
     print("资本结构时点桥（第3课：报告日走到估值日，EV 和股本都不动）")
     print(f"  报告日净债务     {t['report_net_debt']:>9.2f} {unit}")
     print(f"  + 发债 {t['bond_issue']:.0f}（净债务不变）")
-    print(f"  + 现金收购       {t['acquisition_cash']:>9.2f} {unit}")
+    print(f"  + 现金分红       {t['dividend_cash']:>9.2f} {unit}")
     print(f"  - 期间经营现金流 {p['period']['ocf_low']:.0f} 至 {p['period']['ocf_high']:.0f}")
     print(f"  = 估值日净债务   {t['net_debt_low']:>9.2f} 至 {t['net_debt_high']:<9.2f} {unit}")
     print(f"  股权价值         {t['equity_low']:>9.2f} 至 {t['equity_high']:<9.2f} {unit}")

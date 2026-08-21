@@ -9,6 +9,7 @@
   "capex": 5.0,
   "working_capital_increase": 2.0,
   "interest": 2.0,
+  "interest_cash_flow_classification": "operating",
 
   "_第二座桥": "EV -> 股权价值 -> 每股价值。ev 是输入不是输出：它来自多期预测与折现（第4课 lab/mini_dcf.py），本脚本不计算它。",
   "ev": 200.0,
@@ -33,10 +34,10 @@
     "convertible_debt": 10.0
   },
 
-  "_时点桥": "第3课：报告日资本结构走到估值日。发债同时增加债务和现金，净债务不变；改变净债务的是把钱花掉。",
+  "_时点桥": "第3课：报告日资本结构走到估值日。发债同时增加债务和现金，净债务不变；现金分红减少现金但不改变经营 EV。",
   "period": {
     "bond_issue": 50.0,
-    "acquisition_cash": 30.0,
+    "dividend_cash": 30.0,
     "ocf_low": 0.0,
     "ocf_high": 10.0
   }

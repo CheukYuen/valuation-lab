@@ -76,23 +76,33 @@
     return { ...fcffBridge(input), ...equityBridge(input), ...perShare(input) };
   }
 
-  const OCF = [...FLOW, "interest"];
-  const PERIOD = ["bondIssue", "acquisitionCash", "ocfLow", "ocfHigh"];
+  const OCF = [...FLOW, "interest", "interestCashFlowClassification"];
+  const PERIOD = ["bondIssue", "dividendCash", "ocfLow", "ocfHigh"];
 
   function ocfCheck(input) {
     require(input, OCF);
+    const classification = input.interestCashFlowClassification;
+    if (!["operating", "financing"].includes(classification)) {
+      throw new Error("interestCashFlowClassification 必须是 operating 或 financing");
+    }
     const netIncome = (input.ebit - input.interest) * (1 - input.taxRate);
-    const ocf = netIncome + input.depreciation - input.workingCapitalIncrease;
+    const interestAddback = classification === "financing" ? input.interest : 0;
+    const ocf = netIncome + interestAddback + input.depreciation - input.workingCapitalIncrease;
     const ocfMinusCapex = ocf - input.capex;
     const flow = fcffBridge(input).fcff;
     const afterTaxInterest = input.interest * (1 - input.taxRate);
+    const taxShield = input.interest * input.taxRate;
+    const expectedGap = classification === "operating" ? afterTaxInterest : -taxShield;
     return {
       netIncome,
+      interestAddback,
       ocf,
       ocfMinusCapex,
       fcff: flow,
       gap: flow - ocfMinusCapex,
-      afterTaxInterest
+      afterTaxInterest,
+      taxShield,
+      expectedGap
     };
   }
 
@@ -105,14 +115,14 @@
     const basic = input.totalShares - input.treasuryShares;
     if (basic <= 0) throw new Error(`扣除库存股后的外部普通股为 ${basic}，分母必须为正`);
     const reportNetDebt = input.debt - input.cash;
-    const netDebtHigh = reportNetDebt + input.period.acquisitionCash - input.period.ocfLow;
-    const netDebtLow = reportNetDebt + input.period.acquisitionCash - input.period.ocfHigh;
+    const netDebtHigh = reportNetDebt + input.period.dividendCash - input.period.ocfLow;
+    const netDebtLow = reportNetDebt + input.period.dividendCash - input.period.ocfHigh;
     const equityLow = input.ev - netDebtHigh;
     const equityHigh = input.ev - netDebtLow;
     return {
       reportNetDebt,
       bondIssue: input.period.bondIssue,
-      acquisitionCash: input.period.acquisitionCash,
+      dividendCash: input.period.dividendCash,
       netDebtLow,
       netDebtHigh,
       equityLow,
@@ -229,13 +239,17 @@
         depreciation: number("bridge-da"),
         capex: number("bridge-capex"),
         workingCapitalIncrease: number("bridge-wc"),
-        interest: number("ocf-interest")
+        interest: number("ocf-interest"),
+        interestCashFlowClassification: byId("ocf-classification").value
       });
       setText("ocf-income", yi(r.netIncome));
       setText("ocf-ocf", yi(r.ocf));
       setText("ocf-minus-capex", yi(r.ocfMinusCapex));
       setText("ocf-fcff", yi(r.fcff));
       setText("ocf-gap", yi(r.gap));
+      setText("ocf-gap-rule", r.interestAddback
+        ? `简化条件下应为负的利息税盾：-${r.taxShield.toFixed(1)} 亿元`
+        : `简化条件下应为税后利息：${r.afterTaxInterest.toFixed(1)} 亿元`);
     };
     document.querySelectorAll("[data-bridge-input], [data-ocf-input]").forEach(el => {
       el.addEventListener("input", update);
@@ -254,7 +268,7 @@
         treasuryShares: number("pit-treasury"),
         period: {
           bondIssue: number("pit-bond"),
-          acquisitionCash: number("pit-acquisition"),
+          dividendCash: number("pit-dividend"),
           ocfLow: number("pit-ocf-low"),
           ocfHigh: number("pit-ocf-high")
         }
@@ -467,11 +481,12 @@
   const yi2 = value => `${value.toFixed(2)} 亿元`;
   const DEFAULT_BRIDGE = {
     ebit: 20, taxRate: 0.2, depreciation: 3, capex: 5, workingCapitalIncrease: 2, interest: 2,
+    interestCashFlowClassification: "operating",
     ev: 200, cash: 20, debt: 50, leaseLiability: 0, minorityInterest: 0, nonOperatingAssets: 0,
     totalShares: 10.5, treasuryShares: 0.5, optionDilution: 0, convertibleShares: 0,
     convertibleDebt: 0, floatShares: 8,
     dilutionVariant: { optionDilution: 0.4, convertibleShares: 0.6, convertibleDebt: 10 },
-    period: { bondIssue: 50, acquisitionCash: 30, ocfLow: 0, ocfHigh: 10 }
+    period: { bondIssue: 50, dividendCash: 30, ocfLow: 0, ocfHigh: 10 }
   };
   const DEFAULT_DCF = {
     baseFcf: 10, growth: 0.08, years: 7, terminalGrowth: 0.02, discountRate: 0.09, netDebt: 20
@@ -557,7 +572,10 @@
       depreciation: number("bridge-da"),
       capex: number("bridge-capex"),
       workingCapitalIncrease: number("bridge-wc"),
-      interest: byId("ocf-interest") ? number("ocf-interest") : DEFAULT_BRIDGE.interest
+      interest: byId("ocf-interest") ? number("ocf-interest") : DEFAULT_BRIDGE.interest,
+      interestCashFlowClassification: byId("ocf-classification")
+        ? byId("ocf-classification").value
+        : DEFAULT_BRIDGE.interestCashFlowClassification
     };
   }
 
@@ -580,7 +598,7 @@
       treasuryShares: number("pit-treasury"),
       period: {
         bondIssue: number("pit-bond"),
-        acquisitionCash: number("pit-acquisition"),
+        dividendCash: number("pit-dividend"),
         ocfLow: number("pit-ocf-low"),
         ocfHigh: number("pit-ocf-high")
       }
@@ -623,7 +641,10 @@
       `  经营活动现金流                              ${yi2(o.ocf)}`,
       `  经营活动现金流 - Capex                      ${yi2(o.ocfMinusCapex)}`,
       `  本课 FCFF                                   ${yi2(o.fcff)}`,
-      `  差额（= 税后利息 ${o.afterTaxInterest.toFixed(2)}）              ${yi2(o.gap)}`,
+      `  FCFF - (OCF - Capex)                        ${yi2(o.gap)}`,
+      p.interestCashFlowClassification === "operating"
+        ? `  简化解释：税后利息                        ${yi2(o.afterTaxInterest)}`
+        : `  简化解释：负的利息税盾                    -${yi2(o.taxShield)}`,
       "",
       "第二座桥：企业价值怎样走到每股价值",
       `  EV（输入）                 ${yi2(p.ev)}`,
@@ -650,7 +671,7 @@
       "",
       `  报告日净债务     ${yi2(t.reportNetDebt)}`,
       `  + 发债 ${t.bondIssue.toFixed(0)}（净债务不变）`,
-      `  + 现金收购       ${yi2(t.acquisitionCash)}`,
+      `  + 现金分红       ${yi2(t.dividendCash)}`,
       `  - 期间经营现金流 ${p.period.ocfLow.toFixed(0)} 至 ${p.period.ocfHigh.toFixed(0)}`,
       `  = 估值日净债务   ${yi2(t.netDebtLow)} 至 ${yi2(t.netDebtHigh)}`,
       `  股权价值         ${yi2(t.equityLow)} 至 ${yi2(t.equityHigh)}`,
