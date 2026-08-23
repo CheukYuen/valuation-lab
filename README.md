@@ -28,6 +28,20 @@
 
 互动版入口是 [`web/index.html`](web/index.html)，纯文字入口是 [`course/README.md`](course/README.md)。你不需要编写代码，只需要按课程指示运行现成命令。
 
+**直接打开（最快）：**
+
+```bash
+open web/index.html
+```
+
+**用 HTTP 打开（进度更稳定，推荐）：**
+
+```bash
+python3 -m http.server 8765 --directory web
+```
+
+另开一个终端，或浏览器访问 [http://127.0.0.1:8765/](http://127.0.0.1:8765/)。停服务按 `Ctrl+C`。
+
 | 天 | 主题 | 时间 | 过关能力 |
 |---|---|---:|---|
 | 1 | 估值到底在算什么 | 75 分钟 | 理解估值怎样把事实、预测和假设翻译成价值 |
