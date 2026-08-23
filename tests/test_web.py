@@ -228,6 +228,9 @@ class WebCourseTests(unittest.TestCase):
             self.assertEqual(parser.markdown_frames, 1, page.name)
             self.assertIn(f"day-{day}-markdown-reference", parser.ids)
             self.assertIn(f'src="generated/day-{day}-reference.html"', text)
+            self.assertIn('data-open-reference-window', text, page.name)
+            self.assertIn(f'href="generated/day-{day}-reference.html"', text)
+            self.assertIn("新窗口打开", text, page.name)
             for item in nav:
                 self.assertIn(item, text, f"{page.name} missing {item}")
 
