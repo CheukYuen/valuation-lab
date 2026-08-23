@@ -216,6 +216,19 @@ class ContentTests(unittest.TestCase):
         self.assertNotIn("pit-acquisition", page)
         self.assertNotIn('period["acquisition_cash"]', bridge)
 
+    def test_day_four_only_changes_the_terminal_assumption_for_a_nonequivalent_multiple(self):
+        markdown = (ROOT / "course" / "DAY-4.md").read_text()
+        page = (ROOT / "web" / "day-4.html").read_text()
+        script = (ROOT / "lab" / "mini_dcf.py").read_text()
+        tools = (ROOT / "web" / "assets" / "tools.js").read_text()
+        self.assertIn("等价换算为14.6倍第7年FCFF，经济假设并没有改变", markdown)
+        self.assertIn("终值写法等价互译时不改变经济假设", page)
+        for text in [script, tools]:
+            self.assertIn("等价互译不改变经济假设；改用不等价倍数才改变远期假设", text)
+        self.assertNotIn("终值写法的切换永远同时切换", markdown)
+        self.assertNotIn("切换终值写法等于切换远期假设", page)
+        self.assertNotIn("切换写法等于切换远期假设", script)
+
     def test_failure_matrices_use_only_day_one_vocabulary(self):
         # 仓库里有两套词表：记录验证状态（第1课）与清单项状态（AUDIT-CHECKLIST）。
         # 失败矩阵必须只用前者，否则下游无法渲染一致的状态。

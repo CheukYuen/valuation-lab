@@ -144,7 +144,8 @@ def main():
     ten = terminal_bridge(p, exit_multiple=10)
     print(f"  若改用 10 倍第{int(p['years'])}年FCFF    股权价值 {ten['equity_value']:>8.2f} {unit}"
           f"   隐含永续增长 {ten['implied_terminal_growth']:>+.2%}")
-    print("  切换写法等于切换远期假设；-0.91% 只对应 10 倍第 n 年 FCFF，不是 10 倍 EV/EBITDA。")
+    print("  等价互译不改变经济假设；改用不等价倍数才改变远期假设。")
+    print("  -0.91% 只对应 10 倍第 n 年 FCFF，不是 10 倍 EV/EBITDA。")
     print()
     print("弹性排序（输入 +1%，股权价值变动几个 %）")
     for name, e in elasticity(p):

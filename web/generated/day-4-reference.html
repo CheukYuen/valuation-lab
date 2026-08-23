@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="source-sha256" content="3978df87366e25fe295a8eaa02311624f56e902a2d80dd182e87531ae4c4e355">
+  <meta name="source-sha256" content="08459a6d40af2777364d75f3dee7950627699092a2401b59a544823d74a1e9c3">
   <title>第4课专业参考章 · 完成最小 DCF</title>
   <link rel="stylesheet" href="../assets/styles.css">
   <script>
@@ -35,7 +35,7 @@
       <a href="day-6-reference.html">6. 方法适不适合</a>
       <a href="day-7-reference.html">7. 长飞综合练习</a>
     </nav>
-    <p class="markdown-reference-source">由 <a href="../../course/DAY-4.md">course/DAY-4.md</a> 生成 · SHA-256 3978df87366e · <a href="../day-4.html">打开本课互动页</a></p>
+    <p class="markdown-reference-source">由 <a href="../../course/DAY-4.md">course/DAY-4.md</a> 生成 · SHA-256 08459a6d40af · <a href="../day-4.html">打开本课互动页</a></p>
 <h1 id="第4天完成最小-dcf">第4天：完成最小 DCF</h1>
 <p><strong>本课目标</strong>：亲手把未来现金流折成企业价值和股权价值，再通过敏感性、终值占比和正常化判断谁在控制结果。基础计算约40分钟，进阶检查约20分钟。</p>
 <blockquote><p><a href="../day-4.html"><code>打开本课互动HTML</code></a></p></blockquote>
@@ -119,7 +119,7 @@ EV = 67.48 + 93.75 = 161.23亿元
 <ol><li>WACC从9%升到10%，股权价值上升还是下降？</li><li>显性期从7年改为5年，终值占比上升还是下降？</li><li>永续增长从2%提高到2.5%，价值怎样变化？这能否证明2.5%更正确？</li><li>只把终值写法从“2%永续增长”改成“10倍第7年FCFF”，其余不变，股权价值怎样变化？</li></ol>
 <details>
 <summary>完成后展开答案</summary>
-<ol><li>下降。脚本结果从184.09亿元降至157.22亿元，约下降14.6%。</li><li>终值占比上升，从66.9%升至74.1%；更多价值被压进终值。注意股权价值同时从184.09亿元降到167.79亿元——显性高增长期缩短两年，第6—7年的现金流没有消失，而是提前进入2%稳定增长路径，因此价值下降、更多价值集中到终值。</li><li>在其他条件不变且WACC仍高于永续增长时，价值会上升；但敏感性只给机械方向，不提供2.5%的经济证据。</li><li>降至141.23亿元，降幅23.3%。这不是“换了个算法”，而是把隐含永续增长从2%换成了-0.91%（对应10倍第7年FCFF，不是10倍EV/EBITDA）。终值写法的切换永远同时切换了一个经济假设。</li></ol>
+<ol><li>下降。脚本结果从184.09亿元降至157.22亿元，约下降14.6%。</li><li>终值占比上升，从66.9%升至74.1%；更多价值被压进终值。注意股权价值同时从184.09亿元降到167.79亿元——显性高增长期缩短两年，第6—7年的现金流没有消失，而是提前进入2%稳定增长路径，因此价值下降、更多价值集中到终值。</li><li>在其他条件不变且WACC仍高于永续增长时，价值会上升；但敏感性只给机械方向，不提供2.5%的经济证据。</li><li>降至141.23亿元，降幅23.3%。这不是“换了个算法”，而是选用了与原 Gordon 终值不等价的10倍第7年FCFF，把隐含永续增长从2%换成了-0.91%（不是10倍EV/EBITDA）。若只是把2% Gordon 终值等价换算为14.6倍第7年FCFF，经济假设并没有改变。</li></ol>
 </details>
 <h3 id="组合压力测试">组合压力测试</h3>
 <p>单个“略保守”假设可能合理，但低增长、高WACC、低远期利润率和年末折现一起使用，会形成同方向偏向。反向压力测试应把整组假设翻转，再看核心方向是否仍成立，并披露结论余量。</p>

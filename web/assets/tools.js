@@ -717,6 +717,7 @@
       `  永续增长终值        ${yi2(tb.gordonTerminalValue)}`,
       `  隐含FCFF终值倍数    ${tb.impliedExitMultiple.toFixed(1)} 倍`,
       `  若改用 ${multiple} 倍第${p.years}年FCFF    股权价值 ${tb.equityValue.toFixed(2)} 亿元   隐含永续增长 ${pct2(tb.impliedTerminalGrowth)}`,
+      "  等价互译不改变经济假设；改用不等价倍数才改变远期假设。",
       "  -0.91% 只对应 10 倍第 n 年 FCFF，不是 10 倍 EV/EBITDA。",
       "",
       "边界：输出不是“这家公司值多少”，而是“哪个假设在决定这个数”。"
