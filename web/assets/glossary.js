@@ -29,6 +29,13 @@
       formula: "FCFF = NOPAT + 折旧 − 资本开支 − 营运资金增加",
       caution: "它不是财报直接给出的一个统一数字，需要由报表项目计算并解释调整；利润增长不代表 FCFF 同比例增长。",
     },
+    "OCF": {
+      term: "OCF · 经营活动现金流",
+      expand: "Operating Cash Flow；财报和 CFA 教材也常写作 CFO（Cash Flow from Operations）",
+      short: "现金流量表里经营业务带来的现金净额，用来和模型里的 FCFF 做交叉检查。",
+      formula: "先确认利息支付列在经营还是筹资，再看 FCFF − (OCF − Capex) 能否被解释",
+      caution: "OCF 不是 FCFF，也不是 FCFE：还没扣 Capex，也没处理净借入。利息现金列在经营活动还是筹资活动，会改变 OCF 的数字，不能把一种准则分类写成所有财报的默认。",
+    },
     "DCF": {
       term: "DCF · 现金流折现",
       expand: "Discounted Cash Flow",
