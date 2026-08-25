@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="source-sha256" content="45677fd4f5cd719c31a2f731820e693203f1dfc91d2bd53da26a53e229f2e882">
+  <meta name="source-sha256" content="10908bbe10f39ca2867ca136541389c0b6b8f2733d5699dacafd7e42ec511438">
   <title>白话术语表 · 课程资料</title>
   <link rel="stylesheet" href="../assets/styles.css">
   <script>
@@ -32,7 +32,7 @@
       <a href="pretest-reference.html">入门测验</a>
       <a href="posttest-reference.html">毕业测验</a>
     </nav>
-    <p class="markdown-reference-source">由 <a href="../../docs/GLOSSARY.md">docs/GLOSSARY.md</a> 生成 · SHA-256 45677fd4f5cd · <a href="../index.html">回到课程首页</a></p>
+    <p class="markdown-reference-source">由 <a href="../../docs/GLOSSARY.md">docs/GLOSSARY.md</a> 生成 · SHA-256 10908bbe10f3 · <a href="../index.html">回到课程首页</a></p>
 <h1 id="白话术语表">白话术语表</h1>
 <p>只记一条主线：</p>
 <pre><code class="language-text">收入 → EBIT → NOPAT → FCFF → EV → 股权价值 → 每股价值</code></pre>
@@ -71,10 +71,16 @@ EBIT margin = EBIT ÷ 收入 = 20%</code></pre>
 <p>如果 EV 为 200 亿元、现金 20 亿元、债务 50 亿元，股权价值是 170 亿元。</p>
 <h2 id="每股价值与股本分母">每股价值与股本分母</h2>
 <pre><code class="language-text">每股价值 = 股权价值 ÷ 对应的外部普通股股数</code></pre>
-<p>总股本、流通股、扣除库存股后的普通股不是一回事。双重上市、增发、回购或库存股都可能使分母出错。</p>
+<p>总股本、流通股、扣除库存股后的普通股不是一回事。双重上市、增发、回购或库存股都可能使分母出错。它也不是下一节的 <strong>EPS</strong>：每股价值切的是股权价值，EPS 切的是会计利润。</p>
 <p>分母还分<strong>基本</strong>和<strong>稀释</strong>两种：</p>
 <ul><li><strong>基本股数</strong>：现在实际由外部股东持有的普通股，等于总股本减库存股。</li><li><strong>稀释股数</strong>：再加上已经有人有权拿到、但现在还没发出来的股份——期权、限制性股票、可转债转股。期权通常按<strong>库存股法</strong>折算：先假设行权款用于按市价回购一部分股份，只把净增部分计入分母。</li><li><strong>优先股</strong>及其他排在普通股之前的要求权，应在得到普通股股权价值之前扣掉，而不是留在分子里被普通股分掉。</li></ul>
 <p>可转债有两条都合法的处理路径：留在债务里（分母不加转股股份），或按 <strong>if-converted</strong> 把债务加回权益、分母同时加股份。两条路径的结果接近但不相同；错误的是混着走——债务里扣了一次，分母里又加了一次，同一笔要求权被计了两次。第2课有完整数字例子。</p>
+<h2 id="eps每股收益">EPS：每股收益</h2>
+<p><strong>EPS</strong> 是 <strong>Earnings Per Share</strong> 的缩写：把归属于普通股股东的净利润，除以对应的普通股股数。也叫每股收益。</p>
+<pre><code class="language-text">EPS = 归属普通股的净利润 ÷ 对应股数</code></pre>
+<p>沿用上面同一家公司：股权价值 170 亿元、外部普通股 10 亿股，所以每股价值是 17 元。若本年净利润是 16 亿元，则 EPS 是 1.60 元。17 元是价值切到每股，1.60 元是利润切到每股，不要当成同一个数。</p>
+<p>拉长设备或显卡的折旧年限，每年计入利润的折旧变少，净利润和 EPS 会更好看；买设备付出的现金（Capex）不变。最小 FCFF 桥里，利润升高和少加回的折旧对冲，自由现金基本不动。改年限是会计估计，不自动等于造假，也不能单独证明公司更值钱。第2课用同一套数字把这组对冲算一遍。</p>
+<p><strong>PE</strong> 的分母通常就是 EPS（或与之对应的净利润）。</p>
 <h2 id="桥bridge">桥：bridge</h2>
 <p>英文就是 <strong>bridge</strong>。投行、咨询和财务分析里的口语：从起点 A 用<strong>逐项加减</strong>走到终点 B，每一项都要能复算。图常画成 waterfall（瀑布图）；会计里更正式的说法是 reconciliation（调节表）。同类说法还有 walk（从 A 走到 B）。</p>
 <p>本课里「桥」出现两层，不要混成一个东西：</p>
@@ -83,9 +89,9 @@ EBIT margin = EBIT ÷ 收入 = 20%</code></pre>
 <pre><code class="language-text">EV 200 + 现金 20 − 债务 50 = 股权价值 170 亿元</code></pre>
 <p>没有桥不等于模型算错，只说明这个数字还不能当已闭合输入或已复算输出使用。补齐前不能声称已经验证，也不能由此推出该买或该卖。</p>
 <h2 id="pe市盈率">PE：市盈率</h2>
-<p><strong>PE</strong> 是 <strong>Price-to-Earnings</strong> 的缩写，也就是 Price ÷ Earnings：股权市值（或股价）除以净利润（或每股收益）。</p>
+<p><strong>PE</strong> 是 <strong>Price-to-Earnings</strong> 的缩写，也就是 Price ÷ Earnings：股权市值（或股价）除以净利润（或 <strong>EPS</strong>）。</p>
 <pre><code class="language-text">PE = 股权市值 ÷ 净利润</code></pre>
-<p>适合快速比较盈利口径可对齐的公司或同一公司的不同阶段。周期峰值利润、亏损公司和业务差异很大的“同行”会使 PE 容易误导。</p>
+<p>适合快速比较盈利口径可对齐的公司或同一公司的不同阶段。周期峰值利润、被折旧年限抬高的 EPS、亏损公司和业务差异很大的“同行”都会使 PE 容易误导。</p>
 <h2 id="pb市净率">PB：市净率</h2>
 <p><strong>PB</strong> 是 <strong>Price-to-Book</strong> 的缩写，也就是 Price ÷ Book value：股权市值除以账面净资产。</p>
 <pre><code class="language-text">PB = 股权市值 ÷ 净资产</code></pre>

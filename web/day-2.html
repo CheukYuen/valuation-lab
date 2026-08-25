@@ -117,17 +117,19 @@
           <p class="section-lead">先预测：把 Capex 从 5 改成 12，FCFF 怎样变？改变一个输入后再观察。</p>
           <div class="tool"><h3>FCFF 现金流桥</h3>
             <div class="controls">
-              <div class="control"><label>EBIT <span>亿元</span></label><input id="bridge-ebit" data-bridge-input type="number" value="20" step="1"></div>
+              <div class="control"><label>折旧前经营利润 <span>EBIT + 折旧，亿元</span></label><input id="bridge-pre-depreciation-profit" data-bridge-input type="number" value="23" step="1"></div>
               <div class="control"><label>税率 <span>%</span></label><input id="bridge-tax" data-bridge-input type="number" value="20" step="1"></div>
               <div class="control"><label>折旧 <span>亿元</span></label><input id="bridge-da" data-bridge-input type="number" value="3" step="1"></div>
               <div class="control"><label>资本开支 <span>亿元</span></label><input id="bridge-capex" data-bridge-input type="number" value="5" step="1"></div>
               <div class="control"><label>营运资金增加 <span>亿元</span></label><input id="bridge-wc" data-bridge-input type="number" value="2" step="1"></div>
             </div>
             <div class="result-grid">
+              <div class="metric"><span>EBIT</span><strong id="bridge-ebit">—</strong></div>
               <div class="metric"><span>NOPAT</span><strong id="bridge-nopat">—</strong></div>
               <div class="metric"><span>FCFF</span><strong id="bridge-fcff">—</strong></div>
               <div class="metric"><span>EBIT与FCFF差额</span><strong id="bridge-gap">—</strong></div>
             </div>
+            <p class="plain-note"><strong>这里固定折旧前经营利润：</strong>所以改折旧会先联动 EBIT，再联动 NOPAT。<button class="term" data-term="EPS">EPS</button>（每股收益）= 净利润 ÷ 股数，看的是利润，不是现金，也不是每股价值。拉长折旧年限会让每年计入利润的折旧变少，EPS 更好看；买设备的现金（Capex）不变。利润升高和少加回的折旧大致对冲，<button class="term" data-term="FCFF">FCFF</button> 只会因税效应小幅变化。改年限是会计估计，不自动等于造假。</p>
           </div>
         </section>
 

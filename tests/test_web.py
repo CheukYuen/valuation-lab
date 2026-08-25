@@ -132,7 +132,7 @@ class WebCourseTests(unittest.TestCase):
 
     def test_interactive_model_contracts(self):
         expected_ids = {
-            "day-2.html": {"bridge-ebit", "bridge-fcff", "ocf-ocf"},
+            "day-2.html": {"bridge-pre-depreciation-profit", "bridge-ebit", "bridge-fcff", "ocf-ocf"},
             "day-3.html": {"pit-nd-low"},
             "day-4.html": {"dcf-fcf", "dcf-equity", "dcf-terminal-share", "dcf-implied-multiple"},
             "day-5.html": {"reverse-target", "reverse-body", "reverse-years"},
@@ -298,6 +298,22 @@ class WebCourseTests(unittest.TestCase):
         for key, value in expected.items():
             self.assertAlmostEqual(actual[camel(key)], value, places=10, msg=key)
 
+    @unittest.skipUnless(shutil.which("node"), "Node.js not installed; browser model parity cannot run")
+    def test_depreciation_change_updates_ebit_nopat_and_fcff(self):
+        params = {
+            "preDepreciationOperatingProfit": 23,
+            "taxRate": 0.2,
+            "depreciation": 1.5,
+            "capex": 5,
+            "workingCapitalIncrease": 2,
+        }
+        actual = run_node(
+            f"globalThis.ValuationLabTools.fcffFromPreDepreciation({json.dumps(params)})"
+        )
+        self.assertAlmostEqual(actual["ebit"], 21.5)
+        self.assertAlmostEqual(actual["nopat"], 17.2)
+        self.assertAlmostEqual(actual["fcff"], 11.7)
+
     def assert_js_matches(self, expected, actual):
         self.assertEqual(sorted(actual), sorted(camel(k) for k in expected))
         for key, value in expected.items():
@@ -456,7 +472,7 @@ class WebCourseTests(unittest.TestCase):
         self.assertIsNotNone(exported, "tools.js no longer exports a tool surface")
         names = {name.strip() for name in exported.group(1).split(",")}
         self.assertTrue(
-            {"bridge", "fcffBridge", "ocfCheck", "pitBridge", "terminalBridge",
+            {"bridge", "fcffBridge", "fcffFromPreDepreciation", "ocfCheck", "pitBridge", "terminalBridge",
              "requiredYears", "multiples", "bankDemo", "LAB_RUNNERS"}.issubset(names),
             names,
         )

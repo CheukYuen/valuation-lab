@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="source-sha256" content="71eefec421b51d2e7c78f2b466664ac5e611b147755ace9cdd3c48c0ecc9a1e1">
+  <meta name="source-sha256" content="46e8a8616dbb2e6bb312b7acbccc3403ea01ab3ede534536b41f13caeba51a42">
   <title>第2课专业参考章 · 亲手打通价值桥</title>
   <link rel="stylesheet" href="../assets/styles.css">
   <script>
@@ -35,7 +35,7 @@
       <a href="day-6-reference.html">6. 方法适不适合</a>
       <a href="day-7-reference.html">7. 长飞综合练习</a>
     </nav>
-    <p class="markdown-reference-source">由 <a href="../../course/DAY-2.md">course/DAY-2.md</a> 生成 · SHA-256 71eefec421b5 · <a href="../day-2.html">打开本课互动页</a></p>
+    <p class="markdown-reference-source">由 <a href="../../course/DAY-2.md">course/DAY-2.md</a> 生成 · SHA-256 46e8a8616dbb · <a href="../day-2.html">打开本课互动页</a></p>
 <h1 id="第2天亲手打通价值桥">第2天：亲手打通价值桥</h1>
 <p><strong>本课目标</strong>：亲手从经营利润算到 FCFF、股权价值和每股价值，再检查利润、现金、权益口径和股本分母是否匹配。基础计算约35分钟，进阶检查约35分钟，其中包含一个必做的运行环节。</p>
 <blockquote><p><a href="../day-2.html"><code>打开本课互动HTML</code></a></p></blockquote>
@@ -44,7 +44,7 @@
 <ol><li>派生计算为什么不能只保存最终数字？</li><li>一条记录“已复核”，是否代表整份估值材料一定可继续使用？</li><li>第1课的四种记录验证状态是哪四种？哪一种缺口不该导致整份材料停止使用？</li></ol>
 <p>今天不要求你搭建 DCF，只练一件事：看到一个每股价值时，能够沿路倒查每一步有没有漏项或口径错配。</p>
 <h2 id="10分钟白话解释">10分钟白话解释</h2>
-<p>先读 <a href="glossary-reference.html"><code>白话术语表</code></a> 中 EBIT、NOPAT、FCFF、EV、股权价值、每股价值和「桥」七节。</p>
+<p>先读 <a href="glossary-reference.html"><code>白话术语表</code></a> 中 EBIT、NOPAT、FCFF、EV、股权价值、每股价值、EPS 和「桥」八节。</p>
 <p>只记两座桥：</p>
 <pre><code class="language-text">EBIT
 → 扣经营税得到 NOPAT
@@ -79,6 +79,18 @@ FCFF = NOPAT + 折旧 - 资本开支 - 营运资金增加</code></pre>
 <p>如果模型直接把 NOPAT 16 亿元当作 FCFF，它比逐项计算的 12 亿元多了 4 亿元：</p>
 <pre><code class="language-text">漏掉的净投入 = Capex 5 + 营运资金增加 2 - 折旧 3 = 4亿元</code></pre>
 <ul><li><strong>为什么可疑</strong>：公司为扩产和支持销售付出了现金，模型却让这些投入消失了。</li><li><strong>影响什么</strong>：每一期 FCFF 可能被系统性抬高，后续 EV、股权价值和每股价值都要重算。</li><li><strong>还不能断言什么</strong>：不能据此说扩产是坏事，也不能判断股票高估；扩产未来可能产生很高回报，当前只确认现金流桥错误。</li></ul>
+<h3 id="改折旧年限会让-eps-更好看fcff-基本不动">改折旧年限会让 EPS 更好看，FCFF 基本不动</h3>
+<p><strong>EPS</strong>（Earnings Per Share，每股收益）是净利润除以对应股数。它看的是利润，不是现金，也不是本课后面要算的每股价值。</p>
+<p>还用长河制造：本年折旧 3 亿元已经包含在 EBIT 20 亿元里。若把设备使用年限拉长，本年折旧降到 1.5 亿元：</p>
+<pre><code class="language-text">EBIT     从 20 升到 21.5     （成本少记了 1.5）
+NOPAT    从 16 升到 17.2     （21.5 × 80%）
+加回折旧 从 3 降到 1.5
+FCFF     = 17.2 + 1.5 - 5 - 2 = 11.7亿元</code></pre>
+<p>原先 FCFF 是 12 亿元。利润多出来的，加回时几乎全对冲掉；差的 0.3 亿元是按更高利润多计的税，不是少付钱。买设备的 Capex 仍是 5 亿元。</p>
+<p>若外部普通股仍是 10 亿股，用 NOPAT 近似净利润：</p>
+<pre><code class="language-text">原 EPS ≈ 16 ÷ 10 = 1.60元
+新 EPS ≈ 17.2 ÷ 10 = 1.72元</code></pre>
+<p>EPS 更好看，自由现金没有变好。拉长年限是会计估计，不自动等于造假，也不能据此判断证券被高估。看到 EPS 增长，仍要问折旧是不是变少了、Capex 有没有一起说清楚。</p>
 <h3 id="简化公式不是普遍完整答案">简化公式不是普遍完整答案</h3>
 <p>真实材料还可能出现摊销、资产处置、股份支付、重组费用、资本化研发、递延税、租赁或其他非现金及非经营调整。不同模型也可能从经营现金流、EBITDA 或净利润出发。</p>
 <p>遇到这些项目时，不要机械要求所有材料长得一模一样。你要检查的是：</p>

@@ -43,6 +43,13 @@
     };
   }
 
+  function fcffFromPreDepreciation(input) {
+    require(input, ["preDepreciationOperatingProfit", "taxRate", "depreciation",
+                    "capex", "workingCapitalIncrease"]);
+    const ebit = input.preDepreciationOperatingProfit - input.depreciation;
+    return { ebit, ...fcffBridge({ ...input, ebit }) };
+  }
+
   function equityBridge(input) {
     require(input, STRUCTURE);
     return {
@@ -213,16 +220,16 @@
   }
 
   function setupCashBridge() {
-    if (!byId("bridge-ebit")) return;
+    if (!byId("bridge-pre-depreciation-profit")) return;
     const update = () => {
-      const ebit = number("bridge-ebit");
-      const tax = number("bridge-tax") / 100;
-      const da = number("bridge-da");
-      const capex = number("bridge-capex");
-      const wc = number("bridge-wc");
-      const { nopat, fcff } = fcffBridge({
-        ebit, taxRate: tax, depreciation: da, capex, workingCapitalIncrease: wc
+      const { ebit, nopat, fcff } = fcffFromPreDepreciation({
+        preDepreciationOperatingProfit: number("bridge-pre-depreciation-profit"),
+        taxRate: number("bridge-tax") / 100,
+        depreciation: number("bridge-da"),
+        capex: number("bridge-capex"),
+        workingCapitalIncrease: number("bridge-wc")
       });
+      setText("bridge-ebit", yi(ebit));
       setText("bridge-nopat", yi(nopat));
       setText("bridge-fcff", yi(fcff));
       setText("bridge-gap", yi(ebit - fcff));
@@ -236,11 +243,7 @@
     const update = () => {
       const classification = byId("ocf-classification").value;
       const r = ocfCheck({
-        ebit: number("bridge-ebit"),
-        taxRate: number("bridge-tax") / 100,
-        depreciation: number("bridge-da"),
-        capex: number("bridge-capex"),
-        workingCapitalIncrease: number("bridge-wc"),
+        ...readBridgeInput(),
         interest: number("ocf-interest"),
         interestCashFlowClassification: classification
       });
@@ -566,12 +569,13 @@
   程序复算不等于输入依据已复核；也不产出目标价或买卖建议。`;
 
   function readBridgeInput() {
-    if (!byId("bridge-ebit")) return { ...DEFAULT_BRIDGE };
+    if (!byId("bridge-pre-depreciation-profit")) return { ...DEFAULT_BRIDGE };
+    const depreciation = number("bridge-da");
     return {
       ...DEFAULT_BRIDGE,
-      ebit: number("bridge-ebit"),
+      ebit: number("bridge-pre-depreciation-profit") - depreciation,
       taxRate: number("bridge-tax") / 100,
-      depreciation: number("bridge-da"),
+      depreciation,
       capex: number("bridge-capex"),
       workingCapitalIncrease: number("bridge-wc"),
       interest: byId("ocf-interest") ? number("ocf-interest") : DEFAULT_BRIDGE.interest,
@@ -826,7 +830,7 @@
   }
 
   globalThis.ValuationLabTools = {
-    dcf, solve, fcffBridge, equityBridge, perShare, bridge, ocfCheck, pitBridge,
+    dcf, solve, fcffBridge, fcffFromPreDepreciation, equityBridge, perShare, bridge, ocfCheck, pitBridge,
     terminalBridge, requiredYears, multiples, bankDemo, LAB_RUNNERS
   };
 
