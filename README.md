@@ -60,6 +60,8 @@ python3 -m http.server 8765 --directory web
 
 学习节奏与主动回忆方法见 [`快速科学学习法`](docs/LEARNING-METHODS.md)。
 
+觉得“财报可能造假、WACC 和 g 又全靠假设，DCF 还有什么用”，读 [`DCF 的作用与局限`](docs/DCF-AS-ASSUMPTION-TRANSLATOR.md)（第4、5课之后的可选补充）。
+
 ## 你不需要先准备什么
 
 - 不需要推导 WACC；
@@ -99,6 +101,7 @@ web/                     七课互动HTML、学习仪表盘和科学学习法
 docs/GLOSSARY.md         零基础白话术语表
 docs/AUDIT-CHECKLIST.md  六道快速门 + 深入审计清单
 docs/FIVE-NUMBERS.md     DCF 的可选补充阅读
+docs/DCF-AS-ASSUMPTION-TRANSLATOR.md  DCF 的作用与局限（可选补充阅读）
 cases/00-basics/         六个一次只考一个问题的虚构案例
 cases/00-records/        第1课的十条记录契约样本（含负对照）
 cases/01-yofc/           长飞光纤毕业案例
