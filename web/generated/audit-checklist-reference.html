@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="source-sha256" content="a115a7e50ea2379a69fc3db747eb1a7cafb634732aec2d196e97b3cc475a76e9">
+  <meta name="source-sha256" content="6522a2569fa6c24062f6b96bb7e8b76ddc7331c0f749a2c59dab92aa83d26d7e">
   <title>分层审计清单 · 课程资料</title>
   <link rel="stylesheet" href="../assets/styles.css">
   <script>
@@ -32,7 +32,7 @@
       <a href="pretest-reference.html">入门测验</a>
       <a href="posttest-reference.html">毕业测验</a>
     </nav>
-    <p class="markdown-reference-source">由 <a href="../../docs/AUDIT-CHECKLIST.md">docs/AUDIT-CHECKLIST.md</a> 生成 · SHA-256 a115a7e50ea2 · <a href="../index.html">回到课程首页</a></p>
+    <p class="markdown-reference-source">由 <a href="../../docs/AUDIT-CHECKLIST.md">docs/AUDIT-CHECKLIST.md</a> 生成 · SHA-256 6522a2569fa6 · <a href="../index.html">回到课程首页</a></p>
 <h1 id="分层审计清单">分层审计清单</h1>
 <p>目标不是证明估值“绝对正确”，而是判断它是否值得继续使用。</p>
 <p>每项使用四种状态：</p>
@@ -45,11 +45,12 @@
 <ul><li><strong>停止使用</strong>：对象/分母、币种/单位或核心计算口径已经确认失败，足以推翻输出。</li><li><strong>带条件使用</strong>：关键假设、现金流或时点存在警告/无法确认，方向可看但不能依赖单点。</li><li><strong>可继续使用</strong>：六道门无重大失败，关键警告已量化并进入敏感性；继续做深入审计。</li></ul>
 <p>“可继续使用”不是“估值正确”，更不是“股票便宜”。</p>
 <h2 id="第二层深入审计清单">第二层：深入审计清单</h2>
-<p>通过快速门后再做。原有18条纪律保留在这里，但按判断任务分组。</p>
+<p>通过快速门后再做。原有18条纪律保留原编号，按判断任务分组；D8b 是后来补入的一项，编号带后缀以免打乱各课对 D1–D18 的引用。</p>
 <h3 id="对象时点与证据">对象、时点与证据</h3>
 <div class="reference-table-scroll"><table><thead><tr><th>#</th><th>检查项</th><th>失败或警告示例</th></tr></thead><tbody><tr><td>D1</td><td>股本关系与每股权利</td><td>总股本、流通股、扣库存股后股数静默混用；双重上市每股权利未核验</td></tr><tr><td>D2</td><td>同一估值时点</td><td>价格是8月、资本结构是3月，中间现金流无人处理</td></tr><tr><td>D3</td><td>币种和单位</td><td>港元报价直接接人民币报表；万元、百万元、亿元混用</td></tr><tr><td>D4</td><td>原始存证</td><td>只有会变化的网址，没有冻结文件、时间戳或哈希</td></tr><tr><td>D5</td><td>输出精度</td><td>输入约为20亿，输出却声称精确到0.01亿</td></tr></tbody></table></div>
 <h3 id="报表与现金流">报表与现金流</h3>
-<div class="reference-table-scroll"><table><thead><tr><th>#</th><th>检查项</th><th>失败或警告示例</th></tr></thead><tbody><tr><td>D6</td><td>利润口径</td><td>归母净利、总净利、EBIT、EBITDA混用</td></tr><tr><td>D7</td><td>FCFF定义</td><td>正向模型逐项计算，反向模型改用未解释的固定转化率</td></tr><tr><td>D8</td><td>EV桥</td><td>现金、债务、租赁、少数股东权益来自不同报告期或重复处理</td></tr><tr><td>D9</td><td>OCF交叉检查</td><td><code>经营现金流 - Capex</code> 与 FCFF 差异无法解释</td></tr><tr><td>D10</td><td>经营联动</td><td>收入、利润率、营运资金和Capex出现无机制解释的跳变</td></tr></tbody></table></div>
+<div class="reference-table-scroll"><table><thead><tr><th>#</th><th>检查项</th><th>失败或警告示例</th></tr></thead><tbody><tr><td>D6</td><td>利润口径</td><td>归母净利、总净利、EBIT、EBITDA混用</td></tr><tr><td>D7</td><td>FCFF定义</td><td>正向模型逐项计算，反向模型改用未解释的固定转化率</td></tr><tr><td>D8</td><td>EV桥</td><td>现金、债务、租赁、少数股东权益来自不同报告期或重复处理</td></tr><tr><td>D8b</td><td>表外与准债务义务</td><td>经营租赁、尚未起租的长期合同承诺、SPV或合资结构发行的债务、供应链与设备融资不出现在“债务”行，净债务因此偏低；而对应的租金或服务费已经压低了作为起点的FCFF</td></tr><tr><td>D9</td><td>OCF交叉检查</td><td><code>经营现金流 - Capex</code> 与 FCFF 差异无法解释</td></tr><tr><td>D10</td><td>经营联动</td><td>收入、利润率、营运资金和Capex出现无机制解释的跳变</td></tr></tbody></table></div>
+<p>D8b 的判断要点是<strong>缺少字段不等于确认为零</strong>。这类义务通常并未隐瞒，只是不在你习惯查看的那一行； 它同时从两侧影响结果——净债务少减一次使股权价值偏高，付出的现金又已经在FCFF里被扣掉一次。 在材料未披露时应记为「无法确认」，不要替模型补一个零。</p>
 <h3 id="假设终值与方法">假设、终值与方法</h3>
 <div class="reference-table-scroll"><table><thead><tr><th>#</th><th>检查项</th><th>失败或警告示例</th></tr></thead><tbody><tr><td>D11</td><td>WACC来源</td><td>无风险利率币种不匹配；Beta没有数据；只给习惯值</td></tr><tr><td>D12</td><td>终值正常化</td><td>直接把周期峰值利润率永久化</td></tr><tr><td>D13</td><td>增长与再投资</td><td>长期增长没有相应资本投入；<code>g = 再投资率 × ROIC</code> 无法解释</td></tr><tr><td>D14</td><td>情景机制</td><td>Bear/Base/Bull只改净利润，没有量、价、成本和现金转化差异</td></tr><tr><td>D15</td><td>反向DCF</td><td>只报单点，不报替代组合；超过100%利润率仍当作普通数字</td></tr><tr><td>D16</td><td>可比业务</td><td>用“同属一个行业”代替收入结构、周期和会计口径可比</td></tr></tbody></table></div>
 <h3 id="输出纪律">输出纪律</h3>
