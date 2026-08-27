@@ -28,6 +28,7 @@ LTM_EBITDA = 59.43
 PARENT_EQUITY = 163.64
 INVESTED_CAPITAL_2026H1 = 192.12
 OBSERVED_CAPITAL_TURNOVER = LTM_REVENUE / INVESTED_CAPITAL_2026H1
+REVENUE_2026H1 = 98.09
 
 PEER_MEDIAN_PE = 117.2
 PEER_MEDIAN_PB = 24.3
@@ -40,7 +41,7 @@ H_PRICE_HKD = 140.80
 STUB_DAYS = 129
 STUB_YEARS = STUB_DAYS / 365
 BALANCE_SHEET_TO_PRICE_DAYS = 55
-BALANCE_SHEET_TO_PRICE_YEARS = BALANCE_SHEET_TO_PRICE_DAYS / 365
+H2_DAYS = STUB_DAYS + BALANCE_SHEET_TO_PRICE_DAYS
 
 
 @dataclass(frozen=True)
@@ -53,7 +54,7 @@ class Scenario:
     wacc: float
     terminal_growth: float
     terminal_margin: float
-    stub_fcf_margin: float
+    h2_ebit_margin: float
     capital_turnover: float = OBSERVED_CAPITAL_TURNOVER
 
 
@@ -67,7 +68,7 @@ SCENARIOS = {
         0.105,
         0.020,
         0.080,
-        0.120,
+        0.200,
     ),
     "base": Scenario(
         "基准",
@@ -78,7 +79,7 @@ SCENARIOS = {
         0.090,
         0.025,
         0.160,
-        0.1743,
+        0.270,
     ),
     "bull": Scenario(
         "乐观",
@@ -89,20 +90,40 @@ SCENARIOS = {
         0.080,
         0.030,
         0.210,
-        0.220,
+        0.310,
     ),
 }
 
 
-def equity_bridge_adjustment(scenario: Scenario) -> dict[str, float]:
+def h2_cash_flow(
+    scenario: Scenario, tax_rate: float = NORMALIZED_TAX_RATE
+) -> dict[str, float]:
+    """把 6/30 至年末的 NOPAT、再投资和 FCFF 接到同一投入资本路径。"""
+    h2_revenue = scenario.revenue_2026 - REVENUE_2026H1
+    h2_nopat = h2_revenue * scenario.h2_ebit_margin * (1 - tax_rate)
+    ending_invested_capital = scenario.revenue_2026 / scenario.capital_turnover
+    reinvestment = ending_invested_capital - INVESTED_CAPITAL_2026H1
+    h2_fcff = h2_nopat - reinvestment
+    estimated_gap_fcf = h2_fcff * BALANCE_SHEET_TO_PRICE_DAYS / H2_DAYS
+    post_valuation_fcf = h2_fcff * STUB_DAYS / H2_DAYS
+    return {
+        "h2_revenue": h2_revenue,
+        "h2_nopat": h2_nopat,
+        "ending_invested_capital": ending_invested_capital,
+        "h2_reinvestment": reinvestment,
+        "h2_fcff": h2_fcff,
+        "estimated_gap_fcf": estimated_gap_fcf,
+        "post_valuation_fcf": post_valuation_fcf,
+    }
+
+
+def equity_bridge_adjustment(
+    scenario: Scenario, tax_rate: float = NORMALIZED_TAX_RATE
+) -> dict[str, float]:
     """返回 EV 减股权价值的净桥接及其组成。"""
     necessary_cash = scenario.revenue_2026 * NECESSARY_CASH_RATE
     excess_non_operating_assets = NON_OPERATING_ASSETS - necessary_cash
-    estimated_gap_fcf = (
-        scenario.revenue_2026
-        * scenario.stub_fcf_margin
-        * BALANCE_SHEET_TO_PRICE_YEARS
-    )
+    estimated_gap_fcf = h2_cash_flow(scenario, tax_rate)["estimated_gap_fcf"]
     ev_minus_equity = (
         DEBT
         + NON_CONTROLLING_INTEREST_BOOK
@@ -122,23 +143,26 @@ def dcf(
     *,
     wacc: Optional[float] = None,
     terminal_growth: Optional[float] = None,
+    terminal_margin: Optional[float] = None,
     tax_rate: float = NORMALIZED_TAX_RATE,
 ):
     """返回显性期、终值、桥接和每股价值。"""
     discount_rate = scenario.wacc if wacc is None else wacc
     growth_terminal = scenario.terminal_growth if terminal_growth is None else terminal_growth
+    margin_terminal = scenario.terminal_margin if terminal_margin is None else terminal_margin
     if discount_rate <= growth_terminal:
         raise ValueError("WACC 必须高于终值增长率")
     if not 0 <= tax_rate < 1:
         raise ValueError("税率必须介于 0 和 1 之间")
 
-    # 估值日后的剩余 2026 年现金流。
-    stub_fcf = scenario.revenue_2026 * scenario.stub_fcf_margin * STUB_YEARS
+    # 先完成整个 H2 的资本滚存，再按 55/184 与 129/184 切分估值日前后现金流。
+    h2 = h2_cash_flow(scenario, tax_rate)
+    stub_fcf = h2["post_valuation_fcf"]
     stub_pv = stub_fcf / (1 + discount_rate) ** (STUB_YEARS / 2)
     explicit_pv = stub_pv
 
     # 用已披露 LTM 收入 / 2026H1 投入资本校准资本周转率，再滚存投入资本。
-    invested_capital = scenario.revenue_2026 / scenario.capital_turnover
+    invested_capital = h2["ending_invested_capital"]
     rows = []
     revenue = scenario.revenue_2026
 
@@ -179,7 +203,7 @@ def dcf(
     # 不默认永久超额回报：终值新增资本回报率与当期 WACC 收敛。
     terminal_roic = discount_rate
     terminal_revenue = revenue * (1 + growth_terminal)
-    terminal_nopat = terminal_revenue * scenario.terminal_margin * (1 - tax_rate)
+    terminal_nopat = terminal_revenue * margin_terminal * (1 - tax_rate)
     terminal_reinvestment = terminal_nopat * growth_terminal / terminal_roic
     terminal_fcff = terminal_nopat - terminal_reinvestment
     terminal_value = terminal_fcff / (discount_rate - growth_terminal)
@@ -189,12 +213,13 @@ def dcf(
     enterprise_value = explicit_pv + terminal_pv
 
     # 保留必要经营现金，并把 6/30 资本结构近似滚动至 8/24 定价日。
-    bridge = equity_bridge_adjustment(scenario)
+    bridge = equity_bridge_adjustment(scenario, tax_rate)
     equity_value = enterprise_value - bridge["ev_minus_equity"]
     value_per_share_cny = equity_value / FULLY_DILUTED_SHARES_YI
 
     return {
         "stub_fcf": stub_fcf,
+        **h2,
         "rows": rows,
         "explicit_pv": explicit_pv,
         "terminal_roic": terminal_roic,
@@ -258,7 +283,7 @@ def reverse_constant_margin_for_equity(target_equity: float) -> float:
             base.wacc,
             base.terminal_growth,
             margin,
-            base.stub_fcf_margin,
+            base.h2_ebit_margin,
             base.capital_turnover,
         )
         return dcf(adjusted)["equity_value"]
@@ -290,11 +315,11 @@ def print_model():
             f"终值占比={result['terminal_share']:.1%}"
         )
 
-    print("\n基准情景敏感性（元/股）")
+    print("\n基准情景敏感性：WACC × 终值 EBIT 利润率（元/股）")
     for wacc in (0.08, 0.09, 0.10):
         values = [
-            dcf(SCENARIOS["base"], wacc=wacc, terminal_growth=g)["value_per_share_cny"]
-            for g in (0.02, 0.025, 0.03)
+            dcf(SCENARIOS["base"], wacc=wacc, terminal_margin=margin)["value_per_share_cny"]
+            for margin in (0.14, 0.16, 0.18)
         ]
         print(f"WACC {wacc:.1%}: " + ", ".join(f"{value:.2f}" for value in values))
 
