@@ -1,56 +1,26 @@
 # CLAUDE.md
 
-## 项目目标
-
-这是一个 7 天零基础估值课程。学习顺序是：先理解价值从哪里来，亲手完成一套简化估值，再学习检查输入、方法、假设和结果是否可靠。
-
-课程允许在虚构练习或明确假设下计算企业价值、股权价值和每股价值；这些是教学结果，不是现实证券的目标价、评级或买卖建议。
-
-> 本文件是给 AI 助手和维护者的工作说明，不是学习材料。学习者从 `README.md`、`web/index.html` 或 `course/README.md` 开始。
-
-## 课程主线
-
-1. 读懂估值：估值把经营、现金流、增长和风险假设翻译成价值。
-2. 学会简化计算：打通 `EBIT → FCFF → EV → 股权价值 → 每股价值`，并完成最小 DCF、反向 DCF 和方法对照。
-3. 学会检查：核对对象、时点、单位、股本、来源、方法适用性和关键假设。
-4. 学会表达：给出假设条件、估值结果或区间、敏感性，以及尚不能确认的事项。
-
-不要把课程改回“只审查别人的估值”。检查能力建立在学习者已经理解并做过简化估值的基础上。
-
-## 必要边界
-
-- 教学计算不构成投资建议，不由模型价值直接推出股票值得买卖。
-- 已发生事实、公司指引、外部预测、内部假设、派生计算和分析判断必须分开；单家预测不得冒充市场共识。
-- 计算必须可复算：说明输入、单位、时点和公式，改输入后能够重跑。
-- 基础算术和公式题可以有明确正确答案；真实公司估值应使用情景或区间，并说明不确定性，避免伪精确。
-- 危险信号只是检查线索，不自动等于模型错误；说明为什么可疑、影响什么，以及目前还不能断言什么。
-
-## 课程设计约定
-
-- 七课按“理解 → 计算 → 检查 → 综合应用”推进，每一课都要服务这条主线。
-- 每课包含一个必做运行环节：学习者先写计算或方向判断，再运行脚本复算。脚本用于反馈，不替学习者作出判断。
-- 白话解释先讲经济含义，再讲术语、公式和检查规则；不要把 Agent、数据契约或工程实现当成课程主角。
-- 第 7 课同时验收两件事：能否解释和复算简化估值，能否检查这份估值的可靠性。
-
-## 仓库维护约定
-
-- `cases/01-yofc/frozen/` 是冻结教学材料；来源仓库的后续更新不自动同步。
-- 课程脚本只使用 Python 标准库并可离线运行。
-- `web/` 是纯静态离线互动版，不引入网络依赖。
-- 互动计算调用 `web/assets/tools.js` 中的统一实现，并通过 parity 测试与 `lab/` 下对应 Python 函数逐字段比对；页面内不另写一套公式或硬编码计算结果。
-
 ## 文档入口
 
-先读 `README.md`。互动入口是 `web/index.html`，纯文字入口是 `course/README.md`。陌生术语查 `docs/GLOSSARY.md`；检查材料时使用 `docs/AUDIT-CHECKLIST.md`；`docs/FIVE-NUMBERS.md` 是第 4 课的可选补充。
+- [项目方向与当前进展](docs/PROJECT-LOG.md)
+- [长飞光纤估值实战方案](docs/YOFC-VALUATION-PRACTICE.md)
+- [旧课程总览](README.md)
+- [旧课程文字入口](course/README.md)
+- [白话术语表](docs/GLOSSARY.md)
+- [快速科学学习法](docs/LEARNING-METHODS.md)
+- [DCF 的作用与局限](docs/DCF-AS-ASSUMPTION-TRANSLATOR.md)
+- [DCF 的五个控制杆](docs/FIVE-NUMBERS.md)
+- [分层审计清单](docs/AUDIT-CHECKLIST.md)
 
-## 命令
+## 常用命令
 
 ```bash
-python3 lab/record_contract.py       # 第1、3课：关键数字记录与 PIT 校验
-python3 lab/bridge.py                # 第2课：EBIT→FCFF、EV→每股价值
-python3 lab/mini_dcf.py              # 第4课：最小 DCF + 弹性排序
-python3 lab/reverse.py <市值>        # 第5课：反解价格隐含条件
-python3 lab/methods.py               # 第6课：四种估值方法对照
-python3 cases/01-yofc/knobs.py       # 第7课：案例 01 旋钮实验
-python3 -m unittest discover -s tests -v  # 全部自动检查
+python3 lab/record_contract.py
+python3 lab/bridge.py
+python3 lab/mini_dcf.py
+python3 lab/reverse.py <市值>
+python3 lab/methods.py
+python3 cases/01-yofc/knobs.py
+python3 -m unittest discover -s tests -v
+python3 -m http.server 8765 --directory web
 ```
