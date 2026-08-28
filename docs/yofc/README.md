@@ -8,7 +8,10 @@
 2. [数据来源与页码](DATA-SOURCES.md)
 3. [分部预测与 DCF](02-FORECAST-AND-DCF.md)
 4. [相对估值、反向 DCF 与 PEG](03-RELATIVE-REVERSE-PEG.md)
-5. [最小可复算估值模型](valuation_model.py)
+5. [杰富瑞 2026-07-22 研报案例](04-JEFFERIES-20260722-CASE.md)
+6. [杰富瑞估值方法与现有案例对比](05-JEFFERIES-METHOD-COMPARISON.md)
+7. [最小可复算估值模型](valuation_model.py)
+8. [杰富瑞 SOTP 独立复算](jefferies_20260722_model.py)
 
 ## 后续顺序
 
