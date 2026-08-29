@@ -10,13 +10,22 @@
 4. [相对估值、反向 DCF 与 PEG](03-RELATIVE-REVERSE-PEG.md)
 5. [杰富瑞 2026-07-22 研报案例](04-JEFFERIES-20260722-CASE.md)
 6. [杰富瑞估值方法与现有案例对比](05-JEFFERIES-METHOD-COMPARISON.md)
-7. [最小可复算估值模型](valuation_model.py)
-8. [杰富瑞 SOTP 独立复算](jefferies_20260722_model.py)
+7. [高盛 2026-08-28 研报案例](06-GOLDMAN-20260828-CASE.md)
+8. [野村 2026-08-21 研报案例](07-NOMURA-20260821-CASE.md)
+9. [摩根士丹利 2026-08-23 研报案例](08-MORGAN-STANLEY-20260823-CASE.md)
+10. [四家券商估值方法与本项目对比](09-FOUR-BROKER-METHOD-COMPARISON.md)
+11. [四家券商产业信息对比](10-FOUR-BROKER-INDUSTRY-COMPARISON.md)
+12. [最小可复算估值模型](valuation_model.py)
+13. [杰富瑞 SOTP 独立复算](jefferies_20260722_model.py)
+14. [高盛折现 P/E 独立复算](goldman_20260828_model.py)
+15. [野村 FY27 P/E 独立复算](nomura_20260821_model.py)
+16. [摩根士丹利 RIM 可见输入复核](morgan_stanley_20260823_model.py)
 
 ## 后续顺序
 
 1. 补充可公开复核的市场一致预期
-2. 把实际发布的 2026 年年报与当前情景对照
-3. 按新事实更新正常化利润率和再投资假设
+2. 补充ASP、有效产能、招标量、Capex时序和营运资金的原始证据
+3. 把实际发布的2026年年报与当前情景及四家券商预测对照
+4. 按新事实更新正常化利润率和再投资假设
 
 当前数字基准是 2026 年半年度报告。市场价格、汇率和可比公司数据等到相应估值章节再按统一定价日加入。
