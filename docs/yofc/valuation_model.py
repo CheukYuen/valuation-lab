@@ -23,8 +23,16 @@ NECESSARY_CASH_RATE = 0.03
 
 LTM_REVENUE = 176.77
 LTM_PARENT_NET_INCOME = 34.43
-LTM_EBIT = 47.34
-LTM_EBITDA = 59.43
+
+# EV 桥已把交易性金融资产、长期股权投资等金融资产剔除，因此分母必须同步剔除这些
+# 资产对应的投资收益和公允价值变动（第一层，口径一致性要求）。其他收益、资产处置、
+# 营业外收支和汇兑损益属于需要逐项判断的正常化调整（第二层），严格核心口径把它们
+# 一并剔除只是一种保守选择。两套口径都标 `PARTIAL`，模型同时输出，不宣称唯一正确。
+LTM_REPORTED_EBIT = 47.34
+LTM_DA = 12.09
+LTM_REPORTED_EBITDA = LTM_REPORTED_EBIT + LTM_DA
+LTM_CORE_EBIT = 42.86
+LTM_CORE_EBITDA = LTM_CORE_EBIT + LTM_DA
 PARENT_EQUITY = 163.64
 INVESTED_CAPITAL_2026H1 = 192.12
 OBSERVED_CAPITAL_TURNOVER = LTM_REVENUE / INVESTED_CAPITAL_2026H1
@@ -145,8 +153,28 @@ def dcf(
     terminal_growth: Optional[float] = None,
     terminal_margin: Optional[float] = None,
     tax_rate: float = NORMALIZED_TAX_RATE,
+    terminal_mode: str = "roic_wacc",
 ):
-    """返回显性期、终值、桥接和每股价值。"""
+    """返回显性期、终值、桥接和每股价值。
+
+    `terminal_mode` 决定终值再投资按哪条规则计算，两者是不同的经济假设：
+
+    - ``"roic_wacc"``（默认）：`再投资 = 终值 NOPAT × g ÷ WACC`，即终值新增资本回报率
+      与 WACC 收敛、增长不创造价值。代价是隐含的增量资本周转率会脱离显性期的
+      0.92x，出现边界跳变。
+    - ``"turnover"``：终值继续沿用显性期的资本周转率，
+      `再投资 = 终值收入 ÷ 周转率 − 上年期末投入资本`。资本效率在边界上连续，
+      但终值新增资本回报率不再等于 WACC。
+
+    注意两种模式的期间约定不同，这是一处已知接缝：``roic_wacc`` 用的是标准滞后约定
+    （再投资_t 支持 t+1 的增长），显性期和 ``turnover`` 用的是同期约定
+    （IC_t 对应 rev_t）。所以 ``roic_wacc`` 模式下按同期约定复算出来的持续 ROIC 是
+    `WACC ÷ (1+g)`，比构造目标略低。返回值同时给出两者，不掩盖这个差别。
+
+    两者都不是“正确答案”，差异反映的是对长期资本效率的不同假设。
+    """
+    if terminal_mode not in ("roic_wacc", "turnover"):
+        raise ValueError("terminal_mode 只能是 'roic_wacc' 或 'turnover'")
     discount_rate = scenario.wacc if wacc is None else wacc
     growth_terminal = scenario.terminal_growth if terminal_growth is None else terminal_growth
     margin_terminal = scenario.terminal_margin if terminal_margin is None else terminal_margin
@@ -200,13 +228,47 @@ def dcf(
         )
         invested_capital = ending_invested_capital
 
-    # 不默认永久超额回报：终值新增资本回报率与当期 WACC 收敛。
-    terminal_roic = discount_rate
     terminal_revenue = revenue * (1 + growth_terminal)
     terminal_nopat = terminal_revenue * margin_terminal * (1 - tax_rate)
-    terminal_reinvestment = terminal_nopat * growth_terminal / terminal_roic
+    if terminal_mode == "roic_wacc":
+        # 不默认永久超额回报：终值新增资本回报率与当期 WACC 收敛。
+        terminal_roic = discount_rate
+        terminal_reinvestment = terminal_nopat * growth_terminal / terminal_roic
+    else:
+        # 终值继续沿用显性期资本周转率，资本效率在边界上连续。
+        terminal_reinvestment = (
+            terminal_revenue / scenario.capital_turnover - invested_capital
+        )
+        terminal_roic = (
+            growth_terminal * terminal_nopat / terminal_reinvestment
+            if terminal_reinvestment
+            else float("inf")
+        )
     terminal_fcff = terminal_nopat - terminal_reinvestment
     terminal_value = terminal_fcff / (discount_rate - growth_terminal)
+    # 终值再投资隐含的增量资本周转率，用于和显性期 0.92x 对照。
+    terminal_incremental_turnover = (
+        (terminal_revenue - revenue) / terminal_reinvestment
+        if terminal_reinvestment
+        else float("inf")
+    )
+    # 两个不同的“终值 ROIC”，不能混用：
+    #   稳定期持续增量 ROIC —— 进入永续后每年 ΔNOPAT ÷ 同期再投资。采用与显性期
+    #     相同的同期约定（IC_t 对应 rev_t，再投资_t 从 NOPAT_t 中扣除），因此
+    #     ΔNOPAT_t = g × NOPAT_(t-1) = g × 终值NOPAT ÷ (1+g)。
+    #   边界 ROIC —— 2031 年到终值首年这一格的实际增量回报。因为终值利润率同时
+    #     下降，NOPAT 是减少的，这个数通常为负，衡量的是换挡本身而不是稳定期。
+    last_explicit_nopat = rows[-1]["nopat"] if rows else terminal_nopat
+    terminal_sustained_roic = (
+        growth_terminal * terminal_nopat / (1 + growth_terminal) / terminal_reinvestment
+        if terminal_reinvestment
+        else float("inf")
+    )
+    terminal_boundary_roic = (
+        (terminal_nopat - last_explicit_nopat) / terminal_reinvestment
+        if terminal_reinvestment
+        else float("inf")
+    )
     terminal_time = 5 + STUB_YEARS
     terminal_pv = terminal_value / (1 + discount_rate) ** terminal_time
 
@@ -222,7 +284,13 @@ def dcf(
         **h2,
         "rows": rows,
         "explicit_pv": explicit_pv,
-        "terminal_roic": terminal_roic,
+        "terminal_mode": terminal_mode,
+        # roic_wacc 模式下由构造给定（= WACC，按滞后约定）；turnover 模式下为 None。
+        "terminal_target_roic": terminal_roic if terminal_mode == "roic_wacc" else None,
+        "terminal_sustained_roic": terminal_sustained_roic,
+        "terminal_boundary_roic": terminal_boundary_roic,
+        "terminal_reinvestment": terminal_reinvestment,
+        "terminal_incremental_turnover": terminal_incremental_turnover,
         "terminal_fcff": terminal_fcff,
         "terminal_value": terminal_value,
         "terminal_pv": terminal_pv,
@@ -242,29 +310,70 @@ def actual_combined_market_cap() -> float:
 
 
 def relative_multiples(equity_value: float) -> dict[str, float]:
-    """使用基准桥接口径计算长飞自身的 LTM 倍数。"""
+    """使用基准桥接口径计算长飞自身的 LTM 倍数。
+
+    EV 类倍数使用严格核心 EBIT / EBITDA。它做完了第一层（剔除被 EV 桥减掉的金融
+    资产对应的投资收益和公允价值变动，口径一致性要求），也做完了第二层（其他收益、
+    资产处置、营业外收支、汇兑损益等需要逐项判断的正常化调整，此处取最保守处理）。
+    第二层尚未逐项论证，因此结果为 `PARTIAL`；报表对照口径见
+    `reported_caliber_ev_multiples`，两套并列，不宣称哪一套是唯一正确答案。
+    """
     enterprise_value = (
         equity_value + equity_bridge_adjustment(SCENARIOS["base"])["ev_minus_equity"]
     )
     return {
         "pe": equity_value / LTM_PARENT_NET_INCOME,
         "pb": equity_value / PARENT_EQUITY,
-        "ev_ebit": enterprise_value / LTM_EBIT,
-        "ev_ebitda": enterprise_value / LTM_EBITDA,
+        "ev_ebit": enterprise_value / LTM_CORE_EBIT,
+        "ev_ebitda": enterprise_value / LTM_CORE_EBITDA,
+    }
+
+
+def reported_caliber_ev_multiples(equity_value: float) -> dict[str, float]:
+    """报表对照口径：EV 除以未做任何调整的报表 EBIT / EBITDA。
+
+    分子已剔除金融资产、分母仍含其收益，口径不一致会低估倍数；保留它是为了让读者
+    看到两层调整各自值多少，同样标 `PARTIAL`。
+    """
+    enterprise_value = (
+        equity_value + equity_bridge_adjustment(SCENARIOS["base"])["ev_minus_equity"]
+    )
+    return {
+        "ev_ebit": enterprise_value / LTM_REPORTED_EBIT,
+        "ev_ebitda": enterprise_value / LTM_REPORTED_EBITDA,
     }
 
 
 def peer_median_implied_values() -> dict[str, float]:
-    """机械套用三家可比公司中位数；只用于展示，不是估值结论。"""
+    """机械套用三家可比公司中位数；只用于展示，不是估值结论。
+
+    注意：可比公司中位数来自二手汇总的报表口径，这里却乘在长飞的严格核心口径上，
+    两边尚未按同一 EV 桥重建。所以这只是跨口径的机械示意，不是“修正后的正确估值”，
+    状态为 `PARTIAL`；报表口径下的同一算法见
+    `peer_median_implied_values_reported_caliber`。
+    """
     bridge = equity_bridge_adjustment(SCENARIOS["base"])["ev_minus_equity"]
     return {
         "pe": LTM_PARENT_NET_INCOME * PEER_MEDIAN_PE / FULLY_DILUTED_SHARES_YI,
         "pb": PARENT_EQUITY * PEER_MEDIAN_PB / FULLY_DILUTED_SHARES_YI,
         "ev_ebit": (
-            LTM_EBIT * PEER_MEDIAN_EV_EBIT - bridge
+            LTM_CORE_EBIT * PEER_MEDIAN_EV_EBIT - bridge
         ) / FULLY_DILUTED_SHARES_YI,
         "ev_ebitda": (
-            LTM_EBITDA * PEER_MEDIAN_EV_EBITDA - bridge
+            LTM_CORE_EBITDA * PEER_MEDIAN_EV_EBITDA - bridge
+        ) / FULLY_DILUTED_SHARES_YI,
+    }
+
+
+def peer_median_implied_values_reported_caliber() -> dict[str, float]:
+    """同一机械套用，但 EV 类改用报表口径分母；与严格核心口径并列展示。"""
+    bridge = equity_bridge_adjustment(SCENARIOS["base"])["ev_minus_equity"]
+    return {
+        "ev_ebit": (
+            LTM_REPORTED_EBIT * PEER_MEDIAN_EV_EBIT - bridge
+        ) / FULLY_DILUTED_SHARES_YI,
+        "ev_ebitda": (
+            LTM_REPORTED_EBITDA * PEER_MEDIAN_EV_EBITDA - bridge
         ) / FULLY_DILUTED_SHARES_YI,
     }
 
@@ -315,6 +424,25 @@ def print_model():
             f"终值占比={result['terminal_share']:.1%}"
         )
 
+    print("\n终值口径对照：新增资本 ROIC=WACC 与 继续用 0.92x 资本周转率")
+    for scenario in SCENARIOS.values():
+        a = dcf(scenario)
+        b = dcf(scenario, terminal_mode="turnover")
+        print(
+            f"{scenario.name}: ROIC=WACC 口径 {a['value_per_share_cny']:.2f} 元/股"
+            f"（终值再投资 {a['terminal_reinvestment']:.2f}，隐含增量周转率 "
+            f"{a['terminal_incremental_turnover']:.2f}x，构造目标 ROIC "
+            f"{a['terminal_target_roic']:.2%}，按同期约定复算的持续 ROIC "
+            f"{a['terminal_sustained_roic']:.2%}，终值占 EV {a['terminal_share']:.1%}）"
+        )
+        print(
+            f"{'':<4}继续用 {scenario.capital_turnover:.2f}x 口径 "
+            f"{b['value_per_share_cny']:.2f} 元/股"
+            f"（终值再投资 {b['terminal_reinvestment']:.2f}，稳定期持续增量 ROIC "
+            f"{b['terminal_sustained_roic']:.2%}，2031→终值首年边界 ROIC "
+            f"{b['terminal_boundary_roic']:.2%}，终值占 EV {b['terminal_share']:.1%}）"
+        )
+
     print("\n基准情景敏感性：WACC × 终值 EBIT 利润率（元/股）")
     for wacc in (0.08, 0.09, 0.10):
         values = [
@@ -333,7 +461,7 @@ def print_model():
     )
 
     combined_market_cap = actual_combined_market_cap()
-    print("\n长飞自身 LTM 倍数（P/E, P/B, EV/EBIT, EV/EBITDA）")
+    print("\n长飞自身 LTM 倍数（P/E, P/B, EV/EBIT, EV/EBITDA；EV 类用严格核心口径）")
     valuation_sets = {
         "实际 A+H 混合市值": combined_market_cap,
         "H 股单一价格隐含": H_PRICE_HKD * HKD_TO_CNY * FULLY_DILUTED_SHARES_YI,
@@ -343,11 +471,22 @@ def print_model():
         multiples = relative_multiples(equity_value)
         print(name + ": " + ", ".join(f"{value:.1f}x" for value in multiples.values()))
 
+    print("对照：EV 类倍数改用报表口径分母（分子分母不一致，仅供比较）")
+    for name, equity_value in valuation_sets.items():
+        reported = reported_caliber_ev_multiples(equity_value)
+        print(name + ": " + ", ".join(f"{value:.1f}x" for value in reported.values()))
+
     implied = peer_median_implied_values()
     print(
-        "三家可比公司中位数机械套用（元/股）: "
+        "三家可比公司中位数机械套用（元/股，EV 类为严格核心口径分母）: "
         + ", ".join(f"{value:.2f}" for value in implied.values())
     )
+    implied_reported = peer_median_implied_values_reported_caliber()
+    print(
+        "  同上，EV 类改用报表口径分母: "
+        + ", ".join(f"{value:.2f}" for value in implied_reported.values())
+    )
+    print("  两组都是跨口径机械示意：可比公司中位数本身是报表口径，不构成估值结论。")
 
     h_price_cny = H_PRICE_HKD * HKD_TO_CNY
     print("\n反向 DCF：基准其他假设下的恒定 EBIT 利润率")
