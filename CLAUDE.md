@@ -14,6 +14,7 @@
 - [DCF 的作用与局限](docs/DCF-AS-ASSUMPTION-TRANSLATOR.md)
 - [DCF 的五个控制杆](docs/FIVE-NUMBERS.md)
 - [分层审计清单](docs/AUDIT-CHECKLIST.md)
+- [Claude 金融技能包快照（第三方参考）](vendor/claude-fsi-skills/README.md)
 
 ## 常用命令
 
