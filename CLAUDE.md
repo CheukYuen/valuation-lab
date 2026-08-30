@@ -5,6 +5,8 @@
 - [项目方向与当前进展](docs/PROJECT-LOG.md)
 - [长飞光纤估值实战方案](docs/YOFC-VALUATION-PRACTICE.md)
 - [长飞光纤估值实战内容](docs/yofc/README.md)
+- [中天科技估值实战内容](docs/ztt/README.md)
+- [一个人的最小有效投研流程](docs/FIBER-MINIMUM-VIABLE-RESEARCH-WORKFLOW.md)
 - [旧课程总览](README.md)
 - [旧课程文字入口](course/README.md)
 - [白话术语表](docs/GLOSSARY.md)
