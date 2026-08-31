@@ -1,0 +1,62 @@
+{
+  "symbol": "600522",
+  "name": "中天科技",
+  "as_of": "2026-08-30",
+  "datahub_root": "/Users/leon/Stock/investment-research-copilot/datahub",
+  "quote": {
+    "status": "ok",
+    "source": "tencent",
+    "fetched_at": "2026-08-30T10:45:37+08:00",
+    "period": "2026-08-28",
+    "price_rmb": 35.04,
+    "pe_ttm": 32.13,
+    "pb": 3.11,
+    "total_market_cap_rmb_yi": 1195.9
+  },
+  "profile": {
+    "status": "partial",
+    "source": "eastmoney",
+    "fetched_at": "2026-08-30T10:45:38+08:00",
+    "total_shares": 3412949652,
+    "float_shares": 3412949652,
+    "note": "baostock未安装；股本由datahub内置东财备源返回"
+  },
+  "financials_2026_h1": {
+    "status": "ok",
+    "source": "sina_abstract",
+    "fetched_at": "2026-08-30T10:45:39+08:00",
+    "period": "2026-06-30",
+    "revenue_rmb": 30938956462.98,
+    "net_profit_parent_rmb": 2387490988.84,
+    "eps_basic_rmb": 0.704
+  },
+  "balance_sheet_2026_h1": {
+    "status": "ok",
+    "source": "sina",
+    "fetched_at": "2026-08-30T10:45:49+08:00",
+    "period": "2026-06-30",
+    "cash_rmb": 17043300417.32,
+    "accounts_receivable_rmb": 17836781328.49,
+    "inventory_rmb": 9107767439.43,
+    "total_equity_parent_rmb": 38445028180.27
+  },
+  "cash_flow_2026_h1": {
+    "status": "ok",
+    "source": "sina",
+    "fetched_at": "2026-08-30T10:45:49+08:00",
+    "period": "2026-06-30",
+    "cfo_rmb": 147771861.19,
+    "cfi_rmb": -999748261.35,
+    "cff_rmb": 222427194.67
+  },
+  "consensus_eps": {
+    "status": "ok",
+    "source": "ths",
+    "fetched_at": "2026-08-30T10:45:40+08:00",
+    "values": [
+      {"period": "FY2026", "mean_rmb": 1.88, "min_rmb": 1.36, "max_rmb": 2.24, "analyst_count": 9},
+      {"period": "FY2027", "mean_rmb": 2.29, "min_rmb": 1.87, "max_rmb": 2.74, "analyst_count": 9},
+      {"period": "FY2028", "mean_rmb": 2.72, "min_rmb": 2.18, "max_rmb": 3.25, "analyst_count": 7}
+    ]
+  }
+}

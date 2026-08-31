@@ -46,6 +46,7 @@ class ZTTDocumentTests(unittest.TestCase):
     def test_workflow_covers_research_layers_and_evidence_boundaries(self):
         text = (ROOT / "docs" / "FIBER-MINIMUM-VIABLE-RESEARCH-WORKFLOW.md").read_text()
         for phrase in [
+            "终端场景/系统变化",
             "行业利润池表",
             "产业链地图",
             "公司利润桥",
@@ -53,6 +54,9 @@ class ZTTDocumentTests(unittest.TestCase):
             "证据与验证表",
             "宣布产能不等于",
             "反向DCF",
+            "行业观测值可以共用，公司影响函数不能共用",
+            "Agent每次运行的状态流",
+            "AGENT-ASSUMPTION",
             "停止规则",
         ]:
             self.assertIn(phrase, text)
@@ -60,4 +64,3 @@ class ZTTDocumentTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
