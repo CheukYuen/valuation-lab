@@ -2,11 +2,21 @@
 
 金额单位：人民币亿元；每股价值单位：元。
 模型只保存文档中明示的事实与假设，不抓取数据，不产生投资建议。
+折现率不再按情景直接给定，而是从 `cost_of_capital.py` 的 CAPM 推导取得：三个情景
+共用同一个 WACC，经营好坏只通过收入、利润率和资本效率表达，不再在折现率上表达第二次。
 """
 
 from dataclasses import dataclass
 from typing import Optional
 
+from cost_of_capital import DERIVED_WACC, wacc as derive_wacc
+
+
+# 市值权重下的推导结果，约 10.49%；三情景共用。推导与替代口径见 cost_of_capital.py。
+WACC = DERIVED_WACC
+# 账面权重口径的对照值，约 8.08%。它不是主口径，只用来显示“权重惯例”这一个选择
+# 就能覆盖旧版 8.0%–10.5% 的全部区间。
+BOOK_WEIGHT_WACC = derive_wacc(weights="book")
 
 NORMALIZED_TAX_RATE = 0.20
 REPORTED_H1_TAX_RATE = 0.1623
@@ -70,7 +80,7 @@ SCENARIOS = {
         (112.0, 42.0, 28.0),
         (0.00, -0.03, 0.00, 0.02, 0.03),
         (0.20, 0.15, 0.12, 0.10, 0.09),
-        0.105,
+        WACC,
         0.020,
         0.080,
         0.200,
@@ -81,7 +91,7 @@ SCENARIOS = {
         (120.0, 45.0, 30.0),
         (0.08, 0.06, 0.05, 0.04, 0.03),
         (0.27, 0.24, 0.21, 0.19, 0.18),
-        0.090,
+        WACC,
         0.025,
         0.160,
         0.270,
@@ -92,7 +102,7 @@ SCENARIOS = {
         (128.0, 49.0, 32.0),
         (0.15, 0.12, 0.10, 0.08, 0.06),
         (0.31, 0.29, 0.27, 0.25, 0.23),
-        0.080,
+        WACC,
         0.030,
         0.210,
         0.310,
@@ -161,9 +171,12 @@ def dcf(
         raise ValueError("税率必须介于 0 和 1 之间")
 
     # 先完成整个 H2 的资本滚存，再按 55/184 与 129/184 切分估值日前后现金流。
+    # 折现惯例：全模型统一按“现金流发生区间的期末”折现。显性期各年折 STUB_YEARS+t，
+    # 终值折 5+STUB_YEARS，残余年份同样折满 STUB_YEARS，不再对残余期单独用期中折现。
+    # 期末惯例相对期中惯例系统性偏保守（约半年折现，基准情景约 4.4%），此为已披露选择。
     h2 = h2_cash_flow(scenario, tax_rate)
     stub_fcf = h2["post_valuation_fcf"]
-    stub_pv = stub_fcf / (1 + discount_rate) ** (STUB_YEARS / 2)
+    stub_pv = stub_fcf / (1 + discount_rate) ** STUB_YEARS
     explicit_pv = stub_pv
 
     # 用已披露 LTM 收入 / 2026H1 投入资本校准资本周转率，再滚存投入资本。
@@ -297,33 +310,95 @@ def peer_median_implied_values() -> dict[str, float]:
     }
 
 
-def reverse_constant_margin_for_equity(target_equity: float) -> float:
-    """固定基准情景其他条件，只反解 2027 年起恒定 EBIT 利润率。"""
-    base = SCENARIOS["base"]
+def solve_monotone(
+    target: float,
+    fn,
+    low: float,
+    high: float,
+    iterations: int = 200,
+    samples: int = 20,
+) -> float:
+    """二分求 fn(x)=target。全项目唯一的单变量反解入口。
 
-    def equity_value(margin: float) -> float:
-        adjusted = Scenario(
-            base.name,
-            base.revenue_2026,
-            base.segment_revenue_2026,
-            base.growth,
-            (margin,) * 5,
-            base.wacc,
-            base.terminal_growth,
-            margin,
-            base.h2_ebit_margin,
-            base.capital_turnover,
+    调用方必须给出确实包含解的区间：先校验端点把目标夹住，再在区间内等距抽样校验
+    单调。抽样只是抽样：它能挡住明显的非单调函数，挡不住窄于采样间距的局部回落，
+    因此它降低而不是消除“多解时静默返回其中一个根”的风险。
+    """
+    low_value, high_value = fn(low), fn(high)
+    if low_value > high_value:
+        raise ValueError("solve_monotone 只接受在区间内单调递增的函数")
+    if not low_value <= target <= high_value:
+        raise ValueError(
+            f"目标 {target:.4f} 不在可达区间 [{low_value:.4f}, {high_value:.4f}] 内"
         )
-        return dcf(adjusted)["equity_value"]
-
-    low, high = 0.0, 2.0
-    for _ in range(100):
+    previous = low_value
+    for step in range(1, samples + 1):
+        current = fn(low + (high - low) * step / samples)
+        if current < previous:
+            raise ValueError("函数在搜索区间内不单调，二分解不唯一")
+        previous = current
+    for _ in range(iterations):
         middle = (low + high) / 2
-        if equity_value(middle) < target_equity:
+        if fn(middle) < target:
             low = middle
         else:
             high = middle
     return (low + high) / 2
+
+
+def constant_margin_scenario(
+    margin: float,
+    base: Optional[Scenario] = None,
+    terminal_margin: Optional[float] = None,
+) -> Scenario:
+    """把 2027–2031 年 EBIT 利润率替换为待求常数。
+
+    默认终值利润率同步等于该常数；传入 terminal_margin 则把终值钉死在给定值，
+    只松开显性期。两种口径的答案差别很大，必须在结论里说清用的是哪一种。
+    """
+    reference = SCENARIOS["base"] if base is None else base
+    return Scenario(
+        reference.name,
+        reference.revenue_2026,
+        reference.segment_revenue_2026,
+        reference.growth,
+        (margin,) * 5,
+        reference.wacc,
+        reference.terminal_growth,
+        margin if terminal_margin is None else terminal_margin,
+        reference.h2_ebit_margin,
+        reference.capital_turnover,
+    )
+
+
+def constant_margin_line(
+    base: Optional[Scenario] = None, terminal_margin: Optional[float] = None
+) -> tuple[float, float]:
+    """返回股权价值对恒定 EBIT 利润率的一次函数 (截距, 斜率)。
+
+    固定收入路径后，EBIT、NOPAT、终值 NOPAT 都与利润率成正比，再投资完全由收入和
+    资本周转率决定、与利润率无关，因此股权价值是利润率的严格一次函数。反解不需要
+    二分，闭式解即可，且能直接说明“隐含利润率”只是刻度换算而非搜索发现。
+    """
+    intercept = dcf(constant_margin_scenario(0.0, base, terminal_margin))["equity_value"]
+    slope = (
+        dcf(constant_margin_scenario(1.0, base, terminal_margin))["equity_value"]
+        - intercept
+    )
+    return intercept, slope
+
+
+def reverse_constant_margin_for_equity(
+    target_equity: float,
+    base: Optional[Scenario] = None,
+    terminal_margin: Optional[float] = None,
+) -> float:
+    """固定其他条件，只反解 2027 年起恒定 EBIT 利润率（闭式解）。
+
+    terminal_margin 为 None 时终值利润率同步抬高；给定值时终值保持不变。
+    """
+    intercept, slope = constant_margin_line(base, terminal_margin)
+    return (target_equity - intercept) / slope
 
 
 def reverse_constant_margin_for_price(price_cny: float) -> float:
@@ -343,13 +418,34 @@ def print_model():
             f"终值占比={result['terminal_share']:.1%}"
         )
 
-    print("\n基准情景敏感性：WACC × 终值 EBIT 利润率（元/股）")
-    for wacc in (0.08, 0.09, 0.10):
+    print("\n基准情景敏感性：WACC × 终值 EBIT 利润率（元/股，中心格为基准）")
+    margins = (0.12, 0.14, 0.16, 0.18, 0.20)
+    print("WACC \\ 终值利润率  " + "".join(f"{margin:>8.0%}" for margin in margins))
+    for offset in (-0.02, -0.01, 0.0, 0.01, 0.02):
+        rate = WACC + offset
         values = [
-            dcf(SCENARIOS["base"], wacc=wacc, terminal_margin=margin)["value_per_share_cny"]
-            for margin in (0.14, 0.16, 0.18)
+            dcf(SCENARIOS["base"], wacc=rate, terminal_margin=margin)["value_per_share_cny"]
+            for margin in margins
         ]
-        print(f"WACC {wacc:.1%}: " + ", ".join(f"{value:.2f}" for value in values))
+        marker = " ←基准 WACC" if offset == 0.0 else ""
+        print(
+            f"{rate:>14.2%}  " + "".join(f"{value:>8.2f}" for value in values) + marker
+        )
+
+    print("\n账面权重 WACC 对照（不是主口径）")
+    for key, scenario in SCENARIOS.items():
+        value = dcf(scenario, wacc=BOOK_WEIGHT_WACC)["value_per_share_cny"]
+        print(f"{scenario.name} @ {BOOK_WEIGHT_WACC:.2%}: {value:.2f} 元/股")
+
+    print("\n交叉校验：DCF 结果隐含的 LTM 倍数与终值占比")
+    for key, scenario in SCENARIOS.items():
+        result = dcf(scenario)
+        multiples = relative_multiples(result["equity_value"])
+        print(
+            f"{scenario.name}: EV/EBITDA={multiples['ev_ebitda']:.1f}x, "
+            f"EV/EBIT={multiples['ev_ebit']:.1f}x, P/E={multiples['pe']:.1f}x, "
+            f"终值占 EV={result['terminal_share']:.1%}"
+        )
 
     reported_tax_value = dcf(
         SCENARIOS["base"], tax_rate=REPORTED_H1_TAX_RATE

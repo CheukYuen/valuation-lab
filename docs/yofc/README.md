@@ -15,17 +15,22 @@
 9. [摩根士丹利 2026-08-23 研报案例](08-MORGAN-STANLEY-20260823-CASE.md)
 10. [四家券商估值方法与本项目对比](09-FOUR-BROKER-METHOD-COMPARISON.md)
 11. [四家券商产业信息对比](10-FOUR-BROKER-INDUSTRY-COMPARISON.md)
-12. [最小可复算估值模型](valuation_model.py)
-13. [杰富瑞 SOTP 独立复算](jefferies_20260722_model.py)
-14. [高盛折现 P/E 独立复算](goldman_20260828_model.py)
-15. [野村 FY27 P/E 独立复算](nomura_20260821_model.py)
-16. [摩根士丹利 RIM 可见输入复核](morgan_stanley_20260823_model.py)
+12. [2026-08-28 反向 DCF 实战](11-REVERSE-DCF-20260828.md)
+13. [最小可复算估值模型](valuation_model.py)
+14. [WACC 推导（CAPM、Beta 回归）](cost_of_capital.py)
+15. [Beta 回归价格快照](beta_20260824_snapshot.json)
+16. [2026-08-28 反向 DCF 复算](reverse_dcf_20260828.py)
+17. [杰富瑞 SOTP 独立复算](jefferies_20260722_model.py)
+18. [高盛折现 P/E 独立复算](goldman_20260828_model.py)
+19. [野村 FY27 P/E 独立复算](nomura_20260821_model.py)
+20. [摩根士丹利 RIM 可见输入复核](morgan_stanley_20260823_model.py)
 
 ## 后续顺序
 
-1. 补充可公开复核的市场一致预期
-2. 补充ASP、有效产能、招标量、Capex时序和营运资金的原始证据
-3. 把实际发布的2026年年报与当前情景及四家券商预测对照
+1. 补齐定价日中国 10 年期国债收益率和股权风险溢价的原始来源，把 WACC 从 `PARTIAL` 升级为已验证输入
+2. 补充可公开复核的市场一致预期
+3. 补充ASP、有效产能、招标量、Capex时序和营运资金的原始证据
+4. 把实际发布的2026年年报与当前情景及四家券商预测对照
 4. 按新事实更新正常化利润率和再投资假设
 
 当前数字基准是 2026 年半年度报告。市场价格、汇率和可比公司数据等到相应估值章节再按统一定价日加入。

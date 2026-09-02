@@ -8,6 +8,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "docs" / "yofc"))
 
+import cost_of_capital as cc  # noqa: E402
 import valuation_model as vm  # noqa: E402
 
 
@@ -17,7 +18,7 @@ DOC_RELATIVE = ROOT / "docs" / "yofc" / "03-RELATIVE-REVERSE-PEG.md"
 
 class DcfTests(unittest.TestCase):
     def test_headline_values_per_share(self):
-        expected = {"bear": 13.47, "base": 36.64, "bull": 69.34}
+        expected = {"bear": 13.47, "base": 30.47, "bull": 49.11}
         for key, value in expected.items():
             with self.subTest(scenario=key):
                 self.assertAlmostEqual(
@@ -32,6 +33,13 @@ class DcfTests(unittest.TestCase):
             places=6,
         )
         self.assertGreater(result["value_per_share_hkd"], result["value_per_share_cny"])
+
+    def test_all_scenarios_share_one_derived_wacc(self):
+        """经营好坏只能通过收入、利润率和资本效率表达，不能再由折现率表达一次。"""
+        for key, scenario in vm.SCENARIOS.items():
+            with self.subTest(scenario=key):
+                self.assertAlmostEqual(scenario.wacc, cc.DERIVED_WACC, places=12)
+        self.assertAlmostEqual(vm.WACC, 0.104892, places=6)
 
     def test_terminal_roic_equals_wacc(self):
         for key, scenario in vm.SCENARIOS.items():
@@ -84,15 +92,15 @@ class ReverseDcfTests(unittest.TestCase):
     def test_documented_implied_margins(self):
         self.assertAlmostEqual(
             vm.reverse_constant_margin_for_equity(vm.actual_combined_market_cap()),
-            0.9981,
+            1.1738,
             places=4,
         )
         self.assertAlmostEqual(
-            vm.reverse_constant_margin_for_price(vm.A_PRICE_CNY), 1.5053, places=4
+            vm.reverse_constant_margin_for_price(vm.A_PRICE_CNY), 1.7707, places=4
         )
         self.assertAlmostEqual(
             vm.reverse_constant_margin_for_price(vm.H_PRICE_HKD * vm.HKD_TO_CNY),
-            0.5093,
+            0.5984,
             places=4,
         )
 
@@ -104,10 +112,17 @@ class DocumentConsistencyTests(unittest.TestCase):
         cls.relative_doc = DOC_RELATIVE.read_text(encoding="utf-8")
 
     def test_dcf_doc_keeps_one_terminal_path(self):
-        for value in ("13.47", "36.64", "69.34", "1.61x"):
+        for value in ("13.47", "30.47", "49.11", "1.61x"):
             self.assertIn(value, self.dcf_doc)
         for removed in ("12.03", "39.37", "86.85", "terminal_mode"):
             self.assertNotIn(removed, self.dcf_doc)
+
+    def test_dcf_doc_reports_the_derived_wacc_and_its_uncertainty(self):
+        for value in ("10.49%", "1.052", "0.069", "[0.58, 1.53]", "8.08%", "2.62%"):
+            self.assertIn(value, self.dcf_doc)
+        # 旧版三个直接给定的折现率不应再作为情景参数出现。
+        self.assertNotIn("取三者最高的 10.5%", self.dcf_doc)
+        self.assertNotIn("取中间值 9.0%", self.dcf_doc)
 
     def test_relative_doc_keeps_calibers_without_ev_target_prices(self):
         for value in ("48.7", "38.0", "44.1", "35.1"):

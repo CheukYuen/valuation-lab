@@ -125,7 +125,7 @@ class BrokerCaseDocumentTests(unittest.TestCase):
             "266港元",
             "230港元",
             "292港元",
-            "15.56/42.34/80.12港元",
+            "15.57/35.21/56.75港元",
             "为什么不能平均目标价",
         ]:
             self.assertIn(phrase, text)

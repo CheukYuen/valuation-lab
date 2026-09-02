@@ -1,6 +1,6 @@
 # 长飞光纤数据来源
 
-访问日期：2026-08-27。除非特别说明，金额单位均为人民币元，财务数据均为长飞光纤合并报表口径。
+访问日期：2026-08-27；S16–S18 补充访问于 2026-08-30 至 2026-08-31；S19–S22 周线序列取数于 2026-08-31。除非特别说明，金额单位均为人民币元，财务数据均为长飞光纤合并报表口径。
 
 | 编号 | 正式来源 | 本阶段使用页码 | 用途 |
 |---|---|---|---|
@@ -19,6 +19,17 @@
 | S13 | [中际旭创 2026-08-24 日线（腾讯行情 API）](https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sz300308,day,2026-08-24,2026-08-24,1,) | 该日记录 | 定价日收盘价 |
 | S14 | [光迅科技 2026-08-24 日线（腾讯行情 API）](https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sz002281,day,2026-08-24,2026-08-24,1,) | 该日记录 | 定价日收盘价 |
 | S15 | [天孚通信 2026-08-24 日线（腾讯行情 API）](https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sz300394,day,2026-08-24,2026-08-24,1,) | 该日记录 | 定价日收盘价 |
+| S16 | [长飞 A 股 2026-08-28 日线（腾讯行情 API）](https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh601869,day,2026-08-28,2026-08-28,1,) | 该日记录 | 新版 Reverse DCF 的 601869.SH 收盘价 |
+| S17 | [长飞 H 股 2026-08-28 日线（腾讯行情 API）](https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=hk06869,day,2026-08-28,2026-08-28,1,) | 该日记录 | 新版 Reverse DCF 的 06869.HK 收盘价 |
+| S18 | [2026-08-28 港币兑人民币中间价（中国货币网）](https://www.chinamoney.com.cn/ags/ms/cm-u-bk-ccpr/CcprHisNew?lang=CN&startDate=2026-08-28&endDate=2026-08-28&currency=HKD/CNY) | 该日记录 | 1 港元兑 0.86498 人民币；新版 Reverse DCF 的 H 股价格换算 |
+| S19 | [长飞 A 股周线序列（腾讯行情 API）](https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh601869,week,2021-08-01,2026-08-24,300,qfq) | 2021-08-06 至 2026-08-21 共 258 周 | 前复权周收盘价；Beta 回归主口径 |
+| S20 | [沪深300指数周线序列（腾讯行情 API）](https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sh000300,week,2021-08-01,2026-08-24,300,) | 同上 | Beta 回归的市场基准 |
+| S21 | [长飞 H 股与恒生指数周线序列（腾讯行情 API）](https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=hk06869,week,2021-08-01,2026-08-24,300,qfq) | 2021-08-06 至 2026-08-21 共 264 周 | H 股 Beta 参照；该序列无前复权数据，仅作对照 |
+| S22 | [三家可比公司周线序列（腾讯行情 API）](https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sz300308,week,2021-08-01,2026-08-24,300,qfq) | 同 S19 窗口 | 中际旭创、光迅科技、天孚通信前复权周收盘价；可比公司 Beta 交叉参照 |
+
+S19–S22 的原始序列已保存为仓库内快照 [`beta_20260824_snapshot.json`](beta_20260824_snapshot.json)（取数日 2026-08-31），每条序列的完整请求参数记录在文件的 `request_param` 字段，`python3 docs/yofc/cost_of_capital.py` 离线复算 Beta 时只读该快照，不再联网。
+
+**无风险利率与股权风险溢价目前是 `MISSING`。** 本项目未取得可复核的 2026-08-24 中国 10 年期国债收益率和股权风险溢价原始记录。WACC 推导中这两项借用 R2 与 R4 的可见输入并取中值（高盛 3.5% / 6.5%，大摩 3.0% / 8.0%；中值 3.25% / 7.25%），状态标为 `PARTIAL`。高盛 Beta 1.2、大摩 Beta 1.0 以及两家都写成 11% 的股权成本**没有**进入本项目主口径；Beta 用 S19–S22 回归。对照表见 [02 §2.3.1](02-FORECAST-AND-DCF.md#231-股权成本capm-的三个输入) 和 [09](09-FOUR-BROKER-METHOD-COMPARISON.md)。补上国债与溢价原始来源之前，WACC 及其派生的每股价值不能写成已验证的市场事实。
 
 ### 单家外部研报
 
