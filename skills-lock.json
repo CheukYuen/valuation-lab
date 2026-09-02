@@ -5,6 +5,24 @@
       "source": "../../../../var/folders/1g/tk1l1mwn0cjgyrs6zp4csvyh0000gn/T/choice-quantapi-skill-pkg-20260830212236/choice-quantapi-skill",
       "sourceType": "local",
       "computedHash": "dfeb056ddb1243934778746a8da5f11b89922d14a757b2be681b99a6bae4a7e6"
+    },
+    "dcf-model": {
+      "source": "Wind-Information-Co-Ltd/wind-skills",
+      "sourceType": "github",
+      "skillPath": "skills/dcf-model/SKILL.md",
+      "computedHash": "a0962b1a3a808c15b452199366f13cdffcc0a16eff4f8458d28d892f1de249f9"
+    },
+    "wind-find-finance-skill": {
+      "source": "Wind-Information-Co-Ltd/wind-skills",
+      "sourceType": "github",
+      "skillPath": "skills/wind-find-finance-skill/SKILL.md",
+      "computedHash": "d45fe3dcf2b2ed1b3c17deef70e315c118f9deda14cf1a2867928c6ea2ff9b96"
+    },
+    "wind-mcp-skill": {
+      "source": "Wind-Information-Co-Ltd/wind-skills",
+      "sourceType": "github",
+      "skillPath": "skills/wind-mcp-skill/SKILL.md",
+      "computedHash": "3987f3ed6d4b3caadeeacf16a1d59dd354a5b55ebead2dbd13b82d824dfa495c"
     }
   }
 }
