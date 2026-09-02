@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "skills": {
+    "@org-6602ci5n/hithink-finance": {
+      "name": "同花顺金融数据",
+      "zip_url": "https://api.skillhub.cn/api/v1/download?slug=hithink-finance&namespace=org-6602ci5n",
+      "source": "enterprise",
+      "version": "1.0.5",
+      "namespace": {
+        "canonicalName": "@org-6602ci5n/hithink-finance",
+        "displayName": "org-6602ci5n",
+        "handle": "org-6602ci5n",
+        "publicSlug": "hithink-finance"
+      },
+      "internalSlug": "hithink-finance",
+      "publicSlug": "hithink-finance",
+      "installDir": "/Users/leon/Stock/valuation-lab/.agents/skills/@org-6602ci5n/hithink-finance"
+    }
+  }
+}
