@@ -24,6 +24,8 @@
 18. [高盛折现 P/E 独立复算](goldman_20260828_model.py)
 19. [野村 FY27 P/E 独立复算](nomura_20260821_model.py)
 20. [摩根士丹利 RIM 可见输入复核](morgan_stanley_20260823_model.py)
+21. [2026-09-02 Wind 数据独立 DCF](12-WIND-DCF-20260902.md)
+22. [2026-09-02 Wind 可比公司与 DCF 交叉分析](13-WIND-COMPS-20260902.md)
 
 ## 后续顺序
 
