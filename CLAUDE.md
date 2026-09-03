@@ -18,7 +18,7 @@
 
 ## Skills
 
-- `wind-mcp-skill`：查询万得（Wind）行情、财务、公告、Beta、汇率等金融市场数据。
+- `wind-mcp-skill`：查询万得（Wind）行情、财务、公告、Beta、汇率等金融市场数据。密钥见 `.env` 中的 `WIND_API_KEY`。
 
 ## 常用命令
 
