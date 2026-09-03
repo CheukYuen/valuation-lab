@@ -395,7 +395,7 @@ If you have more than 15 metrics, you're probably including noise. Edit ruthless
 
 ---
 
-## Section 6: Advanced Features
+## Section 7: Advanced Features
 
 ### Dynamic Headers
 For columns showing calculations, use clear unit labels:
@@ -431,7 +431,7 @@ This helps answer: "Is our target company trading rich or cheap vs. peers?"
 
 ---
 
-## Section 7: Workflow & Practical Tips
+## Section 8: Workflow & Practical Tips
 
 ### Step-by-Step Process
 1. **Set up structure** (30 minutes)
@@ -490,7 +490,7 @@ This helps answer: "Is our target company trading rich or cheap vs. peers?"
 
 ---
 
-## Section 8: Example Template Layout
+## Section 9: Example Template Layout
 
 **Simple Version (Start here):**
 ```
@@ -534,7 +534,7 @@ This helps answer: "Is our target company trading rich or cheap vs. peers?"
 
 ---
 
-## Section 9: Industry-Specific Additions (Optional)
+## Section 10: Industry-Specific Additions (Optional)
 
 Only add these if they're critical to your analysis. Most comps work fine with just core metrics.
 
@@ -555,7 +555,7 @@ Add if relevant: Asset Turnover, Inventory Turns, Backlog
 
 ---
 
-## Section 10: Red Flags & Warning Signs
+## Section 11: Red Flags & Warning Signs
 
 ### Data Quality Issues
 🚩 Inconsistent time periods (mixing quarterly and annual)  
@@ -569,14 +569,14 @@ Add if relevant: Asset Turnover, Inventory Turns, Backlog
 
 ### Comparability Issues
 🚩 Different fiscal year ends (causes timing problems)  
-🚩ixing pure-play and conglomerates  
+🚩 Mixing pure-play and conglomerates  
 🚩 Materially different business models labeled as "comps"
 
 **When in doubt, exclude the company.** Better to have 3 perfect comps than 6 questionable ones.
 
 ---
 
-## Section 11: Formulas Reference Guide
+## Section 12: Formulas Reference Guide
 
 ### Essential Excel Formulas
 ```excel

@@ -282,7 +282,7 @@ Step 9 的护城河四分类要求逐项打 强/中/弱：网络效应、转换�
 
 1. [dcf-model](financial-analysis/skills/dcf-model/SKILL.md)`:717-757` —— TOP 5 错误 + 四类细分（WACC / 增长假设 / 终值 / 现金流投影）
 2. [audit-xls](financial-analysis/skills/audit-xls/SKILL.md)`:89-99`（§3f 逻辑合理性）+ `:100-130`（§3g 分模型类型的 bug，DCF 那 5 条尤其值得记）
-3. [comps-analysis](financial-analysis/skills/comps-analysis/SKILL.md)`:558-577`（Section 10 红旗清单，三类）
+3. [comps-analysis](financial-analysis/skills/comps-analysis/SKILL.md)`:558-577`（Section 11 红旗清单，三类）
 
 几条能直接变成断言的量化红线：
 
