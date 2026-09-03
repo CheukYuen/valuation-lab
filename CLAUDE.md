@@ -16,6 +16,10 @@
 - [分层审计清单](docs/AUDIT-CHECKLIST.md)
 - [Claude 金融技能包快照（第三方参考）](vendor/claude-fsi-skills/README.md)
 
+## Skills
+
+- `wind-mcp-skill`：查询万得（Wind）行情、财务、公告、Beta、汇率等金融市场数据。
+
 ## 常用命令
 
 ```bash
