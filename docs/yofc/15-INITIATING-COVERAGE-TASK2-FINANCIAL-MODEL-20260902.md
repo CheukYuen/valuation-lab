@@ -54,7 +54,7 @@
 
 固定地区占比不代表海外增长将与国内同步，只是让地区、产品与利润表收入保持数学一致。各国收入、订单、回款和利润均为 `MISSING`，地区分配不进入 DCF。
 
-> **本节引用说明：** 历史集团收入来自 Wind `stock_data.get_stock_fundamentals`，查询期间为 2021A—2026H1、单位亿元、合并口径，属于 `WIND-FACT`；2025 产品及国内/海外收入来自[2025 年年度报告（上交所）](https://www.sse.com.cn/disclosure/listedinfo/announcement/c/new/2026-03-28/601869_20260328_VGNW.pdf)，2026H1 产品收入来自[2026 年半年度报告（上交所）](https://www.sse.com.cn/disclosure/listedinfo/announcement/c/new/2026-08-22/601869_20260822_DO6L.pdf)，属于 `REPORT-FACT`。预测总收入及情景规则逐年勾稽至 [12 号文档第 4—6 节](./12-WIND-DCF-20260902.md#4-wind-一致预测与情景假设)；产品、地区固定占比为 `PROJECT-ASSUMPTION/PARTIAL`。
+> **本节引用说明：** 历史集团收入来自 Wind `stock_data.get_stock_fundamentals`，查询期间为 2021A—2026H1、单位亿元、合并口径，属于 `WIND-FACT`；2025 产品及国内/海外收入来自[2025 年年度报告（上交所）](https://www.sse.com.cn/disclosure/listedinfo/announcement/c/new/2026-03-28/601869_20260328_VGNW.pdf)，2026H1 产品收入来自[2026 年半年度报告（上交所）](https://www.sse.com.cn/disclosure/listedinfo/announcement/c/new/2026-08-22/601869_20260822_DO6L.pdf)，属于 `REPORT-FACT`。预测总收入及情景规则逐年勾稽至 [12号文档第4—6节](./12-WIND-DCF-20260902.md#4-wind预测异常c1门控与④桥接)；产品、地区固定占比为 `PROJECT-ASSUMPTION/PARTIAL`。
 
 ## 2. 利润表
 
@@ -167,7 +167,7 @@
 
 现金以 2025A 货币资金 57.6370 亿元为起点滚存；债务、股权融资与并购现金支出设为零，意味着模型没有替公司预设融资。三情景期末现金均为正，因此本版没有“融资缺口”；若任一上游假设变化使现金小于零，应直接把负值列为融资缺口，而不是把现金改成零。
 
-> **本节引用说明：** 2021A—2026H1的经营、投资、筹资现金流及主要现金科目来自Wind `stock_data.get_stock_fundamentals`，期间为各年年报及2026H1、单位亿元、合并口径，属于 `WIND-FACT`；2025年报和[2026年半年度报告](https://www.sse.com.cn/disclosure/listedinfo/announcement/c/new/2026-08-22/601869_20260822_DO6L.pdf)用于交叉核对。④工作模型的Base D&A、Capex、NWC、ΔNWC和FCFF与[12号文档第6.2节](./12-WIND-DCF-20260902.md#62-基准情景)一致；Bear/Bull按本文件第5节所列参数和同一公式展开。30%分红率、零并购和零净融资为 `PROJECT-ASSUMPTION`，经营现金流代理为 `DERIVED/PARTIAL`。
+> **本节引用说明：** 2021A—2026H1的经营、投资、筹资现金流及主要现金科目来自Wind `stock_data.get_stock_fundamentals`，期间为各年年报及2026H1、单位亿元、合并口径，属于 `WIND-FACT`；2025年报和[2026年半年度报告](https://www.sse.com.cn/disclosure/listedinfo/announcement/c/new/2026-08-22/601869_20260822_DO6L.pdf)用于交叉核对。④工作模型的Base D&A、Capex、NWC、ΔNWC和FCFF与[12号文档第6.2节](./12-WIND-DCF-20260902.md#62-基准fcff与残余期)一致；Bear/Bull按本文件第5节所列参数和同一公式展开。30%分红率、零并购和零净融资为 `PROJECT-ASSUMPTION`，经营现金流代理为 `DERIVED/PARTIAL`。
 
 ## 4. 资产负债表
 
@@ -219,7 +219,7 @@
 
 这个平衡方法的优点是现金完全由现金流量表给出，没有用现金掩盖三表缺口；代价是其他负债缺乏经济驱动。若需要交易级模型，应补齐周转天数、税项、合同负债、处置及融资计划后再替换该平衡项。
 
-> **本节引用说明：** 2021A—2026H1 的资产负债表科目来自 Wind 财务字段，单位亿元、各报告期末合并口径，属于 `WIND-FACT`；2026H1 的现金、金融资产、债务及权益与[2026 年半年度报告](https://www.sse.com.cn/disclosure/listedinfo/announcement/c/new/2026-08-22/601869_20260822_DO6L.pdf)及 [12 号文档第 2 节](./12-WIND-DCF-20260902.md#2-财务基准日与股权价值桥)交叉核对。预测 NWC 总额严格取自 12 号文档，应收/存货/应付分配、长期经营资产滚动、金融资产冻结、债务和权益规则为 `PROJECT-ASSUMPTION/PARTIAL`；其他负债及平衡项为 `DERIVED/PARTIAL`。
+> **本节引用说明：** 2021A—2026H1 的资产负债表科目来自 Wind 财务字段，单位亿元、各报告期末合并口径，属于 `WIND-FACT`；2026H1 的现金、金融资产、债务及权益与[2026 年半年度报告](https://www.sse.com.cn/disclosure/listedinfo/announcement/c/new/2026-08-22/601869_20260822_DO6L.pdf)及 [12 号文档第 2 节](./12-WIND-DCF-20260902.md#2-市场数据与股权价值桥)交叉核对。预测 NWC 总额严格取自 12 号文档，应收/存货/应付分配、长期经营资产滚动、金融资产冻结、债务和权益规则为 `PROJECT-ASSUMPTION/PARTIAL`；其他负债及平衡项为 `DERIVED/PARTIAL`。
 
 ## 5. 三情景
 
@@ -287,7 +287,7 @@
 
 2026E—2028E的差异来自“数据序列选择＋桥接规则”；2029E—2031E的差异来自长期项目假设。两条序列没有被混入同一张FCFF表，④被选为工作模型但没有被升级为事实或目标价，③也没有被判定为错误。2026-09-04补取的更新值不回写冻结模型。
 
-> **本节引用说明：** 本节三表情景的收入、EBIT、D&A、Capex、NWC、ΔNWC和FCFF逐年对应[12号文档第6节](./12-WIND-DCF-20260902.md#6-④隐含正推法ebit工作模型三情景-fcff)的④工作模型，单位亿元，属于 `PROJECT-ASSUMPTION/PARTIAL`；③的Wind EBIT均值和标准差为截至2026-09-02的一致预测汇总，属于 `WIND-FACT/PARTIAL`，其情景与DCF结果为 `DERIVED/PARTIAL`。归母净利润、EPS、现金和权益由本文件已列公式推导，属于 `DERIVED/PARTIAL`。本节没有引入任何新的券商或公司预测。
+> **本节引用说明：** 本节三表情景的收入、EBIT、D&A、Capex、NWC、ΔNWC和FCFF逐年对应[12号文档第6节](./12-WIND-DCF-20260902.md#6-fcff与残余期)的④工作模型，单位亿元，属于 `PROJECT-ASSUMPTION/PARTIAL`；③的Wind EBIT均值和标准差为截至2026-09-02的一致预测汇总，属于 `WIND-FACT/PARTIAL`，其情景与DCF结果为 `DERIVED/PARTIAL`。归母净利润、EPS、现金和权益由本文件已列公式推导，属于 `DERIVED/PARTIAL`。本节没有引入任何新的券商或公司预测。
 
 ## 6. DCF Inputs
 
@@ -337,7 +337,7 @@
 - 2026-09-04 Wind 更新只作为截点后信息留痕，不进入 2026-09-02 冻结值；不能用事后数据改善本模型。
 - 本Task只完成财务模型；④作为FCFF工作模型，③作为直接数据交叉检查。工作模型的证据等级仍为 `PROJECT-ASSUMPTION/PARTIAL`，A/H分别评级、投资结论和目标价留待Task 3。
 
-> **本节引用说明：** EBIT、D&A、Capex、NWC、ΔNWC、FCFF、WACC、永续增长、残余期、终值和两组每股控制值全部来自 [12 号 Wind DCF 第 5—8 节](./12-WIND-DCF-20260902.md#5-wacc-与再投资假设)，单位亿元或元/股，属于 `DERIVED/PARTIAL` 与明示的 `PROJECT-ASSUMPTION`。Wind 原始查询范围和回执见 [12 号文档第 11 节](./12-WIND-DCF-20260902.md#11-wind-查询记录与回执)；公司报告原始链接、页码和口径汇总见 [DATA-SOURCES](./DATA-SOURCES.md)。本节没有形成新的估值结论。
+> **本节引用说明：** EBIT、D&A、Capex、NWC、ΔNWC、FCFF、WACC、永续增长、残余期、终值和两组每股控制值全部来自 [12号Wind DCF第5—7节](./12-WIND-DCF-20260902.md#5-情景wacc与长期利润率)，单位亿元或元/股，属于 `DERIVED/PARTIAL` 与明示的 `PROJECT-ASSUMPTION`。Wind原始查询范围和回执见[附录C](./12-WIND-DCF-20260902.md#附录cwind查询记录与自动化输入)；公司报告原始链接、页码和口径汇总见 [DATA-SOURCES](./DATA-SOURCES.md)。本节没有形成新的估值结论。
 
 ---
 
