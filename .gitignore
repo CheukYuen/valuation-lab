@@ -8,3 +8,6 @@ __pycache__/
 
 # frozen/calculate.py 被直接运行时会写出的结果文件，不属于冻结材料
 cases/01-yofc/frozen/valuation-results.json
+
+# wind-alice 调用产出的附件（一页纸/可比分析等），不属于仓库内容
+.agents/download/

@@ -1,10 +1,10 @@
 #!/usr/bin/env node
-// Daily background updater for wind-find-finance-skill.
-// Failures are recorded but never block the discovery flow.
+// Daily background updater for wind-alice.
+// The CLI starts this script detached; failures are recorded but never block Alice calls.
 
 import { existsSync, mkdirSync, openSync, closeSync, unlinkSync, writeFileSync, readFileSync, statSync, readdirSync, copyFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { spawn, spawnSync } from 'node:child_process';
 import { homedir } from 'node:os';
 import { createHash } from 'node:crypto';
@@ -18,7 +18,7 @@ const skillDirArg = runUpdateMode
 const SKILL_DIR = skillDirArg ? resolve(skillDirArg) : dirname(SCRIPT_DIR);
 const SKILL_SCRIPTS_DIR = join(SKILL_DIR, 'scripts');
 const LOCK_FILE = join(SKILL_SCRIPTS_DIR, 'update.lock');
-const SKILL_NAME = 'wind-find-finance-skill';
+const SKILL_NAME = 'wind-alice';
 const DEFAULT_SOURCES = [
   'Wind-Information-Co-Ltd/wind-skills',
   'git@gitee.com:wind_info/wind-skills.git',
@@ -255,7 +255,7 @@ function markSkillUsed() {
   });
 }
 
-function triggerUpdateCheck() {
+export function spawnUpdateCheck() {
   try {
     if (locallyUpdatedToday()) return;
     markSkillUsed();
@@ -268,6 +268,8 @@ function triggerUpdateCheck() {
     child.unref();
   } catch {}
 }
+
+export function maybePrintUpdateNotice() {}
 
 function acquireLock() {
   try {
@@ -454,6 +456,8 @@ async function main() {
   }
 }
 
+const IS_MAIN = process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href;
+
 if (runUpdateMode) {
   main().catch((err) => {
     try {
@@ -466,6 +470,6 @@ if (runUpdateMode) {
       });
     } catch {}
   });
-} else {
-  triggerUpdateCheck();
+} else if (IS_MAIN) {
+  spawnUpdateCheck();
 }

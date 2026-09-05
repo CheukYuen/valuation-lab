@@ -12,11 +12,11 @@
       "skillPath": "skills/dcf-model/SKILL.md",
       "computedHash": "a0962b1a3a808c15b452199366f13cdffcc0a16eff4f8458d28d892f1de249f9"
     },
-    "wind-find-finance-skill": {
+    "wind-alice": {
       "source": "Wind-Information-Co-Ltd/wind-skills",
       "sourceType": "github",
-      "skillPath": "skills/wind-find-finance-skill/SKILL.md",
-      "computedHash": "d45fe3dcf2b2ed1b3c17deef70e315c118f9deda14cf1a2867928c6ea2ff9b96"
+      "skillPath": "skills/wind-alice/SKILL.md",
+      "computedHash": "9c04cccf286e742d290b4f039e11238170b5f454f59e42a927ad39c9d3861c9a"
     },
     "wind-mcp-skill": {
       "source": "Wind-Information-Co-Ltd/wind-skills",
