@@ -13,6 +13,7 @@
 7. [美银 DCF/SOTP 可见输入复核](bofa_20260828_model.py)
 8. [数据增强 FCFF DCF](ztt_datahub_20260830_valuation.py)
 9. [2026-08-30 datahub选用值快照](datahub_20260830_snapshot.json)
+10. [光纤光缆与 AI 光连接行业概览（2026-09-05）](../sector/optical-fiber-20260905/index.html)：HTML 行业报告，七家公司、五家投行六份报告，页内含完整数据、公式复算及 Wind/Choice 文本回执，见[交付入口](../sector/README.md)。
 
 ## 先记住三个边界
 

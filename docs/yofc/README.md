@@ -28,6 +28,7 @@
 22. [2026-09-02 Wind 可比公司与 DCF 交叉分析](13-WIND-COMPS-20260902.md)
 23. [Task 4 离线研究图册](17-INITIATING-COVERAGE-TASK4-CHART-GENERATION-20260902.html)
 24. [Task 5 完整研究报告（HTML）](18-INITIATING-COVERAGE-TASK5-REPORT-ASSEMBLY-20260902.html)
+25. [光纤光缆与 AI 光连接行业概览（2026-09-05）](../sector/optical-fiber-20260905/index.html)：HTML 行业报告，七家公司、五家投行六份报告，页内含完整数据、公式复算及 Wind/Choice 文本回执，见[交付入口](../sector/README.md)。
 
 ## 后续顺序
 

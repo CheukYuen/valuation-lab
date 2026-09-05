@@ -1,0 +1,26 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"data\":{\"data\":[{\"columns\":[{\"name\":\"Wind代码\",\"type\":\"string\"},{\"name\":\"证券简称\",\"type\":\"string\"},{\"name\":\"2026年9月2日的企业价值\",\"type\":\"number\",\"unit\":\"亿元\"},{\"name\":\"交易币种\",\"type\":\"string\"},{\"name\":\"2026年9月2日的企业倍数\",\"type\":\"number\"},{\"name\":\"2026年9月2日的EV/SALES\",\"type\":\"number\"}],\"rows\":[[\"600522.SH\",\"中天科技\",1010.474,\"CNY\",21.553,1.9247]]},{\"columns\":[{\"name\":\"Wind代码\",\"type\":\"string\"},{\"name\":\"证券简称\",\"type\":\"string\"},{\"name\":\"2026年9月2日的TTM营业收入\",\"type\":\"number\",\"unit\":\"亿元\"},{\"name\":\"交易币种\",\"type\":\"string\"},{\"name\":\"2026年9月2日的TTM EBITDA\",\"type\":\"number\",\"unit\":\"亿元\"},{\"name\":\"2026年9月2日的净债务\",\"type\":\"number\",\"unit\":\"亿元\"},{\"name\":\"记账本位币\",\"type\":\"string\"},{\"name\":\"2026年9月2日的少数股东权益\",\"type\":\"number\",\"unit\":\"亿元\"}],\"rows\":[[\"600522.SH\",\"中天科技\",598.391,\"CNY\",57.9634,-137.6422,\"CNY\",9.839]]}]},\"error\":null}"
+    }
+  ],
+  "isError": false,
+  "cli_meta": {
+    "schema_version": "1.0",
+    "server_type": "stock_data",
+    "tool_name": "get_stock_fundamentals",
+    "completeness": "not_asserted",
+    "tables": [
+      {
+        "path": "$.data.data[0]",
+        "actual_row_count": 1
+      },
+      {
+        "path": "$.data.data[1]",
+        "actual_row_count": 1
+      }
+    ],
+    "warnings": []
+  }
+}

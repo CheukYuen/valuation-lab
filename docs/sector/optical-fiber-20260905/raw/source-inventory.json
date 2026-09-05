@@ -1,0 +1,197 @@
+[
+  {
+    "path": "docs/yofc/.DS_Store",
+    "sha256": "802956d360f5685fd7e270dffec3c5ddb76f1182258b28f7335797a4a34d9815",
+    "role": "模型或历史报告索引;未改变其计算假设"
+  },
+  {
+    "path": "docs/yofc/01-FINANCIAL-METRICS.md",
+    "sha256": "722df9fc684fe2a9e8cd42daff2ee043977b15dc42a832e6671a76c5962e5e3b",
+    "role": "正文与来源核对"
+  },
+  {
+    "path": "docs/yofc/02-FORECAST-AND-DCF.md",
+    "sha256": "b4bed22ab4e3119f54586b9999b46d8423c061d5228e9180f8681a3907879db0",
+    "role": "正文与来源核对"
+  },
+  {
+    "path": "docs/yofc/03-RELATIVE-REVERSE-PEG.md",
+    "sha256": "04abd9aac59d721e9d4fb2e2e5ee3349eebdfced298eec023250424f22235999",
+    "role": "正文与来源核对"
+  },
+  {
+    "path": "docs/yofc/04-JEFFERIES-20260722-CASE.md",
+    "sha256": "0d61fbac8e6f0ce45b361ec84a86c1a900a86b87fe47fd51c708c6ce30298cb5",
+    "role": "正文与来源核对"
+  },
+  {
+    "path": "docs/yofc/05-JEFFERIES-METHOD-COMPARISON.md",
+    "sha256": "5a3173082b3ff44ec366c3a0d006fac26d5e87ceb5c52fb717c3d59f51fc41f4",
+    "role": "正文与来源核对"
+  },
+  {
+    "path": "docs/yofc/06-GOLDMAN-20260828-CASE.md",
+    "sha256": "f7906021592005d796fa28298c968615b87db09e2787965933ba2892f095793a",
+    "role": "正文与来源核对"
+  },
+  {
+    "path": "docs/yofc/07-NOMURA-20260821-CASE.md",
+    "sha256": "05688b75c1dde223ac32be3c7d91ebf4d9636db6f90475e0199285c71a99ebdb",
+    "role": "正文与来源核对"
+  },
+  {
+    "path": "docs/yofc/08-MORGAN-STANLEY-20260823-CASE.md",
+    "sha256": "ef3df030cff00b1d7abd077d1f991239cade4bd204b85e7a1893d72f62f35d6b",
+    "role": "正文与来源核对"
+  },
+  {
+    "path": "docs/yofc/09-FOUR-BROKER-METHOD-COMPARISON.md",
+    "sha256": "1775bca057ead856736315a61195e248a5042577324d0ba142834613186124e1",
+    "role": "正文与来源核对"
+  },
+  {
+    "path": "docs/yofc/10-FOUR-BROKER-INDUSTRY-COMPARISON.md",
+    "sha256": "98df7cd1512ecf332a3a2b6510f570cefd6b54a839741bffa21485e500b7cf4c",
+    "role": "正文与来源核对"
+  },
+  {
+    "path": "docs/yofc/11-REVERSE-DCF-20260828.md",
+    "sha256": "508c82460f6cf8c2616b53f61cc824d7b7ea40f8059fab39aef10d77af771c79",
+    "role": "正文与来源核对"
+  },
+  {
+    "path": "docs/yofc/12-WIND-DCF-20260902.md",
+    "sha256": "5e89db770926e8b34ef8aca55524d17f5b2057ad5bd3547339293a23f848a8f4",
+    "role": "正文与来源核对"
+  },
+  {
+    "path": "docs/yofc/13-WIND-COMPS-20260902.md",
+    "sha256": "79c874cc18703832c5736f5e9e26da3d156063ce7a229a383ae4cc6ea04cb048",
+    "role": "正文与来源核对"
+  },
+  {
+    "path": "docs/yofc/14-INITIATING-COVERAGE-TASK1-COMPANY-RESEARCH-20260902.md",
+    "sha256": "76cfb688a6107c401be057125ce2e19ff20c1c7026b01275c6d063fa0f7843ca",
+    "role": "正文与来源核对"
+  },
+  {
+    "path": "docs/yofc/15-INITIATING-COVERAGE-TASK2-FINANCIAL-MODEL-20260902.md",
+    "sha256": "85242142359466bf6d8fc4624cd23ded5d5bfe4d0ab1dfbb590f4a33360b3c79",
+    "role": "正文与来源核对"
+  },
+  {
+    "path": "docs/yofc/16-INITIATING-COVERAGE-TASK3-VALUATION-ANALYSIS-20260902.md",
+    "sha256": "c6974e5dc575a90354af2ed103d36c9e7732114f63b7c4155b8741ad35327fcb",
+    "role": "正文与来源核对"
+  },
+  {
+    "path": "docs/yofc/17-INITIATING-COVERAGE-TASK4-CHART-GENERATION-20260902.html",
+    "sha256": "f4f822e7a5c9f392fe4159c3a617aaa856f938fcaa55cccf29b34bb403b89d1a",
+    "role": "模型或历史报告索引;未改变其计算假设"
+  },
+  {
+    "path": "docs/yofc/18-INITIATING-COVERAGE-TASK5-REPORT-ASSEMBLY-20260902.html",
+    "sha256": "2b119352bd1c5474fd13a696b7d4aed42d62ec3367a88e4466b6eb8026b7ddc2",
+    "role": "模型或历史报告索引;未改变其计算假设"
+  },
+  {
+    "path": "docs/yofc/DATA-SOURCES.md",
+    "sha256": "ddb6d6d8b5a5cf623a772efe124f39a6706a071a44fa776a3edc2aed1d90d98a",
+    "role": "正文与来源核对"
+  },
+  {
+    "path": "docs/yofc/README.md",
+    "sha256": "1d02a1cbfd7d331fb0565d7490f0f5bfa41e932430d1e67de63783030c3da4ae",
+    "role": "正文与来源核对"
+  },
+  {
+    "path": "docs/yofc/beta_20260824_snapshot.json",
+    "sha256": "c4c93cbb1511e1e91c8013fa1f1140c5a44c0c246bdf97057abd3561c3c89032",
+    "role": "模型或历史报告索引;未改变其计算假设"
+  },
+  {
+    "path": "docs/yofc/cost_of_capital.py",
+    "sha256": "ee9cfaaaca2c84ef72690bddd97522f9938183c35f1e3bc6343ad07fc4a69d24",
+    "role": "模型或历史报告索引;未改变其计算假设"
+  },
+  {
+    "path": "docs/yofc/goldman_20260828_model.py",
+    "sha256": "d249891cbe0ec2e9594b64461478c0a1e25ed3eb9bfb6ab8961452e7877711c4",
+    "role": "模型或历史报告索引;未改变其计算假设"
+  },
+  {
+    "path": "docs/yofc/jefferies_20260722_model.py",
+    "sha256": "747421c8b3b826e6d6e2cefd9d77664d36d08a057098188e6d2899822d565701",
+    "role": "模型或历史报告索引;未改变其计算假设"
+  },
+  {
+    "path": "docs/yofc/morgan_stanley_20260823_model.py",
+    "sha256": "97ff89aad93cc68b10eda23b492aacf01e9dad492343bb77ad8dc904a248fdb2",
+    "role": "模型或历史报告索引;未改变其计算假设"
+  },
+  {
+    "path": "docs/yofc/nomura_20260821_model.py",
+    "sha256": "b7b047fa5c8a0315ae394f50b88056127e0afe12fb9c82b958aa90fe6013233c",
+    "role": "模型或历史报告索引;未改变其计算假设"
+  },
+  {
+    "path": "docs/yofc/reverse_dcf_20260828.py",
+    "sha256": "4445cb90ec029267583064a1bedef19c945e2a5757b6b10eaf3f5e704aa6e36b",
+    "role": "模型或历史报告索引;未改变其计算假设"
+  },
+  {
+    "path": "docs/yofc/valuation_model.py",
+    "sha256": "afd43cc7f5c20638e0e71866a4f8bf4f663c647f51703668fdd57c35526138e0",
+    "role": "模型或历史报告索引;未改变其计算假设"
+  },
+  {
+    "path": "docs/ztt/01-MORGAN-STANLEY-20260714-CASE.md",
+    "sha256": "9fd68f92d8ee76753e3e574f4306fb4898586511d7c5fdd375b09ef31aaa623f",
+    "role": "正文与来源核对"
+  },
+  {
+    "path": "docs/ztt/02-INDEPENDENT-VALUATION-WORKBENCH.md",
+    "sha256": "5ff88e4762f031c73c9513911c47cf0e08ddf0514de3aeef580b5ea9af9d03e4",
+    "role": "正文与来源核对"
+  },
+  {
+    "path": "docs/ztt/03-FIBER-TO-ZTT-VALUATION-20260830.md",
+    "sha256": "0c3649547a56b1b9063ee74f5527b087ee60b7a1759890ff59c6d3c7e34b47fd",
+    "role": "正文与来源核对"
+  },
+  {
+    "path": "docs/ztt/04-BOFA-20260828-CASE.md",
+    "sha256": "267c70f4d002de219c636c36619b4ad9269bfbf6b894aaf86c4935d8ea0a1806",
+    "role": "正文与来源核对"
+  },
+  {
+    "path": "docs/ztt/DATA-SOURCES.md",
+    "sha256": "b4f6a3c3d80f99cfce63ed820eb3592512c21663c1033bc7a5651362e910c176",
+    "role": "正文与来源核对"
+  },
+  {
+    "path": "docs/ztt/README.md",
+    "sha256": "5d8b5e8d01c04bc7484875a61ee407b02d132022e245cdcec0c9fb7763f3718c",
+    "role": "正文与来源核对"
+  },
+  {
+    "path": "docs/ztt/bofa_20260828_model.py",
+    "sha256": "b3f56b40da1db3637deb4e6adff5f23c2df266209d77582a2c1bc5161683ad0d",
+    "role": "模型或历史报告索引;未改变其计算假设"
+  },
+  {
+    "path": "docs/ztt/datahub_20260830_snapshot.json",
+    "sha256": "1930845677701922d29082c0a2e22574e8779e6a572bbe23f922bf56a8f99c65",
+    "role": "模型或历史报告索引;未改变其计算假设"
+  },
+  {
+    "path": "docs/ztt/morgan_stanley_20260714_model.py",
+    "sha256": "cb64f29ba0b7a5d51f1b57faa9e4fa7aa3205a62a6e1aa6fbd9bfab739d8ea28",
+    "role": "模型或历史报告索引;未改变其计算假设"
+  },
+  {
+    "path": "docs/ztt/ztt_datahub_20260830_valuation.py",
+    "sha256": "adeb0195bf8425de28497ea5c35662afd8b825c20134b7109786d18833697ce8",
+    "role": "模型或历史报告索引;未改变其计算假设"
+  }
+]

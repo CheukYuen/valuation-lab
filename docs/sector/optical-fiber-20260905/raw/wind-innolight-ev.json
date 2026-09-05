@@ -1,0 +1,26 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"data\":{\"data\":[{\"columns\":[{\"name\":\"Wind代码\",\"type\":\"string\"},{\"name\":\"证券简称\",\"type\":\"string\"},{\"name\":\"2026年9月2日的企业价值EV\",\"type\":\"number\",\"unit\":\"亿元\"},{\"name\":\"交易币种\",\"type\":\"string\"},{\"name\":\"2026年9月2日的企业倍数EV/EBITDA\",\"type\":\"number\"},{\"name\":\"2026年9月2日的EV/营业收入\",\"type\":\"number\"}],\"rows\":[[\"300308.SZ\",\"中际旭创\",9666.4475,\"CNY\",67.3521,25.2784]]},{\"columns\":[{\"name\":\"Wind代码\",\"type\":\"string\"},{\"name\":\"证券简称\",\"type\":\"string\"},{\"name\":\"2026年9月2日的TTM EBITDA\",\"type\":\"number\",\"unit\":\"亿元\"},{\"name\":\"2026年9月2日的TTM净债务\",\"type\":\"number\",\"unit\":\"亿元\"},{\"name\":\"记账本位币\",\"type\":\"string\"},{\"name\":\"2026年9月2日的TTM营业收入\",\"type\":\"number\",\"unit\":\"亿元\"},{\"name\":\"2026年9月2日的TTM营业收入.周期\",\"type\":\"string\"},{\"name\":\"2026年9月2日的TTM少数股东损益\",\"type\":\"number\",\"unit\":\"亿元\"},{\"name\":\"2026年9月2日的TTM少数股东损益.周期\",\"type\":\"string\"}],\"rows\":[[\"300308.SZ\",\"中际旭创\",268.246,-45.1937,\"CNY\",417.7786,\"TTM\",10.8228,\"TTM\"]]}]},\"error\":null}"
+    }
+  ],
+  "isError": false,
+  "cli_meta": {
+    "schema_version": "1.0",
+    "server_type": "stock_data",
+    "tool_name": "get_stock_fundamentals",
+    "completeness": "not_asserted",
+    "tables": [
+      {
+        "path": "$.data.data[0]",
+        "actual_row_count": 1
+      },
+      {
+        "path": "$.data.data[1]",
+        "actual_row_count": 1
+      }
+    ],
+    "warnings": []
+  }
+}

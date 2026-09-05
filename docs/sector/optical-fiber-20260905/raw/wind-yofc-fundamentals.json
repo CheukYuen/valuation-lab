@@ -1,0 +1,30 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"data\":{\"data\":[{\"columns\":[{\"name\":\"Wind代码\",\"type\":\"string\"},{\"name\":\"证券简称\",\"type\":\"string\"},{\"name\":\"2025年年报合并营业收入\",\"type\":\"number\",\"unit\":\"亿元\"},{\"name\":\"2025年年报合并营业收入.报表类型\",\"type\":\"string\"},{\"name\":\"2025年年报EBIT反推法\",\"type\":\"number\",\"unit\":\"亿元\"},{\"name\":\"2025年年报EBITDA反推法\",\"type\":\"number\",\"unit\":\"亿元\"},{\"name\":\"2025年年报折旧摊销\",\"type\":\"number\",\"unit\":\"元\"},{\"name\":\"2025年年报折旧摊销.报表类型\",\"type\":\"string\"},{\"name\":\"记账本位币\",\"type\":\"string\"},{\"name\":\"市盈率PE_TTM\",\"type\":\"number\",\"unit\":\"倍\"},{\"name\":\"2026年半年报EBITDA反推法\",\"type\":\"number\",\"unit\":\"亿元\"},{\"name\":\"2026年半年报EBIT反推法\",\"type\":\"number\",\"unit\":\"亿元\"},{\"name\":\"2026年半年报折旧摊销\",\"type\":\"number\",\"unit\":\"元\"},{\"name\":\"2026年半年报折旧摊销.报表类型\",\"type\":\"string\"},{\"name\":\"2026年半年报合并营业收入\",\"type\":\"number\",\"unit\":\"亿元\"},{\"name\":\"2026年半年报合并营业收入.报表类型\",\"type\":\"string\"},{\"name\":\"记账本位币_2\",\"type\":\"string\"}],\"rows\":[[\"601869.SH\",\"长飞光纤\",142.521,\"合并报表\",13.4286,25.3588,null,\"合并报表\",\"CNY\",91.0987,44.7513,38.7638,null,\"合并报表\",98.0896,\"合并报表\",\"CNY\"]]},{\"columns\":[{\"name\":\"Wind代码\",\"type\":\"string\"},{\"name\":\"证券简称\",\"type\":\"string\"},{\"name\":\"EBIT_反推法\",\"type\":\"number\",\"unit\":\"亿元\"},{\"name\":\"记账本位币\",\"type\":\"string\"},{\"name\":\"营业收入\",\"type\":\"number\",\"unit\":\"亿元\"},{\"name\":\"EBITDA_反推法\",\"type\":\"number\",\"unit\":\"亿元\"},{\"name\":\"记账本位币_2\",\"type\":\"string\"},{\"name\":\"2020到2025年每年末PE\",\"type\":\"number\",\"unit\":\"倍\"},{\"name\":\"年份\",\"type\":\"number\"},{\"name\":\"2020到2025年每年末PE时间\",\"type\":\"date\"},{\"name\":\"折旧与摊销\",\"type\":\"number\",\"unit\":\"元\"}],\"rows\":[[\"601869.SH\",\"长飞光纤\",38.7638,\"CNY\",98.0896,44.7513,\"CNY\",168.2357,2025,\"2025-12-31\",null],[\"601869.SH\",\"长飞光纤\",38.7638,\"CNY\",98.0896,44.7513,\"CNY\",22.8876,2024,\"2024-12-31\",null],[\"601869.SH\",\"长飞光纤\",38.7638,\"CNY\",98.0896,44.7513,\"CNY\",17.7553,2023,\"2023-12-31\",null],[\"601869.SH\",\"长飞光纤\",38.7638,\"CNY\",98.0896,44.7513,\"CNY\",24.2508,2022,\"2022-12-31\",null],[\"601869.SH\",\"长飞光纤\",38.7638,\"CNY\",98.0896,44.7513,\"CNY\",35.3517,2021,\"2021-12-31\",null],[\"601869.SH\",\"长飞光纤\",38.7638,\"CNY\",98.0896,44.7513,\"CNY\",36.9982,2020,\"2020-12-31\",null]]},{\"columns\":[{\"name\":\"Wind代码\",\"type\":\"string\"},{\"name\":\"证券简称\",\"type\":\"string\"},{\"name\":\"EBIT_反推法\",\"type\":\"number\",\"unit\":\"亿元\"},{\"name\":\"EBITDA_反推法\",\"type\":\"number\",\"unit\":\"亿元\"},{\"name\":\"记账本位币\",\"type\":\"string\"},{\"name\":\"营业收入\",\"type\":\"number\",\"unit\":\"亿元\"},{\"name\":\"折旧与摊销\",\"type\":\"number\",\"unit\":\"元\"},{\"name\":\"2026年9月2日PE\",\"type\":\"number\",\"unit\":\"倍\"}],\"rows\":[[\"601869.SH\",\"长飞光纤\",38.7638,44.7513,\"CNY\",98.0896,null,98.073]]}]},\"error\":null}"
+    }
+  ],
+  "isError": false,
+  "cli_meta": {
+    "schema_version": "1.0",
+    "server_type": "stock_data",
+    "tool_name": "get_stock_fundamentals",
+    "completeness": "not_asserted",
+    "tables": [
+      {
+        "path": "$.data.data[0]",
+        "actual_row_count": 1
+      },
+      {
+        "path": "$.data.data[1]",
+        "actual_row_count": 6
+      },
+      {
+        "path": "$.data.data[2]",
+        "actual_row_count": 1
+      }
+    ],
+    "warnings": []
+  }
+}

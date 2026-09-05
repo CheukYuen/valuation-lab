@@ -1,0 +1,26 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"data\":{\"data\":[{\"columns\":[{\"name\":\"Wind代码\",\"type\":\"string\"},{\"name\":\"证券简称\",\"type\":\"string\"},{\"name\":\"2026年9月2日市盈率\",\"type\":\"number\",\"unit\":\"倍\"},{\"name\":\"2026年9月2日市净率\",\"type\":\"number\",\"unit\":\"倍\"}],\"rows\":[[\"000300.SH\",\"沪深300\",13.642,1.4371]]},{\"columns\":[{\"name\":\"Wind代码\",\"type\":\"string\"},{\"name\":\"证券简称\",\"type\":\"string\"},{\"name\":\"2020至2025年每年最后交易日市盈率\",\"type\":\"number\",\"unit\":\"倍\"},{\"name\":\"日期\",\"type\":\"date\"}],\"rows\":[[\"000300.SH\",\"沪深300\",14.3331,\"2026-01-05\"],[\"000300.SH\",\"沪深300\",12.5611,\"2025-01-02\"],[\"000300.SH\",\"沪深300\",10.7659,\"2024-01-02\"],[\"000300.SH\",\"沪深300\",11.3759,\"2023-01-03\"],[\"000300.SH\",\"沪深300\",13.9854,\"2022-01-04\"],[\"000300.SH\",\"沪深300\",16.2315,\"2021-01-04\"]]}]},\"error\":null}"
+    }
+  ],
+  "isError": false,
+  "cli_meta": {
+    "schema_version": "1.0",
+    "server_type": "index_data",
+    "tool_name": "get_index_fundamentals",
+    "completeness": "not_asserted",
+    "tables": [
+      {
+        "path": "$.data.data[0]",
+        "actual_row_count": 1
+      },
+      {
+        "path": "$.data.data[1]",
+        "actual_row_count": 6
+      }
+    ],
+    "warnings": []
+  }
+}

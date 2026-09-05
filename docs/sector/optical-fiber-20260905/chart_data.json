@@ -1,0 +1,1904 @@
+{
+  "production": {
+    "svg": "<svg xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"617.84125pt\" height=\"235.045687pt\" viewBox=\"0 0 617.84125 235.045687\" xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\">\n <metadata>\n  <rdf:RDF xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:cc=\"http://creativecommons.org/ns#\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">\n   <cc:Work>\n    <dc:type rdf:resource=\"http://purl.org/dc/dcmitype/StillImage\"/>\n    <dc:date>2026-09-05T13:34:13.854696</dc:date>\n    <dc:format>image/svg+xml</dc:format>\n    <dc:creator>\n     <cc:Agent>\n      <dc:title>Matplotlib v3.9.4, https://matplotlib.org/</dc:title>\n     </cc:Agent>\n    </dc:creator>\n   </cc:Work>\n  </rdf:RDF>\n </metadata>\n <defs>\n  <style type=\"text/css\">*{stroke-linejoin: round; stroke-linecap: butt}</style>\n </defs>\n <g id=\"figure_1\">\n  <g id=\"patch_1\">\n   <path d=\"M 0 235.045687 \nL 617.84125 235.045687 \nL 617.84125 0 \nL 0 0 \nz\n\" style=\"fill: #ffffff\"/>\n  </g>\n  <g id=\"axes_1\">\n   <g id=\"patch_2\">\n    <path d=\"M 41.48125 211.416 \nL 610.64125 211.416 \nL 610.64125 22.92 \nL 41.48125 22.92 \nz\n\" style=\"fill: #ffffff\"/>\n   </g>\n   <g id=\"matplotlib.axis_1\">\n    <g id=\"xtick_1\">\n     <g id=\"line2d_1\">\n      <defs>\n       <path id=\"m46e701cf3a\" d=\"M 0 0 \nL 0 3.5 \n\" style=\"stroke: #475569; stroke-width: 0.8\"/>\n      </defs>\n      <g>\n       <use xlink:href=\"#m46e701cf3a\" x=\"93.826878\" y=\"211.416\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_1\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"93.826878\" y=\"226.516\" transform=\"rotate(-0 93.826878 226.516)\">2020</text>\n     </g>\n    </g>\n    <g id=\"xtick_2\">\n     <g id=\"line2d_2\">\n      <g>\n       <use xlink:href=\"#m46e701cf3a\" x=\"186.720627\" y=\"211.416\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_2\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"186.720627\" y=\"226.516\" transform=\"rotate(-0 186.720627 226.516)\">2021</text>\n     </g>\n    </g>\n    <g id=\"xtick_3\">\n     <g id=\"line2d_3\">\n      <g>\n       <use xlink:href=\"#m46e701cf3a\" x=\"279.614376\" y=\"211.416\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_3\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"279.614376\" y=\"226.516\" transform=\"rotate(-0 279.614376 226.516)\">2022</text>\n     </g>\n    </g>\n    <g id=\"xtick_4\">\n     <g id=\"line2d_4\">\n      <g>\n       <use xlink:href=\"#m46e701cf3a\" x=\"372.508124\" y=\"211.416\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_4\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"372.508124\" y=\"226.516\" transform=\"rotate(-0 372.508124 226.516)\">2023</text>\n     </g>\n    </g>\n    <g id=\"xtick_5\">\n     <g id=\"line2d_5\">\n      <g>\n       <use xlink:href=\"#m46e701cf3a\" x=\"465.401873\" y=\"211.416\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_5\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"465.401873\" y=\"226.516\" transform=\"rotate(-0 465.401873 226.516)\">2024</text>\n     </g>\n    </g>\n    <g id=\"xtick_6\">\n     <g id=\"line2d_6\">\n      <g>\n       <use xlink:href=\"#m46e701cf3a\" x=\"558.295622\" y=\"211.416\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_6\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"558.295622\" y=\"226.516\" transform=\"rotate(-0 558.295622 226.516)\">2025</text>\n     </g>\n    </g>\n   </g>\n   <g id=\"matplotlib.axis_2\">\n    <g id=\"ytick_1\">\n     <g id=\"line2d_7\">\n      <path d=\"M 41.48125 211.416 \nL 610.64125 211.416 \n\" clip-path=\"url(#pf0df275eca)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_8\">\n      <defs>\n       <path id=\"mda8c8c1695\" d=\"M 0 0 \nL -3.5 0 \n\" style=\"stroke: #475569; stroke-width: 0.8\"/>\n      </defs>\n      <g>\n       <use xlink:href=\"#mda8c8c1695\" x=\"41.48125\" y=\"211.416\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_7\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"34.48125\" y=\"215.466\" transform=\"rotate(-0 34.48125 215.466)\">0.0</text>\n     </g>\n    </g>\n    <g id=\"ytick_2\">\n     <g id=\"line2d_9\">\n      <path d=\"M 41.48125 187.854 \nL 610.64125 187.854 \n\" clip-path=\"url(#pf0df275eca)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_10\">\n      <g>\n       <use xlink:href=\"#mda8c8c1695\" x=\"41.48125\" y=\"187.854\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_8\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"34.48125\" y=\"191.904\" transform=\"rotate(-0 34.48125 191.904)\">0.5</text>\n     </g>\n    </g>\n    <g id=\"ytick_3\">\n     <g id=\"line2d_11\">\n      <path d=\"M 41.48125 164.292 \nL 610.64125 164.292 \n\" clip-path=\"url(#pf0df275eca)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_12\">\n      <g>\n       <use xlink:href=\"#mda8c8c1695\" x=\"41.48125\" y=\"164.292\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_9\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"34.48125\" y=\"168.342\" transform=\"rotate(-0 34.48125 168.342)\">1.0</text>\n     </g>\n    </g>\n    <g id=\"ytick_4\">\n     <g id=\"line2d_13\">\n      <path d=\"M 41.48125 140.73 \nL 610.64125 140.73 \n\" clip-path=\"url(#pf0df275eca)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_14\">\n      <g>\n       <use xlink:href=\"#mda8c8c1695\" x=\"41.48125\" y=\"140.73\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_10\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"34.48125\" y=\"144.78\" transform=\"rotate(-0 34.48125 144.78)\">1.5</text>\n     </g>\n    </g>\n    <g id=\"ytick_5\">\n     <g id=\"line2d_15\">\n      <path d=\"M 41.48125 117.168 \nL 610.64125 117.168 \n\" clip-path=\"url(#pf0df275eca)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_16\">\n      <g>\n       <use xlink:href=\"#mda8c8c1695\" x=\"41.48125\" y=\"117.168\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_11\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"34.48125\" y=\"121.218\" transform=\"rotate(-0 34.48125 121.218)\">2.0</text>\n     </g>\n    </g>\n    <g id=\"ytick_6\">\n     <g id=\"line2d_17\">\n      <path d=\"M 41.48125 93.606 \nL 610.64125 93.606 \n\" clip-path=\"url(#pf0df275eca)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_18\">\n      <g>\n       <use xlink:href=\"#mda8c8c1695\" x=\"41.48125\" y=\"93.606\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_12\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"34.48125\" y=\"97.656\" transform=\"rotate(-0 34.48125 97.656)\">2.5</text>\n     </g>\n    </g>\n    <g id=\"ytick_7\">\n     <g id=\"line2d_19\">\n      <path d=\"M 41.48125 70.044 \nL 610.64125 70.044 \n\" clip-path=\"url(#pf0df275eca)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_20\">\n      <g>\n       <use xlink:href=\"#mda8c8c1695\" x=\"41.48125\" y=\"70.044\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_13\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"34.48125\" y=\"74.094\" transform=\"rotate(-0 34.48125 74.094)\">3.0</text>\n     </g>\n    </g>\n    <g id=\"ytick_8\">\n     <g id=\"line2d_21\">\n      <path d=\"M 41.48125 46.482 \nL 610.64125 46.482 \n\" clip-path=\"url(#pf0df275eca)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_22\">\n      <g>\n       <use xlink:href=\"#mda8c8c1695\" x=\"41.48125\" y=\"46.482\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_14\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"34.48125\" y=\"50.532\" transform=\"rotate(-0 34.48125 50.532)\">3.5</text>\n     </g>\n    </g>\n    <g id=\"ytick_9\">\n     <g id=\"line2d_23\">\n      <path d=\"M 41.48125 22.92 \nL 610.64125 22.92 \n\" clip-path=\"url(#pf0df275eca)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_24\">\n      <g>\n       <use xlink:href=\"#mda8c8c1695\" x=\"41.48125\" y=\"22.92\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_15\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"34.48125\" y=\"26.97\" transform=\"rotate(-0 34.48125 26.97)\">4.0</text>\n     </g>\n    </g>\n    <g id=\"text_16\">\n     <text style=\"fill: #334155; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"15.3\" y=\"117.168\" transform=\"rotate(-90 15.3 117.168)\">亿芯千米</text>\n    </g>\n   </g>\n   <g id=\"patch_3\">\n    <path d=\"M 67.352159 211.416 \nL 120.301596 211.416 \nL 120.301596 75.332727 \nL 67.352159 75.332727 \nz\n\" clip-path=\"url(#pf0df275eca)\" style=\"fill: #94a3b8\"/>\n   </g>\n   <g id=\"patch_4\">\n    <path d=\"M 160.245908 211.416 \nL 213.195345 211.416 \nL 213.195345 59.763428 \nL 160.245908 59.763428 \nz\n\" clip-path=\"url(#pf0df275eca)\" style=\"fill: #94a3b8\"/>\n   </g>\n   <g id=\"patch_5\">\n    <path d=\"M 253.139657 211.416 \nL 306.089094 211.416 \nL 306.089094 48.487126 \nL 253.139657 48.487126 \nz\n\" clip-path=\"url(#pf0df275eca)\" style=\"fill: #94a3b8\"/>\n   </g>\n   <g id=\"patch_6\">\n    <path d=\"M 346.033406 211.416 \nL 398.982843 211.416 \nL 398.982843 59.383137 \nL 346.033406 59.383137 \nz\n\" clip-path=\"url(#pf0df275eca)\" style=\"fill: #94a3b8\"/>\n   </g>\n   <g id=\"patch_7\">\n    <path d=\"M 438.927155 211.416 \nL 491.876592 211.416 \nL 491.876592 84.793812 \nL 438.927155 84.793812 \nz\n\" clip-path=\"url(#pf0df275eca)\" style=\"fill: #94a3b8\"/>\n   </g>\n   <g id=\"patch_8\">\n    <path d=\"M 531.820904 211.416 \nL 584.770341 211.416 \nL 584.770341 93.048994 \nL 531.820904 93.048994 \nz\n\" clip-path=\"url(#pf0df275eca)\" style=\"fill: #285f8f\"/>\n   </g>\n   <g id=\"patch_9\">\n    <path d=\"M 41.48125 211.416 \nL 41.48125 22.92 \n\" style=\"fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square\"/>\n   </g>\n   <g id=\"patch_10\">\n    <path d=\"M 41.48125 211.416 \nL 610.64125 211.416 \n\" style=\"fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square\"/>\n   </g>\n   <g id=\"text_17\">\n    <text style=\"font: 10px 'Heiti TC'; text-anchor: middle\" x=\"93.826878\" y=\"72.505287\" transform=\"rotate(-0 93.826878 72.505287)\">2.89</text>\n   </g>\n   <g id=\"text_18\">\n    <text style=\"font: 10px 'Heiti TC'; text-anchor: middle\" x=\"186.720627\" y=\"56.935988\" transform=\"rotate(-0 186.720627 56.935988)\">3.22</text>\n   </g>\n   <g id=\"text_19\">\n    <text style=\"font: 10px 'Heiti TC'; text-anchor: middle\" x=\"279.614376\" y=\"45.659686\" transform=\"rotate(-0 279.614376 45.659686)\">3.46</text>\n   </g>\n   <g id=\"text_20\">\n    <text style=\"font: 10px 'Heiti TC'; text-anchor: middle\" x=\"372.508124\" y=\"56.555697\" transform=\"rotate(-0 372.508124 56.555697)\">3.23</text>\n   </g>\n   <g id=\"text_21\">\n    <text style=\"font: 10px 'Heiti TC'; text-anchor: middle\" x=\"465.401873\" y=\"81.966372\" transform=\"rotate(-0 465.401873 81.966372)\">2.69</text>\n   </g>\n   <g id=\"text_22\">\n    <text style=\"font: 10px 'Heiti TC'; text-anchor: middle\" x=\"558.295622\" y=\"90.221554\" transform=\"rotate(-0 558.295622 90.221554)\">2.51</text>\n   </g>\n   <g id=\"text_23\">\n    <text style=\"font: 12px 'Heiti TC'; text-anchor: start\" x=\"41.48125\" y=\"16.92\" transform=\"rotate(-0 41.48125 16.92)\">中国光缆产量 2020—2025</text>\n   </g>\n  </g>\n </g>\n <defs>\n  <clipPath id=\"pf0df275eca\">\n   <rect x=\"41.48125\" y=\"22.92\" width=\"569.16\" height=\"188.496\"/>\n  </clipPath>\n </defs>\n</svg>\n",
+    "panels": [
+      {
+        "title": "",
+        "xlabel": "",
+        "ylabel": "亿芯千米",
+        "xticks": [
+          [
+            2020.0,
+            "2020"
+          ],
+          [
+            2021.0,
+            "2021"
+          ],
+          [
+            2022.0,
+            "2022"
+          ],
+          [
+            2023.0,
+            "2023"
+          ],
+          [
+            2024.0,
+            "2024"
+          ],
+          [
+            2025.0,
+            "2025"
+          ]
+        ],
+        "yticks": [
+          [
+            0.0,
+            "0.0"
+          ],
+          [
+            0.5,
+            "0.5"
+          ],
+          [
+            1.0,
+            "1.0"
+          ],
+          [
+            1.5,
+            "1.5"
+          ],
+          [
+            2.0,
+            "2.0"
+          ],
+          [
+            2.5,
+            "2.5"
+          ],
+          [
+            3.0,
+            "3.0"
+          ],
+          [
+            3.5,
+            "3.5"
+          ],
+          [
+            4.0,
+            "4.0"
+          ]
+        ],
+        "series": [
+          {
+            "kind": "bar",
+            "x": 2019.7150000000001,
+            "y": 0.0,
+            "width": 0.5699999999999363,
+            "height": 2.88777
+          },
+          {
+            "kind": "bar",
+            "x": 2020.7150000000001,
+            "y": 0.0,
+            "width": 0.5699999999999363,
+            "height": 3.21816
+          },
+          {
+            "kind": "bar",
+            "x": 2021.7150000000001,
+            "y": 0.0,
+            "width": 0.5699999999999363,
+            "height": 3.45745
+          },
+          {
+            "kind": "bar",
+            "x": 2022.7150000000001,
+            "y": 0.0,
+            "width": 0.5699999999999363,
+            "height": 3.22623
+          },
+          {
+            "kind": "bar",
+            "x": 2023.7150000000001,
+            "y": 0.0,
+            "width": 0.5699999999999363,
+            "height": 2.687
+          },
+          {
+            "kind": "bar",
+            "x": 2024.7150000000001,
+            "y": 0.0,
+            "width": 0.5699999999999363,
+            "height": 2.51182
+          }
+        ],
+        "notes": [
+          "2.89",
+          "3.22",
+          "3.46",
+          "3.23",
+          "2.69",
+          "2.51"
+        ]
+      }
+    ]
+  },
+  "market_waterfall": {
+    "svg": "<svg xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"609.530312pt\" height=\"235.007375pt\" viewBox=\"0 0 609.530312 235.007375\" xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\">\n <metadata>\n  <rdf:RDF xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:cc=\"http://creativecommons.org/ns#\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">\n   <cc:Work>\n    <dc:type rdf:resource=\"http://purl.org/dc/dcmitype/StillImage\"/>\n    <dc:date>2026-09-05T13:34:13.879117</dc:date>\n    <dc:format>image/svg+xml</dc:format>\n    <dc:creator>\n     <cc:Agent>\n      <dc:title>Matplotlib v3.9.4, https://matplotlib.org/</dc:title>\n     </cc:Agent>\n    </dc:creator>\n   </cc:Work>\n  </rdf:RDF>\n </metadata>\n <defs>\n  <style type=\"text/css\">*{stroke-linejoin: round; stroke-linecap: butt}</style>\n </defs>\n <g id=\"figure_1\">\n  <g id=\"patch_1\">\n   <path d=\"M 0 235.007375 \nL 609.530313 235.007375 \nL 609.530313 0 \nL 0 0 \nz\n\" style=\"fill: #ffffff\"/>\n  </g>\n  <g id=\"axes_1\">\n   <g id=\"patch_2\">\n    <path d=\"M 33.170313 200.328 \nL 602.330313 200.328 \nL 602.330313 22.92 \nL 33.170313 22.92 \nz\n\" style=\"fill: #ffffff\"/>\n   </g>\n   <g id=\"patch_3\">\n    <path d=\"M 59.041222 200.328 \nL 128.478294 200.328 \nL 128.478294 160.2768 \nL 59.041222 160.2768 \nz\n\" clip-path=\"url(#pddee8cef43)\" style=\"fill: #168583\"/>\n   </g>\n   <g id=\"patch_4\">\n    <path d=\"M 171.036499 160.2768 \nL 240.473571 160.2768 \nL 240.473571 141.192 \nL 171.036499 141.192 \nz\n\" clip-path=\"url(#pddee8cef43)\" style=\"fill: #168583\"/>\n   </g>\n   <g id=\"patch_5\">\n    <path d=\"M 283.031776 141.192 \nL 352.468849 141.192 \nL 352.468849 126.9456 \nL 283.031776 126.9456 \nz\n\" clip-path=\"url(#pddee8cef43)\" style=\"fill: #168583\"/>\n   </g>\n   <g id=\"patch_6\">\n    <path d=\"M 395.027054 126.9456 \nL 464.464126 126.9456 \nL 464.464126 45.2304 \nL 395.027054 45.2304 \nz\n\" clip-path=\"url(#pddee8cef43)\" style=\"fill: #94a3b8\"/>\n   </g>\n   <g id=\"patch_7\">\n    <path d=\"M 507.022331 200.328 \nL 576.459403 200.328 \nL 576.459403 45.2304 \nL 507.022331 45.2304 \nz\n\" clip-path=\"url(#pddee8cef43)\" style=\"fill: #285f8f\"/>\n   </g>\n   <g id=\"matplotlib.axis_1\">\n    <g id=\"xtick_1\">\n     <g id=\"line2d_1\">\n      <defs>\n       <path id=\"mf47403f0f1\" d=\"M 0 0 \nL 0 3.5 \n\" style=\"stroke: #475569; stroke-width: 0.8\"/>\n      </defs>\n      <g>\n       <use xlink:href=\"#mf47403f0f1\" x=\"93.759758\" y=\"200.328\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_1\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"93.759758\" y=\"215.428\" transform=\"rotate(-0 93.759758 215.428)\">北美</text>\n     </g>\n    </g>\n    <g id=\"xtick_2\">\n     <g id=\"line2d_2\">\n      <g>\n       <use xlink:href=\"#mf47403f0f1\" x=\"205.755035\" y=\"200.328\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_2\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"205.755035\" y=\"215.428\" transform=\"rotate(-0 205.755035 215.428)\">亚洲除中国</text>\n     </g>\n    </g>\n    <g id=\"xtick_3\">\n     <g id=\"line2d_3\">\n      <g>\n       <use xlink:href=\"#mf47403f0f1\" x=\"317.750313\" y=\"200.328\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_3\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"317.750313\" y=\"215.428\" transform=\"rotate(-0 317.750313 215.428)\">西欧</text>\n     </g>\n    </g>\n    <g id=\"xtick_4\">\n     <g id=\"line2d_4\">\n      <g>\n       <use xlink:href=\"#mf47403f0f1\" x=\"429.74559\" y=\"200.328\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_4\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'\" transform=\"translate(409.74559 215.428)\">其余地区</text>\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'\" transform=\"translate(414.74559 226.477687)\">含中国</text>\n     </g>\n    </g>\n    <g id=\"xtick_5\">\n     <g id=\"line2d_5\">\n      <g>\n       <use xlink:href=\"#mf47403f0f1\" x=\"541.740867\" y=\"200.328\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_5\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"541.740867\" y=\"215.428\" transform=\"rotate(-0 541.740867 215.428)\">全球合计</text>\n     </g>\n    </g>\n   </g>\n   <g id=\"matplotlib.axis_2\">\n    <g id=\"ytick_1\">\n     <g id=\"line2d_6\">\n      <defs>\n       <path id=\"mcda9e13978\" d=\"M 0 0 \nL -3.5 0 \n\" style=\"stroke: #475569; stroke-width: 0.8\"/>\n      </defs>\n      <g>\n       <use xlink:href=\"#mcda9e13978\" x=\"33.170313\" y=\"200.328\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_6\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"26.170313\" y=\"204.378\" transform=\"rotate(-0 26.170313 204.378)\">0</text>\n     </g>\n    </g>\n    <g id=\"ytick_2\">\n     <g id=\"line2d_7\">\n      <g>\n       <use xlink:href=\"#mcda9e13978\" x=\"33.170313\" y=\"173.448\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_7\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"26.170313\" y=\"177.498\" transform=\"rotate(-0 26.170313 177.498)\">1</text>\n     </g>\n    </g>\n    <g id=\"ytick_3\">\n     <g id=\"line2d_8\">\n      <g>\n       <use xlink:href=\"#mcda9e13978\" x=\"33.170313\" y=\"146.568\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_8\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"26.170313\" y=\"150.618\" transform=\"rotate(-0 26.170313 150.618)\">2</text>\n     </g>\n    </g>\n    <g id=\"ytick_4\">\n     <g id=\"line2d_9\">\n      <g>\n       <use xlink:href=\"#mcda9e13978\" x=\"33.170313\" y=\"119.688\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_9\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"26.170313\" y=\"123.738\" transform=\"rotate(-0 26.170313 123.738)\">3</text>\n     </g>\n    </g>\n    <g id=\"ytick_5\">\n     <g id=\"line2d_10\">\n      <g>\n       <use xlink:href=\"#mcda9e13978\" x=\"33.170313\" y=\"92.808\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_10\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"26.170313\" y=\"96.858\" transform=\"rotate(-0 26.170313 96.858)\">4</text>\n     </g>\n    </g>\n    <g id=\"ytick_6\">\n     <g id=\"line2d_11\">\n      <g>\n       <use xlink:href=\"#mcda9e13978\" x=\"33.170313\" y=\"65.928\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_11\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"26.170313\" y=\"69.978\" transform=\"rotate(-0 26.170313 69.978)\">5</text>\n     </g>\n    </g>\n    <g id=\"ytick_7\">\n     <g id=\"line2d_12\">\n      <g>\n       <use xlink:href=\"#mcda9e13978\" x=\"33.170313\" y=\"39.048\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_12\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"26.170313\" y=\"43.098\" transform=\"rotate(-0 26.170313 43.098)\">6</text>\n     </g>\n    </g>\n    <g id=\"text_13\">\n     <text style=\"fill: #334155; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"15.3\" y=\"111.624\" transform=\"rotate(-90 15.3 111.624)\">亿芯千米</text>\n    </g>\n   </g>\n   <g id=\"patch_8\">\n    <path d=\"M 33.170313 200.328 \nL 33.170313 22.92 \n\" style=\"fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square\"/>\n   </g>\n   <g id=\"patch_9\">\n    <path d=\"M 33.170313 200.328 \nL 602.330313 200.328 \n\" style=\"fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square\"/>\n   </g>\n   <g id=\"text_14\">\n    <text style=\"fill: #ffffff; font: 700 10px 'Heiti TC'; text-anchor: middle\" x=\"93.759758\" y=\"183.687556\" transform=\"rotate(-0 93.759758 183.687556)\">1.49</text>\n   </g>\n   <g id=\"text_15\">\n    <text style=\"fill: #ffffff; font: 700 10px 'Heiti TC'; text-anchor: middle\" x=\"205.755035\" y=\"154.119556\" transform=\"rotate(-0 205.755035 154.119556)\">0.71</text>\n   </g>\n   <g id=\"text_16\">\n    <text style=\"fill: #ffffff; font: 700 10px 'Heiti TC'; text-anchor: middle\" x=\"317.750313\" y=\"137.453956\" transform=\"rotate(-0 317.750313 137.453956)\">0.53</text>\n   </g>\n   <g id=\"text_17\">\n    <text style=\"fill: #172b4d; font: 700 10px 'Heiti TC'; text-anchor: middle\" x=\"429.74559\" y=\"89.473156\" transform=\"rotate(-0 429.74559 89.473156)\">3.04</text>\n   </g>\n   <g id=\"text_18\">\n    <text style=\"font: 700 10px 'Heiti TC'; text-anchor: middle\" x=\"541.740867\" y=\"41.736\" transform=\"rotate(-0 541.740867 41.736)\">5.77</text>\n   </g>\n   <g id=\"text_19\">\n    <text style=\"font: 12px 'Heiti TC'; text-anchor: start\" x=\"33.170313\" y=\"16.92\" transform=\"rotate(-0 33.170313 16.92)\">2026 年 1 月旧预测的地区拆分</text>\n   </g>\n  </g>\n </g>\n <defs>\n  <clipPath id=\"pddee8cef43\">\n   <rect x=\"33.170313\" y=\"22.92\" width=\"569.16\" height=\"177.408\"/>\n  </clipPath>\n </defs>\n</svg>\n",
+    "panels": [
+      {
+        "title": "",
+        "xlabel": "",
+        "ylabel": "亿芯千米",
+        "xticks": [
+          [
+            0.0,
+            "北美"
+          ],
+          [
+            1.0,
+            "亚洲除中国"
+          ],
+          [
+            2.0,
+            "西欧"
+          ],
+          [
+            3.0,
+            "其余地区\n含中国"
+          ],
+          [
+            4.0,
+            "全球合计"
+          ]
+        ],
+        "yticks": [
+          [
+            0.0,
+            "0"
+          ],
+          [
+            1.0,
+            "1"
+          ],
+          [
+            2.0,
+            "2"
+          ],
+          [
+            3.0,
+            "3"
+          ],
+          [
+            4.0,
+            "4"
+          ],
+          [
+            5.0,
+            "5"
+          ],
+          [
+            6.0,
+            "6"
+          ],
+          [
+            7.0,
+            "7"
+          ]
+        ],
+        "series": [
+          {
+            "kind": "bar",
+            "x": -0.31,
+            "y": 0.0,
+            "width": 0.62,
+            "height": 1.49
+          },
+          {
+            "kind": "bar",
+            "x": 0.69,
+            "y": 1.49,
+            "width": 0.6200000000000001,
+            "height": 0.7100000000000002
+          },
+          {
+            "kind": "bar",
+            "x": 1.69,
+            "y": 2.2,
+            "width": 0.6200000000000001,
+            "height": 0.5300000000000002
+          },
+          {
+            "kind": "bar",
+            "x": 2.69,
+            "y": 2.7300000000000004,
+            "width": 0.6200000000000001,
+            "height": 3.04
+          },
+          {
+            "kind": "bar",
+            "x": 3.69,
+            "y": 0.0,
+            "width": 0.6200000000000001,
+            "height": 5.77
+          }
+        ],
+        "notes": [
+          "1.49",
+          "0.71",
+          "0.53",
+          "3.04",
+          "5.77"
+        ]
+      }
+    ]
+  },
+  "demand_share": {
+    "svg": "<svg xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"726.431562pt\" height=\"236.720937pt\" viewBox=\"0 0 726.431562 236.720937\" xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\">\n <metadata>\n  <rdf:RDF xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:cc=\"http://creativecommons.org/ns#\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">\n   <cc:Work>\n    <dc:type rdf:resource=\"http://purl.org/dc/dcmitype/StillImage\"/>\n    <dc:date>2026-09-05T13:34:13.927827</dc:date>\n    <dc:format>image/svg+xml</dc:format>\n    <dc:creator>\n     <cc:Agent>\n      <dc:title>Matplotlib v3.9.4, https://matplotlib.org/</dc:title>\n     </cc:Agent>\n    </dc:creator>\n   </cc:Work>\n  </rdf:RDF>\n </metadata>\n <defs>\n  <style type=\"text/css\">*{stroke-linejoin: round; stroke-linecap: butt}</style>\n </defs>\n <g id=\"figure_1\">\n  <g id=\"patch_1\">\n   <path d=\"M 0 236.720937 \nL 726.431562 236.720937 \nL 726.431562 0 \nL 0 0 \nz\n\" style=\"fill: #ffffff\"/>\n  </g>\n  <g id=\"axes_1\">\n   <g id=\"patch_2\">\n    <path d=\"M 44.251563 213.09125 \nL 417.895562 213.09125 \nL 417.895562 23.05125 \nL 44.251563 23.05125 \nz\n\" style=\"fill: #ffffff\"/>\n   </g>\n   <g id=\"matplotlib.axis_1\">\n    <g id=\"xtick_1\">\n     <g id=\"line2d_1\">\n      <path d=\"M 61.235381 213.09125 \nL 61.235381 23.05125 \n\" clip-path=\"url(#p96d4b0fd38)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_2\">\n      <defs>\n       <path id=\"m13c1e4d2db\" d=\"M 0 0 \nL 0 3.5 \n\" style=\"stroke: #475569; stroke-width: 0.8\"/>\n      </defs>\n      <g>\n       <use xlink:href=\"#m13c1e4d2db\" x=\"61.235381\" y=\"213.09125\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_1\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"61.235381\" y=\"228.19125\" transform=\"rotate(-0 61.235381 228.19125)\">2025</text>\n     </g>\n    </g>\n    <g id=\"xtick_2\">\n     <g id=\"line2d_3\">\n      <path d=\"M 129.170653 213.09125 \nL 129.170653 23.05125 \n\" clip-path=\"url(#p96d4b0fd38)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_4\">\n      <g>\n       <use xlink:href=\"#m13c1e4d2db\" x=\"129.170653\" y=\"213.09125\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_2\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"129.170653\" y=\"228.19125\" transform=\"rotate(-0 129.170653 228.19125)\">2026</text>\n     </g>\n    </g>\n    <g id=\"xtick_3\">\n     <g id=\"line2d_5\">\n      <path d=\"M 197.105926 213.09125 \nL 197.105926 23.05125 \n\" clip-path=\"url(#p96d4b0fd38)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_6\">\n      <g>\n       <use xlink:href=\"#m13c1e4d2db\" x=\"197.105926\" y=\"213.09125\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_3\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"197.105926\" y=\"228.19125\" transform=\"rotate(-0 197.105926 228.19125)\">2027</text>\n     </g>\n    </g>\n    <g id=\"xtick_4\">\n     <g id=\"line2d_7\">\n      <path d=\"M 265.041199 213.09125 \nL 265.041199 23.05125 \n\" clip-path=\"url(#p96d4b0fd38)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_8\">\n      <g>\n       <use xlink:href=\"#m13c1e4d2db\" x=\"265.041199\" y=\"213.09125\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_4\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"265.041199\" y=\"228.19125\" transform=\"rotate(-0 265.041199 228.19125)\">2028</text>\n     </g>\n    </g>\n    <g id=\"xtick_5\">\n     <g id=\"line2d_9\">\n      <path d=\"M 332.976472 213.09125 \nL 332.976472 23.05125 \n\" clip-path=\"url(#p96d4b0fd38)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_10\">\n      <g>\n       <use xlink:href=\"#m13c1e4d2db\" x=\"332.976472\" y=\"213.09125\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_5\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"332.976472\" y=\"228.19125\" transform=\"rotate(-0 332.976472 228.19125)\">2029</text>\n     </g>\n    </g>\n    <g id=\"xtick_6\">\n     <g id=\"line2d_11\">\n      <path d=\"M 400.911744 213.09125 \nL 400.911744 23.05125 \n\" clip-path=\"url(#p96d4b0fd38)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_12\">\n      <g>\n       <use xlink:href=\"#m13c1e4d2db\" x=\"400.911744\" y=\"213.09125\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_6\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"400.911744\" y=\"228.19125\" transform=\"rotate(-0 400.911744 228.19125)\">2030</text>\n     </g>\n    </g>\n   </g>\n   <g id=\"matplotlib.axis_2\">\n    <g id=\"ytick_1\">\n     <g id=\"line2d_13\">\n      <path d=\"M 44.251563 204.453068 \nL 417.895562 204.453068 \n\" clip-path=\"url(#p96d4b0fd38)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_14\">\n      <defs>\n       <path id=\"m986b2ccdc0\" d=\"M 0 0 \nL -3.5 0 \n\" style=\"stroke: #475569; stroke-width: 0.8\"/>\n      </defs>\n      <g>\n       <use xlink:href=\"#m986b2ccdc0\" x=\"44.251563\" y=\"204.453068\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_7\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"37.251563\" y=\"208.503068\" transform=\"rotate(-0 37.251563 208.503068)\">100</text>\n     </g>\n    </g>\n    <g id=\"ytick_2\">\n     <g id=\"line2d_15\">\n      <path d=\"M 44.251563 182.388681 \nL 417.895562 182.388681 \n\" clip-path=\"url(#p96d4b0fd38)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_16\">\n      <g>\n       <use xlink:href=\"#m986b2ccdc0\" x=\"44.251563\" y=\"182.388681\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_8\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"37.251563\" y=\"186.438681\" transform=\"rotate(-0 37.251563 186.438681)\">120</text>\n     </g>\n    </g>\n    <g id=\"ytick_3\">\n     <g id=\"line2d_17\">\n      <path d=\"M 44.251563 160.324293 \nL 417.895562 160.324293 \n\" clip-path=\"url(#p96d4b0fd38)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_18\">\n      <g>\n       <use xlink:href=\"#m986b2ccdc0\" x=\"44.251563\" y=\"160.324293\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_9\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"37.251563\" y=\"164.374293\" transform=\"rotate(-0 37.251563 164.374293)\">140</text>\n     </g>\n    </g>\n    <g id=\"ytick_4\">\n     <g id=\"line2d_19\">\n      <path d=\"M 44.251563 138.259906 \nL 417.895562 138.259906 \n\" clip-path=\"url(#p96d4b0fd38)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_20\">\n      <g>\n       <use xlink:href=\"#m986b2ccdc0\" x=\"44.251563\" y=\"138.259906\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_10\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"37.251563\" y=\"142.309906\" transform=\"rotate(-0 37.251563 142.309906)\">160</text>\n     </g>\n    </g>\n    <g id=\"ytick_5\">\n     <g id=\"line2d_21\">\n      <path d=\"M 44.251563 116.195518 \nL 417.895562 116.195518 \n\" clip-path=\"url(#p96d4b0fd38)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_22\">\n      <g>\n       <use xlink:href=\"#m986b2ccdc0\" x=\"44.251563\" y=\"116.195518\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_11\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"37.251563\" y=\"120.245518\" transform=\"rotate(-0 37.251563 120.245518)\">180</text>\n     </g>\n    </g>\n    <g id=\"ytick_6\">\n     <g id=\"line2d_23\">\n      <path d=\"M 44.251563 94.131131 \nL 417.895562 94.131131 \n\" clip-path=\"url(#p96d4b0fd38)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_24\">\n      <g>\n       <use xlink:href=\"#m986b2ccdc0\" x=\"44.251563\" y=\"94.131131\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_12\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"37.251563\" y=\"98.181131\" transform=\"rotate(-0 37.251563 98.181131)\">200</text>\n     </g>\n    </g>\n    <g id=\"ytick_7\">\n     <g id=\"line2d_25\">\n      <path d=\"M 44.251563 72.066743 \nL 417.895562 72.066743 \n\" clip-path=\"url(#p96d4b0fd38)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_26\">\n      <g>\n       <use xlink:href=\"#m986b2ccdc0\" x=\"44.251563\" y=\"72.066743\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_13\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"37.251563\" y=\"76.116743\" transform=\"rotate(-0 37.251563 76.116743)\">220</text>\n     </g>\n    </g>\n    <g id=\"ytick_8\">\n     <g id=\"line2d_27\">\n      <path d=\"M 44.251563 50.002356 \nL 417.895562 50.002356 \n\" clip-path=\"url(#p96d4b0fd38)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_28\">\n      <g>\n       <use xlink:href=\"#m986b2ccdc0\" x=\"44.251563\" y=\"50.002356\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_14\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"37.251563\" y=\"54.052356\" transform=\"rotate(-0 37.251563 54.052356)\">240</text>\n     </g>\n    </g>\n    <g id=\"ytick_9\">\n     <g id=\"line2d_29\">\n      <path d=\"M 44.251563 27.937968 \nL 417.895562 27.937968 \n\" clip-path=\"url(#p96d4b0fd38)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_30\">\n      <g>\n       <use xlink:href=\"#m986b2ccdc0\" x=\"44.251563\" y=\"27.937968\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_15\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"37.251563\" y=\"31.987968\" transform=\"rotate(-0 37.251563 31.987968)\">260</text>\n     </g>\n    </g>\n    <g id=\"text_16\">\n     <text style=\"fill: #334155; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"15.3\" y=\"118.07125\" transform=\"rotate(-90 15.3 118.07125)\">2025 年 = 100</text>\n    </g>\n   </g>\n   <g id=\"line2d_31\">\n    <path d=\"M 61.235381 204.453068 \nL 129.170653 181.572298 \nL 197.105926 153.946057 \nL 265.041199 120.590133 \nL 332.976472 80.31619 \nL 400.911744 31.689432 \n\" clip-path=\"url(#p96d4b0fd38)\" style=\"fill: none; stroke: #168583; stroke-width: 1.5; stroke-linecap: square\"/>\n    <defs>\n     <path id=\"m962e42946e\" d=\"M 0 3 \nC 0.795609 3 1.55874 2.683901 2.12132 2.12132 \nC 2.683901 1.55874 3 0.795609 3 0 \nC 3 -0.795609 2.683901 -1.55874 2.12132 -2.12132 \nC 1.55874 -2.683901 0.795609 -3 0 -3 \nC -0.795609 -3 -1.55874 -2.683901 -2.12132 -2.12132 \nC -2.683901 -1.55874 -3 -0.795609 -3 0 \nC -3 0.795609 -2.683901 1.55874 -2.12132 2.12132 \nC -1.55874 2.683901 -0.795609 3 0 3 \nz\n\" style=\"stroke: #168583\"/>\n    </defs>\n    <g clip-path=\"url(#p96d4b0fd38)\">\n     <use xlink:href=\"#m962e42946e\" x=\"61.235381\" y=\"204.453068\" style=\"fill: #168583; stroke: #168583\"/>\n     <use xlink:href=\"#m962e42946e\" x=\"129.170653\" y=\"181.572298\" style=\"fill: #168583; stroke: #168583\"/>\n     <use xlink:href=\"#m962e42946e\" x=\"197.105926\" y=\"153.946057\" style=\"fill: #168583; stroke: #168583\"/>\n     <use xlink:href=\"#m962e42946e\" x=\"265.041199\" y=\"120.590133\" style=\"fill: #168583; stroke: #168583\"/>\n     <use xlink:href=\"#m962e42946e\" x=\"332.976472\" y=\"80.31619\" style=\"fill: #168583; stroke: #168583\"/>\n     <use xlink:href=\"#m962e42946e\" x=\"400.911744\" y=\"31.689432\" style=\"fill: #168583; stroke: #168583\"/>\n    </g>\n   </g>\n   <g id=\"line2d_32\">\n    <path d=\"M 61.235381 204.453068 \nL 129.170653 201.728116 \nL 197.105926 198.935858 \nL 265.041199 196.074631 \nL 332.976472 193.142732 \nL 400.911744 190.138415 \n\" clip-path=\"url(#p96d4b0fd38)\" style=\"fill: none; stroke: #285f8f; stroke-width: 1.5; stroke-linecap: square\"/>\n    <defs>\n     <path id=\"m5a62d6cb3c\" d=\"M 0 3 \nC 0.795609 3 1.55874 2.683901 2.12132 2.12132 \nC 2.683901 1.55874 3 0.795609 3 0 \nC 3 -0.795609 2.683901 -1.55874 2.12132 -2.12132 \nC 1.55874 -2.683901 0.795609 -3 0 -3 \nC -0.795609 -3 -1.55874 -2.683901 -2.12132 -2.12132 \nC -2.683901 -1.55874 -3 -0.795609 -3 0 \nC -3 0.795609 -2.683901 1.55874 -2.12132 2.12132 \nC -1.55874 2.683901 -0.795609 3 0 3 \nz\n\" style=\"stroke: #285f8f\"/>\n    </defs>\n    <g clip-path=\"url(#p96d4b0fd38)\">\n     <use xlink:href=\"#m5a62d6cb3c\" x=\"61.235381\" y=\"204.453068\" style=\"fill: #285f8f; stroke: #285f8f\"/>\n     <use xlink:href=\"#m5a62d6cb3c\" x=\"129.170653\" y=\"201.728116\" style=\"fill: #285f8f; stroke: #285f8f\"/>\n     <use xlink:href=\"#m5a62d6cb3c\" x=\"197.105926\" y=\"198.935858\" style=\"fill: #285f8f; stroke: #285f8f\"/>\n     <use xlink:href=\"#m5a62d6cb3c\" x=\"265.041199\" y=\"196.074631\" style=\"fill: #285f8f; stroke: #285f8f\"/>\n     <use xlink:href=\"#m5a62d6cb3c\" x=\"332.976472\" y=\"193.142732\" style=\"fill: #285f8f; stroke: #285f8f\"/>\n     <use xlink:href=\"#m5a62d6cb3c\" x=\"400.911744\" y=\"190.138415\" style=\"fill: #285f8f; stroke: #285f8f\"/>\n    </g>\n   </g>\n   <g id=\"patch_3\">\n    <path d=\"M 44.251563 213.09125 \nL 44.251563 23.05125 \n\" style=\"fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square\"/>\n   </g>\n   <g id=\"patch_4\">\n    <path d=\"M 44.251563 213.09125 \nL 417.895563 213.09125 \n\" style=\"fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square\"/>\n   </g>\n   <g id=\"text_17\">\n    <text style=\"font: 12px 'Heiti TC'; text-anchor: start\" x=\"44.251563\" y=\"17.05125\" transform=\"rotate(-0 44.251563 17.05125)\">CRU 转引 CAGR 的指数演示</text>\n   </g>\n   <g id=\"legend_1\">\n    <g id=\"line2d_33\">\n     <path d=\"M 52.351563 35.571094 \nL 61.351563 35.571094 \nL 70.351562 35.571094 \n\" style=\"fill: none; stroke: #168583; stroke-width: 1.5; stroke-linecap: square\"/>\n     <g>\n      <use xlink:href=\"#m962e42946e\" x=\"61.351563\" y=\"35.571094\" style=\"fill: #168583; stroke: #168583\"/>\n     </g>\n    </g>\n    <g id=\"text_18\">\n     <text style=\"font: 9px 'Heiti TC'; text-anchor: start\" x=\"77.551563\" y=\"38.721094\" transform=\"rotate(-0 77.551563 38.721094)\">数据中心 20.74%</text>\n    </g>\n    <g id=\"line2d_34\">\n     <path d=\"M 52.351563 48.891094 \nL 61.351563 48.891094 \nL 70.351562 48.891094 \n\" style=\"fill: none; stroke: #285f8f; stroke-width: 1.5; stroke-linecap: square\"/>\n     <g>\n      <use xlink:href=\"#m5a62d6cb3c\" x=\"61.351563\" y=\"48.891094\" style=\"fill: #285f8f; stroke: #285f8f\"/>\n     </g>\n    </g>\n    <g id=\"text_19\">\n     <text style=\"font: 9px 'Heiti TC'; text-anchor: start\" x=\"77.551563\" y=\"52.041094\" transform=\"rotate(-0 77.551563 52.041094)\">电信 2.47%</text>\n    </g>\n   </g>\n  </g>\n  <g id=\"axes_2\">\n   <g id=\"patch_5\">\n    <path d=\"M 470.135563 213.09125 \nL 719.231562 213.09125 \nL 719.231562 23.05125 \nL 470.135563 23.05125 \nz\n\" style=\"fill: #ffffff\"/>\n   </g>\n   <g id=\"patch_6\">\n    <path d=\"M 481.458108 213.09125 \nL 556.941744 213.09125 \nL 556.941744 96.352393 \nL 481.458108 96.352393 \nz\n\" clip-path=\"url(#p77ba9f3474)\" style=\"fill: #94a3b8\"/>\n   </g>\n   <g id=\"patch_7\">\n    <path d=\"M 632.425381 213.09125 \nL 707.909017 213.09125 \nL 707.909017 63.774107 \nL 632.425381 63.774107 \nz\n\" clip-path=\"url(#p77ba9f3474)\" style=\"fill: #168583\"/>\n   </g>\n   <g id=\"matplotlib.axis_3\">\n    <g id=\"xtick_7\">\n     <g id=\"line2d_35\">\n      <g>\n       <use xlink:href=\"#m13c1e4d2db\" x=\"519.199926\" y=\"213.09125\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_20\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"519.199926\" y=\"228.19125\" transform=\"rotate(-0 519.199926 228.19125)\">2026E</text>\n     </g>\n    </g>\n    <g id=\"xtick_8\">\n     <g id=\"line2d_36\">\n      <g>\n       <use xlink:href=\"#m13c1e4d2db\" x=\"670.167199\" y=\"213.09125\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_21\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"670.167199\" y=\"228.19125\" transform=\"rotate(-0 670.167199 228.19125)\">2027E</text>\n     </g>\n    </g>\n   </g>\n   <g id=\"matplotlib.axis_4\">\n    <g id=\"ytick_10\">\n     <g id=\"line2d_37\">\n      <g>\n       <use xlink:href=\"#m986b2ccdc0\" x=\"470.135563\" y=\"213.09125\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_22\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"463.135563\" y=\"217.14125\" transform=\"rotate(-0 463.135563 217.14125)\">0</text>\n     </g>\n    </g>\n    <g id=\"ytick_11\">\n     <g id=\"line2d_38\">\n      <g>\n       <use xlink:href=\"#m986b2ccdc0\" x=\"470.135563\" y=\"185.942679\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_23\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"463.135563\" y=\"189.992679\" transform=\"rotate(-0 463.135563 189.992679)\">10</text>\n     </g>\n    </g>\n    <g id=\"ytick_12\">\n     <g id=\"line2d_39\">\n      <g>\n       <use xlink:href=\"#m986b2ccdc0\" x=\"470.135563\" y=\"158.794107\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_24\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"463.135563\" y=\"162.844107\" transform=\"rotate(-0 463.135563 162.844107)\">20</text>\n     </g>\n    </g>\n    <g id=\"ytick_13\">\n     <g id=\"line2d_40\">\n      <g>\n       <use xlink:href=\"#m986b2ccdc0\" x=\"470.135563\" y=\"131.645536\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_25\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"463.135563\" y=\"135.695536\" transform=\"rotate(-0 463.135563 135.695536)\">30</text>\n     </g>\n    </g>\n    <g id=\"ytick_14\">\n     <g id=\"line2d_41\">\n      <g>\n       <use xlink:href=\"#m986b2ccdc0\" x=\"470.135563\" y=\"104.496964\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_26\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"463.135563\" y=\"108.546964\" transform=\"rotate(-0 463.135563 108.546964)\">40</text>\n     </g>\n    </g>\n    <g id=\"ytick_15\">\n     <g id=\"line2d_42\">\n      <g>\n       <use xlink:href=\"#m986b2ccdc0\" x=\"470.135563\" y=\"77.348393\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_27\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"463.135563\" y=\"81.398393\" transform=\"rotate(-0 463.135563 81.398393)\">50</text>\n     </g>\n    </g>\n    <g id=\"ytick_16\">\n     <g id=\"line2d_43\">\n      <g>\n       <use xlink:href=\"#m986b2ccdc0\" x=\"470.135563\" y=\"50.199821\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_28\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"463.135563\" y=\"54.249821\" transform=\"rotate(-0 463.135563 54.249821)\">60</text>\n     </g>\n    </g>\n    <g id=\"ytick_17\">\n     <g id=\"line2d_44\">\n      <g>\n       <use xlink:href=\"#m986b2ccdc0\" x=\"470.135563\" y=\"23.05125\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_29\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"463.135563\" y=\"27.10125\" transform=\"rotate(-0 463.135563 27.10125)\">70</text>\n     </g>\n    </g>\n    <g id=\"text_30\">\n     <text style=\"fill: #334155; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"446.724625\" y=\"118.07125\" transform=\"rotate(-90 446.724625 118.07125)\">%</text>\n    </g>\n   </g>\n   <g id=\"patch_8\">\n    <path d=\"M 470.135563 213.09125 \nL 470.135563 23.05125 \n\" style=\"fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square\"/>\n   </g>\n   <g id=\"patch_9\">\n    <path d=\"M 470.135563 213.09125 \nL 719.231562 213.09125 \n\" style=\"fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square\"/>\n   </g>\n   <g id=\"text_31\">\n    <text style=\"font: 10px 'Heiti TC'; text-anchor: middle\" x=\"519.199926\" y=\"90.922679\" transform=\"rotate(-0 519.199926 90.922679)\">43%</text>\n   </g>\n   <g id=\"text_32\">\n    <text style=\"font: 10px 'Heiti TC'; text-anchor: middle\" x=\"670.167199\" y=\"58.344393\" transform=\"rotate(-0 670.167199 58.344393)\">55%</text>\n   </g>\n   <g id=\"text_33\">\n    <text style=\"font: 12px 'Heiti TC'; text-anchor: start\" x=\"470.135563\" y=\"17.05125\" transform=\"rotate(-0 470.135563 17.05125)\">杰富瑞数据中心占比预测</text>\n   </g>\n  </g>\n </g>\n <defs>\n  <clipPath id=\"p96d4b0fd38\">\n   <rect x=\"44.251563\" y=\"23.05125\" width=\"373.644\" height=\"190.04\"/>\n  </clipPath>\n  <clipPath id=\"p77ba9f3474\">\n   <rect x=\"470.135563\" y=\"23.05125\" width=\"249.096\" height=\"190.04\"/>\n  </clipPath>\n </defs>\n</svg>\n",
+    "panels": [
+      {
+        "title": "",
+        "xlabel": "",
+        "ylabel": "2025 年 = 100",
+        "xticks": [
+          [
+            2025.0,
+            "2025"
+          ],
+          [
+            2026.0,
+            "2026"
+          ],
+          [
+            2027.0,
+            "2027"
+          ],
+          [
+            2028.0,
+            "2028"
+          ],
+          [
+            2029.0,
+            "2029"
+          ],
+          [
+            2030.0,
+            "2030"
+          ]
+        ],
+        "yticks": [
+          [
+            80.0,
+            "80"
+          ],
+          [
+            100.0,
+            "100"
+          ],
+          [
+            120.0,
+            "120"
+          ],
+          [
+            140.0,
+            "140"
+          ],
+          [
+            160.0,
+            "160"
+          ],
+          [
+            180.0,
+            "180"
+          ],
+          [
+            200.0,
+            "200"
+          ],
+          [
+            220.0,
+            "220"
+          ],
+          [
+            240.0,
+            "240"
+          ],
+          [
+            260.0,
+            "260"
+          ],
+          [
+            280.0,
+            "280"
+          ]
+        ],
+        "series": [
+          {
+            "kind": "line",
+            "label": "数据中心 20.74%",
+            "x": [
+              2025.0,
+              2026.0,
+              2027.0,
+              2028.0,
+              2029.0,
+              2030.0
+            ],
+            "y": [
+              100.0,
+              120.74000000000001,
+              145.781476,
+              176.0165541224,
+              212.5223874473858,
+              256.59953060397356
+            ]
+          },
+          {
+            "kind": "line",
+            "label": "电信 2.47%",
+            "x": [
+              2025.0,
+              2026.0,
+              2027.0,
+              2028.0,
+              2029.0,
+              2030.0
+            ],
+            "y": [
+              100.0,
+              102.47,
+              105.00100899999998,
+              107.59453392229999,
+              110.25211891018078,
+              112.97534624726224
+            ]
+          }
+        ],
+        "notes": []
+      },
+      {
+        "title": "",
+        "xlabel": "",
+        "ylabel": "%",
+        "xticks": [
+          [
+            0.0,
+            "2026E"
+          ],
+          [
+            1.0,
+            "2027E"
+          ]
+        ],
+        "yticks": [
+          [
+            0.0,
+            "0"
+          ],
+          [
+            10.0,
+            "10"
+          ],
+          [
+            20.0,
+            "20"
+          ],
+          [
+            30.0,
+            "30"
+          ],
+          [
+            40.0,
+            "40"
+          ],
+          [
+            50.0,
+            "50"
+          ],
+          [
+            60.0,
+            "60"
+          ],
+          [
+            70.0,
+            "70"
+          ]
+        ],
+        "series": [
+          {
+            "kind": "bar",
+            "x": -0.25,
+            "y": 0.0,
+            "width": 0.5,
+            "height": 43.0
+          },
+          {
+            "kind": "bar",
+            "x": 0.75,
+            "y": 0.0,
+            "width": 0.5,
+            "height": 55.0
+          }
+        ],
+        "notes": [
+          "43%",
+          "55%"
+        ]
+      }
+    ]
+  },
+  "positioning": {
+    "svg": "<svg xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"627.06pt\" height=\"238.001687pt\" viewBox=\"0 0 627.06 238.001687\" xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\">\n <metadata>\n  <rdf:RDF xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:cc=\"http://creativecommons.org/ns#\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">\n   <cc:Work>\n    <dc:type rdf:resource=\"http://purl.org/dc/dcmitype/StillImage\"/>\n    <dc:date>2026-09-05T13:34:13.957768</dc:date>\n    <dc:format>image/svg+xml</dc:format>\n    <dc:creator>\n     <cc:Agent>\n      <dc:title>Matplotlib v3.9.4, https://matplotlib.org/</dc:title>\n     </cc:Agent>\n    </dc:creator>\n   </cc:Work>\n  </rdf:RDF>\n </metadata>\n <defs>\n  <style type=\"text/css\">*{stroke-linejoin: round; stroke-linecap: butt}</style>\n </defs>\n <g id=\"figure_1\">\n  <g id=\"patch_1\">\n   <path d=\"M 0 238.001687 \nL 627.06 238.001687 \nL 627.06 0 \nL 0 0 \nz\n\" style=\"fill: #ffffff\"/>\n  </g>\n  <g id=\"axes_1\">\n   <g id=\"patch_2\">\n    <path d=\"M 50.7 230.801687 \nL 619.86 230.801687 \nL 619.86 20.129687 \nL 50.7 20.129687 \nz\n\" style=\"fill: #ffffff\"/>\n   </g>\n   <g id=\"QuadMesh_1\">\n    <path d=\"M 50.7 20.129687 \nL 164.532 20.129687 \nL 164.532 50.225687 \nL 50.7 50.225687 \nL 50.7 20.129687 \n\" clip-path=\"url(#p2c0d4ae523)\" style=\"fill: #285f8f\"/>\n    <path d=\"M 164.532 20.129687 \nL 278.364 20.129687 \nL 278.364 50.225687 \nL 164.532 50.225687 \nL 164.532 20.129687 \n\" clip-path=\"url(#p2c0d4ae523)\" style=\"fill: #285f8f\"/>\n    <path d=\"M 278.364 20.129687 \nL 392.196 20.129687 \nL 392.196 50.225687 \nL 278.364 50.225687 \nL 278.364 20.129687 \n\" clip-path=\"url(#p2c0d4ae523)\" style=\"fill: #b9d8e3\"/>\n    <path d=\"M 392.196 20.129687 \nL 506.028 20.129687 \nL 506.028 50.225687 \nL 392.196 50.225687 \nL 392.196 20.129687 \n\" clip-path=\"url(#p2c0d4ae523)\" style=\"fill: #f4f6f8\"/>\n    <path d=\"M 506.028 20.129687 \nL 619.86 20.129687 \nL 619.86 50.225687 \nL 506.028 50.225687 \nL 506.028 20.129687 \n\" clip-path=\"url(#p2c0d4ae523)\" style=\"fill: #f4f6f8\"/>\n    <path d=\"M 50.7 50.225687 \nL 164.532 50.225687 \nL 164.532 80.321687 \nL 50.7 80.321687 \nL 50.7 50.225687 \n\" clip-path=\"url(#p2c0d4ae523)\" style=\"fill: #285f8f\"/>\n    <path d=\"M 164.532 50.225687 \nL 278.364 50.225687 \nL 278.364 80.321687 \nL 164.532 80.321687 \nL 164.532 50.225687 \n\" clip-path=\"url(#p2c0d4ae523)\" style=\"fill: #285f8f\"/>\n    <path d=\"M 278.364 50.225687 \nL 392.196 50.225687 \nL 392.196 80.321687 \nL 278.364 80.321687 \nL 278.364 50.225687 \n\" clip-path=\"url(#p2c0d4ae523)\" style=\"fill: #b9d8e3\"/>\n    <path d=\"M 392.196 50.225687 \nL 506.028 50.225687 \nL 506.028 80.321687 \nL 392.196 80.321687 \nL 392.196 50.225687 \n\" clip-path=\"url(#p2c0d4ae523)\" style=\"fill: #f4f6f8\"/>\n    <path d=\"M 506.028 50.225687 \nL 619.86 50.225687 \nL 619.86 80.321687 \nL 506.028 80.321687 \nL 506.028 50.225687 \n\" clip-path=\"url(#p2c0d4ae523)\" style=\"fill: #285f8f\"/>\n    <path d=\"M 50.7 80.321687 \nL 164.532 80.321687 \nL 164.532 110.417687 \nL 50.7 110.417687 \nL 50.7 80.321687 \n\" clip-path=\"url(#p2c0d4ae523)\" style=\"fill: #285f8f\"/>\n    <path d=\"M 164.532 80.321687 \nL 278.364 80.321687 \nL 278.364 110.417687 \nL 164.532 110.417687 \nL 164.532 80.321687 \n\" clip-path=\"url(#p2c0d4ae523)\" style=\"fill: #285f8f\"/>\n    <path d=\"M 278.364 80.321687 \nL 392.196 80.321687 \nL 392.196 110.417687 \nL 278.364 110.417687 \nL 278.364 80.321687 \n\" clip-path=\"url(#p2c0d4ae523)\" style=\"fill: #b9d8e3\"/>\n    <path d=\"M 392.196 80.321687 \nL 506.028 80.321687 \nL 506.028 110.417687 \nL 392.196 110.417687 \nL 392.196 80.321687 \n\" clip-path=\"url(#p2c0d4ae523)\" style=\"fill: #f4f6f8\"/>\n    <path d=\"M 506.028 80.321687 \nL 619.86 80.321687 \nL 619.86 110.417687 \nL 506.028 110.417687 \nL 506.028 80.321687 \n\" clip-path=\"url(#p2c0d4ae523)\" style=\"fill: #285f8f\"/>\n    <path d=\"M 50.7 110.417687 \nL 164.532 110.417687 \nL 164.532 140.513687 \nL 50.7 140.513687 \nL 50.7 110.417687 \n\" clip-path=\"url(#p2c0d4ae523)\" style=\"fill: #b9d8e3\"/>\n    <path d=\"M 164.532 110.417687 \nL 278.364 110.417687 \nL 278.364 140.513687 \nL 164.532 140.513687 \nL 164.532 110.417687 \n\" clip-path=\"url(#p2c0d4ae523)\" style=\"fill: #b9d8e3\"/>\n    <path d=\"M 278.364 110.417687 \nL 392.196 110.417687 \nL 392.196 140.513687 \nL 278.364 140.513687 \nL 278.364 110.417687 \n\" clip-path=\"url(#p2c0d4ae523)\" style=\"fill: #b9d8e3\"/>\n    <path d=\"M 392.196 110.417687 \nL 506.028 110.417687 \nL 506.028 140.513687 \nL 392.196 140.513687 \nL 392.196 110.417687 \n\" clip-path=\"url(#p2c0d4ae523)\" style=\"fill: #285f8f\"/>\n    <path d=\"M 506.028 110.417687 \nL 619.86 110.417687 \nL 619.86 140.513687 \nL 506.028 140.513687 \nL 506.028 110.417687 \n\" clip-path=\"url(#p2c0d4ae523)\" style=\"fill: #f4f6f8\"/>\n    <path d=\"M 50.7 140.513687 \nL 164.532 140.513687 \nL 164.532 170.609687 \nL 50.7 170.609687 \nL 50.7 140.513687 \n\" clip-path=\"url(#p2c0d4ae523)\" style=\"fill: #f4f6f8\"/>\n    <path d=\"M 164.532 140.513687 \nL 278.364 140.513687 \nL 278.364 170.609687 \nL 164.532 170.609687 \nL 164.532 140.513687 \n\" clip-path=\"url(#p2c0d4ae523)\" style=\"fill: #f4f6f8\"/>\n    <path d=\"M 278.364 140.513687 \nL 392.196 140.513687 \nL 392.196 170.609687 \nL 278.364 170.609687 \nL 278.364 140.513687 \n\" clip-path=\"url(#p2c0d4ae523)\" style=\"fill: #285f8f\"/>\n    <path d=\"M 392.196 140.513687 \nL 506.028 140.513687 \nL 506.028 170.609687 \nL 392.196 170.609687 \nL 392.196 140.513687 \n\" clip-path=\"url(#p2c0d4ae523)\" style=\"fill: #f4f6f8\"/>\n    <path d=\"M 506.028 140.513687 \nL 619.86 140.513687 \nL 619.86 170.609687 \nL 506.028 170.609687 \nL 506.028 140.513687 \n\" clip-path=\"url(#p2c0d4ae523)\" style=\"fill: #f4f6f8\"/>\n    <path d=\"M 50.7 170.609687 \nL 164.532 170.609687 \nL 164.532 200.705687 \nL 50.7 200.705687 \nL 50.7 170.609687 \n\" clip-path=\"url(#p2c0d4ae523)\" style=\"fill: #f4f6f8\"/>\n    <path d=\"M 164.532 170.609687 \nL 278.364 170.609687 \nL 278.364 200.705687 \nL 164.532 200.705687 \nL 164.532 170.609687 \n\" clip-path=\"url(#p2c0d4ae523)\" style=\"fill: #f4f6f8\"/>\n    <path d=\"M 278.364 170.609687 \nL 392.196 170.609687 \nL 392.196 200.705687 \nL 278.364 200.705687 \nL 278.364 170.609687 \n\" clip-path=\"url(#p2c0d4ae523)\" style=\"fill: #285f8f\"/>\n    <path d=\"M 392.196 170.609687 \nL 506.028 170.609687 \nL 506.028 200.705687 \nL 392.196 200.705687 \nL 392.196 170.609687 \n\" clip-path=\"url(#p2c0d4ae523)\" style=\"fill: #f4f6f8\"/>\n    <path d=\"M 506.028 170.609687 \nL 619.86 170.609687 \nL 619.86 200.705687 \nL 506.028 200.705687 \nL 506.028 170.609687 \n\" clip-path=\"url(#p2c0d4ae523)\" style=\"fill: #f4f6f8\"/>\n    <path d=\"M 50.7 200.705687 \nL 164.532 200.705687 \nL 164.532 230.801687 \nL 50.7 230.801687 \nL 50.7 200.705687 \n\" clip-path=\"url(#p2c0d4ae523)\" style=\"fill: #f4f6f8\"/>\n    <path d=\"M 164.532 200.705687 \nL 278.364 200.705687 \nL 278.364 230.801687 \nL 164.532 230.801687 \nL 164.532 200.705687 \n\" clip-path=\"url(#p2c0d4ae523)\" style=\"fill: #f4f6f8\"/>\n    <path d=\"M 278.364 200.705687 \nL 392.196 200.705687 \nL 392.196 230.801687 \nL 278.364 230.801687 \nL 278.364 200.705687 \n\" clip-path=\"url(#p2c0d4ae523)\" style=\"fill: #285f8f\"/>\n    <path d=\"M 392.196 200.705687 \nL 506.028 200.705687 \nL 506.028 230.801687 \nL 392.196 230.801687 \nL 392.196 200.705687 \n\" clip-path=\"url(#p2c0d4ae523)\" style=\"fill: #f4f6f8\"/>\n    <path d=\"M 506.028 200.705687 \nL 619.86 200.705687 \nL 619.86 230.801687 \nL 506.028 230.801687 \nL 506.028 200.705687 \n\" clip-path=\"url(#p2c0d4ae523)\" style=\"fill: #f4f6f8\"/>\n   </g>\n   <g id=\"matplotlib.axis_1\">\n    <g id=\"xtick_1\">\n     <g id=\"line2d_1\"/>\n     <g id=\"text_1\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"107.616\" y=\"15.3\" transform=\"rotate(-0 107.616 15.3)\">预制棒与光纤</text>\n     </g>\n    </g>\n    <g id=\"xtick_2\">\n     <g id=\"line2d_2\"/>\n     <g id=\"text_2\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"221.448\" y=\"15.3\" transform=\"rotate(-0 221.448 15.3)\">通信光缆</text>\n     </g>\n    </g>\n    <g id=\"xtick_3\">\n     <g id=\"line2d_3\"/>\n     <g id=\"text_3\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"335.28\" y=\"15.3\" transform=\"rotate(-0 335.28 15.3)\">器件组件及模块</text>\n     </g>\n    </g>\n    <g id=\"xtick_4\">\n     <g id=\"line2d_4\"/>\n     <g id=\"text_4\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"449.112\" y=\"15.3\" transform=\"rotate(-0 449.112 15.3)\">通信系统设备</text>\n     </g>\n    </g>\n    <g id=\"xtick_5\">\n     <g id=\"line2d_5\"/>\n     <g id=\"text_5\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"562.944\" y=\"15.3\" transform=\"rotate(-0 562.944 15.3)\">电力及海洋</text>\n     </g>\n    </g>\n   </g>\n   <g id=\"matplotlib.axis_2\">\n    <g id=\"ytick_1\">\n     <g id=\"line2d_6\"/>\n     <g id=\"text_6\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"47.2\" y=\"39.227687\" transform=\"rotate(-0 47.2 39.227687)\">长飞光纤</text>\n     </g>\n    </g>\n    <g id=\"ytick_2\">\n     <g id=\"line2d_7\"/>\n     <g id=\"text_7\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"47.2\" y=\"69.323687\" transform=\"rotate(-0 47.2 69.323687)\">中天科技</text>\n     </g>\n    </g>\n    <g id=\"ytick_3\">\n     <g id=\"line2d_8\"/>\n     <g id=\"text_8\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"47.2\" y=\"99.419687\" transform=\"rotate(-0 47.2 99.419687)\">亨通光电</text>\n     </g>\n    </g>\n    <g id=\"ytick_4\">\n     <g id=\"line2d_9\"/>\n     <g id=\"text_9\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"47.2\" y=\"129.515687\" transform=\"rotate(-0 47.2 129.515687)\">烽火通信</text>\n     </g>\n    </g>\n    <g id=\"ytick_5\">\n     <g id=\"line2d_10\"/>\n     <g id=\"text_10\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"47.2\" y=\"159.611687\" transform=\"rotate(-0 47.2 159.611687)\">中际旭创</text>\n     </g>\n    </g>\n    <g id=\"ytick_6\">\n     <g id=\"line2d_11\"/>\n     <g id=\"text_11\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"47.2\" y=\"189.707687\" transform=\"rotate(-0 47.2 189.707687)\">光迅科技</text>\n     </g>\n    </g>\n    <g id=\"ytick_7\">\n     <g id=\"line2d_12\"/>\n     <g id=\"text_12\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"47.2\" y=\"219.803687\" transform=\"rotate(-0 47.2 219.803687)\">天孚通信</text>\n     </g>\n    </g>\n   </g>\n   <g id=\"text_13\">\n    <text style=\"fill: #ffffff; font: 9px 'Heiti TC'; text-anchor: middle\" x=\"107.616\" y=\"38.224328\" transform=\"rotate(-0 107.616 38.224328)\">重点覆盖</text>\n   </g>\n   <g id=\"text_14\">\n    <text style=\"fill: #ffffff; font: 9px 'Heiti TC'; text-anchor: middle\" x=\"221.448\" y=\"38.224328\" transform=\"rotate(-0 221.448 38.224328)\">重点覆盖</text>\n   </g>\n   <g id=\"text_15\">\n    <text style=\"fill: #22384b; font: 9px 'Heiti TC'; text-anchor: middle\" x=\"335.28\" y=\"38.241906\" transform=\"rotate(-0 335.28 38.241906)\">相关业务</text>\n   </g>\n   <g id=\"text_16\">\n    <text style=\"fill: #ffffff; font: 9px 'Heiti TC'; text-anchor: middle\" x=\"107.616\" y=\"68.320328\" transform=\"rotate(-0 107.616 68.320328)\">重点覆盖</text>\n   </g>\n   <g id=\"text_17\">\n    <text style=\"fill: #ffffff; font: 9px 'Heiti TC'; text-anchor: middle\" x=\"221.448\" y=\"68.320328\" transform=\"rotate(-0 221.448 68.320328)\">重点覆盖</text>\n   </g>\n   <g id=\"text_18\">\n    <text style=\"fill: #22384b; font: 9px 'Heiti TC'; text-anchor: middle\" x=\"335.28\" y=\"68.337906\" transform=\"rotate(-0 335.28 68.337906)\">相关业务</text>\n   </g>\n   <g id=\"text_19\">\n    <text style=\"fill: #ffffff; font: 9px 'Heiti TC'; text-anchor: middle\" x=\"562.944\" y=\"68.320328\" transform=\"rotate(-0 562.944 68.320328)\">重点覆盖</text>\n   </g>\n   <g id=\"text_20\">\n    <text style=\"fill: #ffffff; font: 9px 'Heiti TC'; text-anchor: middle\" x=\"107.616\" y=\"98.416328\" transform=\"rotate(-0 107.616 98.416328)\">重点覆盖</text>\n   </g>\n   <g id=\"text_21\">\n    <text style=\"fill: #ffffff; font: 9px 'Heiti TC'; text-anchor: middle\" x=\"221.448\" y=\"98.416328\" transform=\"rotate(-0 221.448 98.416328)\">重点覆盖</text>\n   </g>\n   <g id=\"text_22\">\n    <text style=\"fill: #22384b; font: 9px 'Heiti TC'; text-anchor: middle\" x=\"335.28\" y=\"98.433906\" transform=\"rotate(-0 335.28 98.433906)\">相关业务</text>\n   </g>\n   <g id=\"text_23\">\n    <text style=\"fill: #ffffff; font: 9px 'Heiti TC'; text-anchor: middle\" x=\"562.944\" y=\"98.416328\" transform=\"rotate(-0 562.944 98.416328)\">重点覆盖</text>\n   </g>\n   <g id=\"text_24\">\n    <text style=\"fill: #22384b; font: 9px 'Heiti TC'; text-anchor: middle\" x=\"107.616\" y=\"128.529906\" transform=\"rotate(-0 107.616 128.529906)\">相关业务</text>\n   </g>\n   <g id=\"text_25\">\n    <text style=\"fill: #22384b; font: 9px 'Heiti TC'; text-anchor: middle\" x=\"221.448\" y=\"128.529906\" transform=\"rotate(-0 221.448 128.529906)\">相关业务</text>\n   </g>\n   <g id=\"text_26\">\n    <text style=\"fill: #22384b; font: 9px 'Heiti TC'; text-anchor: middle\" x=\"335.28\" y=\"128.529906\" transform=\"rotate(-0 335.28 128.529906)\">相关业务</text>\n   </g>\n   <g id=\"text_27\">\n    <text style=\"fill: #ffffff; font: 9px 'Heiti TC'; text-anchor: middle\" x=\"449.112\" y=\"128.512328\" transform=\"rotate(-0 449.112 128.512328)\">重点覆盖</text>\n   </g>\n   <g id=\"text_28\">\n    <text style=\"fill: #ffffff; font: 9px 'Heiti TC'; text-anchor: middle\" x=\"335.28\" y=\"158.608328\" transform=\"rotate(-0 335.28 158.608328)\">重点覆盖</text>\n   </g>\n   <g id=\"text_29\">\n    <text style=\"fill: #ffffff; font: 9px 'Heiti TC'; text-anchor: middle\" x=\"335.28\" y=\"188.704328\" transform=\"rotate(-0 335.28 188.704328)\">重点覆盖</text>\n   </g>\n   <g id=\"text_30\">\n    <text style=\"fill: #ffffff; font: 9px 'Heiti TC'; text-anchor: middle\" x=\"335.28\" y=\"218.800328\" transform=\"rotate(-0 335.28 218.800328)\">重点覆盖</text>\n   </g>\n  </g>\n </g>\n <defs>\n  <clipPath id=\"p2c0d4ae523\">\n   <rect x=\"50.7\" y=\"20.129687\" width=\"569.16\" height=\"210.672\"/>\n  </clipPath>\n </defs>\n</svg>\n",
+    "panels": [
+      {
+        "title": "",
+        "xlabel": "",
+        "ylabel": "",
+        "xticks": [
+          [
+            0.0,
+            "预制棒与光纤"
+          ],
+          [
+            1.0,
+            "通信光缆"
+          ],
+          [
+            2.0,
+            "器件组件及模块"
+          ],
+          [
+            3.0,
+            "通信系统设备"
+          ],
+          [
+            4.0,
+            "电力及海洋"
+          ]
+        ],
+        "yticks": [
+          [
+            0.0,
+            "长飞光纤"
+          ],
+          [
+            1.0,
+            "中天科技"
+          ],
+          [
+            2.0,
+            "亨通光电"
+          ],
+          [
+            3.0,
+            "烽火通信"
+          ],
+          [
+            4.0,
+            "中际旭创"
+          ],
+          [
+            5.0,
+            "光迅科技"
+          ],
+          [
+            6.0,
+            "天孚通信"
+          ]
+        ],
+        "series": [
+          {
+            "kind": "matrix",
+            "values": [
+              [
+                2,
+                2,
+                1,
+                0,
+                0
+              ],
+              [
+                2,
+                2,
+                1,
+                0,
+                2
+              ],
+              [
+                2,
+                2,
+                1,
+                0,
+                2
+              ],
+              [
+                1,
+                1,
+                1,
+                2,
+                0
+              ],
+              [
+                0,
+                0,
+                2,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                2,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                2,
+                0,
+                0
+              ]
+            ],
+            "meaning": {
+              "0": "未标示覆盖，不代表无业务",
+              "1": "相关业务",
+              "2": "重点覆盖"
+            }
+          }
+        ],
+        "notes": [
+          "重点覆盖",
+          "重点覆盖",
+          "相关业务",
+          "重点覆盖",
+          "重点覆盖",
+          "相关业务",
+          "重点覆盖",
+          "重点覆盖",
+          "重点覆盖",
+          "相关业务",
+          "重点覆盖",
+          "相关业务",
+          "相关业务",
+          "相关业务",
+          "重点覆盖",
+          "重点覆盖",
+          "重点覆盖",
+          "重点覆盖"
+        ]
+      }
+    ]
+  },
+  "business_cash": {
+    "svg": "<svg xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"726.992812pt\" height=\"242.335938pt\" viewBox=\"0 0 726.992812 242.335938\" xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\">\n <metadata>\n  <rdf:RDF xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:cc=\"http://creativecommons.org/ns#\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">\n   <cc:Work>\n    <dc:type rdf:resource=\"http://purl.org/dc/dcmitype/StillImage\"/>\n    <dc:date>2026-09-05T13:34:14.001277</dc:date>\n    <dc:format>image/svg+xml</dc:format>\n    <dc:creator>\n     <cc:Agent>\n      <dc:title>Matplotlib v3.9.4, https://matplotlib.org/</dc:title>\n     </cc:Agent>\n    </dc:creator>\n   </cc:Work>\n  </rdf:RDF>\n </metadata>\n <defs>\n  <style type=\"text/css\">*{stroke-linejoin: round; stroke-linecap: butt}</style>\n </defs>\n <g id=\"figure_1\">\n  <g id=\"patch_1\">\n   <path d=\"M 0 242.335938 \nL 726.992812 242.335938 \nL 726.992812 0 \nL 0 0 \nz\n\" style=\"fill: #ffffff\"/>\n  </g>\n  <g id=\"axes_1\">\n   <g id=\"patch_2\">\n    <path d=\"M 48.732813 204.90625 \nL 393.769769 204.90625 \nL 393.769769 23.02875 \nL 48.732813 23.02875 \nz\n\" style=\"fill: #ffffff\"/>\n   </g>\n   <g id=\"patch_3\">\n    <path d=\"M 48.732813 31.295909 \nL 264.200996 31.295909 \nL 264.200996 84.920725 \nL 48.732813 84.920725 \nz\n\" clip-path=\"url(#p6e0d564058)\" style=\"fill: #285f8f\"/>\n   </g>\n   <g id=\"patch_4\">\n    <path d=\"M 264.200996 31.295909 \nL 342.940219 31.295909 \nL 342.940219 84.920725 \nL 264.200996 84.920725 \nz\n\" clip-path=\"url(#p6e0d564058)\" style=\"fill: #168583\"/>\n   </g>\n   <g id=\"patch_5\">\n    <path d=\"M 342.940219 31.295909 \nL 393.769769 31.295909 \nL 393.769769 84.920725 \nL 342.940219 84.920725 \nz\n\" clip-path=\"url(#p6e0d564058)\" style=\"fill: #c2783d\"/>\n   </g>\n   <g id=\"patch_6\">\n    <path d=\"M 48.732813 143.014275 \nL 97.169558 143.014275 \nL 97.169558 196.639091 \nL 48.732813 196.639091 \nz\n\" clip-path=\"url(#p6e0d564058)\" style=\"fill: #285f8f\"/>\n   </g>\n   <g id=\"patch_7\">\n    <path d=\"M 97.169558 143.014275 \nL 243.491907 143.014275 \nL 243.491907 196.639091 \nL 97.169558 196.639091 \nz\n\" clip-path=\"url(#p6e0d564058)\" style=\"fill: #168583\"/>\n   </g>\n   <g id=\"patch_8\">\n    <path d=\"M 243.491907 143.014275 \nL 285.218487 143.014275 \nL 285.218487 196.639091 \nL 243.491907 196.639091 \nz\n\" clip-path=\"url(#p6e0d564058)\" style=\"fill: #c2783d\"/>\n   </g>\n   <g id=\"patch_9\">\n    <path d=\"M 285.218487 143.014275 \nL 322.660026 143.014275 \nL 322.660026 196.639091 \nL 285.218487 196.639091 \nz\n\" clip-path=\"url(#p6e0d564058)\" style=\"fill: #a78bfa\"/>\n   </g>\n   <g id=\"patch_10\">\n    <path d=\"M 322.660026 143.014275 \nL 385.233466 143.014275 \nL 385.233466 196.639091 \nL 322.660026 196.639091 \nz\n\" clip-path=\"url(#p6e0d564058)\" style=\"fill: #94a3b8\"/>\n   </g>\n   <g id=\"patch_11\">\n    <path d=\"M 385.233466 143.014275 \nL 393.769769 143.014275 \nL 393.769769 196.639091 \nL 385.233466 196.639091 \nz\n\" clip-path=\"url(#p6e0d564058)\" style=\"fill: #d8dfe7\"/>\n   </g>\n   <g id=\"matplotlib.axis_1\">\n    <g id=\"xtick_1\">\n     <g id=\"line2d_1\">\n      <defs>\n       <path id=\"mb4ec8a94ed\" d=\"M 0 0 \nL 0 3.5 \n\" style=\"stroke: #475569; stroke-width: 0.8\"/>\n      </defs>\n      <g>\n       <use xlink:href=\"#mb4ec8a94ed\" x=\"48.732813\" y=\"204.90625\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_1\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"48.732813\" y=\"220.00625\" transform=\"rotate(-0 48.732813 220.00625)\">0</text>\n     </g>\n    </g>\n    <g id=\"xtick_2\">\n     <g id=\"line2d_2\">\n      <g>\n       <use xlink:href=\"#mb4ec8a94ed\" x=\"117.740204\" y=\"204.90625\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_2\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"117.740204\" y=\"220.00625\" transform=\"rotate(-0 117.740204 220.00625)\">20</text>\n     </g>\n    </g>\n    <g id=\"xtick_3\">\n     <g id=\"line2d_3\">\n      <g>\n       <use xlink:href=\"#mb4ec8a94ed\" x=\"186.747595\" y=\"204.90625\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_3\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"186.747595\" y=\"220.00625\" transform=\"rotate(-0 186.747595 220.00625)\">40</text>\n     </g>\n    </g>\n    <g id=\"xtick_4\">\n     <g id=\"line2d_4\">\n      <g>\n       <use xlink:href=\"#mb4ec8a94ed\" x=\"255.754986\" y=\"204.90625\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_4\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"255.754986\" y=\"220.00625\" transform=\"rotate(-0 255.754986 220.00625)\">60</text>\n     </g>\n    </g>\n    <g id=\"xtick_5\">\n     <g id=\"line2d_5\">\n      <g>\n       <use xlink:href=\"#mb4ec8a94ed\" x=\"324.762378\" y=\"204.90625\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_5\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"324.762378\" y=\"220.00625\" transform=\"rotate(-0 324.762378 220.00625)\">80</text>\n     </g>\n    </g>\n    <g id=\"xtick_6\">\n     <g id=\"line2d_6\">\n      <g>\n       <use xlink:href=\"#mb4ec8a94ed\" x=\"393.769769\" y=\"204.90625\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_6\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"393.769769\" y=\"220.00625\" transform=\"rotate(-0 393.769769 220.00625)\">100</text>\n     </g>\n    </g>\n    <g id=\"text_7\">\n     <text style=\"fill: #334155; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"221.251291\" y=\"233.80625\" transform=\"rotate(-0 221.251291 233.80625)\">集团收入占比 %</text>\n    </g>\n   </g>\n   <g id=\"matplotlib.axis_2\">\n    <g id=\"ytick_1\">\n     <g id=\"line2d_7\">\n      <defs>\n       <path id=\"m352511335c\" d=\"M 0 0 \nL -3.5 0 \n\" style=\"stroke: #475569; stroke-width: 0.8\"/>\n      </defs>\n      <g>\n       <use xlink:href=\"#m352511335c\" x=\"48.732813\" y=\"58.108317\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_8\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'\" transform=\"translate(21.732813 57.443473)\">长飞</text>\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'\" transform=\"translate(7.2 68.493161)\">2026H1</text>\n     </g>\n    </g>\n    <g id=\"ytick_2\">\n     <g id=\"line2d_8\">\n      <g>\n       <use xlink:href=\"#m352511335c\" x=\"48.732813\" y=\"169.826683\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_9\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'\" transform=\"translate(21.732813 169.161839)\">中天</text>\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'\" transform=\"translate(12.170313 180.211527)\">2025A</text>\n     </g>\n    </g>\n   </g>\n   <g id=\"patch_12\">\n    <path d=\"M 48.732813 204.90625 \nL 48.732813 23.02875 \n\" style=\"fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square\"/>\n   </g>\n   <g id=\"patch_13\">\n    <path d=\"M 48.732813 204.90625 \nL 393.769769 204.90625 \n\" style=\"fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square\"/>\n   </g>\n   <g id=\"text_10\">\n    <text style=\"fill: #ffffff; font: 8px 'Heiti TC'\" transform=\"translate(144.466904 56.396567)\">光通信</text>\n    <text style=\"fill: #ffffff; font: 8px 'Heiti TC'\" transform=\"translate(148.934404 65.236317)\">62%</text>\n   </g>\n   <g id=\"text_11\">\n    <text style=\"fill: #ffffff; font: 8px 'Heiti TC'\" transform=\"translate(295.570607 56.396567)\">组件</text>\n    <text style=\"fill: #ffffff; font: 8px 'Heiti TC'\" transform=\"translate(296.038107 65.236317)\">23%</text>\n   </g>\n   <g id=\"text_12\">\n    <text style=\"fill: #ffffff; font: 8px 'Heiti TC'\" transform=\"translate(360.354994 56.396567)\">其他</text>\n    <text style=\"fill: #ffffff; font: 8px 'Heiti TC'\" transform=\"translate(360.822494 65.236317)\">15%</text>\n   </g>\n   <g id=\"text_13\">\n    <text style=\"fill: #ffffff; font: 8px 'Heiti TC'\" transform=\"translate(60.951185 168.114933)\">光网络</text>\n    <text style=\"fill: #ffffff; font: 8px 'Heiti TC'\" transform=\"translate(65.418685 176.954683)\">14%</text>\n   </g>\n   <g id=\"text_14\">\n    <text style=\"fill: #ffffff; font: 8px 'Heiti TC'\" transform=\"translate(162.330732 168.114933)\">电网</text>\n    <text style=\"fill: #ffffff; font: 8px 'Heiti TC'\" transform=\"translate(162.798232 176.954683)\">42%</text>\n   </g>\n   <g id=\"text_15\">\n    <text style=\"fill: #ffffff; font: 8px 'Heiti TC'\" transform=\"translate(256.355197 168.114933)\">海洋</text>\n    <text style=\"fill: #ffffff; font: 8px 'Heiti TC'\" transform=\"translate(256.822697 176.954683)\">12%</text>\n   </g>\n   <g id=\"text_16\">\n    <text style=\"fill: #ffffff; font: 8px 'Heiti TC'\" transform=\"translate(291.939256 168.114933)\">新能源</text>\n    <text style=\"fill: #ffffff; font: 8px 'Heiti TC'\" transform=\"translate(296.406756 176.954683)\">11%</text>\n   </g>\n   <g id=\"text_17\">\n    <text style=\"fill: #22384b; font: 8px 'Heiti TC'\" transform=\"translate(349.946746 168.114933)\">铜</text>\n    <text style=\"fill: #22384b; font: 8px 'Heiti TC'\" transform=\"translate(346.414246 176.954683)\">18%</text>\n   </g>\n   <g id=\"text_18\">\n    <text style=\"font: 12px 'Heiti TC'; text-anchor: start\" x=\"48.732813\" y=\"17.02875\" transform=\"rotate(-0 48.732813 17.02875)\">业务构成 期间分别标注</text>\n   </g>\n  </g>\n  <g id=\"axes_2\">\n   <g id=\"patch_14\">\n    <path d=\"M 454.379769 204.90625 \nL 719.792812 204.90625 \nL 719.792812 23.02875 \nL 454.379769 23.02875 \nz\n\" style=\"fill: #ffffff\"/>\n   </g>\n   <g id=\"patch_15\">\n    <path d=\"M 466.443998 204.90625 \nL 512.402967 204.90625 \nL 512.402967 68.498125 \nL 466.443998 68.498125 \nz\n\" clip-path=\"url(#pa24eb40a2d)\" style=\"fill: #94a3b8\"/>\n   </g>\n   <g id=\"patch_16\">\n    <path d=\"M 610.065775 204.90625 \nL 656.024744 204.90625 \nL 656.024744 93.587893 \nL 610.065775 93.587893 \nz\n\" clip-path=\"url(#pa24eb40a2d)\" style=\"fill: #94a3b8\"/>\n   </g>\n   <g id=\"patch_17\">\n    <path d=\"M 518.147838 204.90625 \nL 564.106806 204.90625 \nL 564.106806 119.750272 \nL 518.147838 119.750272 \nz\n\" clip-path=\"url(#pa24eb40a2d)\" style=\"fill: #168583\"/>\n   </g>\n   <g id=\"patch_18\">\n    <path d=\"M 661.769615 204.90625 \nL 707.728583 204.90625 \nL 707.728583 198.004232 \nL 661.769615 198.004232 \nz\n\" clip-path=\"url(#pa24eb40a2d)\" style=\"fill: #168583\"/>\n   </g>\n   <g id=\"matplotlib.axis_3\">\n    <g id=\"xtick_7\">\n     <g id=\"line2d_9\">\n      <g>\n       <use xlink:href=\"#mb4ec8a94ed\" x=\"515.275402\" y=\"204.90625\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_19\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"515.275402\" y=\"220.00625\" transform=\"rotate(-0 515.275402 220.00625)\">长飞</text>\n     </g>\n    </g>\n    <g id=\"xtick_8\">\n     <g id=\"line2d_10\">\n      <g>\n       <use xlink:href=\"#mb4ec8a94ed\" x=\"658.897179\" y=\"204.90625\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_20\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"658.897179\" y=\"220.00625\" transform=\"rotate(-0 658.897179 220.00625)\">中天</text>\n     </g>\n    </g>\n   </g>\n   <g id=\"matplotlib.axis_4\">\n    <g id=\"ytick_3\">\n     <g id=\"line2d_11\">\n      <g>\n       <use xlink:href=\"#m352511335c\" x=\"454.379769\" y=\"204.90625\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_21\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"447.379769\" y=\"208.95625\" transform=\"rotate(-0 447.379769 208.95625)\">0</text>\n     </g>\n    </g>\n    <g id=\"ytick_4\">\n     <g id=\"line2d_12\">\n      <g>\n       <use xlink:href=\"#m352511335c\" x=\"454.379769\" y=\"181.588622\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_22\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"447.379769\" y=\"185.638622\" transform=\"rotate(-0 447.379769 185.638622)\">5</text>\n     </g>\n    </g>\n    <g id=\"ytick_5\">\n     <g id=\"line2d_13\">\n      <g>\n       <use xlink:href=\"#m352511335c\" x=\"454.379769\" y=\"158.270994\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_23\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"447.379769\" y=\"162.320994\" transform=\"rotate(-0 447.379769 162.320994)\">10</text>\n     </g>\n    </g>\n    <g id=\"ytick_6\">\n     <g id=\"line2d_14\">\n      <g>\n       <use xlink:href=\"#m352511335c\" x=\"454.379769\" y=\"134.953365\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_24\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"447.379769\" y=\"139.003365\" transform=\"rotate(-0 447.379769 139.003365)\">15</text>\n     </g>\n    </g>\n    <g id=\"ytick_7\">\n     <g id=\"line2d_15\">\n      <g>\n       <use xlink:href=\"#m352511335c\" x=\"454.379769\" y=\"111.635737\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_25\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"447.379769\" y=\"115.685737\" transform=\"rotate(-0 447.379769 115.685737)\">20</text>\n     </g>\n    </g>\n    <g id=\"ytick_8\">\n     <g id=\"line2d_16\">\n      <g>\n       <use xlink:href=\"#m352511335c\" x=\"454.379769\" y=\"88.318109\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_26\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"447.379769\" y=\"92.368109\" transform=\"rotate(-0 447.379769 92.368109)\">25</text>\n     </g>\n    </g>\n    <g id=\"ytick_9\">\n     <g id=\"line2d_17\">\n      <g>\n       <use xlink:href=\"#m352511335c\" x=\"454.379769\" y=\"65.000481\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_27\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"447.379769\" y=\"69.050481\" transform=\"rotate(-0 447.379769 69.050481)\">30</text>\n     </g>\n    </g>\n    <g id=\"ytick_10\">\n     <g id=\"line2d_18\">\n      <g>\n       <use xlink:href=\"#m352511335c\" x=\"454.379769\" y=\"41.682853\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_28\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"447.379769\" y=\"45.732853\" transform=\"rotate(-0 447.379769 45.732853)\">35</text>\n     </g>\n    </g>\n    <g id=\"text_29\">\n     <text style=\"fill: #334155; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"430.968832\" y=\"113.9675\" transform=\"rotate(-90 430.968832 113.9675)\">亿元</text>\n    </g>\n   </g>\n   <g id=\"patch_19\">\n    <path d=\"M 454.379769 204.90625 \nL 454.379769 23.02875 \n\" style=\"fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square\"/>\n   </g>\n   <g id=\"patch_20\">\n    <path d=\"M 454.379769 204.90625 \nL 719.792812 204.90625 \n\" style=\"fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square\"/>\n   </g>\n   <g id=\"text_30\">\n    <text style=\"font: 12px 'Heiti TC'; text-anchor: start\" x=\"454.379769\" y=\"17.02875\" transform=\"rotate(-0 454.379769 17.02875)\">2026H1 现金转换</text>\n   </g>\n   <g id=\"legend_1\">\n    <g id=\"patch_21\">\n     <path d=\"M 650.192812 36.70875 \nL 666.192812 36.70875 \nL 666.192812 31.10875 \nL 650.192812 31.10875 \nz\n\" style=\"fill: #94a3b8\"/>\n    </g>\n    <g id=\"text_31\">\n     <text style=\"font: 8px 'Heiti TC'; text-anchor: start\" x=\"672.592812\" y=\"36.70875\" transform=\"rotate(-0 672.592812 36.70875)\">归母净利润</text>\n    </g>\n    <g id=\"patch_22\">\n     <path d=\"M 650.192812 48.2525 \nL 666.192812 48.2525 \nL 666.192812 42.6525 \nL 650.192812 42.6525 \nz\n\" style=\"fill: #168583\"/>\n    </g>\n    <g id=\"text_32\">\n     <text style=\"font: 8px 'Heiti TC'; text-anchor: start\" x=\"672.592812\" y=\"48.2525\" transform=\"rotate(-0 672.592812 48.2525)\">经营现金流</text>\n    </g>\n   </g>\n  </g>\n </g>\n <defs>\n  <clipPath id=\"p6e0d564058\">\n   <rect x=\"48.732813\" y=\"23.02875\" width=\"345.036957\" height=\"181.8775\"/>\n  </clipPath>\n  <clipPath id=\"pa24eb40a2d\">\n   <rect x=\"454.379769\" y=\"23.02875\" width=\"265.413043\" height=\"181.8775\"/>\n  </clipPath>\n </defs>\n</svg>\n",
+    "panels": [
+      {
+        "title": "",
+        "xlabel": "集团收入占比 %",
+        "ylabel": "",
+        "xticks": [
+          [
+            0.0,
+            "0"
+          ],
+          [
+            20.0,
+            "20"
+          ],
+          [
+            40.0,
+            "40"
+          ],
+          [
+            60.0,
+            "60"
+          ],
+          [
+            80.0,
+            "80"
+          ],
+          [
+            100.0,
+            "100"
+          ]
+        ],
+        "yticks": [
+          [
+            0.0,
+            "长飞\n2026H1"
+          ],
+          [
+            1.0,
+            "中天\n2025A"
+          ]
+        ],
+        "series": [
+          {
+            "kind": "bar",
+            "x": 0.0,
+            "y": -0.24,
+            "width": 62.44785642922389,
+            "height": 0.48
+          },
+          {
+            "kind": "bar",
+            "x": 62.44785642922389,
+            "y": -0.24,
+            "width": 22.820518709424846,
+            "height": 0.48
+          },
+          {
+            "kind": "bar",
+            "x": 85.26837513864874,
+            "y": -0.24,
+            "width": 14.731624861351264,
+            "height": 0.48
+          },
+          {
+            "kind": "bar",
+            "x": 0.0,
+            "y": 0.76,
+            "width": 14.0381326731157,
+            "height": 0.48
+          },
+          {
+            "kind": "bar",
+            "x": 14.0381326731157,
+            "y": 0.76,
+            "width": 42.407732134904734,
+            "height": 0.48
+          },
+          {
+            "kind": "bar",
+            "x": 56.44586480802043,
+            "y": 0.76,
+            "width": 12.093365582308223,
+            "height": 0.48
+          },
+          {
+            "kind": "bar",
+            "x": 68.53923039032865,
+            "y": 0.76,
+            "width": 10.851457508648593,
+            "height": 0.48
+          },
+          {
+            "kind": "bar",
+            "x": 79.39068789897725,
+            "y": 0.76,
+            "width": 18.135286456001978,
+            "height": 0.48
+          },
+          {
+            "kind": "bar",
+            "x": 97.52597435497923,
+            "y": 0.76,
+            "width": 2.474025645020774,
+            "height": 0.48
+          }
+        ],
+        "notes": [
+          "光通信\n62%",
+          "组件\n23%",
+          "其他\n15%",
+          "光网络\n14%",
+          "电网\n42%",
+          "海洋\n12%",
+          "新能源\n11%",
+          "铜\n18%"
+        ]
+      },
+      {
+        "title": "",
+        "xlabel": "",
+        "ylabel": "亿元",
+        "xticks": [
+          [
+            0.0,
+            "长飞"
+          ],
+          [
+            1.0,
+            "中天"
+          ]
+        ],
+        "yticks": [
+          [
+            0.0,
+            "0"
+          ],
+          [
+            5.0,
+            "5"
+          ],
+          [
+            10.0,
+            "10"
+          ],
+          [
+            15.0,
+            "15"
+          ],
+          [
+            20.0,
+            "20"
+          ],
+          [
+            25.0,
+            "25"
+          ],
+          [
+            30.0,
+            "30"
+          ],
+          [
+            35.0,
+            "35"
+          ],
+          [
+            40.0,
+            "40"
+          ]
+        ],
+        "series": [
+          {
+            "kind": "bar",
+            "x": -0.33999999999999997,
+            "y": 0.0,
+            "width": 0.32,
+            "height": 29.25
+          },
+          {
+            "kind": "bar",
+            "x": 0.66,
+            "y": 0.0,
+            "width": 0.32,
+            "height": 23.87
+          },
+          {
+            "kind": "bar",
+            "x": 0.01999999999999999,
+            "y": 0.0,
+            "width": 0.32,
+            "height": 18.26
+          },
+          {
+            "kind": "bar",
+            "x": 1.02,
+            "y": 0.0,
+            "width": 0.32,
+            "height": 1.48
+          }
+        ],
+        "notes": []
+      }
+    ]
+  },
+  "valuation_scatter": {
+    "svg": "<svg xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"620.84125pt\" height=\"271.082625pt\" viewBox=\"0 0 620.84125 271.082625\" xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\">\n <metadata>\n  <rdf:RDF xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:cc=\"http://creativecommons.org/ns#\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">\n   <cc:Work>\n    <dc:type rdf:resource=\"http://purl.org/dc/dcmitype/StillImage\"/>\n    <dc:date>2026-09-05T13:34:14.037396</dc:date>\n    <dc:format>image/svg+xml</dc:format>\n    <dc:creator>\n     <cc:Agent>\n      <dc:title>Matplotlib v3.9.4, https://matplotlib.org/</dc:title>\n     </cc:Agent>\n    </dc:creator>\n   </cc:Work>\n  </rdf:RDF>\n </metadata>\n <defs>\n  <style type=\"text/css\">*{stroke-linejoin: round; stroke-linecap: butt}</style>\n </defs>\n <g id=\"figure_1\">\n  <g id=\"patch_1\">\n   <path d=\"M 0 271.082625 \nL 620.84125 271.082625 \nL 620.84125 0 \nL 0 0 \nz\n\" style=\"fill: #ffffff\"/>\n  </g>\n  <g id=\"axes_1\">\n   <g id=\"patch_2\">\n    <path d=\"M 44.48125 233.592 \nL 613.64125 233.592 \nL 613.64125 22.92 \nL 44.48125 22.92 \nz\n\" style=\"fill: #ffffff\"/>\n   </g>\n   <g id=\"PathCollection_1\">\n    <defs>\n     <path id=\"ma5040f3148\" d=\"M 0 4.031129 \nC 1.069068 4.031129 2.094493 3.606384 2.850439 2.850439 \nC 3.606384 2.094493 4.031129 1.069068 4.031129 0 \nC 4.031129 -1.069068 3.606384 -2.094493 2.850439 -2.850439 \nC 2.094493 -3.606384 1.069068 -4.031129 0 -4.031129 \nC -1.069068 -4.031129 -2.094493 -3.606384 -2.850439 -2.850439 \nC -3.606384 -2.094493 -4.031129 -1.069068 -4.031129 0 \nC -4.031129 1.069068 -3.606384 2.094493 -2.850439 2.850439 \nC -2.094493 3.606384 -1.069068 4.031129 0 4.031129 \nz\n\" style=\"stroke: #c2783d\"/>\n    </defs>\n    <g clip-path=\"url(#p573e825379)\">\n     <use xlink:href=\"#ma5040f3148\" x=\"193.295767\" y=\"161.120832\" style=\"fill: #c2783d; stroke: #c2783d\"/>\n    </g>\n   </g>\n   <g id=\"PathCollection_2\">\n    <defs>\n     <path id=\"m5ab865fa97\" d=\"M 0 4.031129 \nC 1.069068 4.031129 2.094493 3.606384 2.850439 2.850439 \nC 3.606384 2.094493 4.031129 1.069068 4.031129 0 \nC 4.031129 -1.069068 3.606384 -2.094493 2.850439 -2.850439 \nC 2.094493 -3.606384 1.069068 -4.031129 0 -4.031129 \nC -1.069068 -4.031129 -2.094493 -3.606384 -2.850439 -2.850439 \nC -3.606384 -2.094493 -4.031129 -1.069068 -4.031129 0 \nC -4.031129 1.069068 -3.606384 2.094493 -2.850439 2.850439 \nC -2.094493 3.606384 -1.069068 4.031129 0 4.031129 \nz\n\" style=\"stroke: #285f8f\"/>\n    </defs>\n    <g clip-path=\"url(#p573e825379)\">\n     <use xlink:href=\"#m5ab865fa97\" x=\"130.826987\" y=\"195.460368\" style=\"fill: #285f8f; stroke: #285f8f\"/>\n    </g>\n   </g>\n   <g id=\"PathCollection_3\">\n    <g clip-path=\"url(#p573e825379)\">\n     <use xlink:href=\"#m5ab865fa97\" x=\"130.826987\" y=\"188.718864\" style=\"fill: #285f8f; stroke: #285f8f\"/>\n    </g>\n   </g>\n   <g id=\"PathCollection_4\">\n    <g clip-path=\"url(#p573e825379)\">\n     <use xlink:href=\"#m5ab865fa97\" x=\"75.85446\" y=\"154.800672\" style=\"fill: #285f8f; stroke: #285f8f\"/>\n    </g>\n   </g>\n   <g id=\"PathCollection_5\">\n    <defs>\n     <path id=\"md0d79a0d74\" d=\"M 0 4.031129 \nC 1.069068 4.031129 2.094493 3.606384 2.850439 2.850439 \nC 3.606384 2.094493 4.031129 1.069068 4.031129 0 \nC 4.031129 -1.069068 3.606384 -2.094493 2.850439 -2.850439 \nC 2.094493 -3.606384 1.069068 -4.031129 0 -4.031129 \nC -1.069068 -4.031129 -2.094493 -3.606384 -2.850439 -2.850439 \nC -3.606384 -2.094493 -4.031129 -1.069068 -4.031129 0 \nC -4.031129 1.069068 -3.606384 2.094493 -2.850439 2.850439 \nC -2.094493 3.606384 -1.069068 4.031129 0 4.031129 \nz\n\" style=\"stroke: #168583\"/>\n    </defs>\n    <g clip-path=\"url(#p573e825379)\">\n     <use xlink:href=\"#md0d79a0d74\" x=\"551.17247\" y=\"169.547712\" style=\"fill: #168583; stroke: #168583\"/>\n    </g>\n   </g>\n   <g id=\"PathCollection_6\">\n    <g clip-path=\"url(#p573e825379)\">\n     <use xlink:href=\"#md0d79a0d74\" x=\"116.945035\" y=\"51.571392\" style=\"fill: #168583; stroke: #168583\"/>\n    </g>\n   </g>\n   <g id=\"PathCollection_7\">\n    <g clip-path=\"url(#p573e825379)\">\n     <use xlink:href=\"#md0d79a0d74\" x=\"86.404743\" y=\"70.742544\" style=\"fill: #168583; stroke: #168583\"/>\n    </g>\n   </g>\n   <g id=\"matplotlib.axis_1\">\n    <g id=\"xtick_1\">\n     <g id=\"line2d_1\">\n      <path d=\"M 44.48125 233.592 \nL 44.48125 22.92 \n\" clip-path=\"url(#p573e825379)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_2\">\n      <defs>\n       <path id=\"m7d48a7b532\" d=\"M 0 0 \nL 0 3.5 \n\" style=\"stroke: #475569; stroke-width: 0.8\"/>\n      </defs>\n      <g>\n       <use xlink:href=\"#m7d48a7b532\" x=\"44.48125\" y=\"233.592\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_1\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"44.48125\" y=\"248.692\" transform=\"rotate(-0 44.48125 248.692)\">0</text>\n     </g>\n    </g>\n    <g id=\"xtick_2\">\n     <g id=\"line2d_3\">\n      <path d=\"M 113.891006 233.592 \nL 113.891006 22.92 \n\" clip-path=\"url(#p573e825379)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_4\">\n      <g>\n       <use xlink:href=\"#m7d48a7b532\" x=\"113.891006\" y=\"233.592\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_2\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"113.891006\" y=\"248.692\" transform=\"rotate(-0 113.891006 248.692)\">25</text>\n     </g>\n    </g>\n    <g id=\"xtick_3\">\n     <g id=\"line2d_5\">\n      <path d=\"M 183.300762 233.592 \nL 183.300762 22.92 \n\" clip-path=\"url(#p573e825379)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_6\">\n      <g>\n       <use xlink:href=\"#m7d48a7b532\" x=\"183.300762\" y=\"233.592\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_3\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"183.300762\" y=\"248.692\" transform=\"rotate(-0 183.300762 248.692)\">50</text>\n     </g>\n    </g>\n    <g id=\"xtick_4\">\n     <g id=\"line2d_7\">\n      <path d=\"M 252.710518 233.592 \nL 252.710518 22.92 \n\" clip-path=\"url(#p573e825379)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_8\">\n      <g>\n       <use xlink:href=\"#m7d48a7b532\" x=\"252.710518\" y=\"233.592\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_4\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"252.710518\" y=\"248.692\" transform=\"rotate(-0 252.710518 248.692)\">75</text>\n     </g>\n    </g>\n    <g id=\"xtick_5\">\n     <g id=\"line2d_9\">\n      <path d=\"M 322.120274 233.592 \nL 322.120274 22.92 \n\" clip-path=\"url(#p573e825379)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_10\">\n      <g>\n       <use xlink:href=\"#m7d48a7b532\" x=\"322.120274\" y=\"233.592\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_5\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"322.120274\" y=\"248.692\" transform=\"rotate(-0 322.120274 248.692)\">100</text>\n     </g>\n    </g>\n    <g id=\"xtick_6\">\n     <g id=\"line2d_11\">\n      <path d=\"M 391.53003 233.592 \nL 391.53003 22.92 \n\" clip-path=\"url(#p573e825379)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_12\">\n      <g>\n       <use xlink:href=\"#m7d48a7b532\" x=\"391.53003\" y=\"233.592\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_6\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"391.53003\" y=\"248.692\" transform=\"rotate(-0 391.53003 248.692)\">125</text>\n     </g>\n    </g>\n    <g id=\"xtick_7\">\n     <g id=\"line2d_13\">\n      <path d=\"M 460.939787 233.592 \nL 460.939787 22.92 \n\" clip-path=\"url(#p573e825379)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_14\">\n      <g>\n       <use xlink:href=\"#m7d48a7b532\" x=\"460.939787\" y=\"233.592\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_7\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"460.939787\" y=\"248.692\" transform=\"rotate(-0 460.939787 248.692)\">150</text>\n     </g>\n    </g>\n    <g id=\"xtick_8\">\n     <g id=\"line2d_15\">\n      <path d=\"M 530.349543 233.592 \nL 530.349543 22.92 \n\" clip-path=\"url(#p573e825379)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_16\">\n      <g>\n       <use xlink:href=\"#m7d48a7b532\" x=\"530.349543\" y=\"233.592\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_8\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"530.349543\" y=\"248.692\" transform=\"rotate(-0 530.349543 248.692)\">175</text>\n     </g>\n    </g>\n    <g id=\"xtick_9\">\n     <g id=\"line2d_17\">\n      <path d=\"M 599.759299 233.592 \nL 599.759299 22.92 \n\" clip-path=\"url(#p573e825379)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_18\">\n      <g>\n       <use xlink:href=\"#m7d48a7b532\" x=\"599.759299\" y=\"233.592\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_9\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"599.759299\" y=\"248.692\" transform=\"rotate(-0 599.759299 248.692)\">200</text>\n     </g>\n    </g>\n    <g id=\"text_10\">\n     <text style=\"fill: #334155; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"329.06125\" y=\"262.552937\" transform=\"rotate(-0 329.06125 262.552937)\">2026H1 收入同比增长 %</text>\n    </g>\n   </g>\n   <g id=\"matplotlib.axis_2\">\n    <g id=\"ytick_1\">\n     <g id=\"line2d_19\">\n      <path d=\"M 44.48125 233.592 \nL 613.64125 233.592 \n\" clip-path=\"url(#p573e825379)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_20\">\n      <defs>\n       <path id=\"m71efdd2a3d\" d=\"M 0 0 \nL -3.5 0 \n\" style=\"stroke: #475569; stroke-width: 0.8\"/>\n      </defs>\n      <g>\n       <use xlink:href=\"#m71efdd2a3d\" x=\"44.48125\" y=\"233.592\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_11\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"37.48125\" y=\"237.642\" transform=\"rotate(-0 37.48125 237.642)\">0</text>\n     </g>\n    </g>\n    <g id=\"ytick_2\">\n     <g id=\"line2d_21\">\n      <path d=\"M 44.48125 191.4576 \nL 613.64125 191.4576 \n\" clip-path=\"url(#p573e825379)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_22\">\n      <g>\n       <use xlink:href=\"#m71efdd2a3d\" x=\"44.48125\" y=\"191.4576\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_12\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"37.48125\" y=\"195.5076\" transform=\"rotate(-0 37.48125 195.5076)\">20</text>\n     </g>\n    </g>\n    <g id=\"ytick_3\">\n     <g id=\"line2d_23\">\n      <path d=\"M 44.48125 149.3232 \nL 613.64125 149.3232 \n\" clip-path=\"url(#p573e825379)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_24\">\n      <g>\n       <use xlink:href=\"#m71efdd2a3d\" x=\"44.48125\" y=\"149.3232\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_13\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"37.48125\" y=\"153.3732\" transform=\"rotate(-0 37.48125 153.3732)\">40</text>\n     </g>\n    </g>\n    <g id=\"ytick_4\">\n     <g id=\"line2d_25\">\n      <path d=\"M 44.48125 107.1888 \nL 613.64125 107.1888 \n\" clip-path=\"url(#p573e825379)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_26\">\n      <g>\n       <use xlink:href=\"#m71efdd2a3d\" x=\"44.48125\" y=\"107.1888\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_14\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"37.48125\" y=\"111.2388\" transform=\"rotate(-0 37.48125 111.2388)\">60</text>\n     </g>\n    </g>\n    <g id=\"ytick_5\">\n     <g id=\"line2d_27\">\n      <path d=\"M 44.48125 65.0544 \nL 613.64125 65.0544 \n\" clip-path=\"url(#p573e825379)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_28\">\n      <g>\n       <use xlink:href=\"#m71efdd2a3d\" x=\"44.48125\" y=\"65.0544\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_15\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"37.48125\" y=\"69.1044\" transform=\"rotate(-0 37.48125 69.1044)\">80</text>\n     </g>\n    </g>\n    <g id=\"ytick_6\">\n     <g id=\"line2d_29\">\n      <path d=\"M 44.48125 22.92 \nL 613.64125 22.92 \n\" clip-path=\"url(#p573e825379)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_30\">\n      <g>\n       <use xlink:href=\"#m71efdd2a3d\" x=\"44.48125\" y=\"22.92\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_16\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"37.48125\" y=\"26.97\" transform=\"rotate(-0 37.48125 26.97)\">100</text>\n     </g>\n    </g>\n    <g id=\"text_17\">\n     <text style=\"fill: #334155; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"15.529688\" y=\"128.256\" transform=\"rotate(-90 15.529688 128.256)\">2026E P/E 倍</text>\n    </g>\n   </g>\n   <g id=\"patch_3\">\n    <path d=\"M 44.48125 233.592 \nL 44.48125 22.92 \n\" style=\"fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square\"/>\n   </g>\n   <g id=\"patch_4\">\n    <path d=\"M 44.48125 233.592 \nL 613.64125 233.592 \n\" style=\"fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square\"/>\n   </g>\n   <g id=\"text_18\">\n    <text style=\"font: 9px 'Heiti TC'; text-anchor: start\" x=\"198.295767\" y=\"157.120832\" transform=\"rotate(-0 198.295767 157.120832)\">长飞光纤</text>\n   </g>\n   <g id=\"text_19\">\n    <text style=\"font: 9px 'Heiti TC'; text-anchor: start\" x=\"135.826987\" y=\"207.460368\" transform=\"rotate(-0 135.826987 207.460368)\">中天科技</text>\n   </g>\n   <g id=\"text_20\">\n    <text style=\"font: 9px 'Heiti TC'; text-anchor: start\" x=\"135.826987\" y=\"185.718864\" transform=\"rotate(-0 135.826987 185.718864)\">亨通光电</text>\n   </g>\n   <g id=\"text_21\">\n    <text style=\"font: 9px 'Heiti TC'; text-anchor: start\" x=\"80.85446\" y=\"150.800672\" transform=\"rotate(-0 80.85446 150.800672)\">烽火通信</text>\n   </g>\n   <g id=\"text_22\">\n    <text style=\"font: 9px 'Heiti TC'; text-anchor: start\" x=\"499.17247\" y=\"161.547712\" transform=\"rotate(-0 499.17247 161.547712)\">中际旭创</text>\n   </g>\n   <g id=\"text_23\">\n    <text style=\"font: 9px 'Heiti TC'; text-anchor: start\" x=\"121.945035\" y=\"48.571392\" transform=\"rotate(-0 121.945035 48.571392)\">光迅科技</text>\n   </g>\n   <g id=\"text_24\">\n    <text style=\"font: 9px 'Heiti TC'; text-anchor: start\" x=\"91.404743\" y=\"67.742544\" transform=\"rotate(-0 91.404743 67.742544)\">天孚通信</text>\n   </g>\n   <g id=\"text_25\">\n    <text style=\"font: 12px 'Heiti TC'; text-anchor: start\" x=\"44.48125\" y=\"16.92\" transform=\"rotate(-0 44.48125 16.92)\">增长与估值 冻结的 9 月 2 日 Wind 底稿</text>\n   </g>\n  </g>\n </g>\n <defs>\n  <clipPath id=\"p573e825379\">\n   <rect x=\"44.48125\" y=\"22.92\" width=\"569.16\" height=\"210.672\"/>\n  </clipPath>\n </defs>\n</svg>\n",
+    "panels": [
+      {
+        "title": "",
+        "xlabel": "2026H1 收入同比增长 %",
+        "ylabel": "2026E P/E 倍",
+        "xticks": [
+          [
+            0.0,
+            "0"
+          ],
+          [
+            25.0,
+            "25"
+          ],
+          [
+            50.0,
+            "50"
+          ],
+          [
+            75.0,
+            "75"
+          ],
+          [
+            100.0,
+            "100"
+          ],
+          [
+            125.0,
+            "125"
+          ],
+          [
+            150.0,
+            "150"
+          ],
+          [
+            175.0,
+            "175"
+          ],
+          [
+            200.0,
+            "200"
+          ],
+          [
+            225.0,
+            "225"
+          ]
+        ],
+        "yticks": [
+          [
+            0.0,
+            "0"
+          ],
+          [
+            20.0,
+            "20"
+          ],
+          [
+            40.0,
+            "40"
+          ],
+          [
+            60.0,
+            "60"
+          ],
+          [
+            80.0,
+            "80"
+          ],
+          [
+            100.0,
+            "100"
+          ]
+        ],
+        "series": [
+          {
+            "kind": "scatter",
+            "points": [
+              [
+                53.6,
+                34.4
+              ]
+            ]
+          },
+          {
+            "kind": "scatter",
+            "points": [
+              [
+                31.1,
+                18.1
+              ]
+            ]
+          },
+          {
+            "kind": "scatter",
+            "points": [
+              [
+                31.1,
+                21.3
+              ]
+            ]
+          },
+          {
+            "kind": "scatter",
+            "points": [
+              [
+                11.3,
+                37.4
+              ]
+            ]
+          },
+          {
+            "kind": "scatter",
+            "points": [
+              [
+                182.5,
+                30.4
+              ]
+            ]
+          },
+          {
+            "kind": "scatter",
+            "points": [
+              [
+                26.1,
+                86.4
+              ]
+            ]
+          },
+          {
+            "kind": "scatter",
+            "points": [
+              [
+                15.1,
+                77.3
+              ]
+            ]
+          }
+        ],
+        "notes": [
+          "长飞光纤",
+          "中天科技",
+          "亨通光电",
+          "烽火通信",
+          "中际旭创",
+          "光迅科技",
+          "天孚通信"
+        ]
+      }
+    ]
+  },
+  "valuation_history": {
+    "svg": "<svg xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"620.84125pt\" height=\"268.309687pt\" viewBox=\"0 0 620.84125 268.309687\" xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\">\n <metadata>\n  <rdf:RDF xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:cc=\"http://creativecommons.org/ns#\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">\n   <cc:Work>\n    <dc:type rdf:resource=\"http://purl.org/dc/dcmitype/StillImage\"/>\n    <dc:date>2026-09-05T13:34:14.077974</dc:date>\n    <dc:format>image/svg+xml</dc:format>\n    <dc:creator>\n     <cc:Agent>\n      <dc:title>Matplotlib v3.9.4, https://matplotlib.org/</dc:title>\n     </cc:Agent>\n    </dc:creator>\n   </cc:Work>\n  </rdf:RDF>\n </metadata>\n <defs>\n  <style type=\"text/css\">*{stroke-linejoin: round; stroke-linecap: butt}</style>\n </defs>\n <g id=\"figure_1\">\n  <g id=\"patch_1\">\n   <path d=\"M 0 268.309687 \nL 620.84125 268.309687 \nL 620.84125 0 \nL 0 0 \nz\n\" style=\"fill: #ffffff\"/>\n  </g>\n  <g id=\"axes_1\">\n   <g id=\"patch_2\">\n    <path d=\"M 44.48125 244.68 \nL 613.64125 244.68 \nL 613.64125 22.92 \nL 44.48125 22.92 \nz\n\" style=\"fill: #ffffff\"/>\n   </g>\n   <g id=\"matplotlib.axis_1\">\n    <g id=\"xtick_1\">\n     <g id=\"line2d_1\">\n      <path d=\"M 65.636666 244.68 \nL 65.636666 22.92 \n\" clip-path=\"url(#p068132cc92)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_2\">\n      <defs>\n       <path id=\"m8e54029365\" d=\"M 0 0 \nL 0 3.5 \n\" style=\"stroke: #475569; stroke-width: 0.8\"/>\n      </defs>\n      <g>\n       <use xlink:href=\"#m8e54029365\" x=\"65.636666\" y=\"244.68\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_1\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"65.636666\" y=\"259.78\" transform=\"rotate(-0 65.636666 259.78)\">2020</text>\n     </g>\n    </g>\n    <g id=\"xtick_2\">\n     <g id=\"line2d_3\">\n      <path d=\"M 144.085322 244.68 \nL 144.085322 22.92 \n\" clip-path=\"url(#p068132cc92)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_4\">\n      <g>\n       <use xlink:href=\"#m8e54029365\" x=\"144.085322\" y=\"244.68\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_2\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"144.085322\" y=\"259.78\" transform=\"rotate(-0 144.085322 259.78)\">2021</text>\n     </g>\n    </g>\n    <g id=\"xtick_3\">\n     <g id=\"line2d_5\">\n      <path d=\"M 222.319637 244.68 \nL 222.319637 22.92 \n\" clip-path=\"url(#p068132cc92)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_6\">\n      <g>\n       <use xlink:href=\"#m8e54029365\" x=\"222.319637\" y=\"244.68\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_3\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"222.319637\" y=\"259.78\" transform=\"rotate(-0 222.319637 259.78)\">2022</text>\n     </g>\n    </g>\n    <g id=\"xtick_4\">\n     <g id=\"line2d_7\">\n      <path d=\"M 300.553952 244.68 \nL 300.553952 22.92 \n\" clip-path=\"url(#p068132cc92)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_8\">\n      <g>\n       <use xlink:href=\"#m8e54029365\" x=\"300.553952\" y=\"244.68\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_4\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"300.553952\" y=\"259.78\" transform=\"rotate(-0 300.553952 259.78)\">2023</text>\n     </g>\n    </g>\n    <g id=\"xtick_5\">\n     <g id=\"line2d_9\">\n      <path d=\"M 378.788267 244.68 \nL 378.788267 22.92 \n\" clip-path=\"url(#p068132cc92)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_10\">\n      <g>\n       <use xlink:href=\"#m8e54029365\" x=\"378.788267\" y=\"244.68\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_5\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"378.788267\" y=\"259.78\" transform=\"rotate(-0 378.788267 259.78)\">2024</text>\n     </g>\n    </g>\n    <g id=\"xtick_6\">\n     <g id=\"line2d_11\">\n      <path d=\"M 457.236922 244.68 \nL 457.236922 22.92 \n\" clip-path=\"url(#p068132cc92)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_12\">\n      <g>\n       <use xlink:href=\"#m8e54029365\" x=\"457.236922\" y=\"244.68\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_6\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"457.236922\" y=\"259.78\" transform=\"rotate(-0 457.236922 259.78)\">2025</text>\n     </g>\n    </g>\n    <g id=\"xtick_7\">\n     <g id=\"line2d_13\">\n      <path d=\"M 535.471237 244.68 \nL 535.471237 22.92 \n\" clip-path=\"url(#p068132cc92)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_14\">\n      <g>\n       <use xlink:href=\"#m8e54029365\" x=\"535.471237\" y=\"244.68\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_7\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"535.471237\" y=\"259.78\" transform=\"rotate(-0 535.471237 259.78)\">2026</text>\n     </g>\n    </g>\n   </g>\n   <g id=\"matplotlib.axis_2\">\n    <g id=\"ytick_1\">\n     <g id=\"line2d_15\">\n      <path d=\"M 44.48125 244.68 \nL 613.64125 244.68 \n\" clip-path=\"url(#p068132cc92)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_16\">\n      <defs>\n       <path id=\"m291630f55c\" d=\"M 0 0 \nL -3.5 0 \n\" style=\"stroke: #475569; stroke-width: 0.8\"/>\n      </defs>\n      <g>\n       <use xlink:href=\"#m291630f55c\" x=\"44.48125\" y=\"244.68\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_8\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"37.48125\" y=\"248.73\" transform=\"rotate(-0 37.48125 248.73)\">0</text>\n     </g>\n    </g>\n    <g id=\"ytick_2\">\n     <g id=\"line2d_17\">\n      <path d=\"M 44.48125 218.28 \nL 613.64125 218.28 \n\" clip-path=\"url(#p068132cc92)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_18\">\n      <g>\n       <use xlink:href=\"#m291630f55c\" x=\"44.48125\" y=\"218.28\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_9\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"37.48125\" y=\"222.33\" transform=\"rotate(-0 37.48125 222.33)\">50</text>\n     </g>\n    </g>\n    <g id=\"ytick_3\">\n     <g id=\"line2d_19\">\n      <path d=\"M 44.48125 191.88 \nL 613.64125 191.88 \n\" clip-path=\"url(#p068132cc92)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_20\">\n      <g>\n       <use xlink:href=\"#m291630f55c\" x=\"44.48125\" y=\"191.88\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_10\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"37.48125\" y=\"195.93\" transform=\"rotate(-0 37.48125 195.93)\">100</text>\n     </g>\n    </g>\n    <g id=\"ytick_4\">\n     <g id=\"line2d_21\">\n      <path d=\"M 44.48125 165.48 \nL 613.64125 165.48 \n\" clip-path=\"url(#p068132cc92)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_22\">\n      <g>\n       <use xlink:href=\"#m291630f55c\" x=\"44.48125\" y=\"165.48\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_11\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"37.48125\" y=\"169.53\" transform=\"rotate(-0 37.48125 169.53)\">150</text>\n     </g>\n    </g>\n    <g id=\"ytick_5\">\n     <g id=\"line2d_23\">\n      <path d=\"M 44.48125 139.08 \nL 613.64125 139.08 \n\" clip-path=\"url(#p068132cc92)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_24\">\n      <g>\n       <use xlink:href=\"#m291630f55c\" x=\"44.48125\" y=\"139.08\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_12\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"37.48125\" y=\"143.13\" transform=\"rotate(-0 37.48125 143.13)\">200</text>\n     </g>\n    </g>\n    <g id=\"ytick_6\">\n     <g id=\"line2d_25\">\n      <path d=\"M 44.48125 112.68 \nL 613.64125 112.68 \n\" clip-path=\"url(#p068132cc92)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_26\">\n      <g>\n       <use xlink:href=\"#m291630f55c\" x=\"44.48125\" y=\"112.68\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_13\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"37.48125\" y=\"116.73\" transform=\"rotate(-0 37.48125 116.73)\">250</text>\n     </g>\n    </g>\n    <g id=\"ytick_7\">\n     <g id=\"line2d_27\">\n      <path d=\"M 44.48125 86.28 \nL 613.64125 86.28 \n\" clip-path=\"url(#p068132cc92)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_28\">\n      <g>\n       <use xlink:href=\"#m291630f55c\" x=\"44.48125\" y=\"86.28\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_14\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"37.48125\" y=\"90.33\" transform=\"rotate(-0 37.48125 90.33)\">300</text>\n     </g>\n    </g>\n    <g id=\"ytick_8\">\n     <g id=\"line2d_29\">\n      <path d=\"M 44.48125 59.88 \nL 613.64125 59.88 \n\" clip-path=\"url(#p068132cc92)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_30\">\n      <g>\n       <use xlink:href=\"#m291630f55c\" x=\"44.48125\" y=\"59.88\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_15\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"37.48125\" y=\"63.93\" transform=\"rotate(-0 37.48125 63.93)\">350</text>\n     </g>\n    </g>\n    <g id=\"ytick_9\">\n     <g id=\"line2d_31\">\n      <path d=\"M 44.48125 33.48 \nL 613.64125 33.48 \n\" clip-path=\"url(#p068132cc92)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_32\">\n      <g>\n       <use xlink:href=\"#m291630f55c\" x=\"44.48125\" y=\"33.48\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_16\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"37.48125\" y=\"37.53\" transform=\"rotate(-0 37.48125 37.53)\">400</text>\n     </g>\n    </g>\n    <g id=\"text_17\">\n     <text style=\"fill: #334155; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"15.529688\" y=\"133.8\" transform=\"rotate(-90 15.529688 133.8)\">TTM P/E 倍</text>\n    </g>\n   </g>\n   <g id=\"line2d_33\">\n    <path d=\"M 70.352159 234.341052 \nL 78.06842 234.409646 \nL 84.927319 234.330512 \nL 91.357537 229.632238 \nL 97.573414 229.813318 \nL 104.432313 229.822283 \nL 111.076871 229.713588 \nL 117.721429 228.994778 \nL 124.151647 230.846297 \nL 130.581865 230.616055 \nL 137.226423 230.119489 \nL 143.870981 228.041891 \nL 150.086858 230.039891 \nL 156.088395 229.421463 \nL 163.161634 230.099353 \nL 169.591852 231.470597 \nL 176.23641 231.150922 \nL 182.666628 231.664677 \nL 189.096845 230.123388 \nL 195.955744 232.851517 \nL 202.385962 231.333043 \nL 208.601839 232.071568 \nL 215.460738 219.260567 \nL 222.105296 218.852744 \nL 228.106833 219.370507 \nL 234.751391 216.187785 \nL 241.395949 218.791831 \nL 247.611826 219.781672 \nL 254.470725 214.20469 \nL 260.900943 213.471898 \nL 267.11682 213.558109 \nL 274.190059 221.703326 \nL 280.620277 221.486565 \nL 287.264835 226.250405 \nL 293.695053 230.679547 \nL 300.12527 231.132528 \nL 306.984169 230.964758 \nL 312.985706 231.208025 \nL 319.630264 230.344006 \nL 325.631801 233.078302 \nL 332.70504 233.157984 \nL 339.135258 232.99862 \nL 345.779816 232.432878 \nL 352.424374 235.345348 \nL 358.425911 235.358551 \nL 365.49915 235.956632 \nL 371.929368 236.439793 \nL 378.145245 236.777344 \nL 385.218484 237.406114 \nL 391.434361 236.578785 \nL 397.650238 236.505979 \nL 404.509137 236.486406 \nL 411.153696 235.586741 \nL 417.155232 235.109737 \nL 424.228472 235.641083 \nL 430.658689 235.77223 \nL 437.303247 234.03329 \nL 443.947806 234.424745 \nL 450.163683 234.340098 \nL 457.022582 235.355856 \nL 462.809778 235.798623 \nL 469.668676 235.694443 \nL 476.313235 235.199586 \nL 482.743452 235.821013 \nL 489.17367 236.20314 \nL 495.818228 235.470729 \nL 502.462786 235.859225 \nL 508.678664 234.744878 \nL 515.537562 233.105339 \nL 522.182121 234.020455 \nL 528.183657 234.724802 \nL 535.256897 233.284663 \nL 541.687114 228.566605 \nL 547.688651 222.818068 \nL 554.54755 220.446536 \nL 560.977767 218.181973 \nL 567.193644 213.576075 \nL 574.052543 200.581152 \nL 580.697101 225.478005 \nL 587.34166 223.721696 \nL 587.770341 223.870998 \n\" clip-path=\"url(#p068132cc92)\" style=\"fill: none; stroke: #285f8f; stroke-width: 1.7; stroke-linecap: square\"/>\n   </g>\n   <g id=\"line2d_34\">\n    <path d=\"M 70.352159 213.148498 \nL 78.06842 212.796369 \nL 84.927319 211.163774 \nL 91.357537 207.848171 \nL 97.573414 210.762474 \nL 104.432313 203.967645 \nL 111.076871 204.661465 \nL 117.721429 212.283308 \nL 124.151647 216.465866 \nL 130.581865 220.638962 \nL 137.226423 221.174908 \nL 143.870981 222.429799 \nL 150.086858 224.475002 \nL 156.088395 224.578451 \nL 163.161634 227.655224 \nL 169.591852 229.436469 \nL 176.23641 226.860302 \nL 182.666628 227.51599 \nL 189.096845 225.666803 \nL 195.955744 228.827378 \nL 202.385962 229.069061 \nL 208.601839 229.60215 \nL 215.460738 225.166789 \nL 222.105296 222.936123 \nL 228.106833 226.363981 \nL 234.751391 226.120267 \nL 241.395949 229.421921 \nL 247.611826 231.231344 \nL 254.470725 230.563742 \nL 260.900943 231.042483 \nL 267.11682 230.278255 \nL 274.190059 232.644771 \nL 280.620277 233.957353 \nL 287.264835 234.090869 \nL 293.695053 234.324668 \nL 300.12527 234.904583 \nL 306.984169 234.06174 \nL 312.985706 231.029699 \nL 319.630264 224.524839 \nL 325.631801 214.388119 \nL 332.70504 208.413808 \nL 339.135258 194.936279 \nL 345.779816 204.508927 \nL 352.424374 208.563932 \nL 358.425911 208.192121 \nL 365.49915 222.371224 \nL 371.929368 220.548387 \nL 378.145245 215.97477 \nL 385.218484 218.545046 \nL 391.434361 214.523371 \nL 397.650238 214.241108 \nL 404.509137 217.752361 \nL 411.153696 221.406648 \nL 417.155232 216.850081 \nL 424.228472 218.541514 \nL 430.658689 225.11817 \nL 437.303247 220.757115 \nL 443.947806 216.184612 \nL 450.163683 220.844255 \nL 457.022582 223.592941 \nL 462.809778 221.414068 \nL 469.668676 224.25999 \nL 476.313235 225.148619 \nL 482.743452 230.377109 \nL 489.17367 227.597589 \nL 495.818228 221.309087 \nL 502.462786 214.548125 \nL 508.678664 209.22639 \nL 515.537562 209.894326 \nL 522.182121 212.226624 \nL 528.183657 209.379981 \nL 535.256897 202.827694 \nL 541.687114 200.151891 \nL 547.688651 208.042079 \nL 554.54755 205.494004 \nL 560.977767 186.432853 \nL 567.193644 160.836538 \nL 574.052543 164.412211 \nL 580.697101 199.329813 \nL 587.34166 179.453417 \nL 587.770341 182.677544 \n\" clip-path=\"url(#p068132cc92)\" style=\"fill: none; stroke: #168583; stroke-width: 1.7; stroke-linecap: square\"/>\n   </g>\n   <g id=\"line2d_35\">\n    <path d=\"M 70.352159 230.145532 \nL 78.06842 229.920089 \nL 84.927319 228.817387 \nL 91.357537 221.304575 \nL 97.573414 222.673939 \nL 104.432313 221.874526 \nL 111.076871 221.54884 \nL 117.721429 224.397112 \nL 124.151647 226.113946 \nL 130.581865 226.101181 \nL 137.226423 223.902311 \nL 143.870981 225.144927 \nL 150.086858 227.615709 \nL 156.088395 226.828237 \nL 163.161634 227.404913 \nL 169.591852 230.280894 \nL 176.23641 229.065221 \nL 182.666628 229.33607 \nL 189.096845 228.460534 \nL 195.955744 231.157574 \nL 202.385962 230.015352 \nL 208.601839 228.41519 \nL 215.460738 226.025726 \nL 222.105296 226.014323 \nL 228.106833 228.500039 \nL 234.751391 226.464716 \nL 241.395949 229.537353 \nL 247.611826 231.886977 \nL 254.470725 231.37344 \nL 260.900943 229.72946 \nL 267.11682 228.699556 \nL 274.190059 223.763171 \nL 280.620277 222.352809 \nL 287.264835 227.653203 \nL 293.695053 231.106436 \nL 300.12527 231.875566 \nL 306.984169 230.765037 \nL 312.985706 230.207811 \nL 319.630264 230.52 \nL 325.631801 232.009524 \nL 332.70504 232.994993 \nL 339.135258 232.383664 \nL 345.779816 233.054796 \nL 352.424374 234.2768 \nL 358.425911 233.856955 \nL 365.49915 234.332242 \nL 371.929368 234.748747 \nL 378.145245 235.305225 \nL 385.218484 236.527428 \nL 391.434361 235.264257 \nL 397.650238 235.605872 \nL 404.509137 235.235158 \nL 411.153696 235.597868 \nL 417.155232 235.942623 \nL 424.228472 236.125774 \nL 430.658689 236.063408 \nL 437.303247 234.564871 \nL 443.947806 233.290754 \nL 450.163683 233.044128 \nL 457.022582 232.595351 \nL 462.809778 227.780089 \nL 469.668676 229.922901 \nL 476.313235 224.638113 \nL 482.743452 227.594799 \nL 489.17367 228.057545 \nL 495.818228 223.508078 \nL 502.462786 218.241094 \nL 508.678664 183.21892 \nL 515.537562 176.730246 \nL 522.182121 185.3548 \nL 528.183657 183.824324 \nL 535.256897 155.851544 \nL 541.687114 130.842775 \nL 547.688651 68.099472 \nL 554.54755 78.424164 \nL 560.977767 110.990599 \nL 567.193644 92.514339 \nL 574.052543 38.460605 \nL 580.697101 142.118055 \nL 587.34166 191.529883 \nL 587.770341 192.89746 \n\" clip-path=\"url(#p068132cc92)\" style=\"fill: none; stroke: #c2783d; stroke-width: 1.7; stroke-linecap: square\"/>\n   </g>\n   <g id=\"line2d_36\">\n    <path d=\"M 70.352159 238.245686 \nL 78.06842 238.444109 \nL 84.927319 238.859645 \nL 91.357537 238.266067 \nL 97.573414 238.360685 \nL 104.432313 237.973766 \nL 111.076871 237.282192 \nL 117.721429 236.613374 \nL 124.151647 236.939942 \nL 130.581865 237.097603 \nL 137.226423 236.595845 \nL 143.870981 236.167848 \nL 150.086858 236.018107 \nL 156.088395 236.060928 \nL 163.161634 236.687611 \nL 169.591852 237.299616 \nL 176.23641 236.991739 \nL 182.666628 236.877955 \nL 189.096845 237.539962 \nL 195.955744 237.875558 \nL 202.385962 237.761774 \nL 208.601839 237.650894 \nL 215.460738 237.837701 \nL 222.105296 237.271421 \nL 228.106833 237.778987 \nL 234.751391 237.701794 \nL 241.395949 238.158566 \nL 247.611826 238.419768 \nL 254.470725 238.235126 \nL 260.900943 237.818059 \nL 267.11682 238.286131 \nL 274.190059 238.444162 \nL 280.620277 238.755048 \nL 287.264835 239.23859 \nL 293.695053 238.70172 \nL 300.12527 238.69153 \nL 306.984169 238.318339 \nL 312.985706 238.383442 \nL 319.630264 238.30308 \nL 325.631801 238.219286 \nL 332.70504 238.500077 \nL 339.135258 238.501502 \nL 345.779816 238.284336 \nL 352.424374 238.49015 \nL 358.425911 238.559794 \nL 365.49915 238.738363 \nL 371.929368 238.828968 \nL 378.145245 238.892011 \nL 385.218484 239.025806 \nL 391.434361 238.584768 \nL 397.650238 238.517606 \nL 404.509137 238.29912 \nL 411.153696 238.326365 \nL 417.155232 238.418395 \nL 424.228472 238.493582 \nL 430.658689 238.705891 \nL 437.303247 237.646354 \nL 443.947806 238.103866 \nL 450.163683 238.046366 \nL 457.022582 237.817742 \nL 462.809778 238.077518 \nL 469.668676 238.018752 \nL 476.313235 238.142674 \nL 482.743452 238.220712 \nL 489.17367 238.086811 \nL 495.818228 237.762408 \nL 502.462786 237.700843 \nL 508.678664 237.17939 \nL 515.537562 237.139104 \nL 522.182121 237.196973 \nL 528.183657 237.288581 \nL 535.256897 237.166877 \nL 541.687114 237.165557 \nL 547.688651 237.191534 \nL 554.54755 237.315667 \nL 560.977767 236.920934 \nL 567.193644 236.990736 \nL 574.052543 237.018245 \nL 580.697101 237.08699 \nL 587.34166 237.402998 \nL 587.770341 237.46847 \n\" clip-path=\"url(#p068132cc92)\" style=\"fill: none; stroke: #94a3b8; stroke-width: 1.7; stroke-linecap: square\"/>\n   </g>\n   <g id=\"patch_3\">\n    <path d=\"M 44.48125 244.68 \nL 44.48125 22.92 \n\" style=\"fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square\"/>\n   </g>\n   <g id=\"patch_4\">\n    <path d=\"M 44.48125 244.68 \nL 613.64125 244.68 \n\" style=\"fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square\"/>\n   </g>\n   <g id=\"text_18\">\n    <text style=\"font: 12px 'Heiti TC'; text-anchor: start\" x=\"44.48125\" y=\"16.92\" transform=\"rotate(-0 44.48125 16.92)\">固定样本的月末估值 2020 年至 2026 年 9 月 2 日</text>\n   </g>\n   <g id=\"legend_1\">\n    <g id=\"line2d_37\">\n     <path d=\"M 52.58125 35.16 \nL 61.58125 35.16 \nL 70.58125 35.16 \n\" style=\"fill: none; stroke: #285f8f; stroke-width: 1.7; stroke-linecap: square\"/>\n    </g>\n    <g id=\"text_19\">\n     <text style=\"font: 9px 'Heiti TC'; text-anchor: start\" x=\"77.78125\" y=\"38.31\" transform=\"rotate(-0 77.78125 38.31)\">核心组中位数</text>\n    </g>\n    <g id=\"line2d_38\">\n     <path d=\"M 52.58125 48.146719 \nL 61.58125 48.146719 \nL 70.58125 48.146719 \n\" style=\"fill: none; stroke: #168583; stroke-width: 1.7; stroke-linecap: square\"/>\n    </g>\n    <g id=\"text_20\">\n     <text style=\"font: 9px 'Heiti TC'; text-anchor: start\" x=\"77.78125\" y=\"51.296719\" transform=\"rotate(-0 77.78125 51.296719)\">AI 映射组中位数</text>\n    </g>\n    <g id=\"line2d_39\">\n     <path d=\"M 160.724688 35.16 \nL 169.724688 35.16 \nL 178.724688 35.16 \n\" style=\"fill: none; stroke: #c2783d; stroke-width: 1.7; stroke-linecap: square\"/>\n    </g>\n    <g id=\"text_21\">\n     <text style=\"font: 9px 'Heiti TC'; text-anchor: start\" x=\"185.924688\" y=\"38.31\" transform=\"rotate(-0 185.924688 38.31)\">长飞 A 股</text>\n    </g>\n    <g id=\"line2d_40\">\n     <path d=\"M 160.724688 48.146719 \nL 169.724688 48.146719 \nL 178.724688 48.146719 \n\" style=\"fill: none; stroke: #94a3b8; stroke-width: 1.7; stroke-linecap: square\"/>\n    </g>\n    <g id=\"text_22\">\n     <text style=\"font: 9px 'Heiti TC'; text-anchor: start\" x=\"185.924688\" y=\"51.296719\" transform=\"rotate(-0 185.924688 51.296719)\">沪深 300</text>\n    </g>\n   </g>\n  </g>\n </g>\n <defs>\n  <clipPath id=\"p068132cc92\">\n   <rect x=\"44.48125\" y=\"22.92\" width=\"569.16\" height=\"221.76\"/>\n  </clipPath>\n </defs>\n</svg>\n",
+    "panels": [
+      {
+        "title": "",
+        "xlabel": "",
+        "ylabel": "TTM P/E 倍",
+        "xticks": [
+          [
+            17897.0,
+            "2019"
+          ],
+          [
+            18262.0,
+            "2020"
+          ],
+          [
+            18628.0,
+            "2021"
+          ],
+          [
+            18993.0,
+            "2022"
+          ],
+          [
+            19358.0,
+            "2023"
+          ],
+          [
+            19723.0,
+            "2024"
+          ],
+          [
+            20089.0,
+            "2025"
+          ],
+          [
+            20454.0,
+            "2026"
+          ]
+        ],
+        "yticks": [
+          [
+            0.0,
+            "0"
+          ],
+          [
+            50.0,
+            "50"
+          ],
+          [
+            100.0,
+            "100"
+          ],
+          [
+            150.0,
+            "150"
+          ],
+          [
+            200.0,
+            "200"
+          ],
+          [
+            250.0,
+            "250"
+          ],
+          [
+            300.0,
+            "300"
+          ],
+          [
+            350.0,
+            "350"
+          ],
+          [
+            400.0,
+            "400"
+          ],
+          [
+            450.0,
+            "450"
+          ]
+        ],
+        "series": [
+          {
+            "kind": "line",
+            "label": "核心组中位数",
+            "x": [
+              "2020-01-23 00:00:00",
+              "2020-02-28 00:00:00",
+              "2020-03-31 00:00:00",
+              "2020-04-30 00:00:00",
+              "2020-05-29 00:00:00",
+              "2020-06-30 00:00:00",
+              "2020-07-31 00:00:00",
+              "2020-08-31 00:00:00",
+              "2020-09-30 00:00:00",
+              "2020-10-30 00:00:00",
+              "2020-11-30 00:00:00",
+              "2020-12-31 00:00:00",
+              "2021-01-29 00:00:00",
+              "2021-02-26 00:00:00",
+              "2021-03-31 00:00:00",
+              "2021-04-30 00:00:00",
+              "2021-05-31 00:00:00",
+              "2021-06-30 00:00:00",
+              "2021-07-30 00:00:00",
+              "2021-08-31 00:00:00",
+              "2021-09-30 00:00:00",
+              "2021-10-29 00:00:00",
+              "2021-11-30 00:00:00",
+              "2021-12-31 00:00:00",
+              "2022-01-28 00:00:00",
+              "2022-02-28 00:00:00",
+              "2022-03-31 00:00:00",
+              "2022-04-29 00:00:00",
+              "2022-05-31 00:00:00",
+              "2022-06-30 00:00:00",
+              "2022-07-29 00:00:00",
+              "2022-08-31 00:00:00",
+              "2022-09-30 00:00:00",
+              "2022-10-31 00:00:00",
+              "2022-11-30 00:00:00",
+              "2022-12-30 00:00:00",
+              "2023-01-31 00:00:00",
+              "2023-02-28 00:00:00",
+              "2023-03-31 00:00:00",
+              "2023-04-28 00:00:00",
+              "2023-05-31 00:00:00",
+              "2023-06-30 00:00:00",
+              "2023-07-31 00:00:00",
+              "2023-08-31 00:00:00",
+              "2023-09-28 00:00:00",
+              "2023-10-31 00:00:00",
+              "2023-11-30 00:00:00",
+              "2023-12-29 00:00:00",
+              "2024-01-31 00:00:00",
+              "2024-02-29 00:00:00",
+              "2024-03-29 00:00:00",
+              "2024-04-30 00:00:00",
+              "2024-05-31 00:00:00",
+              "2024-06-28 00:00:00",
+              "2024-07-31 00:00:00",
+              "2024-08-30 00:00:00",
+              "2024-09-30 00:00:00",
+              "2024-10-31 00:00:00",
+              "2024-11-29 00:00:00",
+              "2024-12-31 00:00:00",
+              "2025-01-27 00:00:00",
+              "2025-02-28 00:00:00",
+              "2025-03-31 00:00:00",
+              "2025-04-30 00:00:00",
+              "2025-05-30 00:00:00",
+              "2025-06-30 00:00:00",
+              "2025-07-31 00:00:00",
+              "2025-08-29 00:00:00",
+              "2025-09-30 00:00:00",
+              "2025-10-31 00:00:00",
+              "2025-11-28 00:00:00",
+              "2025-12-31 00:00:00",
+              "2026-01-30 00:00:00",
+              "2026-02-27 00:00:00",
+              "2026-03-31 00:00:00",
+              "2026-04-30 00:00:00",
+              "2026-05-29 00:00:00",
+              "2026-06-30 00:00:00",
+              "2026-07-31 00:00:00",
+              "2026-08-31 00:00:00",
+              "2026-09-02 00:00:00"
+            ],
+            "y": [
+              19.58134,
+              19.451428,
+              19.601303,
+              28.499549,
+              28.156594,
+              28.139616,
+              28.345477,
+              29.70686,
+              26.200195,
+              26.636259,
+              27.576725,
+              31.51157,
+              27.727479,
+              28.898745,
+              27.614862,
+              25.017809,
+              25.623253,
+              24.650233,
+              27.56934,
+              22.40243,
+              25.278327,
+              23.879607,
+              48.142866,
+              48.915258,
+              47.934645,
+              53.962528,
+              49.030624,
+              47.155924,
+              57.71839,
+              59.106253,
+              58.942976,
+              43.516428,
+              43.92696,
+              34.904536,
+              26.516009,
+              25.658091,
+              25.975838,
+              25.515105,
+              27.151503,
+              21.972913,
+              21.822,
+              22.123826,
+              23.195307,
+              17.679266,
+              17.65426,
+              16.52153,
+              15.606453,
+              14.967152,
+              13.776299,
+              15.343211,
+              15.4811,
+              15.518171,
+              17.222082,
+              18.125498,
+              17.119161,
+              16.870777,
+              20.164224,
+              19.422832,
+              19.583148,
+              17.659363,
+              16.820789,
+              17.018101,
+              17.955329,
+              16.778385,
+              16.054659,
+              17.441801,
+              16.706013,
+              18.816518,
+              21.921706,
+              20.188532,
+              18.854541,
+              21.582077,
+              30.517793,
+              41.405175,
+              45.896712,
+              50.185658,
+              58.908949,
+              83.520545,
+              36.367415,
+              39.693757,
+              39.410988
+            ]
+          },
+          {
+            "kind": "line",
+            "label": "AI 映射组中位数",
+            "x": [
+              "2020-01-23 00:00:00",
+              "2020-02-28 00:00:00",
+              "2020-03-31 00:00:00",
+              "2020-04-30 00:00:00",
+              "2020-05-29 00:00:00",
+              "2020-06-30 00:00:00",
+              "2020-07-31 00:00:00",
+              "2020-08-31 00:00:00",
+              "2020-09-30 00:00:00",
+              "2020-10-30 00:00:00",
+              "2020-11-30 00:00:00",
+              "2020-12-31 00:00:00",
+              "2021-01-29 00:00:00",
+              "2021-02-26 00:00:00",
+              "2021-03-31 00:00:00",
+              "2021-04-30 00:00:00",
+              "2021-05-31 00:00:00",
+              "2021-06-30 00:00:00",
+              "2021-07-30 00:00:00",
+              "2021-08-31 00:00:00",
+              "2021-09-30 00:00:00",
+              "2021-10-29 00:00:00",
+              "2021-11-30 00:00:00",
+              "2021-12-31 00:00:00",
+              "2022-01-28 00:00:00",
+              "2022-02-28 00:00:00",
+              "2022-03-31 00:00:00",
+              "2022-04-29 00:00:00",
+              "2022-05-31 00:00:00",
+              "2022-06-30 00:00:00",
+              "2022-07-29 00:00:00",
+              "2022-08-31 00:00:00",
+              "2022-09-30 00:00:00",
+              "2022-10-31 00:00:00",
+              "2022-11-30 00:00:00",
+              "2022-12-30 00:00:00",
+              "2023-01-31 00:00:00",
+              "2023-02-28 00:00:00",
+              "2023-03-31 00:00:00",
+              "2023-04-28 00:00:00",
+              "2023-05-31 00:00:00",
+              "2023-06-30 00:00:00",
+              "2023-07-31 00:00:00",
+              "2023-08-31 00:00:00",
+              "2023-09-28 00:00:00",
+              "2023-10-31 00:00:00",
+              "2023-11-30 00:00:00",
+              "2023-12-29 00:00:00",
+              "2024-01-31 00:00:00",
+              "2024-02-29 00:00:00",
+              "2024-03-29 00:00:00",
+              "2024-04-30 00:00:00",
+              "2024-05-31 00:00:00",
+              "2024-06-28 00:00:00",
+              "2024-07-31 00:00:00",
+              "2024-08-30 00:00:00",
+              "2024-09-30 00:00:00",
+              "2024-10-31 00:00:00",
+              "2024-11-29 00:00:00",
+              "2024-12-31 00:00:00",
+              "2025-01-27 00:00:00",
+              "2025-02-28 00:00:00",
+              "2025-03-31 00:00:00",
+              "2025-04-30 00:00:00",
+              "2025-05-30 00:00:00",
+              "2025-06-30 00:00:00",
+              "2025-07-31 00:00:00",
+              "2025-08-29 00:00:00",
+              "2025-09-30 00:00:00",
+              "2025-10-31 00:00:00",
+              "2025-11-28 00:00:00",
+              "2025-12-31 00:00:00",
+              "2026-01-30 00:00:00",
+              "2026-02-27 00:00:00",
+              "2026-03-31 00:00:00",
+              "2026-04-30 00:00:00",
+              "2026-05-29 00:00:00",
+              "2026-06-30 00:00:00",
+              "2026-07-31 00:00:00",
+              "2026-08-31 00:00:00",
+              "2026-09-02 00:00:00"
+            ],
+            "y": [
+              59.718754,
+              60.385664,
+              63.477701,
+              69.757251,
+              64.237738,
+              77.106733,
+              75.79268,
+              61.357372,
+              53.435859,
+              45.532269,
+              44.517219,
+              42.140533,
+              38.267042,
+              38.071116,
+              32.243893,
+              28.870323,
+              33.749428,
+              32.507595,
+              36.009842,
+              30.023905,
+              29.566172,
+              28.556535,
+              36.956839,
+              41.181585,
+              34.689429,
+              35.151009,
+              28.897877,
+              25.47094,
+              26.735337,
+              25.828631,
+              27.276033,
+              22.793995,
+              20.308043,
+              20.055172,
+              19.612372,
+              18.514047,
+              20.11034,
+              25.852843,
+              38.172654,
+              57.370987,
+              68.68597,
+              94.211593,
+              76.081577,
+              68.401644,
+              69.105831,
+              42.25147,
+              45.703813,
+              54.365966,
+              49.498019,
+              57.114827,
+              57.649416,
+              50.999316,
+              44.078319,
+              52.70818,
+              49.504709,
+              37.04892,
+              45.308495,
+              53.968537,
+              45.143457,
+              39.937612,
+              44.064266,
+              38.674262,
+              36.991252,
+              27.088809,
+              32.353052,
+              44.263093,
+              57.067945,
+              67.146989,
+              65.881958,
+              61.464727,
+              66.856096,
+              79.265731,
+              84.33354,
+              69.390001,
+              74.215902,
+              110.316566,
+              158.794436,
+              152.022327,
+              85.890505,
+              123.535195,
+              117.428893
+            ]
+          },
+          {
+            "kind": "line",
+            "label": "长飞 A 股",
+            "x": [
+              "2020-01-23 00:00:00",
+              "2020-02-28 00:00:00",
+              "2020-03-31 00:00:00",
+              "2020-04-30 00:00:00",
+              "2020-05-29 00:00:00",
+              "2020-06-30 00:00:00",
+              "2020-07-31 00:00:00",
+              "2020-08-31 00:00:00",
+              "2020-09-30 00:00:00",
+              "2020-10-30 00:00:00",
+              "2020-11-30 00:00:00",
+              "2020-12-31 00:00:00",
+              "2021-01-29 00:00:00",
+              "2021-02-26 00:00:00",
+              "2021-03-31 00:00:00",
+              "2021-04-30 00:00:00",
+              "2021-05-31 00:00:00",
+              "2021-06-30 00:00:00",
+              "2021-07-30 00:00:00",
+              "2021-08-31 00:00:00",
+              "2021-09-30 00:00:00",
+              "2021-10-29 00:00:00",
+              "2021-11-30 00:00:00",
+              "2021-12-31 00:00:00",
+              "2022-01-28 00:00:00",
+              "2022-02-28 00:00:00",
+              "2022-03-31 00:00:00",
+              "2022-04-29 00:00:00",
+              "2022-05-31 00:00:00",
+              "2022-06-30 00:00:00",
+              "2022-07-29 00:00:00",
+              "2022-08-31 00:00:00",
+              "2022-09-30 00:00:00",
+              "2022-10-31 00:00:00",
+              "2022-11-30 00:00:00",
+              "2022-12-30 00:00:00",
+              "2023-01-31 00:00:00",
+              "2023-02-28 00:00:00",
+              "2023-03-31 00:00:00",
+              "2023-04-28 00:00:00",
+              "2023-05-31 00:00:00",
+              "2023-06-30 00:00:00",
+              "2023-07-31 00:00:00",
+              "2023-08-31 00:00:00",
+              "2023-09-28 00:00:00",
+              "2023-10-31 00:00:00",
+              "2023-11-30 00:00:00",
+              "2023-12-29 00:00:00",
+              "2024-01-31 00:00:00",
+              "2024-02-29 00:00:00",
+              "2024-03-29 00:00:00",
+              "2024-04-30 00:00:00",
+              "2024-05-31 00:00:00",
+              "2024-06-28 00:00:00",
+              "2024-07-31 00:00:00",
+              "2024-08-30 00:00:00",
+              "2024-09-30 00:00:00",
+              "2024-10-31 00:00:00",
+              "2024-11-29 00:00:00",
+              "2024-12-31 00:00:00",
+              "2025-01-27 00:00:00",
+              "2025-02-28 00:00:00",
+              "2025-03-31 00:00:00",
+              "2025-04-30 00:00:00",
+              "2025-05-30 00:00:00",
+              "2025-06-30 00:00:00",
+              "2025-07-31 00:00:00",
+              "2025-08-29 00:00:00",
+              "2025-09-30 00:00:00",
+              "2025-10-31 00:00:00",
+              "2025-11-28 00:00:00",
+              "2025-12-31 00:00:00",
+              "2026-01-30 00:00:00",
+              "2026-02-27 00:00:00",
+              "2026-03-31 00:00:00",
+              "2026-04-30 00:00:00",
+              "2026-05-29 00:00:00",
+              "2026-06-30 00:00:00",
+              "2026-07-31 00:00:00",
+              "2026-08-31 00:00:00",
+              "2026-09-02 00:00:00"
+            ],
+            "y": [
+              27.527401,
+              27.954377,
+              30.042828,
+              44.271639,
+              41.678145,
+              43.192185,
+              43.809016,
+              38.41456,
+              35.162982,
+              35.187157,
+              39.351684,
+              36.998245,
+              32.318733,
+              33.810157,
+              32.717968,
+              27.271035,
+              29.573445,
+              29.060473,
+              30.718686,
+              25.610656,
+              27.773954,
+              30.804565,
+              35.330065,
+              35.351661,
+              30.643865,
+              34.498643,
+              28.679255,
+              24.22921,
+              25.201819,
+              28.315416,
+              30.265992,
+              39.615207,
+              42.286346,
+              32.247722,
+              25.707507,
+              24.250822,
+              26.354096,
+              27.409449,
+              26.818181,
+              23.997113,
+              22.130696,
+              23.288515,
+              22.017431,
+              19.70303,
+              20.498192,
+              19.598027,
+              18.809192,
+              17.755256,
+              15.440478,
+              17.832847,
+              17.185848,
+              17.887959,
+              17.201007,
+              16.548063,
+              16.201186,
+              16.319303,
+              19.157442,
+              21.570542,
+              22.037636,
+              22.887593,
+              32.007407,
+              27.949052,
+              37.958119,
+              32.358335,
+              31.481922,
+              40.098338,
+              50.073686,
+              116.40356,
+              128.692716,
+              112.358333,
+              115.256963,
+              168.235713,
+              215.600804,
+              334.432818,
+              314.878478,
+              253.199623,
+              288.19254,
+              390.567036,
+              194.246108,
+              100.663101,
+              98.072993
+            ]
+          },
+          {
+            "kind": "line",
+            "label": "沪深 300",
+            "x": [
+              "2020-01-23 00:00:00",
+              "2020-02-28 00:00:00",
+              "2020-03-31 00:00:00",
+              "2020-04-30 00:00:00",
+              "2020-05-29 00:00:00",
+              "2020-06-30 00:00:00",
+              "2020-07-31 00:00:00",
+              "2020-08-31 00:00:00",
+              "2020-09-30 00:00:00",
+              "2020-10-30 00:00:00",
+              "2020-11-30 00:00:00",
+              "2020-12-31 00:00:00",
+              "2021-01-29 00:00:00",
+              "2021-02-26 00:00:00",
+              "2021-03-31 00:00:00",
+              "2021-04-30 00:00:00",
+              "2021-05-31 00:00:00",
+              "2021-06-30 00:00:00",
+              "2021-07-30 00:00:00",
+              "2021-08-31 00:00:00",
+              "2021-09-30 00:00:00",
+              "2021-10-29 00:00:00",
+              "2021-11-30 00:00:00",
+              "2021-12-31 00:00:00",
+              "2022-01-28 00:00:00",
+              "2022-02-28 00:00:00",
+              "2022-03-31 00:00:00",
+              "2022-04-29 00:00:00",
+              "2022-05-31 00:00:00",
+              "2022-06-30 00:00:00",
+              "2022-07-29 00:00:00",
+              "2022-08-31 00:00:00",
+              "2022-09-30 00:00:00",
+              "2022-10-31 00:00:00",
+              "2022-11-30 00:00:00",
+              "2022-12-30 00:00:00",
+              "2023-01-31 00:00:00",
+              "2023-02-28 00:00:00",
+              "2023-03-31 00:00:00",
+              "2023-04-28 00:00:00",
+              "2023-05-31 00:00:00",
+              "2023-06-30 00:00:00",
+              "2023-07-31 00:00:00",
+              "2023-08-31 00:00:00",
+              "2023-09-28 00:00:00",
+              "2023-10-31 00:00:00",
+              "2023-11-30 00:00:00",
+              "2023-12-29 00:00:00",
+              "2024-01-31 00:00:00",
+              "2024-02-29 00:00:00",
+              "2024-03-29 00:00:00",
+              "2024-04-30 00:00:00",
+              "2024-05-31 00:00:00",
+              "2024-06-28 00:00:00",
+              "2024-07-31 00:00:00",
+              "2024-08-30 00:00:00",
+              "2024-09-30 00:00:00",
+              "2024-10-31 00:00:00",
+              "2024-11-29 00:00:00",
+              "2024-12-31 00:00:00",
+              "2025-01-27 00:00:00",
+              "2025-02-28 00:00:00",
+              "2025-03-31 00:00:00",
+              "2025-04-30 00:00:00",
+              "2025-05-30 00:00:00",
+              "2025-06-30 00:00:00",
+              "2025-07-31 00:00:00",
+              "2025-08-29 00:00:00",
+              "2025-09-30 00:00:00",
+              "2025-10-31 00:00:00",
+              "2025-11-28 00:00:00",
+              "2025-12-31 00:00:00",
+              "2026-01-30 00:00:00",
+              "2026-02-27 00:00:00",
+              "2026-03-31 00:00:00",
+              "2026-04-30 00:00:00",
+              "2026-05-29 00:00:00",
+              "2026-06-30 00:00:00",
+              "2026-07-31 00:00:00",
+              "2026-08-31 00:00:00",
+              "2026-09-02 00:00:00"
+            ],
+            "y": [
+              12.1862,
+              11.8104,
+              11.0234,
+              12.1476,
+              11.9684,
+              12.7012,
+              14.011,
+              15.2777,
+              14.6592,
+              14.3606,
+              15.3109,
+              16.1215,
+              16.4051,
+              16.324,
+              15.1371,
+              13.978,
+              14.5611,
+              14.7766,
+              13.5228,
+              12.8872,
+              13.1027,
+              13.3127,
+              12.9589,
+              14.0314,
+              13.0701,
+              13.2163,
+              12.3512,
+              11.8565,
+              12.2062,
+              12.9961,
+              12.1096,
+              11.8103,
+              11.2215,
+              10.3057,
+              11.3225,
+              11.3418,
+              12.0486,
+              11.9253,
+              12.0775,
+              12.2362,
+              11.7044,
+              11.7017,
+              12.113,
+              11.7232,
+              11.5913,
+              11.2531,
+              11.0815,
+              10.9621,
+              10.7087,
+              11.544,
+              11.6712,
+              12.085,
+              12.0334,
+              11.8591,
+              11.7167,
+              11.3146,
+              13.3213,
+              12.4548,
+              12.5637,
+              12.9967,
+              12.5047,
+              12.616,
+              12.3813,
+              12.2335,
+              12.4871,
+              13.1015,
+              13.2181,
+              14.2057,
+              14.282,
+              14.1724,
+              13.9989,
+              14.2294,
+              14.2319,
+              14.1827,
+              13.9476,
+              14.6952,
+              14.563,
+              14.5109,
+              14.3807,
+              13.7822,
+              13.6582
+            ]
+          }
+        ],
+        "notes": []
+      }
+    ]
+  },
+  "broker_forecasts": {
+    "svg": "<svg xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"724.421067pt\" height=\"265.389687pt\" viewBox=\"0 0 724.421067 265.389687\" xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\">\n <metadata>\n  <rdf:RDF xmlns:dc=\"http://purl.org/dc/elements/1.1/\" xmlns:cc=\"http://creativecommons.org/ns#\" xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">\n   <cc:Work>\n    <dc:type rdf:resource=\"http://purl.org/dc/dcmitype/StillImage\"/>\n    <dc:date>2026-09-05T13:34:14.130716</dc:date>\n    <dc:format>image/svg+xml</dc:format>\n    <dc:creator>\n     <cc:Agent>\n      <dc:title>Matplotlib v3.9.4, https://matplotlib.org/</dc:title>\n     </cc:Agent>\n    </dc:creator>\n   </cc:Work>\n  </rdf:RDF>\n </metadata>\n <defs>\n  <style type=\"text/css\">*{stroke-linejoin: round; stroke-linecap: butt}</style>\n </defs>\n <g id=\"figure_1\">\n  <g id=\"patch_1\">\n   <path d=\"M 0 265.389687 \nL 724.421067 265.389687 \nL 724.421067 0 \nL 0 0 \nz\n\" style=\"fill: #ffffff\"/>\n  </g>\n  <g id=\"axes_1\">\n   <g id=\"patch_2\">\n    <path d=\"M 44.251563 241.76 \nL 350.821067 241.76 \nL 350.821067 22.92 \nL 44.251563 22.92 \nz\n\" style=\"fill: #ffffff\"/>\n   </g>\n   <g id=\"matplotlib.axis_1\">\n    <g id=\"xtick_1\">\n     <g id=\"line2d_1\">\n      <path d=\"M 58.18654 241.76 \nL 58.18654 22.92 \n\" clip-path=\"url(#p3f68897882)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_2\">\n      <defs>\n       <path id=\"m49b6ac6603\" d=\"M 0 0 \nL 0 3.5 \n\" style=\"stroke: #475569; stroke-width: 0.8\"/>\n      </defs>\n      <g>\n       <use xlink:href=\"#m49b6ac6603\" x=\"58.18654\" y=\"241.76\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_1\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"58.18654\" y=\"256.86\" transform=\"rotate(-0 58.18654 256.86)\">2026E</text>\n     </g>\n    </g>\n    <g id=\"xtick_2\">\n     <g id=\"line2d_3\">\n      <path d=\"M 197.536315 241.76 \nL 197.536315 22.92 \n\" clip-path=\"url(#p3f68897882)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_4\">\n      <g>\n       <use xlink:href=\"#m49b6ac6603\" x=\"197.536315\" y=\"241.76\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_2\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"197.536315\" y=\"256.86\" transform=\"rotate(-0 197.536315 256.86)\">2027E</text>\n     </g>\n    </g>\n    <g id=\"xtick_3\">\n     <g id=\"line2d_5\">\n      <path d=\"M 336.886089 241.76 \nL 336.886089 22.92 \n\" clip-path=\"url(#p3f68897882)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_6\">\n      <g>\n       <use xlink:href=\"#m49b6ac6603\" x=\"336.886089\" y=\"241.76\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_3\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"336.886089\" y=\"256.86\" transform=\"rotate(-0 336.886089 256.86)\">2028E</text>\n     </g>\n    </g>\n   </g>\n   <g id=\"matplotlib.axis_2\">\n    <g id=\"ytick_1\">\n     <g id=\"line2d_7\">\n      <path d=\"M 44.251563 241.76 \nL 350.821067 241.76 \n\" clip-path=\"url(#p3f68897882)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_8\">\n      <defs>\n       <path id=\"m342e6b3808\" d=\"M 0 0 \nL -3.5 0 \n\" style=\"stroke: #475569; stroke-width: 0.8\"/>\n      </defs>\n      <g>\n       <use xlink:href=\"#m342e6b3808\" x=\"44.251563\" y=\"241.76\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_4\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"37.251563\" y=\"245.81\" transform=\"rotate(-0 37.251563 245.81)\">0</text>\n     </g>\n    </g>\n    <g id=\"ytick_2\">\n     <g id=\"line2d_9\">\n      <path d=\"M 44.251563 216.014118 \nL 350.821067 216.014118 \n\" clip-path=\"url(#p3f68897882)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_10\">\n      <g>\n       <use xlink:href=\"#m342e6b3808\" x=\"44.251563\" y=\"216.014118\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_5\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"37.251563\" y=\"220.064118\" transform=\"rotate(-0 37.251563 220.064118)\">20</text>\n     </g>\n    </g>\n    <g id=\"ytick_3\">\n     <g id=\"line2d_11\">\n      <path d=\"M 44.251563 190.268235 \nL 350.821067 190.268235 \n\" clip-path=\"url(#p3f68897882)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_12\">\n      <g>\n       <use xlink:href=\"#m342e6b3808\" x=\"44.251563\" y=\"190.268235\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_6\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"37.251563\" y=\"194.318235\" transform=\"rotate(-0 37.251563 194.318235)\">40</text>\n     </g>\n    </g>\n    <g id=\"ytick_4\">\n     <g id=\"line2d_13\">\n      <path d=\"M 44.251563 164.522353 \nL 350.821067 164.522353 \n\" clip-path=\"url(#p3f68897882)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_14\">\n      <g>\n       <use xlink:href=\"#m342e6b3808\" x=\"44.251563\" y=\"164.522353\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_7\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"37.251563\" y=\"168.572353\" transform=\"rotate(-0 37.251563 168.572353)\">60</text>\n     </g>\n    </g>\n    <g id=\"ytick_5\">\n     <g id=\"line2d_15\">\n      <path d=\"M 44.251563 138.776471 \nL 350.821067 138.776471 \n\" clip-path=\"url(#p3f68897882)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_16\">\n      <g>\n       <use xlink:href=\"#m342e6b3808\" x=\"44.251563\" y=\"138.776471\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_8\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"37.251563\" y=\"142.826471\" transform=\"rotate(-0 37.251563 142.826471)\">80</text>\n     </g>\n    </g>\n    <g id=\"ytick_6\">\n     <g id=\"line2d_17\">\n      <path d=\"M 44.251563 113.030588 \nL 350.821067 113.030588 \n\" clip-path=\"url(#p3f68897882)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_18\">\n      <g>\n       <use xlink:href=\"#m342e6b3808\" x=\"44.251563\" y=\"113.030588\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_9\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"37.251563\" y=\"117.080588\" transform=\"rotate(-0 37.251563 117.080588)\">100</text>\n     </g>\n    </g>\n    <g id=\"ytick_7\">\n     <g id=\"line2d_19\">\n      <path d=\"M 44.251563 87.284706 \nL 350.821067 87.284706 \n\" clip-path=\"url(#p3f68897882)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_20\">\n      <g>\n       <use xlink:href=\"#m342e6b3808\" x=\"44.251563\" y=\"87.284706\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_10\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"37.251563\" y=\"91.334706\" transform=\"rotate(-0 37.251563 91.334706)\">120</text>\n     </g>\n    </g>\n    <g id=\"ytick_8\">\n     <g id=\"line2d_21\">\n      <path d=\"M 44.251563 61.538824 \nL 350.821067 61.538824 \n\" clip-path=\"url(#p3f68897882)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_22\">\n      <g>\n       <use xlink:href=\"#m342e6b3808\" x=\"44.251563\" y=\"61.538824\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_11\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"37.251563\" y=\"65.588824\" transform=\"rotate(-0 37.251563 65.588824)\">140</text>\n     </g>\n    </g>\n    <g id=\"ytick_9\">\n     <g id=\"line2d_23\">\n      <path d=\"M 44.251563 35.792941 \nL 350.821067 35.792941 \n\" clip-path=\"url(#p3f68897882)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_24\">\n      <g>\n       <use xlink:href=\"#m342e6b3808\" x=\"44.251563\" y=\"35.792941\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_12\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"37.251563\" y=\"39.842941\" transform=\"rotate(-0 37.251563 39.842941)\">160</text>\n     </g>\n    </g>\n    <g id=\"text_13\">\n     <text style=\"fill: #334155; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"15.3\" y=\"132.34\" transform=\"rotate(-90 15.3 132.34)\">报告净利润 亿元</text>\n    </g>\n   </g>\n   <g id=\"line2d_25\">\n    <path d=\"M 58.18654 129.739666 \nL 197.536315 125.234136 \nL 336.886089 152.318805 \n\" clip-path=\"url(#p3f68897882)\" style=\"fill: none; stroke: #285f8f; stroke-width: 1.5; stroke-linecap: square\"/>\n    <defs>\n     <path id=\"m262e64d707\" d=\"M 0 3 \nC 0.795609 3 1.55874 2.683901 2.12132 2.12132 \nC 2.683901 1.55874 3 0.795609 3 0 \nC 3 -0.795609 2.683901 -1.55874 2.12132 -2.12132 \nC 1.55874 -2.683901 0.795609 -3 0 -3 \nC -0.795609 -3 -1.55874 -2.683901 -2.12132 -2.12132 \nC -2.683901 -1.55874 -3 -0.795609 -3 0 \nC -3 0.795609 -2.683901 1.55874 -2.12132 2.12132 \nC -1.55874 2.683901 -0.795609 3 0 3 \nz\n\" style=\"stroke: #285f8f\"/>\n    </defs>\n    <g clip-path=\"url(#p3f68897882)\">\n     <use xlink:href=\"#m262e64d707\" x=\"58.18654\" y=\"129.739666\" style=\"fill: #285f8f; stroke: #285f8f\"/>\n     <use xlink:href=\"#m262e64d707\" x=\"197.536315\" y=\"125.234136\" style=\"fill: #285f8f; stroke: #285f8f\"/>\n     <use xlink:href=\"#m262e64d707\" x=\"336.886089\" y=\"152.318805\" style=\"fill: #285f8f; stroke: #285f8f\"/>\n    </g>\n   </g>\n   <g id=\"line2d_26\">\n    <path d=\"M 58.18654 152.962452 \nL 197.536315 80.642268 \nL 336.886089 57.754179 \n\" clip-path=\"url(#p3f68897882)\" style=\"fill: none; stroke: #168583; stroke-width: 1.5; stroke-linecap: square\"/>\n    <defs>\n     <path id=\"ma49c22b009\" d=\"M 0 3 \nC 0.795609 3 1.55874 2.683901 2.12132 2.12132 \nC 2.683901 1.55874 3 0.795609 3 0 \nC 3 -0.795609 2.683901 -1.55874 2.12132 -2.12132 \nC 1.55874 -2.683901 0.795609 -3 0 -3 \nC -0.795609 -3 -1.55874 -2.683901 -2.12132 -2.12132 \nC -2.683901 -1.55874 -3 -0.795609 -3 0 \nC -3 0.795609 -2.683901 1.55874 -2.12132 2.12132 \nC -1.55874 2.683901 -0.795609 3 0 3 \nz\n\" style=\"stroke: #168583\"/>\n    </defs>\n    <g clip-path=\"url(#p3f68897882)\">\n     <use xlink:href=\"#ma49c22b009\" x=\"58.18654\" y=\"152.962452\" style=\"fill: #168583; stroke: #168583\"/>\n     <use xlink:href=\"#ma49c22b009\" x=\"197.536315\" y=\"80.642268\" style=\"fill: #168583; stroke: #168583\"/>\n     <use xlink:href=\"#ma49c22b009\" x=\"336.886089\" y=\"57.754179\" style=\"fill: #168583; stroke: #168583\"/>\n    </g>\n   </g>\n   <g id=\"line2d_27\">\n    <path d=\"M 58.18654 145.126692 \nL 197.536315 77.883597 \nL 336.886089 94.555343 \n\" clip-path=\"url(#p3f68897882)\" style=\"fill: none; stroke: #c2783d; stroke-width: 1.5; stroke-linecap: square\"/>\n    <defs>\n     <path id=\"m7be6f6ab8b\" d=\"M 0 3 \nC 0.795609 3 1.55874 2.683901 2.12132 2.12132 \nC 2.683901 1.55874 3 0.795609 3 0 \nC 3 -0.795609 2.683901 -1.55874 2.12132 -2.12132 \nC 1.55874 -2.683901 0.795609 -3 0 -3 \nC -0.795609 -3 -1.55874 -2.683901 -2.12132 -2.12132 \nC -2.683901 -1.55874 -3 -0.795609 -3 0 \nC -3 0.795609 -2.683901 1.55874 -2.12132 2.12132 \nC -1.55874 2.683901 -0.795609 3 0 3 \nz\n\" style=\"stroke: #c2783d\"/>\n    </defs>\n    <g clip-path=\"url(#p3f68897882)\">\n     <use xlink:href=\"#m7be6f6ab8b\" x=\"58.18654\" y=\"145.126692\" style=\"fill: #c2783d; stroke: #c2783d\"/>\n     <use xlink:href=\"#m7be6f6ab8b\" x=\"197.536315\" y=\"77.883597\" style=\"fill: #c2783d; stroke: #c2783d\"/>\n     <use xlink:href=\"#m7be6f6ab8b\" x=\"336.886089\" y=\"94.555343\" style=\"fill: #c2783d; stroke: #c2783d\"/>\n    </g>\n   </g>\n   <g id=\"patch_3\">\n    <path d=\"M 44.251563 241.76 \nL 44.251563 22.92 \n\" style=\"fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square\"/>\n   </g>\n   <g id=\"patch_4\">\n    <path d=\"M 44.251563 241.76 \nL 350.821067 241.76 \n\" style=\"fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square\"/>\n   </g>\n   <g id=\"text_14\">\n    <text style=\"font: 12px 'Heiti TC'; text-anchor: start\" x=\"44.251563\" y=\"16.92\" transform=\"rotate(-0 44.251563 16.92)\">长飞光纤</text>\n   </g>\n   <g id=\"legend_1\">\n    <g id=\"line2d_28\">\n     <path d=\"M 51.451563 33.8 \nL 59.451563 33.8 \nL 67.451563 33.8 \n\" style=\"fill: none; stroke: #285f8f; stroke-width: 1.5; stroke-linecap: square\"/>\n     <g>\n      <use xlink:href=\"#m262e64d707\" x=\"59.451563\" y=\"33.8\" style=\"fill: #285f8f; stroke: #285f8f\"/>\n     </g>\n    </g>\n    <g id=\"text_15\">\n     <text style=\"font: 8px 'Heiti TC'; text-anchor: start\" x=\"73.851562\" y=\"36.6\" transform=\"rotate(-0 73.851562 36.6)\">杰富瑞 07-22</text>\n    </g>\n    <g id=\"line2d_29\">\n     <path d=\"M 51.451563 45.34375 \nL 59.451563 45.34375 \nL 67.451563 45.34375 \n\" style=\"fill: none; stroke: #168583; stroke-width: 1.5; stroke-linecap: square\"/>\n     <g>\n      <use xlink:href=\"#ma49c22b009\" x=\"59.451563\" y=\"45.34375\" style=\"fill: #168583; stroke: #168583\"/>\n     </g>\n    </g>\n    <g id=\"text_16\">\n     <text style=\"font: 8px 'Heiti TC'; text-anchor: start\" x=\"73.851562\" y=\"48.14375\" transform=\"rotate(-0 73.851562 48.14375)\">高盛 08-28</text>\n    </g>\n    <g id=\"line2d_30\">\n     <path d=\"M 51.451563 56.8875 \nL 59.451563 56.8875 \nL 67.451563 56.8875 \n\" style=\"fill: none; stroke: #c2783d; stroke-width: 1.5; stroke-linecap: square\"/>\n     <g>\n      <use xlink:href=\"#m7be6f6ab8b\" x=\"59.451563\" y=\"56.8875\" style=\"fill: #c2783d; stroke: #c2783d\"/>\n     </g>\n    </g>\n    <g id=\"text_17\">\n     <text style=\"font: 8px 'Heiti TC'; text-anchor: start\" x=\"73.851562\" y=\"59.6875\" transform=\"rotate(-0 73.851562 59.6875)\">摩根士丹利 08-23</text>\n    </g>\n   </g>\n  </g>\n  <g id=\"axes_2\">\n   <g id=\"patch_5\">\n    <path d=\"M 410.651562 241.76 \nL 717.221067 241.76 \nL 717.221067 22.92 \nL 410.651562 22.92 \nz\n\" style=\"fill: #ffffff\"/>\n   </g>\n   <g id=\"matplotlib.axis_3\">\n    <g id=\"xtick_4\">\n     <g id=\"line2d_31\">\n      <path d=\"M 424.58654 241.76 \nL 424.58654 22.92 \n\" clip-path=\"url(#pbc9d6edd46)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_32\">\n      <g>\n       <use xlink:href=\"#m49b6ac6603\" x=\"424.58654\" y=\"241.76\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_18\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"424.58654\" y=\"256.86\" transform=\"rotate(-0 424.58654 256.86)\">2026E</text>\n     </g>\n    </g>\n    <g id=\"xtick_5\">\n     <g id=\"line2d_33\">\n      <path d=\"M 563.936315 241.76 \nL 563.936315 22.92 \n\" clip-path=\"url(#pbc9d6edd46)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_34\">\n      <g>\n       <use xlink:href=\"#m49b6ac6603\" x=\"563.936315\" y=\"241.76\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_19\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"563.936315\" y=\"256.86\" transform=\"rotate(-0 563.936315 256.86)\">2027E</text>\n     </g>\n    </g>\n    <g id=\"xtick_6\">\n     <g id=\"line2d_35\">\n      <path d=\"M 703.286089 241.76 \nL 703.286089 22.92 \n\" clip-path=\"url(#pbc9d6edd46)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_36\">\n      <g>\n       <use xlink:href=\"#m49b6ac6603\" x=\"703.286089\" y=\"241.76\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_20\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"703.286089\" y=\"256.86\" transform=\"rotate(-0 703.286089 256.86)\">2028E</text>\n     </g>\n    </g>\n   </g>\n   <g id=\"matplotlib.axis_4\">\n    <g id=\"ytick_10\">\n     <g id=\"line2d_37\">\n      <path d=\"M 410.651562 241.76 \nL 717.221067 241.76 \n\" clip-path=\"url(#pbc9d6edd46)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_38\">\n      <g>\n       <use xlink:href=\"#m342e6b3808\" x=\"410.651562\" y=\"241.76\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_21\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"403.651562\" y=\"245.81\" transform=\"rotate(-0 403.651562 245.81)\">0</text>\n     </g>\n    </g>\n    <g id=\"ytick_11\">\n     <g id=\"line2d_39\">\n      <path d=\"M 410.651562 216.014118 \nL 717.221067 216.014118 \n\" clip-path=\"url(#pbc9d6edd46)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_40\">\n      <g>\n       <use xlink:href=\"#m342e6b3808\" x=\"410.651562\" y=\"216.014118\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_22\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"403.651562\" y=\"220.064118\" transform=\"rotate(-0 403.651562 220.064118)\">20</text>\n     </g>\n    </g>\n    <g id=\"ytick_12\">\n     <g id=\"line2d_41\">\n      <path d=\"M 410.651562 190.268235 \nL 717.221067 190.268235 \n\" clip-path=\"url(#pbc9d6edd46)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_42\">\n      <g>\n       <use xlink:href=\"#m342e6b3808\" x=\"410.651562\" y=\"190.268235\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_23\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"403.651562\" y=\"194.318235\" transform=\"rotate(-0 403.651562 194.318235)\">40</text>\n     </g>\n    </g>\n    <g id=\"ytick_13\">\n     <g id=\"line2d_43\">\n      <path d=\"M 410.651562 164.522353 \nL 717.221067 164.522353 \n\" clip-path=\"url(#pbc9d6edd46)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_44\">\n      <g>\n       <use xlink:href=\"#m342e6b3808\" x=\"410.651562\" y=\"164.522353\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_24\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"403.651562\" y=\"168.572353\" transform=\"rotate(-0 403.651562 168.572353)\">60</text>\n     </g>\n    </g>\n    <g id=\"ytick_14\">\n     <g id=\"line2d_45\">\n      <path d=\"M 410.651562 138.776471 \nL 717.221067 138.776471 \n\" clip-path=\"url(#pbc9d6edd46)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_46\">\n      <g>\n       <use xlink:href=\"#m342e6b3808\" x=\"410.651562\" y=\"138.776471\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_25\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"403.651562\" y=\"142.826471\" transform=\"rotate(-0 403.651562 142.826471)\">80</text>\n     </g>\n    </g>\n    <g id=\"ytick_15\">\n     <g id=\"line2d_47\">\n      <path d=\"M 410.651562 113.030588 \nL 717.221067 113.030588 \n\" clip-path=\"url(#pbc9d6edd46)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_48\">\n      <g>\n       <use xlink:href=\"#m342e6b3808\" x=\"410.651562\" y=\"113.030588\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_26\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"403.651562\" y=\"117.080588\" transform=\"rotate(-0 403.651562 117.080588)\">100</text>\n     </g>\n    </g>\n    <g id=\"ytick_16\">\n     <g id=\"line2d_49\">\n      <path d=\"M 410.651562 87.284706 \nL 717.221067 87.284706 \n\" clip-path=\"url(#pbc9d6edd46)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_50\">\n      <g>\n       <use xlink:href=\"#m342e6b3808\" x=\"410.651562\" y=\"87.284706\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_27\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"403.651562\" y=\"91.334706\" transform=\"rotate(-0 403.651562 91.334706)\">120</text>\n     </g>\n    </g>\n    <g id=\"ytick_17\">\n     <g id=\"line2d_51\">\n      <path d=\"M 410.651562 61.538824 \nL 717.221067 61.538824 \n\" clip-path=\"url(#pbc9d6edd46)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_52\">\n      <g>\n       <use xlink:href=\"#m342e6b3808\" x=\"410.651562\" y=\"61.538824\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_28\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"403.651562\" y=\"65.588824\" transform=\"rotate(-0 403.651562 65.588824)\">140</text>\n     </g>\n    </g>\n    <g id=\"ytick_18\">\n     <g id=\"line2d_53\">\n      <path d=\"M 410.651562 35.792941 \nL 717.221067 35.792941 \n\" clip-path=\"url(#pbc9d6edd46)\" style=\"fill: none; stroke: #b0b0b0; stroke-opacity: 0.15; stroke-width: 0.8; stroke-linecap: square\"/>\n     </g>\n     <g id=\"line2d_54\">\n      <g>\n       <use xlink:href=\"#m342e6b3808\" x=\"410.651562\" y=\"35.792941\" style=\"fill: #475569; stroke: #475569; stroke-width: 0.8\"/>\n      </g>\n     </g>\n     <g id=\"text_29\">\n      <text style=\"fill: #475569; font: 10px 'Heiti TC'; text-anchor: end\" x=\"403.651562\" y=\"39.842941\" transform=\"rotate(-0 403.651562 39.842941)\">160</text>\n     </g>\n    </g>\n    <g id=\"text_30\">\n     <text style=\"fill: #334155; font: 10px 'Heiti TC'; text-anchor: middle\" x=\"381.7\" y=\"132.34\" transform=\"rotate(-90 381.7 132.34)\">报告净利润 亿元</text>\n    </g>\n   </g>\n   <g id=\"line2d_55\">\n    <path d=\"M 424.58654 159.102845 \nL 563.936315 134.837351 \nL 703.286089 109.400419 \n\" clip-path=\"url(#pbc9d6edd46)\" style=\"fill: none; stroke: #285f8f; stroke-width: 1.5; stroke-linecap: square\"/>\n    <g clip-path=\"url(#pbc9d6edd46)\">\n     <use xlink:href=\"#m262e64d707\" x=\"424.58654\" y=\"159.102845\" style=\"fill: #285f8f; stroke: #285f8f\"/>\n     <use xlink:href=\"#m262e64d707\" x=\"563.936315\" y=\"134.837351\" style=\"fill: #285f8f; stroke: #285f8f\"/>\n     <use xlink:href=\"#m262e64d707\" x=\"703.286089\" y=\"109.400419\" style=\"fill: #285f8f; stroke: #285f8f\"/>\n    </g>\n   </g>\n   <g id=\"line2d_56\">\n    <path d=\"M 424.58654 128.735576 \nL 563.936315 73.137344 \nL 703.286089 50.403729 \n\" clip-path=\"url(#pbc9d6edd46)\" style=\"fill: none; stroke: #168583; stroke-width: 1.5; stroke-linecap: square\"/>\n    <g clip-path=\"url(#pbc9d6edd46)\">\n     <use xlink:href=\"#ma49c22b009\" x=\"424.58654\" y=\"128.735576\" style=\"fill: #168583; stroke: #168583\"/>\n     <use xlink:href=\"#ma49c22b009\" x=\"563.936315\" y=\"73.137344\" style=\"fill: #168583; stroke: #168583\"/>\n     <use xlink:href=\"#ma49c22b009\" x=\"703.286089\" y=\"50.403729\" style=\"fill: #168583; stroke: #168583\"/>\n    </g>\n   </g>\n   <g id=\"patch_6\">\n    <path d=\"M 410.651562 241.76 \nL 410.651562 22.92 \n\" style=\"fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square\"/>\n   </g>\n   <g id=\"patch_7\">\n    <path d=\"M 410.651562 241.76 \nL 717.221067 241.76 \n\" style=\"fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square\"/>\n   </g>\n   <g id=\"text_31\">\n    <text style=\"font: 12px 'Heiti TC'; text-anchor: start\" x=\"410.651562\" y=\"16.92\" transform=\"rotate(-0 410.651562 16.92)\">中天科技</text>\n   </g>\n   <g id=\"legend_2\">\n    <g id=\"line2d_57\">\n     <path d=\"M 417.851562 33.8 \nL 425.851562 33.8 \nL 433.851562 33.8 \n\" style=\"fill: none; stroke: #285f8f; stroke-width: 1.5; stroke-linecap: square\"/>\n     <g>\n      <use xlink:href=\"#m262e64d707\" x=\"425.851562\" y=\"33.8\" style=\"fill: #285f8f; stroke: #285f8f\"/>\n     </g>\n    </g>\n    <g id=\"text_32\">\n     <text style=\"font: 8px 'Heiti TC'; text-anchor: start\" x=\"440.251562\" y=\"36.6\" transform=\"rotate(-0 440.251562 36.6)\">摩根士丹利 07-14</text>\n    </g>\n    <g id=\"line2d_58\">\n     <path d=\"M 417.851562 45.34375 \nL 425.851562 45.34375 \nL 433.851562 45.34375 \n\" style=\"fill: none; stroke: #168583; stroke-width: 1.5; stroke-linecap: square\"/>\n     <g>\n      <use xlink:href=\"#ma49c22b009\" x=\"425.851562\" y=\"45.34375\" style=\"fill: #168583; stroke: #168583\"/>\n     </g>\n    </g>\n    <g id=\"text_33\">\n     <text style=\"font: 8px 'Heiti TC'; text-anchor: start\" x=\"440.251562\" y=\"48.14375\" transform=\"rotate(-0 440.251562 48.14375)\">美银 08-28</text>\n    </g>\n   </g>\n  </g>\n </g>\n <defs>\n  <clipPath id=\"p3f68897882\">\n   <rect x=\"44.251563\" y=\"22.92\" width=\"306.569504\" height=\"218.84\"/>\n  </clipPath>\n  <clipPath id=\"pbc9d6edd46\">\n   <rect x=\"410.651562\" y=\"22.92\" width=\"306.569504\" height=\"218.84\"/>\n  </clipPath>\n </defs>\n</svg>\n",
+    "panels": [
+      {
+        "title": "",
+        "xlabel": "",
+        "ylabel": "报告净利润 亿元",
+        "xticks": [
+          [
+            2026.0,
+            "2026E"
+          ],
+          [
+            2027.0,
+            "2027E"
+          ],
+          [
+            2028.0,
+            "2028E"
+          ]
+        ],
+        "yticks": [
+          [
+            0.0,
+            "0"
+          ],
+          [
+            20.0,
+            "20"
+          ],
+          [
+            40.0,
+            "40"
+          ],
+          [
+            60.0,
+            "60"
+          ],
+          [
+            80.0,
+            "80"
+          ],
+          [
+            100.0,
+            "100"
+          ],
+          [
+            120.0,
+            "120"
+          ],
+          [
+            140.0,
+            "140"
+          ],
+          [
+            160.0,
+            "160"
+          ],
+          [
+            180.0,
+            "180"
+          ]
+        ],
+        "series": [
+          {
+            "kind": "line",
+            "label": "杰富瑞 07-22",
+            "x": [
+              2026.0,
+              2027.0,
+              2028.0
+            ],
+            "y": [
+              87.02,
+              90.52,
+              69.48
+            ]
+          },
+          {
+            "kind": "line",
+            "label": "高盛 08-28",
+            "x": [
+              2026.0,
+              2027.0,
+              2028.0
+            ],
+            "y": [
+              68.98,
+              125.16,
+              142.94
+            ]
+          },
+          {
+            "kind": "line",
+            "label": "摩根士丹利 08-23",
+            "x": [
+              2026.0,
+              2027.0,
+              2028.0
+            ],
+            "y": [
+              75.067,
+              127.303,
+              114.352
+            ]
+          }
+        ],
+        "notes": []
+      },
+      {
+        "title": "",
+        "xlabel": "",
+        "ylabel": "报告净利润 亿元",
+        "xticks": [
+          [
+            2026.0,
+            "2026E"
+          ],
+          [
+            2027.0,
+            "2027E"
+          ],
+          [
+            2028.0,
+            "2028E"
+          ]
+        ],
+        "yticks": [
+          [
+            0.0,
+            "0"
+          ],
+          [
+            20.0,
+            "20"
+          ],
+          [
+            40.0,
+            "40"
+          ],
+          [
+            60.0,
+            "60"
+          ],
+          [
+            80.0,
+            "80"
+          ],
+          [
+            100.0,
+            "100"
+          ],
+          [
+            120.0,
+            "120"
+          ],
+          [
+            140.0,
+            "140"
+          ],
+          [
+            160.0,
+            "160"
+          ],
+          [
+            180.0,
+            "180"
+          ]
+        ],
+        "series": [
+          {
+            "kind": "line",
+            "label": "摩根士丹利 07-14",
+            "x": [
+              2026.0,
+              2027.0,
+              2028.0
+            ],
+            "y": [
+              64.21,
+              83.06,
+              102.82
+            ]
+          },
+          {
+            "kind": "line",
+            "label": "美银 08-28",
+            "x": [
+              2026.0,
+              2027.0,
+              2028.0
+            ],
+            "y": [
+              87.8,
+              130.99,
+              148.65
+            ]
+          }
+        ],
+        "notes": []
+      }
+    ]
+  }
+}

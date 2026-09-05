@@ -1,0 +1,21 @@
+import {chromium} from 'playwright';
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import {pathToFileURL} from 'node:url';
+const base=process.argv[2];if(!base)throw new Error('Provide report directory');
+const browser=await chromium.launch({headless:true,executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'});
+const page=await browser.newPage({viewport:{width:1440,height:1000}});const errors=[],requests=[];page.on('pageerror',e=>errors.push(e.message));page.on('request',r=>requests.push(r.url()));
+await page.context().setOffline(true);
+await page.goto(pathToFileURL(path.join(base,'index.html')).href);
+const status=await page.evaluate(()=>({pass:window.auditVerification.pass,formulas:window.auditVerification.checks.length,cells:document.querySelectorAll('.audit-cell').length,svg:document.querySelectorAll('svg').length,sections:document.querySelectorAll('main section').length,images:document.images.length,overflow:document.documentElement.scrollWidth>innerWidth}));
+if(!status.pass||status.formulas!==379||status.cells!==2024||status.svg!==8||status.sections!==16||status.images||status.overflow)throw Error(JSON.stringify(status));
+for(const [name,n] of [['长飞光纤',4],['中天科技',2],['全部',6]]){await page.getByRole('button',{name,exact:true}).click();if(await page.locator('.broker-table').first().locator('tbody tr:visible').count()!==n)throw Error('Broker filter');}
+await page.selectOption('#sheet-filter','公司财务');await page.fill('#data-search','长飞');if(!await page.evaluate(()=>[...document.querySelectorAll('.audit-cell:not([hidden])')].every(r=>r.dataset.sheet==='公司财务'&&r.textContent.includes('长飞'))))throw Error('Data filter');
+if(await page.locator('.audit-cell:not([hidden])').count()===0)throw Error('Empty filter');
+await page.selectOption('#sheet-filter','');await page.fill('#data-search','');
+await page.locator('#calculations details').first().locator('summary').click();if(!await page.locator('#calculations details').first().textContent().then(s=>s.includes('代入值')&&s.includes('计算结果')))throw Error('Formula detail');
+await page.locator('#sources details').first().locator('summary').click();
+await page.setViewportSize({width:390,height:844});if(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth))throw Error('Mobile overflow');
+await page.emulateMedia({media:'print'});if(await page.locator('svg').count()!==8)throw Error('Print charts');
+if(errors.length||requests.length!==1)throw Error(JSON.stringify({errors,requests}));
+console.log(JSON.stringify({status:'PASS',...status,offline:true,mobile:true,filters:true,details:true,print_css:true,requests:requests.length,errors}));await browser.close();

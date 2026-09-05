@@ -1,0 +1,26 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"data\":{\"data\":[{\"columns\":[{\"name\":\"Wind代码\",\"type\":\"string\"},{\"name\":\"证券简称\",\"type\":\"string\"},{\"name\":\"2026年9月2日的企业价值EV\",\"type\":\"number\",\"unit\":\"亿元\"},{\"name\":\"交易币种\",\"type\":\"string\"},{\"name\":\"2026年9月2日的企业倍数EV/EBITDA\",\"type\":\"number\"},{\"name\":\"2026年9月2日的EV/营业收入\",\"type\":\"number\"}],\"rows\":[[\"300394.SZ\",\"天孚通信\",2698.0414,\"CNY\",110.4929,52.2529]]},{\"columns\":[{\"name\":\"Wind代码\",\"type\":\"string\"},{\"name\":\"证券简称\",\"type\":\"string\"},{\"name\":\"2026年9月2日的TTM EBITDA\",\"type\":\"number\",\"unit\":\"亿元\"},{\"name\":\"2026年9月2日的净债务\",\"type\":\"number\",\"unit\":\"亿元\"},{\"name\":\"记账本位币\",\"type\":\"string\"},{\"name\":\"2026年9月2日的TTM营业收入\",\"type\":\"number\",\"unit\":\"亿元\"},{\"name\":\"2026年9月2日的TTM营业收入.周期\",\"type\":\"string\"},{\"name\":\"2026年9月2日的少数股东权益\",\"type\":\"number\",\"unit\":\"万元\"},{\"name\":\"2026年9月2日的少数股东权益.周期\",\"type\":\"string\"}],\"rows\":[[\"300394.SZ\",\"天孚通信\",29.2948,-29.0213,\"CNY\",28.2794,\"TTM\",12.8457,\"TTM\"]]}]},\"error\":null}"
+    }
+  ],
+  "isError": false,
+  "cli_meta": {
+    "schema_version": "1.0",
+    "server_type": "stock_data",
+    "tool_name": "get_stock_fundamentals",
+    "completeness": "not_asserted",
+    "tables": [
+      {
+        "path": "$.data.data[0]",
+        "actual_row_count": 1
+      },
+      {
+        "path": "$.data.data[1]",
+        "actual_row_count": 1
+      }
+    ],
+    "warnings": []
+  }
+}

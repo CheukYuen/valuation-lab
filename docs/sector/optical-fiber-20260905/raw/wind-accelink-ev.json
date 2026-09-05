@@ -1,0 +1,26 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"data\":{\"data\":[{\"columns\":[{\"name\":\"Wind代码\",\"type\":\"string\"},{\"name\":\"证券简称\",\"type\":\"string\"},{\"name\":\"2026年9月2日的企业价值\",\"type\":\"number\",\"unit\":\"亿元\"},{\"name\":\"交易币种\",\"type\":\"string\"},{\"name\":\"2026年9月2日的企业倍数\",\"type\":\"number\"},{\"name\":\"2026年9月2日EV/营业收入\",\"type\":\"number\"}],\"rows\":[[\"002281.SZ\",\"光迅科技\",1379.4947,\"CNY\",95.9029,11.5645]]},{\"columns\":[{\"name\":\"Wind代码\",\"type\":\"string\"},{\"name\":\"证券简称\",\"type\":\"string\"},{\"name\":\"2026年9月2日的TTM营业收入\",\"type\":\"number\",\"unit\":\"亿元\"},{\"name\":\"交易币种\",\"type\":\"string\"},{\"name\":\"2026年9月2日的TTM EBITDA\",\"type\":\"number\",\"unit\":\"亿元\"},{\"name\":\"2026年9月2日的净债务\",\"type\":\"number\",\"unit\":\"亿元\"},{\"name\":\"记账本位币\",\"type\":\"string\"},{\"name\":\"2026年9月2日的少数股东权益\",\"type\":\"number\",\"unit\":\"百万元\"}],\"rows\":[[\"002281.SZ\",\"光迅科技\",132.9543,\"CNY\",17.8987,-56.3263,\"CNY\",48.6275]]}]},\"error\":null}"
+    }
+  ],
+  "isError": false,
+  "cli_meta": {
+    "schema_version": "1.0",
+    "server_type": "stock_data",
+    "tool_name": "get_stock_fundamentals",
+    "completeness": "not_asserted",
+    "tables": [
+      {
+        "path": "$.data.data[0]",
+        "actual_row_count": 1
+      },
+      {
+        "path": "$.data.data[1]",
+        "actual_row_count": 1
+      }
+    ],
+    "warnings": []
+  }
+}

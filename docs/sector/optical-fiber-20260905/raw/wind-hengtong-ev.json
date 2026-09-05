@@ -1,0 +1,26 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"data\":{\"data\":[{\"columns\":[{\"name\":\"Wind代码\",\"type\":\"string\"},{\"name\":\"证券简称\",\"type\":\"string\"},{\"name\":\"2026年9月2日的收盘价\",\"type\":\"number\",\"unit\":\"元\"},{\"name\":\"2026年9月2日的企业价值\",\"type\":\"number\",\"unit\":\"亿元\"},{\"name\":\"交易币种\",\"type\":\"string\"},{\"name\":\"2026年9月2日的总股本\",\"type\":\"number\",\"unit\":\"股\"},{\"name\":\"2026年9月2日的企业倍数\",\"type\":\"number\"},{\"name\":\"2026年9月2日的EV/SALES\",\"type\":\"number\"},{\"name\":\"2026年9月2日的总市值\",\"type\":\"number\",\"unit\":\"亿元\"}],\"rows\":[[\"600487.SH\",\"亨通光电\",66.9,1708.6437,\"CNY\",2466392257,34.8142,2.5558,1650.0164]]},{\"columns\":[{\"name\":\"Wind代码\",\"type\":\"string\"},{\"name\":\"证券简称\",\"type\":\"string\"},{\"name\":\"2026年9月2日的TTM EBITDA\",\"type\":\"number\",\"unit\":\"亿元\"},{\"name\":\"2026年9月2日的TTM营业收入\",\"type\":\"number\",\"unit\":\"亿元\"},{\"name\":\"2026年9月2日的TTM营业收入.报表类型\",\"type\":\"string\"},{\"name\":\"2026年9月2日的净债务\",\"type\":\"number\",\"unit\":\"亿元\"},{\"name\":\"2026年9月2日的少数股东损益\",\"type\":\"number\",\"unit\":\"亿元\"},{\"name\":\"2026年9月2日的少数股东损益.报表类型\",\"type\":\"string\"},{\"name\":\"记账本位币\",\"type\":\"string\"}],\"rows\":[[\"600487.SH\",\"亨通光电\",71.4844,420.259,\"合并报表\",58.6272,1.4538,\"合并报表\",\"CNY\"]]}]},\"error\":null}"
+    }
+  ],
+  "isError": false,
+  "cli_meta": {
+    "schema_version": "1.0",
+    "server_type": "stock_data",
+    "tool_name": "get_stock_fundamentals",
+    "completeness": "not_asserted",
+    "tables": [
+      {
+        "path": "$.data.data[0]",
+        "actual_row_count": 1
+      },
+      {
+        "path": "$.data.data[1]",
+        "actual_row_count": 1
+      }
+    ],
+    "warnings": []
+  }
+}
