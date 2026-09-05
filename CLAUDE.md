@@ -19,6 +19,8 @@
 ## Skills
 
 - `wind-mcp-skill`：查询万得（Wind）行情、财务、公告、Beta、汇率等金融市场数据。密钥见 `.env` 中的 `WIND_API_KEY`。
+- `choice-quantapi-skill`：Choice 量化 API（EMQuantAPI · Python）取数与量化/回测脚本生成，覆盖截面 `css`、序列 `csd`、板块截面 `cses`、专题报表 `ctr`、板块成分 `sector` 与交易日工具 `tradedates` / `getdate` / `tradedatesnum`。技能文档见 [.agents/skills/choice-quantapi-skill/SKILL.md](.agents/skills/choice-quantapi-skill/SKILL.md)，写代码前必须先读对应的 `references/functions/<函数名>.md`。
+  - 鉴权不走 `.env`（`EM_API_KEY` 与本技能无关）：凭据由本机已激活的 SDK（`~/.choice/EMQuantAPI_Python`）持有；报 `ModuleNotFoundError` 时跑 `.agents/skills/choice-quantapi-skill/scripts/install.py`，报 `10001020` / `10001019` / `10001009` 时按 `.agents/skills/choice-quantapi-skill/references/sdk-setup.md` §2 跑同目录的 `scripts/activate.py`。
 
 ## 常用命令
 
