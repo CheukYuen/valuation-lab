@@ -1,6 +1,8 @@
 # 离线 HTML 构建与验收
 
-唯一阅读交付为 `index.html`。文件包含正文、八张纯 SVG 图、六张工作表的全部有效单元格、计算过程、来源台账和保存的文本回执；不需要 Excel、PNG、网络或本地服务器。
+唯一阅读交付为 `index.html`。文件包含正文、八张纯 SVG 图、六张工作表按原格式还原的二维网格（合并区域、冻结窗格、列宽行高、配色与数字格式，列宽差异见差异清单）、全部有效单元格的审计台账、计算过程、来源台账和保存的文本回执；不需要 Excel、PNG、网络或本地服务器。
+
+网格上的排序、筛选、列宽拖拽和冻结首列由 `html_audit.js` 末段用原生 JS 实现，页面没有任何第三方运行时。与原附件的差异清单、区块切分规则和性能实测见 [XLSX-HTML-GAP.md](XLSX-HTML-GAP.md)。
 
 ## 正常重建
 
@@ -8,23 +10,26 @@
 
 ```bash
 python3 build_html.py
-python3 verify_artifacts.py
+python3 verify_artifacts.py --archive
+node verify_html.mjs "$PWD"
 ```
 
-使用已安装 Playwright 的 Node 环境运行 `verify_html.mjs <本目录绝对路径>`。脚本用本机 Chrome 在断网环境检查桌面、手机、筛选、展开、打印 CSS 和全部公式。
+`verify_html.mjs` 需要一个能解析 `playwright` 的 Node 环境；本目录没有 `package.json`，最省事的做法是 `npm install --no-save --ignore-scripts playwright`（只装包不下载浏览器，脚本用的是本机 Chrome），生成的 `node_modules/` 已被仓库根 `.gitignore` 忽略。页面本身零运行时依赖。`verify_html.mjs` 用本机 Chrome 在断网环境检查桌面、手机、筛选、展开、打印 CSS、网格形状、数字格式、列宽、冻结窗格、网格排序筛选拖拽和全部公式；网格单元格数由页面内嵌数据推导，不写死。
 
 ## 数据来源与维护
 
 - `workbook_data.json`：一次性完整提取的原工作簿快照，包含值、公式、格式、来源批注、合并区域、两个原生图的 XML 范围和文件 SHA-256。正常构建直接读取它，不打开 Excel。
 - `chart_data.json`：八张 SVG 及同次绘图产生的完整系列、坐标、矩阵、标签和注释；正文图与“查看数据”使用同一份记录。图中原来散落的常量也已进入此记录。
 - `sector_data.json`、`broker_data.json`、`DATA-SOURCES.md` 和 `raw/`：内嵌的研究数据及文本证据。HTML 内的 JSON 保留原始数值精度。
+- `workbook_data.json` 的 `style` 段：原工作簿的格式快照，含冻结窗格、列宽、行高、网格线开关和 3,606 个单元格的样式索引（去重成 23 项调色板），与值、公式、批注同由 `migrate_workbook.py` 一次提取。
 - `html_audit.js`：仅解析原工作簿实际使用的算术、跨表引用、范围、SUM/MEDIAN/MIN/MAX/COUNT；不执行字符串代码。逐项对比 379 个公式的原缓存值，容差为相对 1e-9 或绝对 1e-8。
+- `html_audit.py` 的 `render()`：只实现原工作簿实际出现的 12 种 `number_format`，在构建期把数值渲染成显示文本，页面里因此是可搜索、可打印的真实文本。基准断言在仓库根目录的 `tests/test_xlsx_format.py`，期望值按 Excel 实际显示手写，不从 openpyxl 推导。
 
 本报告为固定日期快照。更新输入时需同步对应数据、图表和研究正文，并重新执行验收；不得只改页面显示数字。`build_charts.py` 可在已配置 matplotlib/numpy 的环境重新生成 SVG 与图表数据，不生成 PNG。正常 HTML 构建无需 matplotlib。
 
 ## 原档案与迁移核对
 
-旧工作簿及 `charts/` 下的 PNG 保留作档案。`build_workbook.mjs` 默认拒绝运行，只有明确传入 `--archive-rebuild` 才允许重建旧档案；不属于正常工作流。`migrate_workbook.py` 是一次性提取工具，不应在正常重建中运行。
+旧工作簿及 `charts/` 下的 PNG 保留作档案。`build_workbook.mjs` 默认拒绝运行，只有明确传入 `--archive-rebuild` 才允许重建旧档案；不属于正常工作流。`migrate_workbook.py` 是一次性提取工具，不应在正常重建中运行。曾经存在的 `index-tabulator.html`、`vendor/tabulator.*` 与本目录的 `package.json` 已删除，结论记在 XLSX-HTML-GAP.md 第三节。
 
 若需要再次与旧工作簿逐项比对，可运行 `python3 verify_artifacts.py --archive`，需要 openpyxl。此检查包含原文件哈希、每个有效单元格的数值、公式、格式及批注。
 
@@ -37,6 +42,10 @@ python3 verify_artifacts.py
 | 有效单元格 | 2,024 | 完整数据，保留表名和坐标 | 与 XLSX 逐项一致 |
 | 公式 | 379 | 计算过程、内嵌数据 | 浏览器复算全部一致 |
 | 来源批注 | 143 | 单元格详情 | 与 XLSX 逐项一致 |
+| 合并区域 | 27 个 | 完整数据网格 | rowspan / colspan 保留 |
+| 显示格式 | 12 种，1,304 格 | 完整数据网格 | 24 条手写断言 + 逐格核对 |
+| 冻结窗格 / 列宽 / 行高 | 6 张表 | 完整数据网格 | 与 XLSX 逐项一致 |
+| 填充、字体、对齐 | 23 项样式 | 完整数据网格 | 3,606 格逐项一致 |
 | 图表 | 8 张 | 正文、查看数据 | SVG，无栅格图像 |
 | 工作簿原生图 | 2 张 | 需求指数、历史估值 | 两条及四条系列全部覆盖 |
 | 历史观测日期 | 81 | 历史估值、完整数据 | 完整保留 |

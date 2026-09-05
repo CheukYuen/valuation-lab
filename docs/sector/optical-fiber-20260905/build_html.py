@@ -1,5 +1,5 @@
 """Build an offline HTML research report with embedded charts and source links."""
-from html_audit import chart, appendix, CSS
+from html_audit import chart, appendix, CSS, palette_css
 import html
 import re
 from pathlib import Path
@@ -56,13 +56,14 @@ document.getElementById('print-report').addEventListener('click',()=>window.prin
 const links=[...document.querySelectorAll('.sidebar .toc a')];const observer=new IntersectionObserver(entries=>{const visible=entries.filter(e=>e.isIntersecting);if(visible.length){const id=visible[0].target.id;links.forEach(a=>a.classList.toggle('active',a.hash==='#'+id));}},{rootMargin:'-10% 0px -65% 0px'});document.querySelectorAll('main section').forEach(s=>observer.observe(s));
 const progress=()=>{const max=document.documentElement.scrollHeight-innerHeight;document.querySelector('.reading-progress').style.width=(max>0?100*scrollY/max:0)+'%';};addEventListener('scroll',progress,{passive:true});progress();
 '''
-css+=CSS
+css+=CSS+palette_css()
 js+=(BASE/'html_audit.js').read_text()
+target='index.html'
 parts.append(appendix())
 page='''<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="光纤光缆与AI光连接行业概览，长飞与中天主线，Wind、Choice和投行研报交叉研究。"><title>光纤光缆与 AI 光连接行业概览</title><style>'''+css+'''</style></head><body><header class="topbar"><div class="brand">VALUATION LAB / 行业研究</div><div class="topbar-actions"><a class="desktop-only" href="#sources">来源与口径</a><a href="#full-data">完整数据</a><button class="print" id="print-report">打印</button></div></header><div class="reading-progress" aria-hidden="true"></div><div class="layout"><aside class="sidebar"><p class="sidebar-title">CONTENTS / 研究目录</p><nav class="toc" aria-label="章节目录">'''+nav+'''</nav><div class="sidebar-note">各家投行保留原报告日期。所有目标价均为原报告观点，未平均为本研究的目标价。<a href="#calculations">计算过程</a><a href="#sources">查询记录与证据边界 ↗</a></div></aside><main><div class="hero"><div class="eyebrow">SECTOR OVERVIEW / 2026.09</div><h1>光纤光缆与<br>AI 光连接行业概览</h1><p class="deck">沿长飞光纤与中天科技，辨别产品升级、供给扩张和现金回款。把行业增长放回具体业务，再看价格中包含了多少预期。</p><div class="meta"><span>研究日期 2026 年 9 月 5 日</span><span>估值截点 2026 年 9 月 2 日</span><span>财务基准 2025A / 2026H1</span><span>Codex 整理 · 内部研究</span></div><div class="keyline"><div class="metric"><div class="value">7 家</div><small>上市公司价值链比较</small></div><div class="metric"><div class="value">6 份</div><small>五家投行原时点报告</small></div><div class="metric"><div class="value">81 期</div><small>Choice 月末及末端估值观测</small></div><div class="metric"><div class="value">8 张</div><small>市场 经营与估值图表</small></div></div><div class="evidence-note"><strong>证据边界</strong> 全球收入 TAM、CR5、有效产能与完整 TTM EV 桥仍为 MISSING 或 PARTIAL。投行预测单列，不视为实际业绩或市场共识。</div></div><details class="mobile-toc"><summary>展开研究目录</summary>'''+nav+'''</details>'''+''.join(parts)+'''<footer class="footer">研究文件截至 2026 年 9 月 5 日。市场数值冻结于 9 月 2 日。SVG 图表、明细、公式和文本回执均已嵌入本页，可离线阅读；原始研究档案继续保留。</footer></main></div><script>'''+js+'''</script></body></html>'''
 page=re.sub(r'<a href="[^"]*\.xlsx"[^>]*>.*?</a>', '<a href="#full-data">完整数据（已迁移）</a>', page)
-(BASE/'index.html').write_text(page)
+(BASE/target).write_text(page)
 assert page.count('<section id=')==16
 assert page.count('<svg ')==8
 assert 'data:image/png' not in page
-print(BASE/'index.html')
+print(BASE/target)

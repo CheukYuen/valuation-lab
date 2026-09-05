@@ -87,7 +87,7 @@ class ContentTests(unittest.TestCase):
     def test_relative_markdown_links_resolve(self):
         failures = []
         for markdown in ROOT.rglob("*.md"):
-            if ".git" in markdown.parts:
+            if {".git", "node_modules"} & set(markdown.parts):
                 continue
             text = markdown.read_text()
             for target in LINK.findall(text):

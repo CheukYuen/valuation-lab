@@ -3,6 +3,9 @@ __pycache__/
 .DS_Store
 .env
 
+# 本地为跑 Playwright 验收脚本临时装的依赖，不属于仓库内容
+node_modules/
+
 # skills 更新脚本写出的本地状态，不应入库
 .agents/skills/*/scripts/update-state.json
 
