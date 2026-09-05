@@ -19,11 +19,8 @@
 ## Skills
 
 - `wind-mcp-skill`：查询万得（Wind）行情、财务、公告、Beta、汇率等金融市场数据。走本地 CLI：`node .agents/skills/wind-mcp-skill/scripts/cli.mjs call <server_type> <tool_name> '<json>'`。
-- **Wind 系密钥（`wind-mcp-skill` 与 `wind-alice` 共用同一个 `WIND_API_KEY`）**：值存在 `.env`（已 gitignore），但两个 CLI **都不会读取本仓库的 `.env` 文件**——它们只按 `~/.wind-aifinmarket/config` > skill 目录 `config.json` > `WIND_API_KEY` 环境变量 这个顺序取值。所以直接调用会报 `AUTH_ERROR` / `KEY_MISSING`，需先把它导入环境：
-  ```bash
-  set -a; . ./.env; set +a
-  ```
-  想一劳永逸就把 `WIND_API_KEY=<KEY>` 写进 `~/.wind-aifinmarket/config`（全局共享，两个 skill 都能读到）。
+- **Wind 系密钥（`wind-mcp-skill` 与 `wind-alice` 共用同一个 `WIND_API_KEY`）**：已配置在 `~/.wind-aifinmarket/config`（dotenv 格式，权限 600），两个 CLI 都能直接读到，**无需再做任何 export**。
+  - 取值顺序是 `~/.wind-aifinmarket/config` > skill 目录 `config.json` > `WIND_API_KEY` 环境变量。注意这三处**都不包含本仓库的 `.env`**——`.env` 里那份只是副本，CLI 从不读它；若哪天报 `AUTH_ERROR` / `KEY_MISSING`，先查上面那个 config 文件是否还在。
 - `choice-quantapi-skill`：Choice 量化 API（EMQuantAPI · Python）取数与量化/回测脚本生成，覆盖截面 `css`、序列 `csd`、板块截面 `cses`、专题报表 `ctr`、板块成分 `sector` 与交易日工具 `tradedates` / `getdate` / `tradedatesnum`。技能文档见 [.agents/skills/choice-quantapi-skill/SKILL.md](.agents/skills/choice-quantapi-skill/SKILL.md)，写代码前必须先读对应的 `references/functions/<函数名>.md`。
   - 鉴权不走 `.env`（`EM_API_KEY` 与本技能无关）：凭据由本机已激活的 SDK（`~/.choice/EMQuantAPI_Python`）持有；报 `ModuleNotFoundError` 时跑 `.agents/skills/choice-quantapi-skill/scripts/install.py`，报 `10001020` / `10001019` / `10001009` 时按 `.agents/skills/choice-quantapi-skill/references/sdk-setup.md` §2 跑同目录的 `scripts/activate.py`。
 - `dcf-model`：DCF 估值建模（WACC + 敏感性分析），产出机构级 Excel 模型。硬性规矩：派生单元格一律写 Excel 公式而非 Python 算好的数值、敏感性表用奇数行列且中心格 = base case、每个硬编码输入加来源批注、分阶段与用户确认后再往下建。
