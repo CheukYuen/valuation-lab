@@ -1,0 +1,17 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"data\":{\"items\":[],\"total\":0},\"error\":null}"
+    }
+  ],
+  "isError": false,
+  "cli_meta": {
+    "schema_version": "1.0",
+    "server_type": "financial_docs",
+    "tool_name": "get_company_announcements",
+    "completeness": "not_asserted",
+    "tables": [],
+    "warnings": []
+  }
+}

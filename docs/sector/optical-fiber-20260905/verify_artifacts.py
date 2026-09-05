@@ -25,7 +25,12 @@ for k,f in [('workbook','workbook_data.json'),('charts','chart_data.json'),('sec
 for name,body in d['receipts'].items():assert body==(B/name).read_text(),name
 expected={str(p.relative_to(B)) for p in (B/'raw').rglob('*') if p.is_file() and p.suffix in ('.json','.jsonl','.md','.txt')}
 assert expected<=set(d['receipts'])
-assert (p.svg,p.sections,p.resources)==(8,16,[]),(p.svg,p.sections,p.resources)
+report=(B/'REPORT.md').read_text()
+expected_svg=len(re.findall(r'<!-- (?:chart:|p0chart:|p0timeline)',report))
+expected_sections=len(re.findall(r'^## ',report,re.M))+4
+assert (p.svg,p.sections,p.resources)==(expected_svg,expected_sections,[]),(p.svg,p.sections,p.resources)
+from verify_p0 import verify
+verify(B)
 w=d['workbook'];st=w['style'];assert len(w['sheets'])==6 and len(st['sheets'])==6
 # The rendered grid covers every cell of every sheet's used range, merges excluded.
 merged=sum((int(b[1:])-int(a[1:])+1)*(idx(b)-idx(a)+1)-1 for s in w['sheets'] for a,b in (m.split(':') for m in s['merges']))
@@ -79,4 +84,4 @@ if '--archive' in sys.argv:
     assert (q['color'],q['bold'],q['italic'],q['name'])==(rgb(cell.font.color),bool(cell.font.b),bool(cell.font.i),cell.font.name),(ws.title,cell.coordinate,'font')
     assert q['size']==(float(cell.font.sz) if cell.font.sz else None),(ws.title,cell.coordinate,'size')
     assert (q['halign'],q['valign'],q['wrap'])==(cell.alignment.horizontal,cell.alignment.vertical,bool(cell.alignment.wrap_text)),(ws.title,cell.coordinate,'align')
-print(json.dumps({'status':'PASS',**w['counts'],'rendered_cells':p.gridcells,'merges':p.spans,'receipts':len(d['receipts']),'SVG':8,'original_charts_covered':2,'archive_compared':'--archive' in sys.argv},ensure_ascii=False))
+print(json.dumps({'status':'PASS',**w['counts'],'rendered_cells':p.gridcells,'merges':p.spans,'receipts':len(d['receipts']),'SVG':p.svg,'original_charts_covered':2,'archive_compared':'--archive' in sys.argv},ensure_ascii=False))

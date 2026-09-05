@@ -7,8 +7,11 @@ const browser=await chromium.launch({headless:true,executablePath:'/Applications
 const page=await browser.newPage({viewport:{width:1440,height:1000}});const errors=[],requests=[];page.on('pageerror',e=>errors.push(e.message));page.on('request',r=>requests.push(r.url()));
 await page.context().setOffline(true);
 await page.goto(pathToFileURL(path.join(base,'index.html')).href);
+const report=await fs.readFile(path.join(base,'REPORT.md'),'utf8');
+const expectedSvg=(report.match(/<!-- (?:chart:|p0chart:|p0timeline)/g)||[]).length;
+const expectedSections=(report.match(/^## /gm)||[]).length+4;
 const status=await page.evaluate(()=>({pass:window.auditVerification.pass,formulas:window.auditVerification.checks.length,cells:document.querySelectorAll('.audit-cell').length,svg:document.querySelectorAll('svg').length,sections:document.querySelectorAll('main section').length,images:document.images.length,overflow:document.documentElement.scrollWidth>innerWidth}));
-if(!status.pass||status.formulas!==379||status.cells!==2024||status.svg!==8||status.sections!==16||status.images||status.overflow)throw Error(JSON.stringify(status));
+if(!status.pass||status.formulas!==379||status.cells!==2024||status.svg!==expectedSvg||status.sections!==expectedSections||status.images||status.overflow)throw Error(JSON.stringify(status));
 Object.assign(status,await page.evaluate(()=>({grid:document.querySelectorAll('[data-ref]').length,merges:document.querySelectorAll('.xlgrid [rowspan],.xlgrid [colspan]').length})));
 // Expected grid-cell counts are derived from the embedded workbook, not hard-coded.
 const expected=await page.evaluate(()=>{
@@ -108,8 +111,21 @@ if(await page.locator('.audit-cell:not([hidden])').count()===0)throw Error('Empt
 await page.selectOption('#sheet-filter','');await page.fill('#data-search','');
 await page.locator('#calculations details').first().locator('summary').click();if(!await page.locator('#calculations details').first().textContent().then(s=>s.includes('代入值')&&s.includes('计算结果')))throw Error('Formula detail');
 await page.locator('#sources details').first().locator('summary').click();
+// P0 sources, data-backed calculations and SVGs work offline.
+await page.locator('#p0-prices .p0-table-search').fill('欧洲');
+if(!await page.locator('#p0-prices tbody tr:visible').count()||!await page.locator('#p0-prices tbody tr:visible').evaluateAll(rs=>rs.every(r=>r.textContent.includes('欧洲'))))throw Error('P0 table filter');
+await page.locator('#p0-prices .p0-table-search').fill('');
+const p0=await page.evaluate(()=>JSON.parse(document.getElementById('p0-data').textContent));
+if(await page.locator('.p0-source').count()!==Object.keys(p0.sources).length)throw Error('P0 source count');
+await page.fill('#p0-source-search','古河');
+if(await page.locator('.p0-source:not([hidden])').count()!==1)throw Error('P0 source filter');
+await page.fill('#p0-source-search','');
+await page.evaluate(()=>location.hash='p0-source-F');await page.waitForTimeout(100);
+if(!await page.locator('#p0-source-F').evaluate(e=>e.open))throw Error('P0 source anchor');
+const calcValues=await page.locator('.p0-calc').evaluateAll(es=>Object.fromEntries(es.map(e=>[e.id,+e.dataset.value])));
+if(Math.abs(calcValues['p0-calc-asp-impact']-0.7)>1e-9||Math.abs(calcValues['p0-calc-tender-ceiling']-7100/69.222)>1e-9)throw Error('P0 calculations');
 await page.setViewportSize({width:390,height:844});if(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth))throw Error('Mobile overflow');
-await page.emulateMedia({media:'print'});if(await page.locator('svg').count()!==8)throw Error('Print charts');
+await page.emulateMedia({media:'print'});if(await page.locator('svg').count()!==expectedSvg)throw Error('Print charts');
 // Printing narrows the grid columns, so grid cells must wrap and never clip on paper.
 await page.evaluate(()=>dispatchEvent(new Event('beforeprint')));
 await page.waitForTimeout(600);

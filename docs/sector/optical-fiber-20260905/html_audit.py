@@ -72,7 +72,7 @@ def span(ref):
  return int(m[2]),index(m[1]),int(n[2]),index(n[1])
 def chart(name):
  c=C[name];rows=[]
- svg=c['svg']
+ svg='\n'.join(line.rstrip() for line in c['svg'].splitlines())
  for ident in set(re.findall(r'id="([^"]+)"',svg)):
   svg=svg.replace('id="'+ident+'"','id="'+name+'-'+ident+'"')
   svg=re.sub(r'#'+re.escape(ident)+r'(?=["\)])','#'+name+'-'+ident,svg)
