@@ -26,6 +26,7 @@
 20. [摩根士丹利 RIM 可见输入复核](morgan_stanley_20260823_model.py)
 21. [2026-09-02 Wind 数据独立 DCF](12-WIND-DCF-20260902.md)
 22. [2026-09-02 Wind 可比公司与 DCF 交叉分析](13-WIND-COMPS-20260902.md)
+23. [Task 4 离线研究图册](17-INITIATING-COVERAGE-TASK4-CHART-GENERATION-20260902.html)
 
 ## 后续顺序
 
